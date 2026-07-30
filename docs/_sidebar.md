@@ -9,6 +9,8 @@
   - [7. 🌿 ブランチと安全な進め方](branch.html ':ignore target=_blank')
 - 読み物（寄り道）
   - [☕ なぜ VS Code なのか？](why-vscode.md)
+  - [☕ なぜ git が生まれたのか](why-git.md)
+  - [☕ AIはなぜ間違えるのか](why-ai-mistakes.md)
 - いつでも
   - [⌨️ コマンド練習](drill.html ':ignore target=_blank')
   - [用語集](glossary.md)

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="320" viewBox="0 0 720 320" role="img" aria-label="中央に1つだけある方式と、全員が完全なコピーを持つ方式の比較">
+  <rect width="720" height="320" fill="#ffffff"/>
+  <text x="180" y="24" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#c0392b" text-anchor="middle">昔のやり方</text>
+  <text x="540" y="24" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#2b7d52" text-anchor="middle">git のやり方</text>
+
+  <rect x="24" y="38" width="312" height="222" rx="10" fill="#fdf1f0" stroke="#f0c2bd" stroke-width="1.5"/>
+  <rect x="140" y="60" width="80" height="54" rx="8" fill="#c0392b"/>
+  <text x="180" y="84" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#ffffff" text-anchor="middle">本体</text>
+  <text x="180" y="102" font-family="sans-serif" font-size="10" fill="#f7d3cf" text-anchor="middle">履歴はここだけ</text>
+  <g fill="#ffffff" stroke="#c0392b" stroke-width="2">
+    <circle cx="70" cy="180" r="20"/><circle cx="180" cy="180" r="20"/><circle cx="290" cy="180" r="20"/>
+  </g>
+  <g stroke="#c0392b" stroke-width="2">
+    <path d="M78 162 L150 116"/><path d="M180 160 L180 116"/><path d="M282 162 L210 116"/>
+  </g>
+  <text x="180" y="224" font-family="sans-serif" font-size="11.5" fill="#c0392b" text-anchor="middle">本体が落ちると全員が止まる</text>
+  <text x="180" y="242" font-family="sans-serif" font-size="11.5" fill="#c0392b" text-anchor="middle">つながっていないと何もできない</text>
+
+  <rect x="384" y="38" width="312" height="222" rx="10" fill="#f1faf4" stroke="#b7e3c6" stroke-width="1.5"/>
+  <g>
+    <circle cx="430" cy="180" r="22" fill="#ffffff" stroke="#3aa76d" stroke-width="2"/>
+    <line x1="418" y1="180" x2="442" y2="180" stroke="#3aa76d" stroke-width="2"/>
+    <circle cx="420" cy="180" r="3" fill="#3aa76d"/><circle cx="431" cy="180" r="3" fill="#3aa76d"/><circle cx="441" cy="180" r="4" fill="#3aa76d"/>
+  </g>
+  <g>
+    <circle cx="540" cy="180" r="22" fill="#ffffff" stroke="#3aa76d" stroke-width="2"/>
+    <line x1="528" y1="180" x2="552" y2="180" stroke="#3aa76d" stroke-width="2"/>
+    <circle cx="530" cy="180" r="3" fill="#3aa76d"/><circle cx="541" cy="180" r="3" fill="#3aa76d"/><circle cx="551" cy="180" r="4" fill="#3aa76d"/>
+  </g>
+  <g>
+    <circle cx="650" cy="180" r="22" fill="#ffffff" stroke="#3aa76d" stroke-width="2"/>
+    <line x1="638" y1="180" x2="662" y2="180" stroke="#3aa76d" stroke-width="2"/>
+    <circle cx="640" cy="180" r="3" fill="#3aa76d"/><circle cx="651" cy="180" r="3" fill="#3aa76d"/><circle cx="661" cy="180" r="4" fill="#3aa76d"/>
+  </g>
+  <rect x="500" y="60" width="80" height="54" rx="8" fill="#2b7d52"/>
+  <text x="540" y="84" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#ffffff" text-anchor="middle">GitHub</text>
+  <text x="540" y="102" font-family="sans-serif" font-size="10" fill="#b7e3c6" text-anchor="middle">待ち合わせ場所</text>
+  <g stroke="#3aa76d" stroke-width="2" stroke-dasharray="5 4">
+    <path d="M438 158 L510 116"/><path d="M540 158 L540 116"/><path d="M642 158 L570 116"/>
+  </g>
+  <text x="540" y="224" font-family="sans-serif" font-size="11.5" fill="#2b7d52" text-anchor="middle">全員が完全な履歴を持っている</text>
+  <text x="540" y="242" font-family="sans-serif" font-size="11.5" fill="#2b7d52" text-anchor="middle">ネットが無くても作業できる</text>
+
+  <rect x="90" y="278" width="540" height="30" rx="9" fill="#eef3ff" stroke="#c9dbff" stroke-width="1.5"/>
+  <text x="360" y="298" font-family="sans-serif" font-size="12.5" fill="#2f6fed" text-anchor="middle">あなたのパソコンの中にも、履歴の「完全なコピー」が入っています。</text>
+</svg>

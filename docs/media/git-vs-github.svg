@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="250" viewBox="0 0 720 250" role="img" aria-label="gitとGitHubは別物であることを示した図">
+  <rect width="720" height="250" fill="#ffffff"/>
+  <text x="360" y="26" font-family="sans-serif" font-size="14" font-weight="700" fill="#5b6472" text-anchor="middle">よくある勘違い: git と GitHub は「別物」です</text>
+
+  <rect x="50" y="46" width="270" height="140" rx="10" fill="#fdf3ef" stroke="#e8b9a3" stroke-width="1.5"/>
+  <rect x="152" y="62" width="66" height="66" rx="16" fill="#e8763a"/>
+  <g stroke="#ffffff" stroke-width="4.4" fill="none">
+    <path d="M172 92v14"/><path d="M198 92v4a9 9 0 0 1-9 9h-1"/>
+  </g>
+  <circle cx="172" cy="86" r="5.8" fill="#e8763a" stroke="#ffffff" stroke-width="4.4"/>
+  <circle cx="198" cy="86" r="5.8" fill="#e8763a" stroke="#ffffff" stroke-width="4.4"/>
+  <circle cx="172" cy="111" r="5.8" fill="#ffffff"/>
+  <text x="185" y="152" font-family="sans-serif" font-size="14" font-weight="700" fill="#a5522f" text-anchor="middle">git</text>
+  <text x="185" y="172" font-family="sans-serif" font-size="12" fill="#5b6472" text-anchor="middle">パソコンに入れる「道具」</text>
+
+  <text x="360" y="122" font-family="sans-serif" font-size="26" font-weight="700" fill="#8892a0" text-anchor="middle">≠</text>
+
+  <rect x="400" y="46" width="270" height="140" rx="10" fill="#f1f4f9" stroke="#c7cede" stroke-width="1.5"/>
+  <circle cx="535" cy="95" r="33" fill="#24292f"/>
+  <path d="M535 74c-11.6 0-21 9.4-21 21 0 9.3 6 17.2 14.4 20 1 .2 1.4-.5 1.4-1v-3.7c-5.8 1.3-7.1-2.8-7.1-2.8-1-2.4-2.4-3.1-2.4-3.1-1.9-1.3.2-1.3.2-1.3 2.1.2 3.2 2.2 3.2 2.2 1.9 3.2 5 2.3 6.2 1.8.2-1.4.7-2.3 1.3-2.9-4.7-.5-9.7-2.4-9.7-10.5 0-2.3.8-4.2 2.2-5.7-.2-.5-1-2.7.2-5.7 0 0 1.8-.6 5.8 2.2 1.7-.5 3.5-.7 5.3-.7s3.6.2 5.3.7c4-2.8 5.8-2.2 5.8-2.2 1.2 3 .4 5.2.2 5.7 1.4 1.5 2.2 3.4 2.2 5.7 0 8.1-5 10-9.7 10.5.8.7 1.5 2 1.5 3.9v5.8c0 .6.4 1.2 1.4 1 8.4-2.8 14.4-10.7 14.4-20 0-11.6-9.4-21-21-21z" fill="#ffffff"/>
+  <text x="535" y="152" font-family="sans-serif" font-size="14" font-weight="700" fill="#3d4652" text-anchor="middle">GitHub</text>
+  <text x="535" y="172" font-family="sans-serif" font-size="12" fill="#5b6472" text-anchor="middle">インターネット上の「置き場所」</text>
+
+  <rect x="90" y="204" width="540" height="34" rx="9" fill="#eef3ff" stroke="#c9dbff" stroke-width="1.5"/>
+  <text x="360" y="226" font-family="sans-serif" font-size="12.5" fill="#2f6fed" text-anchor="middle">作った会社も、生まれた年も違います。git だけでも作業はできます。</text>
+</svg>

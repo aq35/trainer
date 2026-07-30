@@ -16,7 +16,7 @@
 
 いつでも: **[コマンド練習](docs/drill.html)** — 20問のクイズ形式ドリル（分野別・成績保存・間違いだけ再挑戦）
 
-読み物: [なぜ VS Code なのか？ 拡張機能って何？](docs/why-vscode.md)
+読み物（寄り道）: [なぜ VS Code なのか？](docs/why-vscode.md) / [なぜ git が生まれたのか](docs/why-git.md) / [AIはなぜ間違えるのか](docs/why-ai-mistakes.md)
 
 補足資料: [用語集](docs/glossary.md) / [Step 0: ターミナル入門](docs/step0-terminal.md) / [環境構築でやっていること](docs/step1-setup.md)
 
