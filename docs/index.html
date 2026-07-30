@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>エンジニア育成トレーナー</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta name="description" content="未経験者向けエンジニア育成カリキュラム">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <style>
+    :root {
+      --theme-color: #2f6fed;
+    }
+    body {
+      font-feature-settings: "palt";
+    }
+    .markdown-section {
+      max-width: 860px;
+    }
+    .markdown-section code {
+      font-size: 0.9em;
+    }
+    .markdown-section pre {
+      border-radius: 8px;
+    }
+    .markdown-section details {
+      background: #f5f7fb;
+      border: 1px solid #e1e6f0;
+      border-radius: 8px;
+      padding: 0.6em 1em;
+      margin: 1em 0;
+    }
+    .markdown-section details summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: #2f6fed;
+    }
+    .markdown-section table {
+      display: table;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  <script>
+    window.$docsify = {
+      name: 'エンジニア育成トレーナー',
+      repo: '',
+      loadSidebar: true,
+      subMaxLevel: 2,
+      auto2top: true,
+      search: {
+        placeholder: '検索',
+        noData: '見つかりませんでした',
+        depth: 3
+      },
+      copyCode: {
+        buttonText: 'コピー',
+        errorText: '失敗しました',
+        successText: 'コピーしました'
+      },
+      pagination: {
+        previousText: '前へ',
+        nextText: '次へ',
+        crossChapter: true
+      },
+      mermaidConfig: {
+        theme: 'default'
+      }
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify-copy-code@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify-mermaid@2/dist/docsify-mermaid.js"></script>
+</body>
+</html>
