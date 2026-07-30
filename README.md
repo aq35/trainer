@@ -6,11 +6,15 @@
 
 ## 受講者が進む順番
 
-1. **[環境構築ナビ](docs/setup.html)** — 1画面1操作の対話式セットアップ（VS Code / Git / Claude Code / Bedrock接続）
-2. [Step 2: git の基本](docs/step2-git.md) — 手を動かしながら10分
+1. **[環境構築ナビ](docs/setup.html)** — VS Code / Git / Claude Code / Bedrock接続
+2. [git の基本](docs/step2-git.md) — 記録する・戻す（読み物・10分）
 3. **[GitHubナビ](docs/github.html)** — アカウント作成から push まで
+4. **[差分を読む](docs/diff.html)** — AIの提案を読んで判断するための土台
+5. **[AIと一緒に直す](docs/ai.html)** — 権限モード・承認・拒否・取り消し・頼み方
 
-補足資料: [Step 0: ターミナル入門](docs/step0-terminal.md) / [環境構築でやっていること](docs/step1-setup.md)
+補足資料: [用語集](docs/glossary.md) / [Step 0: ターミナル入門](docs/step0-terminal.md) / [環境構築でやっていること](docs/step1-setup.md)
+
+トップページには全体の進捗マップが出ます（各ナビの進み具合をブラウザから読み取って表示）。
 
 ## 運営側のセットアップ
 
@@ -52,6 +56,7 @@ window.TRAINER_SUPPORT = {
 | `docs/setup.html`, `docs/github.html` | 対話式ナビ（独立した静的HTML） |
 | `docs/navi.js`, `docs/navi.css` | ナビ共通エンジン。ページ側は手順データのみ持つ |
 | `docs/config.js` | 運営側が編集する設定（サポート窓口） |
+| `docs/progress.js` | トップの進捗マップと Step 2 のチェックリスト |
 | `docs/media/` | 図版（SVG） |
 
 新しいナビを増やす場合は、`navi.css` / `navi.js` を読み込み、`window.NAVI = { key, steps, common }` を定義した HTML を追加してください。

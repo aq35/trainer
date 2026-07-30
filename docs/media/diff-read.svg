@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="330" viewBox="0 0 720 330" role="img" aria-label="差分の読み方。赤は消えた行、緑は増えた行">
+  <rect width="720" height="330" fill="#ffffff"/>
+  <text x="360" y="26" font-family="sans-serif" font-size="14" font-weight="700" fill="#5b6472" text-anchor="middle">差分＝「どこが変わったか」だけを抜き出したもの</text>
+
+  <text x="180" y="56" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#8892a0" text-anchor="middle">変更前</text>
+  <text x="540" y="56" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#8892a0" text-anchor="middle">変更後</text>
+
+  <rect x="30" y="66" width="300" height="96" rx="8" fill="#f7f8fa" stroke="#c7cede"/>
+  <g font-family="monospace" font-size="13" fill="#3d4652">
+    <text x="48" y="90">こんにちは</text><text x="48" y="114">よろしく</text><text x="48" y="138">またね</text>
+  </g>
+
+  <rect x="390" y="66" width="300" height="96" rx="8" fill="#f7f8fa" stroke="#c7cede"/>
+  <g font-family="monospace" font-size="13" fill="#3d4652">
+    <text x="408" y="90">こんにちは</text><text x="408" y="114">はじめまして</text><text x="408" y="138">またね</text>
+  </g>
+  <path d="M338 114 L382 114" stroke="#8892a0" stroke-width="2" marker-end="url(#d1)"/>
+
+  <rect x="30" y="188" width="660" height="104" rx="8" fill="#22262f"/>
+  <g font-family="monospace" font-size="13.5">
+    <text x="50" y="214" fill="#9aa3b2">  こんにちは</text>
+    <text x="50" y="238" fill="#ff8f8f">- よろしく</text>
+    <text x="50" y="262" fill="#8fe08f">+ はじめまして</text>
+    <text x="50" y="286" fill="#9aa3b2">  またね</text>
+  </g>
+  <text x="330" y="238" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#ff8f8f">← 赤い「−」は 消えた行</text>
+  <text x="330" y="262" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#8fe08f">← 緑の「＋」は 増えた行</text>
+  <text x="330" y="214" font-family="sans-serif" font-size="12" fill="#9aa3b2">灰色は 変わっていない行</text>
+
+  <defs><marker id="d1" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#8892a0"/></marker></defs>
+</svg>

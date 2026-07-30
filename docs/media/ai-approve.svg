@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="330" viewBox="0 0 720 330" role="img" aria-label="AIの変更を承認する画面の読み方">
+  <rect width="720" height="330" fill="#ffffff"/>
+  <text x="360" y="26" font-family="sans-serif" font-size="14" font-weight="700" fill="#5b6472" text-anchor="middle">AIが書き換えようとすると、この画面が出ます</text>
+
+  <rect x="40" y="44" width="640" height="180" rx="10" fill="#ffffff" stroke="#c7cede" stroke-width="1.5"/>
+  <rect x="40" y="44" width="640" height="30" rx="10" fill="#eef1f6"/>
+  <rect x="40" y="64" width="640" height="10" fill="#eef1f6"/>
+  <text x="60" y="64" font-family="sans-serif" font-size="12" fill="#5b6472">hello.txt を書き換えます</text>
+
+  <rect x="56" y="88" width="290" height="120" rx="6" fill="#fdf1f0" stroke="#f0c2bd"/>
+  <text x="70" y="106" font-family="sans-serif" font-size="11" font-weight="700" fill="#c0392b">今のファイル</text>
+  <g font-family="monospace" font-size="12.5" fill="#3d4652">
+    <text x="70" y="132">こんにちは</text><text x="70" y="156">よろしく</text>
+  </g>
+
+  <rect x="374" y="88" width="290" height="120" rx="6" fill="#eefaf1" stroke="#b7e3c6"/>
+  <text x="388" y="106" font-family="sans-serif" font-size="11" font-weight="700" fill="#2b7d52">AIが提案する内容</text>
+  <g font-family="monospace" font-size="12.5" fill="#3d4652">
+    <text x="388" y="132">こんにちは</text><text x="388" y="156">はじめまして</text>
+  </g>
+
+  <rect x="180" y="248" width="150" height="40" rx="8" fill="#2f6fed"/>
+  <text x="255" y="273" font-family="sans-serif" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">はい（承認）</text>
+  <rect x="360" y="248" width="180" height="40" rx="8" fill="#ffffff" stroke="#c7cede" stroke-width="1.5"/>
+  <text x="450" y="273" font-family="sans-serif" font-size="14" font-weight="700" fill="#5b6472" text-anchor="middle">いいえ（やめる）</text>
+
+  <text x="360" y="312" font-family="sans-serif" font-size="12.5" fill="#3d4652" text-anchor="middle">左右を見比べて、納得できたら「はい」。分からなければ「いいえ」で構いません。</text>
+</svg>

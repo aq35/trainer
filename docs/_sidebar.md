@@ -1,8 +1,11 @@
 - 進める順番
-  - [トップ](/)
-  - [1. 🧭 環境構築ナビ](setup.html ':ignore target=_blank')
-  - [2. Step 2: git の基本](step2-git.md)
-  - [3. 🚀 GitHubナビ](github.html ':ignore target=_blank')
-- 補足
+  - [トップ（進捗）](/)
+  - [1. 🧭 環境構築](setup.html ':ignore target=_blank')
+  - [2. git の基本](step2-git.md)
+  - [3. 🚀 GitHubに上げる](github.html ':ignore target=_blank')
+  - [4. 🔍 差分を読む](diff.html ':ignore target=_blank')
+  - [5. 🤝 AIと一緒に直す](ai.html ':ignore target=_blank')
+- 困ったとき
+  - [用語集](glossary.md)
   - [Step 0: ターミナル入門](step0-terminal.md)
   - [環境構築でやっていること](step1-setup.md)

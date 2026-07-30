@@ -57,6 +57,34 @@
       vertical-align: -7px; margin-right: 6px; display: inline;
     }
 
+    /* 全体地図 */
+    .markdown-section .map { display: grid; gap: 10px; margin: 1.2em 0; }
+    .markdown-section .mapitem {
+      display: grid; grid-template-columns: 30px 24px 1fr auto; gap: 12px; align-items: center;
+      background: #fff; border: 1px solid #e1e6f0; border-radius: 10px;
+      padding: 12px 14px; text-decoration: none; color: inherit; position: relative;
+    }
+    .markdown-section .mapitem:hover { border-color: #2f6fed; }
+    .markdown-section .mapitem .n {
+      width: 26px; height: 26px; border-radius: 50%; background: #e7ebf3; color: #6b7482;
+      display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700;
+    }
+    .markdown-section .mapitem.now .n { background: #2f6fed; color: #fff; }
+    .markdown-section .mapitem.done .n { background: #3aa76d; color: #fff; }
+    .markdown-section .mapitem .l { font-weight: 600; font-size: 15px; }
+    .markdown-section .mapitem .s { font-size: 12px; color: #6b7482; white-space: nowrap; }
+    .markdown-section .mapitem .pb {
+      grid-column: 1 / -1; height: 4px; background: #e7ebf3; border-radius: 99px; overflow: hidden;
+    }
+    .markdown-section .mapitem .pb i { display: block; height: 100%; background: #2f6fed; }
+    .markdown-section .mapitem.done .pb i { background: #3aa76d; }
+    .markdown-section .mapall {
+      background: #eefaf1; border: 1px solid #b7e3c6; border-radius: 10px;
+      padding: 12px 14px; font-size: 14px; color: #2b7d52; margin-top: 10px;
+    }
+    .markdown-section .task-list-item { list-style: none; }
+    .markdown-section .task-list-item input { margin-right: 8px; transform: scale(1.3); }
+
     /* ダークモード */
     @media (prefers-color-scheme: dark) {
       :root { --box-bg:#232833; --box-bd:#333a48; }
@@ -80,6 +108,10 @@
       /* 図はSVGが白背景前提のため、余白を付けて浮かせる */
       .markdown-section .ui-mock { background:#fff; padding:6px; }
       .markdown-section .hero { background:#1b2437; border-color:#31456b; }
+      .markdown-section .mapitem { background:#1b1f27; border-color:#333a48; }
+      .markdown-section .mapitem .n { background:#2a303c; color:#9aa3b2; }
+      .markdown-section .mapitem .pb { background:#2a303c; }
+      .markdown-section .mapall { background:#16271e; border-color:#2c5340; color:#7fd6a3; }
     }
 
     /* 大段階カード */
@@ -170,7 +202,7 @@
   <script>
     // 各ナビは通常のHTMLページ。docsify のハッシュ経路に入ってしまった場合は実ファイルへ戻す。
     (function () {
-      var PAGES = ['setup.html', 'github.html'];
+      var PAGES = ['setup.html', 'github.html', 'diff.html', 'ai.html'];
       function bounce() {
         for (var i = 0; i < PAGES.length; i++) {
           if (location.hash.indexOf('#/' + PAGES[i]) === 0) {
@@ -217,5 +249,6 @@
   <script src="https://cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify-mermaid@2/dist/docsify-mermaid.js"></script>
+  <script src="progress.js"></script>
 </body>
 </html>
