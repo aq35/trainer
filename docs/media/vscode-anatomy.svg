@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="420" viewBox="0 0 720 420" role="img" aria-label="VS Codeの画面の各部分の名前">
+  <rect width="720" height="420" fill="#ffffff"/>
+  <text x="360" y="24" font-family="sans-serif" font-size="14" font-weight="700" fill="#5b6472" text-anchor="middle">VS Code の画面、どこが何なのか</text>
+
+  <rect x="150" y="40" width="470" height="300" rx="8" fill="#ffffff" stroke="#c7cede" stroke-width="1.5"/>
+  <rect x="150" y="40" width="470" height="26" rx="8" fill="#e7eaf0"/><rect x="150" y="56" width="470" height="10" fill="#e7eaf0"/>
+  <circle cx="166" cy="53" r="4" fill="#ff5f57"/><circle cx="180" cy="53" r="4" fill="#febc2e"/><circle cx="194" cy="53" r="4" fill="#28c840"/>
+
+  <rect x="150" y="66" width="46" height="252" fill="#2f3542"/>
+  <g fill="#9aa3b2">
+    <rect x="164" y="80" width="18" height="18" rx="3"/><rect x="164" y="110" width="18" height="18" rx="3"/>
+  </g>
+  <g stroke="#ffffff" stroke-width="2" fill="none">
+    <circle cx="169" cy="146" r="3.5"/><circle cx="169" cy="164" r="3.5"/><circle cx="181" cy="146" r="3.5"/>
+    <path d="M169 149.5 v11"/><path d="M181 149.5 v4 a8 8 0 0 1 -8 8"/>
+  </g>
+  <rect x="163" y="184" width="20" height="20" rx="4" fill="#c96442"/>
+
+  <rect x="196" y="66" width="120" height="252" fill="#f4f6fa"/>
+  <text x="208" y="86" font-family="sans-serif" font-size="9.5" fill="#8892a0">PRACTICE</text>
+  <text x="212" y="106" font-family="sans-serif" font-size="10.5" fill="#3d4652">index.html</text>
+  <text x="212" y="124" font-family="sans-serif" font-size="10.5" fill="#3d4652">hello.txt</text>
+
+  <rect x="316" y="66" width="304" height="170" fill="#1f2430"/>
+  <g font-family="monospace" font-size="9.5">
+    <text x="330" y="90" fill="#7dd3fc">&lt;h1&gt;<tspan fill="#e6eaf2">はじめてのページ</tspan>&lt;/h1&gt;</text>
+    <text x="330" y="110" fill="#f0abfc">function <tspan fill="#fde68a">go</tspan><tspan fill="#e6eaf2">() {</tspan></text>
+    <text x="330" y="130" fill="#e6eaf2">  ...</text>
+  </g>
+
+  <rect x="316" y="236" width="304" height="82" fill="#22262f"/>
+  <g font-family="monospace" font-size="9.5">
+    <text x="330" y="256" fill="#8fe08f">&gt; git status</text>
+    <text x="330" y="274" fill="#9aa3b2">On branch main</text>
+  </g>
+
+  <rect x="150" y="318" width="470" height="22" fill="#2f6fed"/>
+  <text x="164" y="333" font-family="sans-serif" font-size="9.5" fill="#ffffff">main</text>
+
+  <g font-family="sans-serif" font-size="11.5">
+    <path d="M146 100 L96 100" stroke="#e8853a" stroke-width="1.6"/>
+    <text x="90" y="96" fill="#e8853a" font-weight="700" text-anchor="end">① 道具の棚</text>
+    <text x="90" y="112" fill="#8892a0" text-anchor="end">アクティビティバー</text>
+
+    <path d="M250 66 L250 46 L120 46" stroke="#3aa76d" stroke-width="1.6" fill="none"/>
+    <text x="114" y="43" fill="#3aa76d" font-weight="700" text-anchor="end">② ファイル一覧</text>
+    <text x="114" y="59" fill="#8892a0" text-anchor="end">サイドバー</text>
+
+    <path d="M624 130 L676 130" stroke="#2f6fed" stroke-width="1.6"/>
+    <text x="682" y="126" fill="#2f6fed" font-weight="700" text-anchor="end">③ 書く場所</text>
+    <text x="682" y="142" fill="#8892a0" text-anchor="end">エディタ</text>
+
+    <path d="M624 270 L676 270" stroke="#8a6412" stroke-width="1.6"/>
+    <text x="682" y="266" fill="#8a6412" font-weight="700" text-anchor="end">④ 黒い画面</text>
+    <text x="682" y="282" fill="#8892a0" text-anchor="end">ターミナル</text>
+
+    <path d="M146 329 L96 329" stroke="#c0392b" stroke-width="1.6"/>
+    <text x="90" y="325" fill="#c0392b" font-weight="700" text-anchor="end">⑤ 今の状態</text>
+    <text x="90" y="341" fill="#8892a0" text-anchor="end">ステータスバー</text>
+  </g>
+
+  <rect x="90" y="370" width="540" height="34" rx="9" fill="#eefaf1" stroke="#b7e3c6" stroke-width="1.5"/>
+  <text x="360" y="392" font-family="sans-serif" font-size="12.5" fill="#2b7d52" text-anchor="middle">⑤の左端には<tspan font-weight="700">今いるブランチ名</tspan>が出ます。迷子になったらここを見てください。</text>
+</svg>

@@ -23,6 +23,12 @@
 - <img class="ti" width="26" height="26" src="media/icon-terminal.svg" alt="">[⌨️ コマンド練習](drill.html ':ignore target=_blank') — 覚えたコマンドを、クイズ形式で反復できます。**すきま時間にどうぞ**
 - <img class="ti" width="26" height="26" src="media/icon-ai.svg" alt="">[用語集](glossary.md) — リポジトリ、コミット、ブランチ、差分…の意味
 
+## 読み物（手を止めて、ひと休み）
+
+作業に飽きたら、こちらをどうぞ。**やることはありません。読むだけです。**
+
+- <img class="ti" width="26" height="26" src="media/icon-vscode.svg" alt="">[☕ なぜ VS Code なのか？ 拡張機能って何？](why-vscode.md) — コードはただの文字、という話から
+
 ## 進め方の約束
 
 - **急がなくて大丈夫**です。
