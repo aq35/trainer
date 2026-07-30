@@ -58,11 +58,32 @@
       : '連絡先: ' + esc(who) + where;
   }
 
-  // どのステップでも、まず疑うべき3つ
-  var FIRST_AID = [
-    { t:'保存しましたか？', d:'<span class="k">Ctrl</span>+<span class="k">S</span> / <span class="k">Cmd</span>+<span class="k">S</span>。タブに「●」が付いていたら未保存です。' },
-    { t:'開き直しましたか？', d:'ブラウザは再読み込み（<span class="k">F5</span> / <span class="k">Cmd</span>+<span class="k">R</span>）。VS Code は閉じて開き直し。' },
-    { t:'打ち間違いはありませんか？', d:'大文字と小文字、単語の間の半角スペース。<b>I</b>（アイ）と <b>l</b>（エル）は特に紛らわしいです。' }
+  // そのステップで実際にやったことを見て、関係のあるものだけ出す
+  function ctxOf(s) {
+    // 判定は「受講者が実際にやること」＝手順だけを見る。
+    // 説明文まで見ると「保存は不要です」のような文まで拾ってしまう。
+    var todo = (pick(s.todo) || []).join(' ');
+    return {
+      cmd:  !!(s.cmd || pick(s.cmdMulti)),   // コマンドを打つステップか
+      save: /保存し|保存す/.test(todo)        // ファイルを保存するステップか
+    };
+  }
+  function applies(item, ctx) { return !item.when || !!ctx[item.when]; }
+
+  // 上から優先度順。そのステップに関係するものだけを、最大3つ表示する。
+  var AID = [
+    { when:'save', t:'保存しましたか？',
+      d:'<span class="k">Ctrl</span>+<span class="k">S</span> / <span class="k">Cmd</span>+<span class="k">S</span>。タブに「●」が付いていたら未保存です。' },
+    { when:'cmd', t:'Enter を押しましたか？',
+      d:'打ち終わっただけでは実行されません。最後に Enter を押します。' },
+    { when:'cmd', t:'打ち間違いはありませんか？',
+      d:'大文字と小文字、単語の間の半角スペース。<b>I</b>（アイ）と <b>l</b>（エル）は特に紛らわしいです。<span class="k">↑</span>キーで打ち直せます。' },
+    { when:'gui', t:'少し待ってみましたか？',
+      d:'インストールや読み込みは、終わるまで数十秒かかることがあります。1分ほど置いてから、もう一度見てください。' },
+    { when:'gui', t:'画面の文字が説明と少し違いますか？',
+      d:'見た目はときどき変わります。<b>言葉</b>を手がかりに探してください（「Install」「設定」「公開」など）。' },
+    { t:'開き直しましたか？',
+      d:'ブラウザは再読み込み（<span class="k">F5</span> / <span class="k">Cmd</span>+<span class="k">R</span>）。VS Code は閉じて開き直すと直ることがよくあります。' }
   ];
 
   // 受講者が「開いて確認した項目」を覚えておき、相談文に添える
@@ -155,9 +176,18 @@
   function showHelp() {
     var s = STEPS[st.i], box = document.getElementById('help');
     if (!box || box.innerHTML) { if (box) box.innerHTML = ''; return; }
-    var own = s.tb || [], seen = {}, all = own.slice();
+    var ctx = ctxOf(s);
+    ctx.gui = !ctx.cmd;   // コマンドを打たない＝画面を操作するステップ
+
+    var own = s.tb || [], seen = {}, gen = [];
     for (var k = 0; k < own.length; k++) seen[own[k].q] = 1;
-    for (var c = 0; c < COMMON.length; c++) if (!seen[COMMON[c].q]) all.push(COMMON[c]);
+    // 共通の項目は「そのステップに関係するもの」だけを、別グループとして足す
+    for (var c = 0; c < COMMON.length; c++) {
+      if (!seen[COMMON[c].q] && applies(COMMON[c], ctx)) gen.push(COMMON[c]);
+    }
+    var all = own.concat(gen);
+
+    var aid = AID.filter(function (a) { return applies(a, ctx); }).slice(0, 3);
 
     var h = '<div class="help">' +
       mascot('calm', '<b>大丈夫です。ここで止まる人はたくさんいます。</b><br>' +
@@ -165,7 +195,7 @@
 
     // ① まず疑う3つ
     h += '<div class="hsec">まず、これだけ確認してください</div><div class="firstaid">';
-    FIRST_AID.forEach(function (f, i) {
+    aid.forEach(function (f, i) {
       h += '<div class="fa"><span class="fn">' + (i + 1) + '</span>' +
            '<div><b>' + f.t + '</b><br><span class="fd">' + f.d + '</span></div></div>';
     });
@@ -176,11 +206,20 @@
          '<input class="hsearch" id="hq" type="text" autocomplete="off" spellcheck="false" ' +
          'placeholder="画面に出ている文字を貼り付けて探せます（例: not found）">' +
          '<div id="hlist">';
-    for (var i = 0; i < all.length; i++) {
-      h += '<details class="tb" data-tbq="' + esc(all[i].q) + '"><summary>' + all[i].q + '</summary>' +
-           '<div class="a">' + all[i].a + '</div></details>';
+    // ステップ固有と、全体で共通のものを分けて見せる
+    function group(label, items) {
+      if (!items.length) return '';
+      var g = '<div class="ghead">' + label + '</div>';
+      items.forEach(function (it) {
+        g += '<details class="tb" data-tbq="' + esc(it.q) + '"><summary>' + it.q + '</summary>' +
+             '<div class="a">' + it.a + '</div></details>';
+      });
+      return g;
     }
-    h += '<div class="nohit" id="nohit">当てはまるものが見つかりませんでした。下の方法で聞いてください。</div></div>';
+    h += group('このステップでよくあること', own);
+    h += group('そのほか（どのステップでも起こること）', gen);
+    h += '<div class="nohit" id="nohit"' + (all.length ? '' : ' style="display:block"') +
+         '>当てはまるものが見つかりませんでした。下の方法で聞いてください。</div></div>';
 
     // ③ 段階を追って聞く
     h += '<div class="hsec">それでも解決しないとき</div>' +
@@ -219,6 +258,12 @@
       var show = !key || text.indexOf(key) >= 0;
       d.style.display = show ? '' : 'none';
       if (show) { hit++; if (key) d.open = true; }
+    });
+    // グループ見出しは、そのグループに残りがあるときだけ出す
+    list.querySelectorAll('.ghead').forEach(function (g) {
+      var any = false, n = g.nextElementSibling;
+      while (n && n.tagName === 'DETAILS') { if (n.style.display !== 'none') any = true; n = n.nextElementSibling; }
+      g.style.display = any ? '' : 'none';
     });
     var nh = document.getElementById('nohit');
     if (nh) nh.style.display = hit ? 'none' : 'block';

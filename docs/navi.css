@@ -124,6 +124,8 @@ details.tb .a{font-size:14px;margin-top:8px;padding-top:8px;border-top:1px solid
 .hsearch{width:100%;font:inherit;font-size:14px;padding:11px 13px;margin-bottom:10px;
          border:2px solid var(--red-b);border-radius:9px;background:var(--card);color:var(--ink)}
 .hsearch:focus{outline:none;border-color:var(--red)}
+.ghead{font-size:12px;font-weight:700;color:var(--sub);margin:12px 0 6px}
+.ghead:first-child{margin-top:2px}
 .nohit{display:none;font-size:13.5px;color:var(--sub);background:var(--card);
        border:1px dashed var(--red-b);border-radius:9px;padding:12px 13px}
 
