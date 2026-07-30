@@ -126,6 +126,18 @@
 <body>
   <div id="app"></div>
   <script>
+    // 環境構築ナビは通常のHTMLページ。docsify のハッシュ経路に入ってしまった場合は実ファイルへ戻す。
+    (function () {
+      function bounce() {
+        if (/^#\/setup\.html/.test(location.hash)) {
+          location.replace(location.pathname.replace(/[^/]*$/, '') + 'setup.html');
+        }
+      }
+      bounce();
+      window.addEventListener('hashchange', bounce);
+    })();
+  </script>
+  <script>
     window.$docsify = {
       name: 'エンジニア育成トレーナー',
       repo: '',

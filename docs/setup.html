@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>環境構築ナビ | エンジニア育成トレーナー</title>
+<style>
+  :root{
+    --blue:#2f6fed; --blue-l:#eef3ff; --blue-b:#c9dbff;
+    --green:#2b7d52; --green-l:#eefaf1; --green-b:#b7e3c6;
+    --red:#c0392b; --red-l:#fdf1f0; --red-b:#f0c2bd;
+    --amber:#8a6412; --amber-l:#fff8e9; --amber-b:#f0d9a8;
+    --ink:#2f3542; --sub:#6b7482; --line:#dfe4ee; --bg:#f4f6fa;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;
+    line-height:1.75; font-feature-settings:"palt";
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:0 16px 80px}
+
+  header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+  .hd{max-width:760px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .hd h1{font-size:15px;margin:0;font-weight:700}
+  .hd .spacer{flex:1}
+  .counter{font-size:12px;color:var(--sub);white-space:nowrap}
+  .bar{height:6px;background:#e7ebf3;border-radius:99px;overflow:hidden;max-width:760px;margin:0 auto}
+  .bar>i{display:block;height:100%;background:var(--blue);width:0;transition:width .35s ease}
+
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;margin-top:22px;
+        box-shadow:0 1px 2px rgba(20,30,60,.04)}
+  .phase{display:inline-block;background:var(--blue-l);color:var(--blue);border:1px solid var(--blue-b);
+         border-radius:99px;padding:2px 12px;font-size:12px;font-weight:700;margin-bottom:12px}
+  h2{font-size:21px;margin:0 0 6px;line-height:1.5}
+  .why{color:var(--sub);font-size:14px;margin:0 0 18px}
+
+  ol.todo{padding-left:0;list-style:none;margin:0 0 4px;counter-reset:s}
+  ol.todo>li{counter-increment:s;position:relative;padding:10px 0 10px 42px;border-top:1px solid #eef1f6}
+  ol.todo>li:first-child{border-top:0}
+  ol.todo>li::before{content:counter(s);position:absolute;left:0;top:11px;width:26px;height:26px;
+    background:var(--blue);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-size:13px;font-weight:700}
+  .k{display:inline-block;background:#f1f3f8;border:1px solid #dde2ec;border-bottom-width:2px;border-radius:5px;
+     padding:0 7px;font-size:13px;font-weight:600;margin:0 2px}
+
+  .cmd{display:flex;align-items:center;gap:8px;background:#22262f;border-radius:9px;padding:11px 12px;margin:12px 0}
+  .cmd code{color:#e6eaf2;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13.5px;
+            white-space:pre-wrap;word-break:break-all;flex:1}
+  .cmd button{background:#3a4150;color:#dfe5ef;border:0;border-radius:6px;padding:6px 11px;font-size:12px;
+              cursor:pointer;white-space:nowrap;font-weight:600}
+  .cmd button:hover{background:#4a5364}
+
+  .expect{background:var(--green-l);border:1px solid var(--green-b);border-left:5px solid #3aa76d;
+          border-radius:10px;padding:13px 15px;margin:16px 0}
+  .expect .t{font-size:13px;font-weight:700;color:var(--green);margin-bottom:4px}
+  .expect .m{font-size:14px}
+  .shot{display:block;width:100%;border:1px solid var(--line);border-radius:8px;margin-top:10px;background:#fff}
+
+  .note{background:var(--amber-l);border:1px solid var(--amber-b);border-left:5px solid #e8a53a;
+        border-radius:10px;padding:12px 15px;margin:16px 0;font-size:14px;color:#6b4f10}
+
+  .ask{margin-top:22px;padding-top:18px;border-top:2px dashed var(--line)}
+  .ask p{margin:0 0 12px;font-weight:700;font-size:16px}
+  .btns{display:flex;gap:10px;flex-wrap:wrap}
+  button.act{font:inherit;font-weight:700;border-radius:10px;padding:13px 20px;cursor:pointer;border:1px solid transparent}
+  .ok{background:var(--blue);color:#fff;flex:1;min-width:190px;font-size:16px}
+  .ok:hover{background:#245ad0}
+  .ng{background:#fff;color:var(--red);border-color:var(--red-b)}
+  .ng:hover{background:var(--red-l)}
+
+  .help{margin-top:18px;background:var(--red-l);border:1px solid var(--red-b);border-radius:12px;padding:16px}
+  .help h3{margin:0 0 4px;font-size:15px;color:var(--red)}
+  .help .lead{font-size:13px;color:var(--sub);margin:0 0 12px}
+  details.tb{background:#fff;border:1px solid var(--red-b);border-radius:9px;padding:10px 13px;margin-bottom:8px}
+  details.tb summary{cursor:pointer;font-weight:700;font-size:14px}
+  details.tb .a{font-size:14px;margin-top:8px;padding-top:8px;border-top:1px solid #f2dedb}
+  .esc{margin-top:6px;background:#fff;border:1px dashed var(--red-b);border-radius:9px;padding:12px 13px;font-size:13.5px}
+
+  .foot{display:flex;justify-content:space-between;align-items:center;margin-top:16px}
+  .link{background:none;border:0;color:var(--sub);font:inherit;font-size:13px;cursor:pointer;text-decoration:underline;padding:6px 0}
+  .link:hover{color:var(--ink)}
+
+  .oschoice{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
+  .oschoice button{font:inherit;background:#fff;border:2px solid var(--line);border-radius:12px;padding:26px 10px;
+                   cursor:pointer;font-weight:700;font-size:17px}
+  .oschoice button:hover{border-color:var(--blue);background:var(--blue-l);color:var(--blue)}
+  @media(max-width:520px){.oschoice{grid-template-columns:1fr}}
+
+  .done{text-align:center;padding:14px 0}
+  .done .big{font-size:46px;line-height:1}
+  .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:26px;background:var(--ink);color:#fff;
+         padding:11px 20px;border-radius:99px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .25s}
+  .toast.on{opacity:1}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hd">
+    <h1>環境構築ナビ</h1>
+    <div class="spacer"></div>
+    <div class="counter" id="counter"></div>
+  </div>
+  <div class="bar"><i id="bar"></i></div>
+</header>
+
+<div class="wrap"><div id="view"></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ---------- 共通の困りごと（全ステップの末尾に出す） ---------- */
+var COMMON = [
+  { q:'黒い画面（ターミナル）の出し方が分からない',
+    a:'VS Code の画面上部メニューから「表示（View）」→「ターミナル（Terminal）」を選ぶと、画面の下半分に出てきます。ここに文字を打ちます。' },
+  { q:'コマンドを打っても何も起きない',
+    a:'打ち終わったあとに <span class="k">Enter</span> を押していますか？ Enter を押して初めて実行されます。' },
+  { q:'打ち間違えた／やり直したい',
+    a:'<span class="k">↑</span>（上矢印キー）を押すと、前に打った内容が出てきます。打ち直す必要はありません。' },
+  { q:'command not found / not recognized と出た',
+    a:'「そんな命令は知らない」という意味です。ほぼ打ち間違いです。スペルと、単語の間の半角スペースを確認してください。それでも出る場合は、インストールが終わった後にターミナルを開き直すと直ることが多いです。' },
+  { q:'permission denied と出た',
+    a:'「その操作をする権限がない」という意味です。会社のPCで制限がかかっている可能性があります。自力で解決しようとせず、サポート役に連絡してください。' }
+];
+
+/* ---------- ステップ定義 ---------- */
+var STEPS = [
+{
+  id:'os', kind:'os', phase:'はじめに',
+  title:'まず、お使いのパソコンを教えてください',
+  why:'WindowsとMacで画面も手順も違います。選んだほうだけを表示するので、迷わなくて済みます。'
+},
+{
+  id:'vscode', phase:'1. 道具をそろえる',
+  title:'VS Code を入れます',
+  why:'プログラムを書くためのアプリです。まずはこれ1つだけ入れます。',
+  todo:{
+    win:['<a href="https://code.visualstudio.com" target="_blank" rel="noopener">code.visualstudio.com</a> を開きます',
+         '青い大きなボタン「Download for Windows」を押します',
+         'パソコンの「ダウンロード」フォルダに入ったファイルを、ダブルクリックします',
+         '「同意する」を選び、あとは「次へ」を押し続けます。設定は変えなくて大丈夫です',
+         '最後に「完了」を押します'],
+    mac:['<a href="https://code.visualstudio.com" target="_blank" rel="noopener">code.visualstudio.com</a> を開きます',
+         '青い大きなボタン「Download for Mac」を押します',
+         'ダウンロードされたファイルをダブルクリックします',
+         '出てきた「Visual Studio Code」のアイコンを、「アプリケーション」フォルダにドラッグして入れます']
+  },
+  expect:'デスクトップかアプリ一覧に、青い折り紙のようなアイコンが増えています。',
+  ask:'VS Code を起動できましたか？',
+  tb:[
+    { q:'ボタンがたくさんあって、どれか分からない',
+      a:'ページの真ん中にある、いちばん大きい青いボタンです。ボタンの中に「Windows」または「Mac」と書かれているものを押してください。' },
+    { q:'ダウンロードしたファイルがどこにあるか分からない',
+      a:'ブラウザの画面の右上（または左下）に、いま落としたファイルが表示されています。そこをクリックすれば開けます。' },
+    { q:'Mac で「開発元が未確認のため開けません」と出た',
+      a:'アイコンを右クリック（または control を押しながらクリック）して「開く」を選ぶと、確認画面から開けます。' }
+  ]
+},
+{
+  id:'open-folder', phase:'1. 道具をそろえる',
+  title:'作業用のフォルダを開きます',
+  why:'これから作るものの置き場所を決めます。散らからないように、最初に1つ作っておきます。',
+  todo:{
+    common:['VS Code のメニューから「ファイル」→「フォルダーを開く」を選びます',
+            'デスクトップを選び、「新規フォルダ」を作ります',
+            'フォルダの名前を <b>practice</b> にします',
+            'その practice フォルダを選んで「開く」を押します',
+            '「このフォルダー内のファイルの作成者を信頼しますか？」と聞かれたら「はい、作成者を信頼します」を押します']
+  },
+  expect:'VS Code の左側に「PRACTICE」という文字が表示されます。',
+  ask:'左側に PRACTICE と表示されましたか？',
+  tb:[
+    { q:'信頼するか聞かれて怖い',
+      a:'自分で作った空のフォルダなので安全です。「はい」を選んで大丈夫です。' },
+    { q:'「フォルダーを開く」が見つからない',
+      a:'Mac の場合はメニューが画面のいちばん上（時計と同じ行）にあります。VS Code をクリックしてから「ファイル」を探してください。' }
+  ]
+},
+{
+  id:'terminal', phase:'2. 黒い画面に慣れる',
+  title:'ターミナルを出します',
+  why:'この先の作業は、文字で命令する画面（ターミナル）を使います。ここで一度出しておきます。',
+  todo:{
+    common:['VS Code のメニューから「表示」→「ターミナル」を選びます',
+            '画面の下半分に、文字が並んだエリアが出てきます']
+  },
+  visual:'_media/prompt-anatomy.svg',
+  expect:'画面の下に、文字が表示されたエリアが出ます。ここが命令を打つ場所です。',
+  note:'すでに何か英語が表示されていますが、エラーではありません。記号（&gt; や %）より右側に自分で打つ、とだけ覚えてください。',
+  ask:'画面の下にターミナルが出ましたか？',
+  tb:[
+    { q:'「表示」メニューが見つからない',
+      a:'キーボードだけでも出せます。<span class="k">Ctrl</span> +  <span class="k">@</span>（Mac は <span class="k">Control</span> + <span class="k">@</span>）を押してみてください。' },
+    { q:'出てきたけれど、どこに文字を打てばいいか分からない',
+      a:'いちばん下の行の、点滅している四角のところに打ちます。マウスでその行をクリックしてから打ってください。' }
+  ]
+},
+{
+  id:'node', phase:'3. 土台を入れる',
+  title:'Node.js を入れます',
+  why:'Claude Code を動かすための土台です。これ自体を使うわけではないので、意味は分からなくて大丈夫です。',
+  todo:{
+    win:['<a href="https://nodejs.org" target="_blank" rel="noopener">nodejs.org</a> を開きます',
+         '「LTS」と書かれたボタンを押します（もう片方は押さないでください）',
+         'ダウンロードされたファイルをダブルクリックします',
+         '「Next」を押し続け、最後に「Install」を押します',
+         '終わったら、<b>VS Code を一度閉じて、開き直します</b>'],
+    mac:['<a href="https://nodejs.org" target="_blank" rel="noopener">nodejs.org</a> を開きます',
+         '「LTS」と書かれたボタンを押します（もう片方は押さないでください）',
+         'ダウンロードされたファイルをダブルクリックします',
+         '「続ける」を押し続け、最後に「インストール」を押します',
+         '終わったら、<b>VS Code を一度閉じて、開き直します</b>']
+  },
+  note:'開き直すのを飛ばすと、次の確認で必ず失敗します。面倒でも必ず閉じて開き直してください。',
+  cmd:'node -v',
+  cmdlabel:'ターミナルにこれを打って Enter を押します',
+  expect:'v22.14.0 のような、v で始まる数字が表示されます。数字が違っても問題ありません。',
+  ask:'v で始まる数字が表示されましたか？',
+  tb:[
+    { q:'command not found / not recognized と出た',
+      a:'VS Code を閉じて開き直しましたか？ これがいちばん多い原因です。開き直してから、もう一度 <b>node -v</b> を打ってください。' },
+    { q:'どちらのボタンを押すか分からなかった',
+      a:'2つ並んでいるうち、「LTS」と書いてあるほうです。LTS は「長く安心して使える版」という意味です。' },
+    { q:'ダウンロードが進まない・失敗する',
+      a:'会社のネットワークで制限されている場合があります。5分待っても進まなければサポート役に連絡してください。' }
+  ]
+},
+{
+  id:'git', phase:'3. 土台を入れる',
+  title:'Git を入れます',
+  why:'作業の履歴を残すための道具です。この後の研修で本格的に使います。',
+  todo:{
+    win:['<a href="https://git-scm.com/download/win" target="_blank" rel="noopener">git-scm.com</a> を開きます',
+         '「64-bit Git for Windows Setup」を押します',
+         'ダウンロードされたファイルをダブルクリックします',
+         '設定画面がたくさん出ますが、<b>すべて「Next」を押すだけ</b>で大丈夫です',
+         '最後に「Install」を押し、終わったら VS Code を閉じて開き直します'],
+    mac:['Mac には最初から入っていることが多いので、まず下のコマンドで確認します',
+         '数字が表示されればインストール不要です。次に進んでください',
+         '「インストールしますか」という画面が出た場合は、そのまま「インストール」を押します']
+  },
+  cmd:'git --version',
+  cmdlabel:'ターミナルにこれを打って Enter を押します',
+  expect:'git version 2.43.0 のような数字が表示されます。',
+  note:'Windows の設定画面は10画面ほど続きますが、読まずに Next で進めて構いません。',
+  ask:'git version と数字が表示されましたか？',
+  tb:[
+    { q:'設定画面が多すぎて不安',
+      a:'初期設定のままで問題ありません。何も変えずに Next を押し続けてください。' },
+    { q:'command not found と出た',
+      a:'VS Code を閉じて開き直してから、もう一度打ってください。それでも出る場合はインストールが完了していない可能性があるので、もう一度インストーラを実行してください。' }
+  ]
+},
+{
+  id:'claude-ext', phase:'4. Claude Code を入れる',
+  title:'Claude Code を VS Code に追加します',
+  why:'AIと相談しながら作業できるようになります。ここが今日のメインです。',
+  todo:{
+    common:['VS Code の左端に縦に並んだアイコンの中から、四角が4つ並んだアイコンを押します',
+            '上に出てきた入力欄に <b>claude</b> と打ちます',
+            '検索結果のいちばん上に出る「Claude Code」を選びます',
+            '青い「Install」ボタンを押します']
+  },
+  visual:'_media/vscode-extensions-icon.svg',
+  visual2:'_media/vscode-claude-search.svg',
+  expect:'ボタンの表示が変わり、左端のアイコン一覧に新しいアイコンが増えます。',
+  ask:'Install ボタンを押せましたか？',
+  tb:[
+    { q:'四角が4つ並んだアイコンがどれか分からない',
+      a:'上の1枚目の絵で、赤い丸で囲んである位置です。左端の縦一列の、上から4番目あたりにあります。' },
+    { q:'似た名前がたくさん出てきて選べない',
+      a:'作者が「Anthropic」になっているものを選んでください。2枚目の絵と同じ見た目のものです。' },
+    { q:'Install を押したのに変化がない',
+      a:'完了まで数十秒かかることがあります。1分ほど待ってから、もう一度画面を見てください。' }
+  ]
+},
+{
+  id:'bedrock', phase:'5. つなぐ',
+  title:'AIに接続するための設定をします',
+  why:'ここで入れる文字列が、AIとつながるための鍵になります。担当者から配られた値を使います。',
+  todo:{
+    common:['担当者から配布された4つの値を手元に用意します',
+            '下のコマンドをコピーして、ターミナルに貼り付けます',
+            '&lt; &gt; で囲まれた部分を、配布された実際の値に置き換えます',
+            'Enter を押します（4行あるので4回）']
+  },
+  cmdMulti:{
+    win:['$env:CLAUDE_CODE_USE_BEDROCK="1"',
+         '$env:AWS_REGION="<配布されたリージョン>"',
+         '$env:AWS_ACCESS_KEY_ID="<配布された値>"',
+         '$env:AWS_SECRET_ACCESS_KEY="<配布された値>"'],
+    mac:['export CLAUDE_CODE_USE_BEDROCK=1',
+         'export AWS_REGION=<配布されたリージョン>',
+         'export AWS_ACCESS_KEY_ID=<配布された値>',
+         'export AWS_SECRET_ACCESS_KEY=<配布された値>']
+  },
+  expect:'何も表示されずに次の行が出れば成功です。ターミナルでは「無反応 = 成功」です。',
+  note:'この鍵は他人に見せないでください。チャットやSNSに貼らないよう注意してください。',
+  ask:'4行とも、エラーが出ずに打ち終わりましたか？',
+  tb:[
+    { q:'&lt; &gt; は消すの？残すの？',
+      a:'記号ごと消して、配布された値に置き換えます。例えば <b>&lt;配布された値&gt;</b> の部分すべてを、配られた文字列に置き換えてください。' },
+    { q:'貼り付けができない',
+      a:'ターミナルの上で右クリックすると貼り付けられます。<span class="k">Ctrl</span>+<span class="k">V</span>（Mac は <span class="k">Cmd</span>+<span class="k">V</span>）でも入ります。' },
+    { q:'配布された値を持っていない',
+      a:'ここから先は進めません。サポート役に「Bedrockの接続情報がほしい」と連絡してください。' }
+  ]
+},
+{
+  id:'talk', phase:'5. つなぐ',
+  title:'AIに話しかけてみます',
+  why:'最後の確認です。ここで返事が来たら、環境構築は完了です。',
+  todo:{
+    common:['VS Code の左端に増えた Claude Code のアイコンを押します',
+            '入力欄に「自己紹介して」と打ちます',
+            'Enter を押します']
+  },
+  expect:'AIから日本語で返事が返ってきます。',
+  ask:'AIから返事が来ましたか？',
+  tb:[
+    { q:'Authentication failed / 認証エラーと出た',
+      a:'鍵の設定がうまく入っていません。1つ前のステップに戻り、4行をもう一度打ち直してください。文字が1つでも違うと失敗します。' },
+    { q:'反応がない・ずっと待っている',
+      a:'1分ほど待っても返事がなければ、VS Code を閉じて開き直し、鍵の設定（1つ前のステップ）からやり直してください。ターミナルを閉じると鍵の設定は消えます。' },
+    { q:'Claude Code のアイコンが見つからない',
+      a:'左端のアイコンをひとつずつ押してみてください。それでも無ければ、拡張機能のインストール（3つ前のステップ）に戻ってください。' }
+  ]
+},
+{ id:'fin', kind:'fin' }
+];
+
+/* ---------- 状態 ---------- */
+var KEY='trainer-setup-v1';
+var st={os:null,i:0};
+try{ var sv=JSON.parse(localStorage.getItem(KEY)||'{}'); if(sv&&typeof sv.i==='number'){st.os=sv.os||null;st.i=sv.i;} }catch(e){}
+function save(){ try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){} }
+
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function pick(o){ if(!o)return null; if(o.common)return o.common; return st.os==='mac'?o.mac:o.win; }
+function osName(){ return st.os==='mac'?'Mac':'Windows'; }
+
+function toast(m){ var t=document.getElementById('toast'); t.textContent=m; t.classList.add('on');
+  clearTimeout(t._h); t._h=setTimeout(function(){t.classList.remove('on');},1600); }
+
+function cmdBox(text){
+  return '<div class="cmd"><code>'+esc(text)+'</code>'+
+         '<button type="button" data-copy="'+esc(text)+'">コピー</button></div>';
+}
+
+/* ---------- 描画 ---------- */
+function render(){
+  var s=STEPS[st.i], v=document.getElementById('view');
+  var total=STEPS.length-1;
+  document.getElementById('bar').style.width=Math.round(st.i/total*100)+'%';
+  document.getElementById('counter').textContent =
+    (s.kind==='fin') ? '完了' : (st.i===0 ? '' : st.i+' / '+(total-1));
+  window.scrollTo(0,0);
+
+  if(s.kind==='os'){
+    v.innerHTML='<div class="card"><span class="phase">'+s.phase+'</span>'+
+      '<h2>'+s.title+'</h2><p class="why">'+s.why+'</p>'+
+      '<div class="oschoice">'+
+      '<button type="button" data-os="win">Windows</button>'+
+      '<button type="button" data-os="mac">Mac</button></div>'+
+      '<div class="note" style="margin-top:18px">どちらか分からないときは、サポート役に「これはWindowsですか？Macですか？」と聞いてください。恥ずかしいことではありません。</div>'+
+      '</div>';
+    return;
+  }
+
+  if(s.kind==='fin'){
+    v.innerHTML='<div class="card"><div class="done"><div class="big">🎉</div>'+
+      '<h2 style="margin-top:10px">環境構築、完了です</h2>'+
+      '<p class="why">ここまで来られれば、あとは実際に手を動かすだけです。<br>詰まりながら進むのが普通なので、自分を責めないでください。</p></div>'+
+      '<div class="expect"><div class="t">できるようになったこと</div>'+
+      '<div class="m">VS Code が使える／ターミナルが出せる／Git が入っている／AIに相談できる</div></div>'+
+      '<div class="note">この設定は<b>ターミナルを閉じると消えます</b>。次に使うときは「AIに接続するための設定」だけ、もう一度打ってください。慣れてきたら、消えないようにする方法をサポート役に聞いてみてください。</div>'+
+      '<div class="ask"><p>次にやること</p>'+
+      '<div class="btns"><a class="act ok" style="text-decoration:none;text-align:center" href="index.html#/step2-git">Step 2: git を触ってみる</a></div></div>'+
+      '<div class="foot"><button class="link" data-go="-1">前に戻る</button>'+
+      '<button class="link" data-reset="1">最初からやり直す</button></div></div>';
+    return;
+  }
+
+  var h='<div class="card"><span class="phase">'+s.phase+'</span><h2>'+s.title+'</h2>'+
+        '<p class="why">'+s.why+'</p>';
+
+  var list=pick(s.todo);
+  if(list){ h+='<ol class="todo">'; for(var i=0;i<list.length;i++) h+='<li>'+list[i]+'</li>'; h+='</ol>'; }
+
+  if(s.visual)  h+='<img class="shot" src="'+s.visual+'" alt="">';
+  if(s.visual2) h+='<img class="shot" src="'+s.visual2+'" alt="">';
+
+  if(s.cmd){
+    h+='<p style="font-size:14px;margin:16px 0 0"><b>'+(s.cmdlabel||'')+'</b></p>'+cmdBox(s.cmd);
+  }
+  var multi=pick(s.cmdMulti);
+  if(multi){ for(var j=0;j<multi.length;j++) h+=cmdBox(multi[j]); }
+
+  if(s.expect) h+='<div class="expect"><div class="t">こうなれば成功です</div><div class="m">'+s.expect+'</div></div>';
+  if(s.note)   h+='<div class="note">'+s.note+'</div>';
+
+  h+='<div class="ask"><p>'+s.ask+'</p><div class="btns">'+
+     '<button type="button" class="act ok" data-go="1">できました → 次へ</button>'+
+     '<button type="button" class="act ng" data-help="1">うまくいきません</button>'+
+     '</div><div id="help"></div></div>';
+
+  h+='<div class="foot"><button class="link" data-go="-1">前に戻る</button>'+
+     '<button class="link" data-reset="1">最初からやり直す</button></div></div>';
+
+  v.innerHTML=h;
+}
+
+function showHelp(){
+  var s=STEPS[st.i], box=document.getElementById('help');
+  if(!box||box.innerHTML){ if(box) box.innerHTML=''; return; }
+  var h='<div class="help"><h3>大丈夫です。よくあることです。</h3>'+
+        '<p class="lead">近いものを開いてみてください。当てはまらなければ、いちばん下の方法で聞いてください。</p>';
+  var own=s.tb||[], seen={}, all=own.slice();
+  for(var k=0;k<own.length;k++) seen[own[k].q]=1;
+  for(var c=0;c<COMMON.length;c++) if(!seen[COMMON[c].q]) all.push(COMMON[c]);
+  for(var i=0;i<all.length;i++){
+    h+='<details class="tb"><summary>'+all[i].q+'</summary><div class="a">'+all[i].a+'</div></details>';
+  }
+  h+='<div class="esc"><b>それでも解決しないとき</b><br>'+
+     '15分たっても進まなければ、そこで止めてサポート役に連絡してください。'+
+     '下のボタンを押すと、今の状況の文章がコピーされます。そのまま貼り付けて送ってください。'+
+     '<div style="margin-top:10px"><button type="button" class="act ng" data-report="1">今の状況をコピーする</button></div></div>';
+  h+='</div>';
+  box.innerHTML=h;
+}
+
+function report(){
+  var s=STEPS[st.i];
+  var t='【環境構築ナビでつまずきました】\n'+
+        '・パソコン: '+osName()+'\n'+
+        '・止まった場所: '+(st.i)+'ステップ目「'+s.title+'」\n'+
+        '・できなかったこと: '+s.ask+'\n'+
+        '・画面に出ているメッセージ:（ここに貼ってください）';
+  copy(t,'状況をコピーしました。サポート役に貼り付けて送ってください。');
+}
+
+function copy(text,msg){
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){toast(msg||'コピーしました');},fallback);
+  } else fallback();
+  function fallback(){
+    var ta=document.createElement('textarea');
+    ta.value=text; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select();
+    try{document.execCommand('copy'); toast(msg||'コピーしました');}catch(e){toast('コピーできませんでした');}
+    document.body.removeChild(ta);
+  }
+}
+
+/* ---------- 操作 ---------- */
+document.addEventListener('click',function(e){
+  var t=e.target.closest('button'); if(!t) return;
+
+  if(t.dataset.os){ st.os=t.dataset.os; st.i=1; save(); render(); return; }
+  if(t.dataset.go){
+    var d=parseInt(t.dataset.go,10);
+    var n=st.i+d;
+    if(n<0) n=0;
+    if(n>STEPS.length-1) n=STEPS.length-1;
+    if(n===0&&!st.os) n=0;
+    st.i=n; save(); render(); return;
+  }
+  if(t.dataset.help){ showHelp(); return; }
+  if(t.dataset.report){ report(); return; }
+  if(t.dataset.copy!==undefined){ copy(t.dataset.copy); return; }
+  if(t.dataset.reset){
+    if(confirm('最初からやり直しますか？')){ st={os:null,i:0}; save(); render(); }
+    return;
+  }
+});
+
+if(st.i>0&&!st.os) st.i=0;
+render();
+</script>
+</body>
+</html>
