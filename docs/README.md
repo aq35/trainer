@@ -30,6 +30,7 @@
 - <img class="ti" width="26" height="26" src="media/icon-vscode.svg" alt="">[☕ なぜ VS Code なのか？ 拡張機能って何？](why-vscode.md) — コードはただの文字、という話から
 - <img class="ti" width="26" height="26" src="media/icon-git.svg" alt="">[☕ なぜ git が生まれたのか](why-git.md) — 2005年の事件と、自虐ジョークだった名前の由来
 - <img class="ti" width="26" height="26" src="media/icon-ai.svg" alt="">[☕ AIはなぜ間違えるのか](why-ai-mistakes.md) — 自信たっぷりに間違える理由と、その付き合い方
+- <img class="ti" width="26" height="26" src="media/icon-github.svg" alt="">[☕ サービスって何？ GitHubを分解してみる](what-is-service.md) — あなたがやった操作に、業界の名前を付け直す
 
 ## 進め方の約束
 

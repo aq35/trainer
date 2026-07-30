@@ -13,10 +13,11 @@
 5. **[AIと一緒に直す](docs/ai.html)** — 権限モード・承認・拒否・取り消し・頼み方
 6. **[はじめてのプログラム](docs/code.html)** — HTML/JavaScript を書く・動かす・エラーを読んで直す・自力課題
 7. **[ブランチと安全な進め方](docs/branch.html)** — ブランチ / merge / .gitignore / プルリクエスト（一人で一周）
+8. **[世界に公開する](docs/publish.html)** — GitHub Pages で自分のページを公開し、デプロイを体験する
 
 いつでも: **[コマンド練習](docs/drill.html)** — 20問のクイズ形式ドリル（分野別・成績保存・間違いだけ再挑戦）
 
-読み物（寄り道）: [なぜ VS Code なのか？](docs/why-vscode.md) / [なぜ git が生まれたのか](docs/why-git.md) / [AIはなぜ間違えるのか](docs/why-ai-mistakes.md)
+読み物（寄り道）: [なぜ VS Code なのか？](docs/why-vscode.md) / [なぜ git が生まれたのか](docs/why-git.md) / [AIはなぜ間違えるのか](docs/why-ai-mistakes.md) / [サービスって何？](docs/what-is-service.md)
 
 補足資料: [用語集](docs/glossary.md) / [Step 0: ターミナル入門](docs/step0-terminal.md) / [環境構築でやっていること](docs/step1-setup.md)
 

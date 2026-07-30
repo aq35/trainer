@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自分のページを世界に公開する | エンジニア育成トレーナー</title>
+<link rel="stylesheet" href="navi.css">
+<script src="config.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="hd">
+    <h1>世界に公開する</h1>
+    <div class="spacer"></div>
+    <a class="home" href="index.html">目次へ</a>
+    <div class="counter" id="counter"></div>
+  </div>
+  <div class="bar"><i id="bar"></i></div>
+</header>
+
+<div class="wrap"><div id="view"></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+window.NAVI = {
+key:'trainer-publish-v1',
+greeting:'いよいよ、<b>自分が作ったページをインターネットに公開します</b>。<br>ここまでで覚えたことを全部使いますが、新しく覚えることはほとんどありません。',
+
+common:[
+  { q:'言葉の意味が分からない',
+    a:'<a href="index.html#/glossary" target="_blank" rel="noopener">用語集</a>と、<a href="index.html#/what-is-service" target="_blank" rel="noopener">サービスって何？</a>の読み物を見てください。' },
+  { q:'画面が説明と違う',
+    a:'GitHub の見た目はときどき変わります。<b>言葉</b>を手がかりに探してください（「Settings」「Pages」「Public」など）。' },
+  { q:'反映されない',
+    a:'公開の反映には<b>数分かかります</b>。1〜2分待ってから、ブラウザを再読み込み（<span class="k">F5</span> / <span class="k">Cmd</span>+<span class="k">R</span>）してください。' }
+],
+
+steps:[
+{
+  icon:'icon-github.svg', phase:'1. これから何をするか',
+  title:'手元のページに「住所」を付けます',
+  why:'今のページは自分しか見られません。公開すると、URLでどこからでも見られるようになります。',
+  visual:'media/local-vs-public.svg',
+  visualAlt:'手元のファイルは自分だけ。公開するとURLでスマホや他の人からも見られる',
+  expect:'最後には <code>https://…github.io/…</code> という自分のURLができます。<b>スマホからも開けます。</b>',
+  note:'公開したものは<b>URLを知っている人なら誰でも見られます</b>。名前・住所・鍵など、見られて困るものは絶対に置かないでください。',
+  ask:'これから何をするか、イメージできましたか？',
+  tb:[
+    { q:'公開するのが怖い',
+      a:'置くのは「はじめてのプログラム」で作った、<b>あいさつが出るだけのページ</b>です。個人情報は何も含まれていません。心配なら、文章に自分の名前を書かないでおけば十分です。' },
+    { q:'あとで消せる？',
+      a:'消せます。ただし<b>一度公開したものは、誰かに保存されている可能性があります</b>。「消せば無かったことになる」とは考えないでください。これは実務でも同じです。' }
+  ]
+},
+{
+  icon:'icon-folder.svg', phase:'2. 公開用のフォルダを作る',
+  title:'公開する用のフォルダを、別に用意します',
+  why:'これまで使ってきた practice は<b>非公開</b>のまま残します。公開するものは、分けて作るのが安全です。',
+  todo:{
+    common:['VS Code のメニュー「ファイル」→「フォルダーを開く」を選びます',
+            'デスクトップに <b>my-page</b> という新しいフォルダを作り、それを開きます',
+            '「作成者を信頼しますか？」と聞かれたら「はい」を押します',
+            'ファイル一覧の余白で右クリック →「新しいファイル」で <b>index.html</b> を作ります']
+  },
+  expect:'左側に「MY-PAGE」と表示され、その中に空の index.html があります。',
+  note:'<b>practice の中に作らないでください。</b>practice には非公開のものが入っています。混ぜると、公開したくないものまで出てしまいます。',
+  ask:'my-page フォルダと、空の index.html を作れましたか？',
+  tb:[
+    { q:'practice に作ってしまった',
+      a:'まだ公開していなければ問題ありません。my-page フォルダを作り直して、そちらに置いてください。' },
+    { q:'フォルダの作り方が分からない',
+      a:'「フォルダーを開く」のダイアログの中に「新規フォルダ」ボタンがあります。デスクトップを選んでから押してください。' }
+  ]
+},
+{
+  icon:'icon-vscode.svg', phase:'2. 公開用のフォルダを作る',
+  title:'中身を書きます',
+  why:'Step 6 で作ったものと同じで構いません。せっかくなので、少し自分好みにしてみましょう。',
+  todo:{
+    common:['下の枠をコピーして、index.html に貼り付けます',
+            '<b>「〇〇のページ」</b>の部分を、自分の好きな言葉に変えます',
+            '保存します（<span class="k">Ctrl</span>+<span class="k">S</span> / <span class="k">Cmd</span>+<span class="k">S</span>）',
+            'ファイルをダブルクリックして、ブラウザで動くことを先に確認します']
+  },
+  cmdMulti:{
+    common:['<!DOCTYPE html>\n<html lang="ja">\n<head>\n<meta charset="UTF-8">\n<title>はじめての公開ページ</title>\n<style>\n  body { font-family: sans-serif; text-align: center; padding: 60px; background: #eef3ff; }\n  button { font-size: 18px; padding: 12px 24px; border-radius: 8px; border: 0; background: #2f6fed; color: #fff; }\n<\/style>\n</head>\n<body>\n\n<h1>〇〇のページ</h1>\n<p id="message">ボタンを押してみてください</p>\n<button onclick="showText()">押してね</button>\n\n<script>\nfunction showText() {\n  document.getElementById("message").textContent = "インターネットに公開できました！";\n}\n<\/script>\n\n</body>\n</html>']
+  },
+  expect:'ブラウザで開くと、うすい青の背景のページが表示され、ボタンを押すと文字が変わります。',
+  note:'<b>公開する前に、手元で動くことを必ず確認</b>してください。壊れたまま公開しても、誰も直してくれません。',
+  ask:'手元のブラウザで、ちゃんと動きましたか？',
+  tb:[
+    { q:'真っ白になる',
+      a:'保存を忘れていませんか。保存してから、ブラウザで再読み込みしてください。' },
+    { q:'ボタンを押しても変わらない',
+      a:'貼り付けが途中で切れている可能性があります。いったん全部消して（<span class="k">Ctrl</span>+<span class="k">A</span> → Delete）、もう一度コピーし直してください。' }
+  ]
+},
+{
+  icon:'icon-git.svg', phase:'3. GitHubに上げる',
+  title:'このフォルダを GitHub に上げます',
+  why:'公開するには、まず GitHub に置く必要があります。やり方は前と同じです。',
+  todo:{
+    common:['左端の<b>ソース管理</b>を押します',
+            '「リポジトリを初期化する」を押します',
+            'メッセージ欄に「最初のページ」と書いて「コミット」を押します',
+            '「<b>Branch の公開</b>」を押します',
+            '今回は <b>Publish to GitHub public repository</b>（<b>公開</b>）を選びます']
+  },
+  expect:'エラーが出ずに、公開（push）が完了します。',
+  note:'<b>今回だけは public（公開）を選びます。</b>無料プランでは、公開リポジトリでないとページを公開できないためです。中身が誰でも見られる状態になることを、必ず理解したうえで選んでください。',
+  ask:'public を選んで、GitHub に上げられましたか？',
+  tb:[
+    { q:'private を選んでしまった',
+      a:'GitHub のリポジトリ画面 → Settings → 一番下の「Change repository visibility」から公開に変えられます。' },
+    { q:'「リポジトリを初期化する」が出ない',
+      a:'すでに初期化済みです。そのままコミットに進んでください。' },
+    { q:'公開するのがやはり不安',
+      a:'中身は自分で書いたあいさつのページだけです。それでも不安なら、ここで止めてサポート窓口に相談してください。<b>無理に進める必要はありません。</b>' }
+  ]
+},
+{
+  icon:'icon-key.svg', phase:'4. 公開の設定をする',
+  title:'GitHub Pages を有効にします',
+  why:'置いただけでは、まだ住所が付きません。「これをページとして公開して」と設定します。',
+  todo:{
+    common:['ブラウザで <a href="https://github.com" target="_blank" rel="noopener">github.com</a> を開き、いま作った <b>my-page</b> を開きます',
+            '上のほうにある <b>Settings</b>（歯車）を押します',
+            '左のメニューから <b>Pages</b> を選びます',
+            'Source を <b>Deploy from a branch</b> にします',
+            'Branch を <b>main</b>、フォルダを <b>/ (root)</b> にして <b>Save</b> を押します']
+  },
+  expect:'画面の上のほうに、<code>https://自分の名前.github.io/my-page/</code> のようなURLが表示されます。',
+  note:'ここで<b>URLをメモしておいてください。</b>これがあなたのページの住所です。',
+  ask:'自分のURLが表示されましたか？',
+  tb:[
+    { q:'Pages のメニューが無い',
+      a:'リポジトリが private のままの可能性が高いです。無料プランでは公開リポジトリでのみ使えます。Settings の一番下から公開に変更してください。' },
+    { q:'Settings が見つからない',
+      a:'リポジトリの画面の上に並んだタブ（Code / Issues / Pull requests …）の、いちばん右のほうにあります。' },
+    { q:'Branch の欄に main が無い',
+      a:'まだ push できていない可能性があります。VS Code に戻り、「Branch の公開」が済んでいるか確認してください。' }
+  ]
+},
+{
+  icon:'icon-github.svg', phase:'5. 見てみる',
+  title:'自分のURLを開きます',
+  why:'ここが今日のごほうびです。<b>あなたの作ったものが、世界中から見られる状態</b>になっています。',
+  todo:{
+    common:['さきほどのURLをブラウザで開きます',
+            '<b>すぐには出ないことがあります。</b>1〜2分待って、再読み込みしてください',
+            '表示されたら、ボタンを押してみます',
+            '<b>スマホでも同じURLを開いてみてください</b>']
+  },
+  visual:'media/deploy-flow.svg',
+  visualAlt:'直す、コミット、送る、自動で組み立て、公開されるという流れ',
+  expect:'自分のパソコンではなく<b>インターネット越しに</b>、自分の作ったページが表示されます。スマホからも同じものが見えます。',
+  note:'この瞬間、あなたは<b>「サービスを公開した人」</b>になりました。規模は小さくても、仕組みは実際の案件とまったく同じです。',
+  ask:'URLでページが表示されましたか？',
+  tb:[
+    { q:'404（Not Found）と出る',
+      a:'よくあります。<b>まず2〜3分待って</b>再読み込みしてください。それでも出ない場合は、ファイル名が <b>index.html</b> になっているか（大文字が混ざっていないか）確認してください。' },
+    { q:'真っ白なページが出る',
+      a:'index.html がフォルダの<b>いちばん上</b>にあるか確認してください。中の別フォルダに入っていると見つかりません。' },
+    { q:'スマホで見られない',
+      a:'URLの打ち間違いが多いです。パソコンからスマホに、チャットなどでURLを送ると確実です。' }
+  ]
+},
+{
+  icon:'icon-vscode.svg', phase:'6. 直して、また届ける',
+  title:'直したものが、世界に反映されるのを見ます',
+  why:'ここまでできれば、あとは繰り返しです。<b>実際の案件と同じ流れ</b>を一周します。',
+  todo:{
+    common:['VS Code に戻り、<code>&lt;h1&gt;</code> の文字を書き換えます',
+            '保存します',
+            'ソース管理でメッセージを書いて「コミット」',
+            '「<b>変更の同期</b>」を押します',
+            '1〜2分待って、公開URLを再読み込みします']
+  },
+  expect:'インターネット上のページが、いま書き換えた内容に変わります。',
+  note:'<b>直す → 記録 → 送る → 自動で公開</b>。この繰り返しが、開発の仕事のかたちです。案件では、この間に「レビュー」が入ります。',
+  ask:'公開されているページの内容が変わりましたか？',
+  tb:[
+    { q:'変わらない',
+      a:'① 保存したか ② コミットしたか ③ 同期したか ④ 1〜2分待ったか、の順に確認してください。ほぼこのどれかです。' },
+    { q:'古い内容が出続ける',
+      a:'ブラウザが前の内容を覚えていることがあります。<span class="k">Ctrl</span>+<span class="k">Shift</span>+<span class="k">R</span>（Mac は <span class="k">Cmd</span>+<span class="k">Shift</span>+<span class="k">R</span>）で強制的に読み直せます。' }
+  ]
+},
+{
+  icon:'icon-key.svg', phase:'7. 公開する責任',
+  title:'最後に、大事な話をひとつだけ',
+  why:'公開できるようになったということは、<b>間違って公開してしまうこともできる</b>ということです。',
+  todo:{
+    common:['公開リポジトリには、<b>鍵・パスワード・お客様の情報を絶対に置かない</b>',
+            '迷ったら公開しない。<b>先に相談する</b>',
+            'もし置いてしまったら、<b>隠さずすぐ連絡する</b>（鍵の無効化が必要になります）']
+  },
+  expect:'この3つを覚えていれば、公開は怖くありません。',
+  note:'Step 7 で作った <code>.gitignore</code> は、まさにこの事故を防ぐためのものでした。<b>公開リポジトリでは、その重要度が跳ね上がります。</b>',
+  ask:'「困るものは置かない・迷ったら相談」を覚えましたか？',
+  tb:[
+    { q:'もう置いてしまったかもしれない',
+      a:'<b>すぐに連絡してください。</b>自分で消しても履歴には残ります。急いで対処すれば被害は防げます。<b>隠すことが一番まずい</b>対応です。' },
+    { q:'公開をやめたくなった',
+      a:'Settings → Pages で公開を止められますし、リポジトリを private に戻すこともできます。いつでもやめられます。' }
+  ]
+},
+{
+  kind:'fin',
+  emoji:'🌍',
+  title:'あなたのページが、世界に出ました',
+  lead:'手元のファイルに住所を付けて、誰でも見られる状態にする。<br>これが「サービスを公開する」ということです。',
+  gained:'公開用リポジトリを作れる／GitHub Pages で公開できる／直した内容を届けられる／公開してよいものの判断ができる',
+  note:'URLは友人や家族に見せてみてください。<b>「自分が作ったものを、人に見てもらう」</b>——これがこの仕事のいちばん面白いところです。',
+  nextHref:'index.html#/',
+  nextLabel:'目次に戻る'
+}
+]};
+</script>
+<script src="navi.js"></script>
+</body>
+</html>
