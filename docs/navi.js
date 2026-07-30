@@ -45,11 +45,19 @@
   }
 
   // 連絡先（docs/config.js で運営側が設定する）
+  var warned = false;
   function support() {
     var s = window.TRAINER_SUPPORT || {};
     if (!s.name && !s.channel) {
-      return '<b style="color:#c0392b">※ 連絡先が未設定です。</b>' +
-             'このページの管理者は <code>docs/config.js</code> にサポート窓口を書いてください。';
+      // 受講者に開発者向けの指示を見せない。運営には開発者ツールで知らせる。
+      if (!warned) {
+        warned = true;
+        if (window.console && console.warn) {
+          console.warn('[trainer] サポート窓口が未設定です。docs/config.js の TRAINER_SUPPORT に、担当者名・チャンネル・URL を記入してください。');
+        }
+      }
+      return '<b>研修の担当者（サポート窓口）に連絡してください。</b><br>' +
+             '連絡先が分からないときは、この研修を案内してくれた人に聞けば大丈夫です。';
     }
     var who = s.name || 'サポート窓口';
     var where = s.channel ? '（' + esc(s.channel) + '）' : '';
@@ -125,7 +133,7 @@
         '<div class="oschoice">' +
         '<button type="button" data-os="win">Windows</button>' +
         '<button type="button" data-os="mac">Mac</button></div>' +
-        '<div class="note" style="margin-top:18px">どちらか分からないときは、サポート役に「これはWindowsですか？Macですか？」と聞いてください。恥ずかしいことではありません。</div>' +
+        '<div class="note" style="margin-top:18px">どちらか分からないときは、研修の担当者に「これはWindowsですか？Macですか？」と聞いてください。恥ずかしいことではありません。</div>' +
         '</div>';
       return;
     }
