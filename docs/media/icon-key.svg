@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="接続設定（鍵）のアイコン">
+  <rect width="48" height="48" rx="12" fill="#8a6412"/>
+  <circle cx="19" cy="20" r="7" fill="none" stroke="#ffd479" stroke-width="4"/>
+  <path d="M24 25l11 11" stroke="#ffd479" stroke-width="4" stroke-linecap="round"/>
+  <path d="M31 32l4 4" stroke="#ffd479" stroke-width="4" stroke-linecap="round"/>
+</svg>

@@ -2,15 +2,21 @@
 
 完全未経験からエンジニアを目指す人向けのカリキュラムです。Claude Code を相棒にしながら、git・開発の進め方を少しずつ身につけ、実際の開発案件に参画できる状態を目指します。
 
+<div class="hero">
+  <img src="media/navi-hello.svg" alt="案内役のキャラクター">
+  <p>はじめまして。ここでは<b>1画面に1つのことしかやりません</b>。<br>
+  つまずくのは当たり前なので、そのときは遠慮なく声をかけてください。<b>ゆっくりで大丈夫です。</b></p>
+</div>
+
 ## 順番にこれだけやれば大丈夫です
 
 上から順に進めてください。**見るのはこの3つだけ**です。
 
 | | やること | 形式 |
 | --- | --- | --- |
-| 1 | [🧭 環境構築ナビ](setup.html ':ignore target=_blank') | 1画面ずつ進む案内 |
-| 2 | [Step 2: git の基本](step2-git.md) | 手を動かす読み物（10分） |
-| 3 | [🚀 GitHubナビ](github.html ':ignore target=_blank') | 1画面ずつ進む案内 |
+| 1 | <img class="ti" src="media/icon-vscode.svg" alt="">[環境構築ナビ](setup.html ':ignore target=_blank') | 1画面ずつ進む案内 |
+| 2 | <img class="ti" src="media/icon-git.svg" alt="">[Step 2: git の基本](step2-git.md) | 手を動かす読み物（10分） |
+| 3 | <img class="ti" src="media/icon-github.svg" alt="">[GitHubナビ](github.html ':ignore target=_blank') | 1画面ずつ進む案内 |
 
 まずは **[環境構築ナビ](setup.html ':ignore target=_blank')** を開いてください。WindowsとMacを選ぶと、自分のほうの手順だけが表示されます。途中でやめても、次に開いたとき続きから再開できます。
 
@@ -26,7 +32,7 @@
 
 黒い画面（ターミナル）を触ったことがなくて不安な人は、先にこちらを読むと気が楽になります。
 
-- [Step 0: ターミナル入門](step0-terminal.md) — 何もインストールせずに読めます
+- <img class="ti" src="media/icon-terminal.svg" alt="">[Step 0: ターミナル入門](step0-terminal.md) — 何もインストールせずに読めます
 
 ## サポートする人向け
 
