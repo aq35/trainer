@@ -5,7 +5,11 @@
   - [3. 🚀 GitHubに上げる](github.html ':ignore target=_blank')
   - [4. 🔍 差分を読む](diff.html ':ignore target=_blank')
   - [5. 🤝 AIと一緒に直す](ai.html ':ignore target=_blank')
-- 困ったとき
+  - [6. 🎈 はじめてのプログラム](code.html ':ignore target=_blank')
+  - [7. 🌿 ブランチと安全な進め方](branch.html ':ignore target=_blank')
+- いつでも
+  - [⌨️ コマンド練習](drill.html ':ignore target=_blank')
   - [用語集](glossary.md)
+- 困ったとき
   - [Step 0: ターミナル入門](step0-terminal.md)
   - [環境構築でやっていること](step1-setup.md)

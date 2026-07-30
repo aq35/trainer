@@ -15,8 +15,13 @@
 <div id="map">読み込み中…</div>
 
 <div class="note">
-全部でおよそ<b>2〜3時間</b>ぶんです。1日で終わらせる必要はまったくありません。1つ終わるごとに休憩してください。
+全部でおよそ<b>半日〜1日</b>ぶんです。1日で終わらせる必要はまったくありません。1つ終わるごとに休憩してください。
 </div>
+
+## いつでも使えるもの
+
+- <img class="ti" width="26" height="26" src="media/icon-terminal.svg" alt="">[⌨️ コマンド練習](drill.html ':ignore target=_blank') — 覚えたコマンドを、クイズ形式で反復できます。**すきま時間にどうぞ**
+- <img class="ti" width="26" height="26" src="media/icon-ai.svg" alt="">[用語集](glossary.md) — リポジトリ、コミット、ブランチ、差分…の意味
 
 ## 進め方の約束
 
@@ -26,8 +31,7 @@
 
 ## 困ったときに開くもの
 
-- <img class="ti" width="26" height="26" src="media/icon-ai.svg" alt="">[用語集](glossary.md) — リポジトリ、コミット、ブランチ、差分…の意味
-- <img class="ti" width="26" height="26" src="media/icon-terminal.svg" alt="">[Step 0: ターミナル入門](step0-terminal.md) — 黒い画面が初めてで不安な人向け。この先コマンドを打つ場面があるので、**先に読んでおくと楽になります**
+- [Step 0: ターミナル入門](step0-terminal.md) — 黒い画面が初めてで不安な人向け。この先コマンドを打つ場面があるので、**先に読んでおくと楽になります**
 
 ## サポートする人向け
 

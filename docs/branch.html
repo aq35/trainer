@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ブランチと安全な進め方 | エンジニア育成トレーナー</title>
+<link rel="stylesheet" href="navi.css">
+<script src="config.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="hd">
+    <h1>ブランチと安全な進め方</h1>
+    <div class="spacer"></div>
+    <a class="home" href="index.html">目次へ</a>
+    <div class="counter" id="counter"></div>
+  </div>
+  <div class="bar"><i id="bar"></i></div>
+</header>
+
+<div class="wrap"><div id="view"></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+window.NAVI = {
+key:'trainer-branch-v1',
+greeting:'ここでは、実際の現場と同じ<b>作業の進め方</b>を一人で一周します。チームに入ったとき、初日から使う作法です。',
+
+common:[
+  { q:'言葉の意味が分からない',
+    a:'<a href="index.html#/glossary" target="_blank" rel="noopener">用語集</a>を見てください。ブランチの図もあります。' },
+  { q:'コマンドを打つのが不安',
+    a:'このStepで使うコマンドは、すべて<b>元に戻せるもの</b>です。壊れる操作はありません。安心して打ってください。' },
+  { q:'今どのブランチにいるか分からなくなった',
+    a:'VS Code の<b>画面いちばん下の左端</b>に、今いるブランチ名が出ています。ターミナルなら <code>git branch</code> で確認できます。' }
+],
+
+steps:[
+{
+  icon:'icon-git.svg', phase:'1. なぜ必要か',
+  title:'いきなり本番を触らない、という作法があります',
+  why:'実際の開発では、動いているものを直接いじりません。まず「分かれ道」を作ってそこで作業します。',
+  visual:'media/branch.svg',
+  visualAlt:'ブランチは本線から枝分かれして作業し、できたら本線に合流させるもの',
+  expect:'<b>本線（main）を汚さずに試せる</b>。これがブランチを使う理由です。',
+  note:'一人で練習していると必要性を感じにくいのですが、<b>案件では必ず求められます</b>。ここで手を慣らしておきます。',
+  ask:'ブランチが何のためにあるか、イメージできましたか？',
+  tb:[
+    { q:'一人なら要らないのでは？',
+      a:'そのとおりで、一人なら無くても困りません。ただ<b>チームでは全員が使う前提</b>なので、知らないと初日に困ります。今は形だけ覚えておけば十分です。' },
+    { q:'難しそう',
+      a:'やることは「作る・移動する・戻る・合流する」の4つだけです。1つずつやります。' }
+  ]
+},
+{
+  icon:'icon-terminal.svg', phase:'2. 作って移動する',
+  title:'作業用のブランチを作ります',
+  why:'まず分かれ道を作ります。名前は「何をするか」が分かるものにします。',
+  todo:{
+    common:['VS Code で <b>practice</b> フォルダを開きます',
+            'メニュー「表示」→「ターミナル」を開きます',
+            '下のコマンドを打ちます']
+  },
+  cmd:'git switch -c add-color',
+  cmdlabel:'「add-color」が今回のブランチ名です',
+  expect:'<code>Switched to a new branch \'add-color\'</code> のように表示されます。VS Code の左下の表示も add-color に変わります。',
+  note:'<code>-c</code> は create（作る）の意味です。<b>作ると同時に、そこへ移動</b>します。',
+  ask:'左下の表示が add-color に変わりましたか？',
+  tb:[
+    { q:'already exists と出た',
+      a:'同じ名前がすでにあります。<code>git switch add-color</code>（-c なし）で移動できます。' },
+    { q:'左下に何も出ていない',
+      a:'VS Code の一番下の細い帯の、左端です。見つからなければ <code>git branch</code> と打つと、今いるブランチに <b>*</b> が付いて表示されます。' },
+    { q:'switch なんて知らない、と言われた',
+      a:'古いバージョンの Git です。<code>git checkout -b add-color</code> でも同じことができます。' }
+  ]
+},
+{
+  icon:'icon-vscode.svg', phase:'2. 作って移動する',
+  title:'このブランチで、変更して記録します',
+  why:'分かれ道の上で作業します。ここでの変更は、本線には影響しません。',
+  todo:{
+    common:['<b>index.html</b> を開きます',
+            '<code>&lt;h1&gt;</code> の行のすぐ下に、下の1行を貼り付けます',
+            '保存して、ブラウザで再読み込みして、色が変わったことを確認します',
+            'ターミナルで add と commit をします']
+  },
+  cmdMulti:{
+    common:['<style>body { background: #eef3ff; }<\/style>',
+            'git add index.html',
+            'git commit -m "背景に色を付けた"']
+  },
+  expect:'ページの背景がうすい青色になり、commit が1つ増えます。',
+  ask:'色が変わって、commit できましたか？',
+  tb:[
+    { q:'色が変わらない',
+      a:'保存とブラウザの再読み込みを確認してください。それでも変わらなければ、貼り付けた場所が <code>&lt;/html&gt;</code> より後ろになっていないか見てください。' },
+    { q:'index.html が無い',
+      a:'先に<a href="code.html" target="_blank" rel="noopener">「はじめてのプログラム」</a>を終えてください。' }
+  ]
+},
+{
+  icon:'icon-git.svg', phase:'3. 行き来する',
+  title:'本線に戻って、変化が消えるのを見ます',
+  why:'ここが一番大事な体験です。<b>ブランチを移ると、ファイルの中身も切り替わります。</b>',
+  todo:{
+    common:['下のコマンドで本線（main）に戻ります',
+            'ブラウザを再読み込みします']
+  },
+  cmd:'git switch main',
+  cmdlabel:'本線に戻ります',
+  expect:'<b>背景の色が消えて、元のページに戻ります。</b>ファイルを消していないのに、中身が切り替わります。',
+  note:'消えたのではありません。add-color というブランチの中に<b>ちゃんと残っています</b>。これがブランチの正体です。',
+  ask:'色が消えて、元の状態に戻りましたか？',
+  tb:[
+    { q:'色が消えない',
+      a:'ブラウザの再読み込みを忘れていませんか。<span class="k">F5</span> / <span class="k">Cmd</span>+<span class="k">R</span> を押してください。' },
+    { q:'エラーが出て切り替えられない',
+      a:'保存したのに commit していない変更が残っています。前のステップに戻って commit してから、もう一度試してください。' },
+    { q:'変更が消えて焦っている',
+      a:'大丈夫です。<code>git switch add-color</code> と打てば戻ってきます。実際にやって、行き来できることを確かめてみてください。' }
+  ]
+},
+{
+  icon:'icon-git.svg', phase:'4. 合流させる',
+  title:'できたものを本線に取り込みます',
+  why:'作業が終わったら、本線に合流させます。これで本線にも色が付きます。',
+  todo:{
+    common:['いま main にいることを確認します（左下の表示）',
+            '下のコマンドを打ちます',
+            'ブラウザを再読み込みします']
+  },
+  cmd:'git merge add-color',
+  cmdlabel:'add-color の内容を、今いる main に取り込みます',
+  expect:'本線でも背景の色が付きます。これで作業が本線に反映されました。',
+  note:'実際の案件では、この合流を<b>他の人が確認してから</b>行います。その仕組みが次のステップで出てくる「プルリクエスト」です。',
+  ask:'main でも色が付きましたか？',
+  tb:[
+    { q:'CONFLICT と出た',
+      a:'同じ行を両方で変えた場合に出ます。一人で練習している今は起きにくいですが、出たら <code>git merge --abort</code> で中止して、サポート窓口に連絡してください。' },
+    { q:'Already up to date と出た',
+      a:'main にいないまま merge した可能性があります。<code>git switch main</code> をしてから、もう一度試してください。' }
+  ]
+},
+{
+  icon:'icon-key.svg', phase:'5. 上げてはいけないもの',
+  title:'秘密の情報を、間違って上げない設定をします',
+  why:'<b>ここは事故防止のために必ずやってください。</b>鍵やパスワードをGitHubに上げてしまう事故は、実際によく起きます。',
+  todo:{
+    common:['VS Code のファイル一覧で右クリック →「新しいファイル」',
+            '名前を <b>.gitignore</b> にします（先頭のドットも必要です）',
+            '下の内容を貼り付けて保存します',
+            '<code>git status</code> で、.gitignore が「変更」に出ることを確認します']
+  },
+  cmdMulti:{
+    common:['# ここに書いたものは git に記録されません\n.env\n*.key\nsecrets.txt\nnode_modules/\n.DS_Store',
+            'git add .gitignore',
+            'git commit -m "上げないものを設定した"']
+  },
+  expect:'.gitignore が commit され、以後この名前のファイルは記録対象から外れます。',
+  note:'<b>一度 commit して GitHub に上げてしまった秘密情報は、消しても履歴に残ります。</b>上げる前に防ぐしかありません。迷ったら上げる前に相談してください。',
+  ask:'.gitignore を作って commit できましたか？',
+  tb:[
+    { q:'ファイル名の先頭にドットを付けたら見えなくなった',
+      a:'VS Code の一覧には表示されます。もし見えない場合も、作成自体はできています。<code>git status</code> で確認してください。' },
+    { q:'何を書けばいいか分からない',
+      a:'上の内容をそのまま使えば十分です。案件ごとに用意されていることも多いので、参画したらまず確認してください。' },
+    { q:'すでに鍵を上げてしまったかもしれない',
+      a:'自分で対処しようとせず、<b>すぐに連絡してください。</b>鍵の無効化が必要になることがあります。隠さないことが一番大事です。' }
+  ]
+},
+{
+  icon:'icon-github.svg', phase:'6. 現場と同じ形にする',
+  title:'ブランチを GitHub に上げて、プルリクエストを作ります',
+  why:'実際の案件では、直接 main に反映せず「これを取り込んでいいですか」と出します。それがプルリクエスト（PR）です。',
+  todo:{
+    common:['<code>git switch -c add-title</code> で新しいブランチを作ります',
+            '<code>&lt;title&gt;</code> の文字を好きなものに変えて、保存します',
+            '<code>git add index.html</code> → <code>git commit -m "タイトルを変えた"</code>',
+            'VS Code のソース管理から「<b>Branch の公開</b>」を押します',
+            'GitHub のページを開くと、黄色い帯で「Compare & pull request」が出ています。それを押します',
+            '内容を確認して「Create pull request」を押します']
+  },
+  expect:'GitHub に、変更内容（差分）が並んだページができます。これがプルリクエストです。',
+  note:'PRの画面には<b>差分がそのまま表示されます</b>。Step 3 で覚えた赤と緑の読み方が、ここで役に立ちます。',
+  ask:'プルリクエストの画面を作れましたか？',
+  tb:[
+    { q:'黄色い帯が出ない',
+      a:'GitHub のリポジトリ画面で「Pull requests」タブ →「New pull request」から作れます。base を <b>main</b>、compare を <b>add-title</b> にしてください。' },
+    { q:'誰に見てもらえばいい？',
+      a:'今は一人での練習なので、<b>自分で作って自分で確認</b>すれば十分です。案件では、ここでチームの人に見てもらうことになります。' },
+    { q:'マージしていい？',
+      a:'練習なので、そのまま「Merge pull request」を押して構いません。押したあとの画面も見ておくと、案件で戸惑いません。' }
+  ]
+},
+{
+  kind:'fin',
+  emoji:'🌿',
+  title:'現場と同じ進め方を一周しました',
+  lead:'ブランチを切って、作って、確認して、取り込む。<br>これが案件で毎日繰り返す流れです。',
+  gained:'ブランチを作って行き来できる／本線に合流できる／上げてはいけないものを除外できる／プルリクエストを出せる',
+  note:'案件に入ったら、<b>作業を始める前にブランチを切る</b>のが最初の一歩になります。困ったら<a href="index.html#/glossary">用語集</a>と、この画面に戻ってきてください。',
+  nextHref:'drill.html',
+  nextLabel:'コマンド練習で仕上げる'
+}
+]};
+</script>
+<script src="navi.js"></script>
+</body>
+</html>

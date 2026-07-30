@@ -11,6 +11,10 @@
 3. **[GitHubナビ](docs/github.html)** — アカウント作成から push まで
 4. **[差分を読む](docs/diff.html)** — AIの提案を読んで判断するための土台
 5. **[AIと一緒に直す](docs/ai.html)** — 権限モード・承認・拒否・取り消し・頼み方
+6. **[はじめてのプログラム](docs/code.html)** — HTML/JavaScript を書く・動かす・エラーを読んで直す・自力課題
+7. **[ブランチと安全な進め方](docs/branch.html)** — ブランチ / merge / .gitignore / プルリクエスト（一人で一周）
+
+いつでも: **[コマンド練習](docs/drill.html)** — 20問のクイズ形式ドリル（分野別・成績保存・間違いだけ再挑戦）
 
 補足資料: [用語集](docs/glossary.md) / [Step 0: ターミナル入門](docs/step0-terminal.md) / [環境構築でやっていること](docs/step1-setup.md)
 
@@ -57,6 +61,7 @@ window.TRAINER_SUPPORT = {
 | `docs/navi.js`, `docs/navi.css` | ナビ共通エンジン。ページ側は手順データのみ持つ |
 | `docs/config.js` | 運営側が編集する設定（サポート窓口） |
 | `docs/progress.js` | トップの進捗マップと Step 2 のチェックリスト |
+| `docs/drill.html`, `docs/drill.js` | コマンド練習ドリル（設問は drill.js の Q 配列） |
 | `docs/media/` | 図版（SVG） |
 
 新しいナビを増やす場合は、`navi.css` / `navi.js` を読み込み、`window.NAVI = { key, steps, common }` を定義した HTML を追加してください。
