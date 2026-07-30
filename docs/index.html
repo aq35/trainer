@@ -40,6 +40,21 @@
       width: 100%;
     }
 
+    /* 目次ページの案内役 */
+    .markdown-section .hero {
+      display: flex; align-items: center; gap: 18px;
+      background: #eef3ff; border: 1px solid #c9dbff;
+      border-radius: 14px; padding: 18px 20px; margin: 1.4em 0;
+    }
+    .markdown-section .hero img { width: 88px; height: 88px; flex: none; }
+    .markdown-section .hero p { margin: 0; font-size: 15px; }
+    @media (max-width: 520px) { .markdown-section .hero { flex-direction: column; text-align: center; } }
+
+    /* 表の中のツールアイコン */
+    .markdown-section td img.ti, .markdown-section p img.ti {
+      width: 26px; height: 26px; vertical-align: -7px; margin-right: 6px;
+    }
+
     /* ダークモード */
     @media (prefers-color-scheme: dark) {
       :root { --box-bg:#232833; --box-bd:#333a48; }
@@ -62,6 +77,7 @@
       .markdown-section .time { background:#1b2437; border-color:#31456b; color:#6f9dff; }
       /* 図はSVGが白背景前提のため、余白を付けて浮かせる */
       .markdown-section .ui-mock { background:#fff; padding:6px; }
+      .markdown-section .hero { background:#1b2437; border-color:#31456b; }
     }
 
     /* 大段階カード */

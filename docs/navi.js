@@ -35,6 +35,15 @@
            '<figcaption>図: ' + esc(a) + '</figcaption></figure>';
   }
 
+  // 案内役キャラクター。ひとことを添えて、独りで作業している感じを薄める。
+  function mascot(kind, say) {
+    var src = { hello: 'media/navi-hello.svg', calm: 'media/navi-calm.svg', party: 'media/navi-party.svg' }[kind];
+    var cls = { hello: '', calm: ' warm', party: ' win' }[kind];
+    var alt = { hello: '案内役のキャラクター', calm: '落ち着いてと声をかける案内役', party: '喜んでいる案内役' }[kind];
+    return '<div class="mascot' + cls + '"><img src="' + src + '" alt="' + alt + '">' +
+           '<div class="say">' + say + '</div></div>';
+  }
+
   // 連絡先（docs/config.js で運営側が設定する）
   function support() {
     var s = window.TRAINER_SUPPORT || {};
@@ -80,6 +89,7 @@
 
     if (s.kind === 'os') {
       v.innerHTML = '<div class="card"><span class="phase">' + s.phase + '</span>' +
+        mascot('hello', CFG.greeting || 'ここから一緒に進めます。<b>1画面に1つのことしかやりません。</b>分からなくなっても大丈夫なので、気楽にどうぞ。') +
         '<h2>' + s.title + '</h2><p class="why">' + s.why + '</p>' +
         '<div class="oschoice">' +
         '<button type="button" data-os="win">Windows</button>' +
@@ -90,9 +100,8 @@
     }
 
     if (s.kind === 'fin') {
-      v.innerHTML = '<div class="card"><div class="done"><div class="big">' + (s.emoji || '🎉') + '</div>' +
-        '<h2 style="margin-top:10px">' + s.title + '</h2>' +
-        '<p class="why">' + s.lead + '</p></div>' +
+      v.innerHTML = '<div class="card">' +
+        mascot('party', '<h2 style="margin:6px 0">' + s.title + '</h2><p class="why" style="margin:0">' + s.lead + '</p>') +
         (s.gained ? '<div class="expect"><div class="t">できるようになったこと</div><div class="m">' + s.gained + '</div></div>' : '') +
         (s.note ? '<div class="note">' + s.note + '</div>' : '') +
         '<div class="ask"><p>次にやること</p><div class="btns">' +
@@ -103,8 +112,10 @@
       return;
     }
 
-    var h = '<div class="card"><span class="phase">' + s.phase + '</span><h2>' + s.title + '</h2>' +
-            '<p class="why">' + s.why + '</p>';
+    var h = '<div class="card"><span class="phase">' + s.phase + '</span>' +
+            '<div class="head">' +
+            (s.icon ? '<img class="ico" src="media/' + s.icon + '" alt="">' : '') +
+            '<div><h2>' + s.title + '</h2><p class="why" style="margin-bottom:0">' + s.why + '</p></div></div>';
 
     var list = pick(s.todo);
     if (list) { h += '<ol class="todo">'; for (var i = 0; i < list.length; i++) h += '<li>' + list[i] + '</li>'; h += '</ol>'; }
@@ -138,8 +149,9 @@
     for (var k = 0; k < own.length; k++) seen[own[k].q] = 1;
     for (var c = 0; c < COMMON.length; c++) if (!seen[COMMON[c].q]) all.push(COMMON[c]);
 
-    var h = '<div class="help"><h3>大丈夫です。よくあることです。</h3>' +
-            '<p class="lead">近いものを開いてみてください。当てはまらなければ、いちばん下の方法で聞いてください。</p>';
+    var h = '<div class="help">' +
+            mascot('calm', '<b>大丈夫です。ここで止まる人はたくさんいます。</b><br>' +
+                   '近いものを開いてみてください。当てはまらなければ、いちばん下の方法で聞いてください。');
     for (var i = 0; i < all.length; i++) {
       h += '<details class="tb"><summary>' + all[i].q + '</summary><div class="a">' + all[i].a + '</div></details>';
     }

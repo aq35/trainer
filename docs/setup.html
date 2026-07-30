@@ -46,7 +46,7 @@ steps:[
   why:'WindowsとMacで画面も手順も違います。選んだほうだけを表示するので、迷わなくて済みます。'
 },
 {
-  id:'vscode', phase:'1. 道具をそろえる',
+  id:'vscode', icon:'icon-vscode.svg', phase:'1. 道具をそろえる',
   title:'VS Code を入れます',
   why:'プログラムを書くためのアプリです。まずはこれ1つだけ入れます。',
   todo:{
@@ -72,7 +72,7 @@ steps:[
   ]
 },
 {
-  id:'open-folder', phase:'1. 道具をそろえる',
+  id:'open-folder', icon:'icon-folder.svg', phase:'1. 道具をそろえる',
   title:'作業用のフォルダを開きます',
   why:'これから作るものの置き場所を決めます。散らからないように、最初に1つ作っておきます。',
   todo:{
@@ -92,7 +92,7 @@ steps:[
   ]
 },
 {
-  id:'terminal', phase:'2. 黒い画面に慣れる',
+  id:'terminal', icon:'icon-terminal.svg', phase:'2. 黒い画面に慣れる',
   title:'ターミナルを出します',
   why:'この先の作業は、文字で命令する画面（ターミナル）を使います。ここで一度出しておきます。',
   todo:{
@@ -112,7 +112,7 @@ steps:[
   ]
 },
 {
-  id:'git', phase:'3. 土台を入れる',
+  id:'git', icon:'icon-git.svg', phase:'3. 土台を入れる',
   title:'Git を入れます',
   why:'作業の履歴を残すための道具です。この後の研修で本格的に使います。',
   todo:{
@@ -138,7 +138,7 @@ steps:[
   ]
 },
 {
-  id:'claude-ext', phase:'4. Claude Code を入れる',
+  id:'claude-ext', icon:'icon-ai.svg', phase:'4. Claude Code を入れる',
   title:'Claude Code を VS Code に追加します',
   why:'AIと相談しながら作業できるようになります。ここが今日のメインです。',
   todo:{
@@ -164,7 +164,7 @@ steps:[
   ]
 },
 {
-  id:'nologin', phase:'5. つなぐ',
+  id:'nologin', icon:'icon-ai.svg', phase:'5. つなぐ',
   title:'サインイン画面を出さない設定にします',
   why:'この研修では、個人のアカウントではなく会社のAWS経由でAIを使います。そのため、標準のサインイン画面は使いません。先に切っておきます。',
   todo:{
@@ -183,7 +183,7 @@ steps:[
   ]
 },
 {
-  id:'settings', phase:'5. つなぐ',
+  id:'settings', icon:'icon-key.svg', phase:'5. つなぐ',
   title:'AIに接続するための設定ファイルを作ります',
   why:'担当者から配られた値を、設定ファイルに1回書いておきます。一度書けば、次からは何もしなくて済みます。',
   todo:{
@@ -217,7 +217,7 @@ steps:[
   ]
 },
 {
-  id:'restart', phase:'5. つなぐ',
+  id:'restart', icon:'icon-vscode.svg', phase:'5. つなぐ',
   title:'VS Code を閉じて、開き直します',
   why:'いま書いた設定は、開き直したときに読み込まれます。ここを飛ばすと必ず失敗します。',
   todo:{
@@ -233,7 +233,7 @@ steps:[
   ]
 },
 {
-  id:'talk', phase:'5. つなぐ',
+  id:'talk', icon:'icon-ai.svg', phase:'5. つなぐ',
   title:'AIに話しかけてみます',
   why:'最後の確認です。ここで返事が来たら、環境構築は完了です。',
   todo:{

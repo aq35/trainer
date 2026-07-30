@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="ターミナル（黒い画面）のアイコン">
+  <rect width="48" height="48" rx="12" fill="#22262f"/>
+  <rect x="8" y="10" width="32" height="6" rx="3" fill="#3a4150"/>
+  <path d="M14 24l6 5-6 5" stroke="#8fe08f" stroke-width="3.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="25" y1="34" x2="35" y2="34" stroke="#e6eaf2" stroke-width="3.4" stroke-linecap="round"/>
+</svg>
