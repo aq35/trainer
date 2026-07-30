@@ -28,6 +28,45 @@
            '<button type="button" data-copy="' + esc(text) + '">コピー</button></div>';
   }
 
+  // 図には必ず説明文を付ける（読み上げ環境と、画像が出ないときのため）
+  function fig(src, alt) {
+    var a = alt || '説明図';
+    return '<figure class="fig"><img class="shot" src="' + src + '" alt="' + esc(a) + '">' +
+           '<figcaption>図: ' + esc(a) + '</figcaption></figure>';
+  }
+
+  // 連絡先（docs/config.js で運営側が設定する）
+  function support() {
+    var s = window.TRAINER_SUPPORT || {};
+    if (!s.name && !s.channel) {
+      return '<b style="color:#c0392b">※ 連絡先が未設定です。</b>' +
+             'このページの管理者は <code>docs/config.js</code> にサポート窓口を書いてください。';
+    }
+    var who = s.name || 'サポート窓口';
+    var where = s.channel ? '（' + esc(s.channel) + '）' : '';
+    return s.url
+      ? '連絡先: <a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(who) + '</a>' + where
+      : '連絡先: ' + esc(who) + where;
+  }
+
+  // 同じステップに長くとどまっている人に、こちらから声をかける
+  var STUCK_MIN = 15;
+  function stampStep() {
+    try {
+      var m = JSON.parse(localStorage.getItem(CFG.key + ':t') || '{}');
+      if (!m[st.i]) { m[st.i] = Date.now(); localStorage.setItem(CFG.key + ':t', JSON.stringify(m)); }
+      return m[st.i];
+    } catch (e) { return Date.now(); }
+  }
+  function stuckBanner() {
+    var since = stampStep();
+    var min = Math.floor((Date.now() - since) / 60000);
+    if (min < STUCK_MIN) return '';
+    return '<div class="stuck"><b>このステップで' + min + '分ほど経っています。</b><br>' +
+           'ここで止まるのは珍しくありません。一人で粘らず、下の「うまくいきません」から状況をコピーして相談してください。<br>' +
+           support() + '</div>';
+  }
+
   function render() {
     var s = STEPS[st.i], v = document.getElementById('view');
     var total = STEPS.length - 1;
@@ -70,8 +109,8 @@
     var list = pick(s.todo);
     if (list) { h += '<ol class="todo">'; for (var i = 0; i < list.length; i++) h += '<li>' + list[i] + '</li>'; h += '</ol>'; }
 
-    if (s.visual)  h += '<img class="shot" src="' + s.visual + '" alt="">';
-    if (s.visual2) h += '<img class="shot" src="' + s.visual2 + '" alt="">';
+    if (s.visual)  h += fig(s.visual, s.visualAlt);
+    if (s.visual2) h += fig(s.visual2, s.visual2Alt);
 
     if (s.cmd) h += '<p style="font-size:14px;margin:16px 0 0"><b>' + (s.cmdlabel || '') + '</b></p>' + cmdBox(s.cmd);
     var multi = pick(s.cmdMulti);
@@ -79,6 +118,7 @@
 
     if (s.expect) h += '<div class="expect"><div class="t">こうなれば成功です</div><div class="m">' + s.expect + '</div></div>';
     if (s.note)   h += '<div class="note">' + s.note + '</div>';
+    h += stuckBanner();
 
     h += '<div class="ask"><p>' + s.ask + '</p><div class="btns">' +
          '<button type="button" class="act ok" data-go="1">できました → 次へ</button>' +
@@ -104,18 +144,21 @@
       h += '<details class="tb"><summary>' + all[i].q + '</summary><div class="a">' + all[i].a + '</div></details>';
     }
     h += '<div class="esc"><b>それでも解決しないとき</b><br>' +
-         '15分たっても進まなければ、そこで止めてサポート役に連絡してください。' +
-         '下のボタンを押すと、今の状況の文章がコピーされます。そのまま貼り付けて送ってください。' +
+         '15分たっても進まなければ、そこで止めて連絡してください。' +
+         '下のボタンを押すと、今の状況の文章がコピーされます。そのまま貼り付けて送ってください。<br>' +
+         support() +
          '<div style="margin-top:10px"><button type="button" class="act ng" data-report="1">今の状況をコピーする</button></div></div></div>';
     box.innerHTML = h;
   }
 
   function report() {
     var s = STEPS[st.i];
+    var min = Math.floor((Date.now() - stampStep()) / 60000);
     var t = '【' + (document.title.split('|')[0].trim()) + 'でつまずきました】\n' +
             (needsOs() ? '・パソコン: ' + osName() + '\n' : '') +
             '・止まった場所: ' + st.i + 'ステップ目「' + s.title + '」\n' +
             '・できなかったこと: ' + s.ask + '\n' +
+            '・このステップでの経過時間: 約' + min + '分\n' +
             '・画面に出ているメッセージ:（ここに貼ってください）';
     copy(t, '状況をコピーしました。サポート役に貼り付けて送ってください。');
   }
