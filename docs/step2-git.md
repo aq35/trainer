@@ -198,4 +198,4 @@ Claude Code のパネルを開いて、こう聞いてみてください。
 
 ## 次のステップ
 
-Step 3: 作った記録を GitHub に上げる（準備中）
+<a href="github.html" target="_blank" rel="noopener">GitHubナビ: 作った記録を GitHub に上げる</a>（1画面ずつ進む案内）

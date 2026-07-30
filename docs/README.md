@@ -24,7 +24,7 @@
 | [環境構築ナビ](setup.html ':ignore target=_blank') | 1画面ずつ進む対話式の案内 | 公開中 |
 | [Step 1](step1-setup.md) | 環境構築の手順書（ナビの読み物版） | 公開中 |
 | [Step 2](step2-git.md) | git の基本（記録する・戻す） | 公開中 |
-| Step 3 | GitHub に上げる | 準備中 |
+| [GitHubナビ](github.html ':ignore target=_blank') | GitHubに上げる（1画面ずつ進む案内） | 公開中 |
 | Step 4 | ai-dlc 的な開発の進め方 | 準備中 |
 
 パソコンの操作に不安がある方は、[Step 0: ターミナル入門](step0-terminal.md) から始めてください。**何もインストールせずに読めます。**

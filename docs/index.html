@@ -126,11 +126,15 @@
 <body>
   <div id="app"></div>
   <script>
-    // 環境構築ナビは通常のHTMLページ。docsify のハッシュ経路に入ってしまった場合は実ファイルへ戻す。
+    // 各ナビは通常のHTMLページ。docsify のハッシュ経路に入ってしまった場合は実ファイルへ戻す。
     (function () {
+      var PAGES = ['setup.html', 'github.html'];
       function bounce() {
-        if (/^#\/setup\.html/.test(location.hash)) {
-          location.replace(location.pathname.replace(/[^/]*$/, '') + 'setup.html');
+        for (var i = 0; i < PAGES.length; i++) {
+          if (location.hash.indexOf('#/' + PAGES[i]) === 0) {
+            location.replace(location.pathname.replace(/[^/]*$/, '') + PAGES[i]);
+            return;
+          }
         }
       }
       bounce();
