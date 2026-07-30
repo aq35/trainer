@@ -14,3 +14,4 @@
 
 - [Step 0: ターミナル入門](docs/step0-terminal.md)
 - [Step 1: 環境構築（VS Code + Claude Code）](docs/step1-setup.md)
+- [Step 2: git の基本](docs/step2-git.md)

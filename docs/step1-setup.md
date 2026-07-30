@@ -160,4 +160,4 @@ claude --version
 
 ## 次のステップ
 
-Step 2: 空リポジトリで `git init` から始める（準備中）。
+[Step 2: 変更を記録する（git の基本）](step2-git.md)

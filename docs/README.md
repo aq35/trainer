@@ -14,7 +14,8 @@
 | --- | --- | --- |
 | [Step 0](step0-terminal.md) | ターミナル入門（文字でパソコンに命令する） | 公開中 |
 | [Step 1](step1-setup.md) | 環境構築（VS Code + Claude Code） | 公開中 |
-| Step 2 | git の基本（init / commit / push） | 準備中 |
-| Step 3 | ai-dlc 的な開発の進め方 | 準備中 |
+| [Step 2](step2-git.md) | git の基本（記録する・戻す） | 公開中 |
+| Step 3 | GitHub に上げる | 準備中 |
+| Step 4 | ai-dlc 的な開発の進め方 | 準備中 |
 
 まずは [Step 0: ターミナル入門](step0-terminal.md) から始めてください。**何もインストールせずに始められます。**
