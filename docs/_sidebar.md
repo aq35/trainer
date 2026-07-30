@@ -1,5 +1,7 @@
 - はじめに
   - [トップ](/)
+  - [🧭 環境構築ナビ](setup.html ':ignore target=_blank')
 - カリキュラム
   - [Step 0: ターミナル入門](step0-terminal.md)
-  - [Step 1: 環境構築](step1-setup.md)
+  - [Step 1: 環境構築（手順書）](step1-setup.md)
+  - [Step 2: git の基本](step2-git.md)

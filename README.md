@@ -12,5 +12,7 @@
 
 ## カリキュラム
 
+- **[環境構築ナビ](docs/setup.html)** — 未経験者向けの対話式セットアップ案内（1画面1操作・つまずき対応つき）
 - [Step 0: ターミナル入門](docs/step0-terminal.md)
 - [Step 1: 環境構築（VS Code + Claude Code）](docs/step1-setup.md)
+- [Step 2: git の基本](docs/step2-git.md)
