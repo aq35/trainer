@@ -78,12 +78,12 @@ VS Codeの中にも簡易的なターミナル（黒い画面）を呼び出せ�
 
 1. VS Code左側の縦に並んだアイコンの中から、四角いブロックのようなアイコン（拡張機能）をクリック
 
-   <img src="_media/vscode-extensions-icon.svg" alt="VS Codeの拡張機能アイコンの場所" class="ui-mock">
+   <img src="media/vscode-extensions-icon.svg" alt="VS Codeの拡張機能アイコンの場所" class="ui-mock">
 
 2. 検索窓に `claude` と入力する
 3. 出てきた「Claude Code」を選び、「Install」ボタンをクリック
 
-   <img src="_media/vscode-claude-search.svg" alt="検索結果からClaude Codeをインストールする" class="ui-mock">
+   <img src="media/vscode-claude-search.svg" alt="検索結果からClaude Codeをインストールする" class="ui-mock">
 
 **確認:** 左側のアイコン一覧にClaude Codeのアイコンが新しく増えていれば成功。
 

@@ -16,7 +16,7 @@
 
 普段みなさんは、フォルダのアイコンをダブルクリックして中身を見ていると思います。あれと**まったく同じこと**を、文字で行うのがターミナル（Windowsではコマンドプロンプト）です。
 
-<img src="_media/gui-vs-terminal.svg" alt="同じフォルダをGUIとターミナルで見比べた図" class="ui-mock">
+<img src="media/gui-vs-terminal.svg" alt="同じフォルダをGUIとターミナルで見比べた図" class="ui-mock">
 
 つまり、別世界に入るわけではありません。**いつも見ているフォルダを、別の見せ方で見ているだけ**です。ここが腑に落ちると、一気に怖くなくなります。
 
@@ -54,7 +54,7 @@
 
 開いた直後、すでに何か文字が表示されているはずです。これは**エラーではありません。** 意味はこうです。
 
-<img src="_media/prompt-anatomy.svg" alt="プロンプト行の読み方" class="ui-mock">
+<img src="media/prompt-anatomy.svg" alt="プロンプト行の読み方" class="ui-mock">
 
 覚えることは1つだけです。**記号（`>` や `%`）より右側に自分で打つ。** 左側は勝手に表示されるもので、消す必要はありません。
 
@@ -64,7 +64,7 @@
 
 ターミナルでは、常に**どこか1つのフォルダの中に立っている**状態です。これが最初の関門ですが、図にすると単純です。
 
-<img src="_media/folder-tree-cd.svg" alt="フォルダの階層と現在地、cdでの移動" class="ui-mock">
+<img src="media/folder-tree-cd.svg" alt="フォルダの階層と現在地、cdでの移動" class="ui-mock">
 
 打ったコマンドは、**今いる場所に対して**働きます。「デスクトップにフォルダを作りたいのに、別の場所に作られた」というつまずきは、だいたい現在地の勘違いが原因です。
 
@@ -142,7 +142,7 @@ cd ..
 
 `mkdir`（make directory）で作れます。ここでコマンドの「形」を覚えておきましょう。
 
-<img src="_media/command-anatomy.svg" alt="コマンドの構成（動詞と対象）" class="ui-mock">
+<img src="media/command-anatomy.svg" alt="コマンドの構成（動詞と対象）" class="ui-mock">
 
 ```
 mkdir practice

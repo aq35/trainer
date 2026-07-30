@@ -12,7 +12,7 @@
 
 ## なぜ git を使うのか <span class="time">30秒</span>
 
-<img src="_media/why-git.svg" alt="ファイル名で管理する場合とgitで管理する場合の比較" class="ui-mock">
+<img src="media/why-git.svg" alt="ファイル名で管理する場合とgitで管理する場合の比較" class="ui-mock">
 
 これだけです。**git はゲームのセーブポイント。** 好きなところで保存して、好きなところに戻れます。
 
@@ -76,7 +76,7 @@ git commit -m "最初のファイルを作った"
 
 ## 2. いま何が起きたのか <span class="time">2分</span>
 
-<img src="_media/git-three-places.svg" alt="作業場所・ステージ・履歴の3つの場所" class="ui-mock">
+<img src="media/git-three-places.svg" alt="作業場所・ステージ・履歴の3つの場所" class="ui-mock">
 
 さっき打った2行は、この図の矢印そのものです。
 
@@ -105,7 +105,7 @@ git status
 
 英語がたくさん出ますが、**見るのは2か所だけ**です。
 
-<img src="_media/git-status-read.svg" alt="git status の読み方" class="ui-mock">
+<img src="media/git-status-read.svg" alt="git status の読み方" class="ui-mock">
 
 赤で出ているのが「まだ台に載っていない」ファイルです。載せて記録しましょう。
 
@@ -132,7 +132,7 @@ git log --oneline
 
 `hello.txt` を開いて、**中身を全部消して保存**してください。普段なら青ざめる場面です。
 
-<img src="_media/git-restore.svg" alt="壊したファイルをrestoreで戻す" class="ui-mock">
+<img src="media/git-restore.svg" alt="壊したファイルをrestoreで戻す" class="ui-mock">
 
 では、戻します。
 
