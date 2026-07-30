@@ -110,8 +110,34 @@ button.act,a.act{font:inherit;font-weight:700;border-radius:10px;padding:13px 20
 details.tb{background:var(--card);border:1px solid var(--red-b);border-radius:9px;padding:10px 13px;margin-bottom:8px}
 details.tb summary{cursor:pointer;font-weight:700;font-size:14px}
 details.tb .a{font-size:14px;margin-top:8px;padding-top:8px;border-top:1px solid var(--line)}
+.hsec{font-size:12px;font-weight:700;color:var(--red);letter-spacing:.04em;
+      margin:18px 0 8px;padding-bottom:5px;border-bottom:1px solid var(--red-b)}
+.hsec:first-of-type{margin-top:8px}
+
+.firstaid{display:grid;gap:8px;margin-bottom:4px}
+.fa{display:flex;gap:11px;align-items:flex-start;background:var(--card);
+    border:1px solid var(--red-b);border-radius:9px;padding:10px 13px;font-size:14px}
+.fn{flex:none;width:22px;height:22px;border-radius:50%;background:var(--red);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-top:2px}
+.fd{font-size:13px;color:var(--sub)}
+
+.hsearch{width:100%;font:inherit;font-size:14px;padding:11px 13px;margin-bottom:10px;
+         border:2px solid var(--red-b);border-radius:9px;background:var(--card);color:var(--ink)}
+.hsearch:focus{outline:none;border-color:var(--red)}
+.nohit{display:none;font-size:13.5px;color:var(--sub);background:var(--card);
+       border:1px dashed var(--red-b);border-radius:9px;padding:12px 13px}
+
 .esc{margin-top:6px;background:var(--card);border:1px dashed var(--red-b);border-radius:9px;
      padding:12px 13px;font-size:13.5px}
+.escstep{display:flex;gap:11px;align-items:flex-start;padding:10px 0}
+.escstep + .escstep{border-top:1px solid var(--line)}
+.escstep .act{border-width:2px;padding:11px 18px;font-size:14.5px}
+.escstep .ok{flex:none;min-width:0}
+.en{flex:none;width:24px;height:24px;border-radius:50%;background:var(--ink);color:var(--bg);
+    display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:700;margin-top:2px}
+
+.solved{text-align:center;margin-top:14px}
+.solved .link{color:var(--green);font-weight:700;font-size:14px}
 
 .foot{display:flex;justify-content:space-between;align-items:center;margin-top:16px}
 .link{background:none;border:0;color:var(--sub);font:inherit;font-size:13px;cursor:pointer;

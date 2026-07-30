@@ -61,7 +61,7 @@ window.TRAINER_SUPPORT = {
 | --- | --- |
 | `docs/index.html` | docsify のエントリ（Markdown をサイト表示） |
 | `docs/setup.html`, `docs/github.html` | 対話式ナビ（独立した静的HTML） |
-| `docs/navi.js`, `docs/navi.css` | ナビ共通エンジン。ページ側は手順データのみ持つ |
+| `docs/navi.js`, `docs/navi.css` | ナビ共通エンジン。ページ側は手順データのみ持つ。ヘルプの3段構え（初手チェック／症状検索／AI・人への相談）もここ |
 | `docs/config.js` | 運営側が編集する設定（サポート窓口） |
 | `docs/progress.js` | トップの進捗マップと Step 2 のチェックリスト |
 | `docs/drill.html`, `docs/drill.js` | コマンド練習ドリル（設問は drill.js の Q 配列） |

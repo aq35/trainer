@@ -58,6 +58,16 @@
       : '連絡先: ' + esc(who) + where;
   }
 
+  // どのステップでも、まず疑うべき3つ
+  var FIRST_AID = [
+    { t:'保存しましたか？', d:'<span class="k">Ctrl</span>+<span class="k">S</span> / <span class="k">Cmd</span>+<span class="k">S</span>。タブに「●」が付いていたら未保存です。' },
+    { t:'開き直しましたか？', d:'ブラウザは再読み込み（<span class="k">F5</span> / <span class="k">Cmd</span>+<span class="k">R</span>）。VS Code は閉じて開き直し。' },
+    { t:'打ち間違いはありませんか？', d:'大文字と小文字、単語の間の半角スペース。<b>I</b>（アイ）と <b>l</b>（エル）は特に紛らわしいです。' }
+  ];
+
+  // 受講者が「開いて確認した項目」を覚えておき、相談文に添える
+  var tried = [];
+
   // 同じステップに長くとどまっている人に、こちらから声をかける
   var STUCK_MIN = 15;
   function stampStep() {
@@ -150,18 +160,96 @@
     for (var c = 0; c < COMMON.length; c++) if (!seen[COMMON[c].q]) all.push(COMMON[c]);
 
     var h = '<div class="help">' +
-            mascot('calm', '<b>大丈夫です。ここで止まる人はたくさんいます。</b><br>' +
-                   '近いものを開いてみてください。当てはまらなければ、いちばん下の方法で聞いてください。');
+      mascot('calm', '<b>大丈夫です。ここで止まる人はたくさんいます。</b><br>' +
+             '上から順に試すと、たいてい解決します。<b>全部読む必要はありません。</b>');
+
+    // ① まず疑う3つ
+    h += '<div class="hsec">まず、これだけ確認してください</div><div class="firstaid">';
+    FIRST_AID.forEach(function (f, i) {
+      h += '<div class="fa"><span class="fn">' + (i + 1) + '</span>' +
+           '<div><b>' + f.t + '</b><br><span class="fd">' + f.d + '</span></div></div>';
+    });
+    h += '</div>';
+
+    // ② 症状から探す（検索つき）
+    h += '<div class="hsec">症状から探す</div>' +
+         '<input class="hsearch" id="hq" type="text" autocomplete="off" spellcheck="false" ' +
+         'placeholder="画面に出ている文字を貼り付けて探せます（例: not found）">' +
+         '<div id="hlist">';
     for (var i = 0; i < all.length; i++) {
-      h += '<details class="tb"><summary>' + all[i].q + '</summary><div class="a">' + all[i].a + '</div></details>';
+      h += '<details class="tb" data-tbq="' + esc(all[i].q) + '"><summary>' + all[i].q + '</summary>' +
+           '<div class="a">' + all[i].a + '</div></details>';
     }
-    h += '<div class="esc"><b>それでも解決しないとき</b><br>' +
-         '15分たっても進まなければ、そこで止めて連絡してください。' +
-         '下のボタンを押すと、今の状況の文章がコピーされます。そのまま貼り付けて送ってください。<br>' +
-         support() +
-         '<div style="margin-top:10px"><button type="button" class="act ng" data-report="1">今の状況をコピーする</button></div></div></div>';
+    h += '<div class="nohit" id="nohit">当てはまるものが見つかりませんでした。下の方法で聞いてください。</div></div>';
+
+    // ③ 段階を追って聞く
+    h += '<div class="hsec">それでも解決しないとき</div>' +
+         '<div class="esc">' +
+         '<div class="escstep"><span class="en">1</span><div>' +
+         '<b>AIに聞く</b>（すぐ試せます）<br>' +
+         '<span class="fd">下のボタンで<b>質問文がコピー</b>されます。Claude Code に貼り、' +
+         '〈実際に起きたこと〉だけ書き足して送ってください。</span>' +
+         '<div style="margin-top:10px"><button type="button" class="act ok" data-aiprompt="1">AIに聞く文章をコピー</button></div>' +
+         '</div></div>' +
+         '<div class="escstep"><span class="en">2</span><div>' +
+         '<b>人に聞く</b>（15分たったら、ためらわずに）<br>' +
+         '<span class="fd">' + support() + '</span>' +
+         '<div style="margin-top:10px"><button type="button" class="act ng" data-report="1">今の状況をコピー</button></div>' +
+         '<details class="tb" style="margin-top:10px"><summary>画面を見せると早く解決します（撮り方）</summary>' +
+         '<div class="a"><b>Windows</b>: <span class="k">Windows</span>+<span class="k">Shift</span>+<span class="k">S</span> を押して、' +
+         '写したい範囲をドラッグ。<br><b>Mac</b>: <span class="k">Cmd</span>+<span class="k">Shift</span>+<span class="k">4</span> を押して、範囲をドラッグ。<br>' +
+         '撮ったものを、そのままチャットに貼り付けられます。<b>エラーの文字が読める大きさ</b>で撮ってください。</div></details>' +
+         '</div></div></div>';
+
+    // ④ 解決したときの出口
+    h += '<div class="solved"><button type="button" class="link" data-solved="1">✓ 解決しました</button></div>';
+
+    h += '</div>';
     box.innerHTML = h;
   }
+
+  // 検索で絞り込む
+  function filterHelp(q) {
+    var list = document.getElementById('hlist');
+    if (!list) return;
+    var key = String(q).trim().toLowerCase();
+    var items = list.querySelectorAll('details.tb[data-tbq]'), hit = 0;
+    items.forEach(function (d) {
+      var text = (d.textContent || '').toLowerCase();
+      var show = !key || text.indexOf(key) >= 0;
+      d.style.display = show ? '' : 'none';
+      if (show) { hit++; if (key) d.open = true; }
+    });
+    var nh = document.getElementById('nohit');
+    if (nh) nh.style.display = hit ? 'none' : 'block';
+  }
+
+  function aiPrompt() {
+    var s = STEPS[st.i];
+    var todo = pick(s.todo);
+    var lines = [
+      'プログラミング初心者です。研修の途中で詰まっています。',
+      '専門用語はできるだけ避けて、次にやることを1つだけ教えてください。',
+      '',
+      '【やろうとしていること】',
+      s.title,
+      '',
+      '【手順】'
+    ];
+    if (todo) todo.forEach(function (t, i) { lines.push((i + 1) + '. ' + strip(t)); });
+    else lines.push('（画面の指示にしたがって操作中）');
+    lines.push('');
+    lines.push('【本来こうなるはず】');
+    lines.push(strip(s.expect || s.ask));
+    lines.push('');
+    lines.push('【実際に起きたこと】');
+    lines.push('（ここに書いてください。エラーが出ていれば、そのまま貼り付けてください）');
+    lines.push('');
+    lines.push('【環境】' + (needsOs() ? osName() : 'Windows または Mac') + ' / VS Code');
+    copy(lines.join('\n'), 'コピーしました。Claude Code に貼って、〈実際に起きたこと〉だけ書き足してください。');
+  }
+
+  function strip(h) { return String(h).replace(/<[^>]*>/g, ''); }
 
   function report() {
     var s = STEPS[st.i];
@@ -171,6 +259,7 @@
             '・止まった場所: ' + st.i + 'ステップ目「' + s.title + '」\n' +
             '・できなかったこと: ' + s.ask + '\n' +
             '・このステップでの経過時間: 約' + min + '分\n' +
+            (tried.length ? '・自分で試したこと: ' + tried.join(' / ') + '\n' : '') +
             '・画面に出ているメッセージ:（ここに貼ってください）';
     copy(t, '状況をコピーしました。サポート役に貼り付けて送ってください。');
   }
@@ -199,6 +288,12 @@
       st.i = n; save(); render(); return;
     }
     if (t.dataset.help) { showHelp(); return; }
+    if (t.dataset.aiprompt) { aiPrompt(); return; }
+    if (t.dataset.solved) {
+      var box = document.getElementById('help'); if (box) box.innerHTML = '';
+      toast('よかったです。その調子で進めてください。');
+      return;
+    }
     if (t.dataset.report) { report(); return; }
     if (t.dataset.copy !== undefined) { copy(t.dataset.copy); return; }
     if (t.dataset.reset) {
@@ -206,6 +301,16 @@
       return;
     }
   });
+
+  document.addEventListener('input', function (e) {
+    if (e.target && e.target.id === 'hq') filterHelp(e.target.value);
+  });
+  document.addEventListener('toggle', function (e) {
+    var d = e.target;
+    if (d && d.tagName === 'DETAILS' && d.open && d.dataset.tbq) {
+      if (tried.indexOf(d.dataset.tbq) < 0) tried.push(d.dataset.tbq);
+    }
+  }, true);
 
   if (st.i > 0 && needsOs() && !st.os) st.i = 0;
   render();
