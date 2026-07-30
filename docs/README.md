@@ -14,9 +14,9 @@
 
 | | やること | 形式 |
 | --- | --- | --- |
-| 1 | <img class="ti" src="media/icon-vscode.svg" alt="">[環境構築ナビ](setup.html ':ignore target=_blank') | 1画面ずつ進む案内 |
-| 2 | <img class="ti" src="media/icon-git.svg" alt="">[Step 2: git の基本](step2-git.md) | 手を動かす読み物（10分） |
-| 3 | <img class="ti" src="media/icon-github.svg" alt="">[GitHubナビ](github.html ':ignore target=_blank') | 1画面ずつ進む案内 |
+| 1 | <img class="ti" width="26" height="26" src="media/icon-vscode.svg" alt="">[環境構築ナビ](setup.html ':ignore target=_blank') | 1画面ずつ進む案内 |
+| 2 | <img class="ti" width="26" height="26" src="media/icon-git.svg" alt="">[Step 2: git の基本](step2-git.md) | 手を動かす読み物（10分） |
+| 3 | <img class="ti" width="26" height="26" src="media/icon-github.svg" alt="">[GitHubナビ](github.html ':ignore target=_blank') | 1画面ずつ進む案内 |
 
 まずは **[環境構築ナビ](setup.html ':ignore target=_blank')** を開いてください。WindowsとMacを選ぶと、自分のほうの手順だけが表示されます。途中でやめても、次に開いたとき続きから再開できます。
 
@@ -32,7 +32,7 @@
 
 黒い画面（ターミナル）を触ったことがなくて不安な人は、先にこちらを読むと気が楽になります。
 
-- <img class="ti" src="media/icon-terminal.svg" alt="">[Step 0: ターミナル入門](step0-terminal.md) — 何もインストールせずに読めます
+- <img class="ti" width="26" height="26" src="media/icon-terminal.svg" alt="">[Step 0: ターミナル入門](step0-terminal.md) — 何もインストールせずに読めます
 
 ## サポートする人向け
 

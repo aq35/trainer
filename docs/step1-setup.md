@@ -11,9 +11,9 @@
 
 | 入れるもの | 何をするもの | 無いとどうなる |
 | --- | --- | --- |
-| <img class="ti" src="media/icon-vscode.svg" alt="">VS Code | 文章やプログラムを書くアプリ | 何も書けない |
-| <img class="ti" src="media/icon-git.svg" alt="">Git | 変更の履歴を残す道具 | Step 2 以降が進められない |
-| <img class="ti" src="media/icon-ai.svg" alt="">Claude Code 拡張機能 | VS Code の中でAIに相談できるようにする | AIが使えない |
+| <img class="ti" width="26" height="26" src="media/icon-vscode.svg" alt="">VS Code | 文章やプログラムを書くアプリ | 何も書けない |
+| <img class="ti" width="26" height="26" src="media/icon-git.svg" alt="">Git | 変更の履歴を残す道具 | Step 2 以降が進められない |
+| <img class="ti" width="26" height="26" src="media/icon-ai.svg" alt="">Claude Code 拡張機能 | VS Code の中でAIに相談できるようにする | AIが使えない |
 
 <div class="note">
 <strong>Node.js は入れません。</strong> 拡張機能は必要なものを内蔵しているため、追加のインストールは不要です。ターミナルで <code>claude</code> コマンドを直接使いたい上級者だけ、別途セットアップが必要になります。

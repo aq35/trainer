@@ -51,8 +51,10 @@
     @media (max-width: 520px) { .markdown-section .hero { flex-direction: column; text-align: center; } }
 
     /* 表の中のツールアイコン */
-    .markdown-section td img.ti, .markdown-section p img.ti {
-      width: 26px; height: 26px; vertical-align: -7px; margin-right: 6px;
+    /* 表・段落・箇条書きなど、どこに置いても同じ大きさにする */
+    .markdown-section img.ti {
+      width: 26px !important; height: 26px !important;
+      vertical-align: -7px; margin-right: 6px; display: inline;
     }
 
     /* ダークモード */
