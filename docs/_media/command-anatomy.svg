@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 240" role="img" aria-label="コマンドの構成（何をする・何に対して）を示した図">
+  <rect width="720" height="240" fill="#ffffff"/>
+
+  <rect x="40" y="30" width="640" height="70" rx="8" fill="#22262f"/>
+  <g font-family="monospace" font-size="20">
+    <text x="70" y="72" fill="#8fe08f">&gt;</text>
+    <text x="100" y="72" fill="#ffd479">mkdir</text>
+    <text x="190" y="72" fill="#7fb2ff">practice</text>
+  </g>
+
+  <!-- underline command -->
+  <line x1="100" y1="84" x2="172" y2="84" stroke="#ffd479" stroke-width="3"/>
+  <line x1="190" y1="84" x2="292" y2="84" stroke="#7fb2ff" stroke-width="3"/>
+
+  <line x1="136" y1="100" x2="136" y2="135" stroke="#c9a227" stroke-width="2"/>
+  <text x="136" y="157" font-family="sans-serif" font-size="15" font-weight="700" fill="#c9a227" text-anchor="middle">何をするか</text>
+  <text x="136" y="178" font-family="sans-serif" font-size="12" fill="#5b6472" text-anchor="middle">mkdir = フォルダを作る</text>
+
+  <line x1="241" y1="100" x2="241" y2="135" stroke="#2f6fed" stroke-width="2"/>
+  <text x="330" y="157" font-family="sans-serif" font-size="15" font-weight="700" fill="#2f6fed" text-anchor="middle">何に対してか</text>
+  <text x="330" y="178" font-family="sans-serif" font-size="12" fill="#5b6472" text-anchor="middle">practice という名前で作る</text>
+
+  <rect x="470" y="128" width="210" height="60" rx="8" fill="#fff6e5" stroke="#f0c987" stroke-width="1.5"/>
+  <text x="575" y="152" font-family="sans-serif" font-size="13" font-weight="600" fill="#8a6412" text-anchor="middle">間の半角スペースが大事</text>
+  <text x="575" y="172" font-family="sans-serif" font-size="12" fill="#8a6412" text-anchor="middle">くっつけると別の命令になります</text>
+
+  <text x="360" y="220" font-family="sans-serif" font-size="13" fill="#3d4652" text-anchor="middle">コマンドは「動詞 + 対象」。日本語の「作って / practice を」と同じ形です</text>
+</svg>

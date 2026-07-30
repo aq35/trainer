@@ -1,4 +1,5 @@
 - はじめに
   - [トップ](/)
 - カリキュラム
-  - [Step 0: 環境構築](step0-install.md)
+  - [Step 0: ターミナル入門](step0-terminal.md)
+  - [Step 1: 環境構築](step1-setup.md)

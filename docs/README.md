@@ -12,8 +12,9 @@
 
 | ステップ | 内容 | 状態 |
 | --- | --- | --- |
-| [Step 0](step0-install.md) | 環境構築（Claude Codeを動かす） | 公開中 |
-| Step 1 | git の基本（init / commit / push） | 準備中 |
-| Step 2 | ai-dlc 的な開発の進め方 | 準備中 |
+| [Step 0](step0-terminal.md) | ターミナル入門（文字でパソコンに命令する） | 公開中 |
+| [Step 1](step1-setup.md) | 環境構築（VS Code + Claude Code） | 公開中 |
+| Step 2 | git の基本（init / commit / push） | 準備中 |
+| Step 3 | ai-dlc 的な開発の進め方 | 準備中 |
 
-まずは [Step 0: 環境構築](step0-install.md) から始めてください。
+まずは [Step 0: ターミナル入門](step0-terminal.md) から始めてください。**何もインストールせずに始められます。**

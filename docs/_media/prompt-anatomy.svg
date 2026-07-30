@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 260" role="img" aria-label="ターミナルのプロンプト行の読み方を示した図">
+  <rect width="720" height="260" fill="#ffffff"/>
+
+  <rect x="40" y="30" width="640" height="80" rx="8" fill="#22262f"/>
+  <g font-family="monospace" font-size="18">
+    <text x="70" y="78" fill="#7fb2ff">C:\Users\taro</text>
+    <text x="230" y="78" fill="#8fe08f">&gt;</text>
+    <rect x="252" y="63" width="10" height="20" fill="#8fe08f"/>
+  </g>
+
+  <!-- pointer 1 -->
+  <line x1="140" y1="92" x2="140" y2="150" stroke="#2f6fed" stroke-width="2"/>
+  <circle cx="140" cy="92" r="4" fill="#2f6fed"/>
+  <text x="140" y="172" font-family="sans-serif" font-size="14" font-weight="600" fill="#2f6fed" text-anchor="middle">今いる場所</text>
+  <text x="140" y="192" font-family="sans-serif" font-size="12" fill="#5b6472" text-anchor="middle">taro というフォルダの中にいる</text>
+
+  <!-- pointer 2 -->
+  <line x1="236" y1="92" x2="330" y2="150" stroke="#e8853a" stroke-width="2"/>
+  <circle cx="236" cy="92" r="4" fill="#e8853a"/>
+  <text x="360" y="172" font-family="sans-serif" font-size="14" font-weight="600" fill="#e8853a" text-anchor="middle">ここから右に打つ</text>
+  <text x="360" y="192" font-family="sans-serif" font-size="12" fill="#5b6472" text-anchor="middle">この記号より左は自分で消さない</text>
+
+  <!-- pointer 3 -->
+  <line x1="257" y1="92" x2="560" y2="150" stroke="#3aa76d" stroke-width="2"/>
+  <circle cx="257" cy="92" r="4" fill="#3aa76d"/>
+  <text x="580" y="172" font-family="sans-serif" font-size="14" font-weight="600" fill="#3aa76d" text-anchor="middle">カーソル</text>
+  <text x="580" y="192" font-family="sans-serif" font-size="12" fill="#5b6472" text-anchor="middle">文字が入る位置</text>
+
+  <text x="360" y="232" font-family="sans-serif" font-size="13" fill="#3d4652" text-anchor="middle">Mac では「C:\Users\taro&gt;」のかわりに「taro %」のような表示になります</text>
+</svg>
