@@ -1,8 +1,8 @@
-- はじめに
+- 進める順番
   - [トップ](/)
-  - [🧭 環境構築ナビ](setup.html ':ignore target=_blank')
-  - [🚀 GitHubナビ](github.html ':ignore target=_blank')
-- カリキュラム
+  - [1. 🧭 環境構築ナビ](setup.html ':ignore target=_blank')
+  - [2. Step 2: git の基本](step2-git.md)
+  - [3. 🚀 GitHubナビ](github.html ':ignore target=_blank')
+- 補足
   - [Step 0: ターミナル入門](step0-terminal.md)
-  - [Step 1: 環境構築（手順書）](step1-setup.md)
-  - [Step 2: git の基本](step2-git.md)
+  - [環境構築でやっていること](step1-setup.md)

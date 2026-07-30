@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GitHubナビ | エンジニア育成トレーナー</title>
 <link rel="stylesheet" href="navi.css">
+<script src="config.js"></script>
 </head>
 <body>
 
@@ -83,6 +84,7 @@ steps:[
   title:'これから何をするのか、先に見ておきます',
   why:'意味が分からないまま操作すると、失敗したときに何が起きたのか分かりません。30秒だけ見てください。',
   visual:'media/local-vs-github.svg',
+  visualAlt:'手元のパソコンにある履歴のコピーを、インターネット上のGitHubに置くという関係',
   expect:'「手元にある作業のコピーを、インターネット上に置く」——やるのはこれだけです。',
   note:'細かく理解できなくて大丈夫です。「上にコピーを置くんだな」くらいで先に進んでください。',
   ask:'だいたいのイメージはつきましたか？',
@@ -102,6 +104,7 @@ steps:[
             '左端の縦に並んだアイコンから、枝分かれの形をしたアイコン（ソース管理）を押します']
   },
   visual:'media/vscode-publish.svg',
+  visualAlt:'VS Codeの左端にあるソース管理アイコンと、青い「Branchの公開」ボタンの位置',
   expect:'左側に「ソース管理」という欄が開き、青い「Branch の公開」ボタンが見えます。',
   note:'ボタンが見当たらないときは、まだ1回も commit していない可能性が高いです。その場合は Step 2 に戻ってください。',
   ask:'「Branch の公開」ボタンが見えましたか？',
@@ -167,6 +170,7 @@ steps:[
             '<b>practice</b> を押します']
   },
   visual:'media/github-repo-page.svg',
+  visualAlt:'GitHubのリポジトリ画面に、自分が作ったhello.txtが並んでいる状態',
   expect:'自分が作った hello.txt が、GitHub の画面に並んでいます。',
   ask:'自分のファイルが GitHub の画面に見えましたか？',
   tb:[

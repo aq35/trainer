@@ -22,7 +22,7 @@
 
 ## 1. とにかく1回やってみる <span class="time">3分</span>
 
-Step 0 で作った `practice` フォルダを使います。VS Code で開いてください（「ファイル > フォルダーを開く」）。
+環境構築ナビで作った `practice` フォルダを使います。VS Code で開いてください（「ファイル > フォルダーを開く」）。
 
 開いたら、メニューの「表示 > ターミナル」でターミナルを出します。ここから先はすべてそこに打ちます。
 
@@ -33,7 +33,10 @@ git は「誰が記録したか」を残すので、名前とメールを一度�
 ```
 git config --global user.name "あなたの名前"
 git config --global user.email "あなたのメールアドレス"
+git config --global init.defaultBranch main
 ```
+
+3行目は「最初の枝の名前を main にそろえる」という指定です。書いておくと、この先の説明と画面が一致します。
 
 <details>
 <summary>本名じゃないとダメ？</summary>
