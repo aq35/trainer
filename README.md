@@ -1,1 +1,15 @@
 # trainer
+
+未経験者向けエンジニア育成カリキュラム。Claude Code / VS Code を使い、git や開発の進め方を段階的に学ぶ。
+
+## 受講者向け公開サイト
+
+読みやすい形式（Docsify）で `docs/` 以下を公開しています。
+
+- GitHub Pages を有効化すると `https://<org>.github.io/trainer/` で閲覧できます。
+  - リポジトリの `Settings > Pages > Build and deployment > Source` を `Deploy from a branch` にし、Branch を `claude/engineer-training-beginners-sx74q6`（または main）・フォルダを `/docs` に設定してください。
+- ローカルで確認する場合は `docs/` を静的サーバーで配信してください（例: `npx serve docs`）。
+
+## カリキュラム
+
+- [Step 0: 環境構築](docs/step0-install.md)
