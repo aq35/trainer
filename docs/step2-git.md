@@ -1,6 +1,6 @@
-# Step 2: 変更を記録する（git の基本）
+# git の基本 — 変更を記録する
 
-対象: [Step 1](step1-setup.md) を終えて、VS Code と Claude Code が動く人。
+対象: [環境構築ナビ](setup.html ':ignore target=_blank') を終えて、VS Code と Claude Code が動く人。
 
 このページは **10分** で終わります。読むより先に手を動かす順番になっているので、上から順にやってください。
 

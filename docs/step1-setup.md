@@ -12,7 +12,7 @@
 | 入れるもの | 何をするもの | 無いとどうなる |
 | --- | --- | --- |
 | <img class="ti" width="26" height="26" src="media/icon-vscode.svg" alt="">VS Code | 文章やプログラムを書くアプリ | 何も書けない |
-| <img class="ti" width="26" height="26" src="media/icon-git.svg" alt="">Git | 変更の履歴を残す道具 | Step 2 以降が進められない |
+| <img class="ti" width="26" height="26" src="media/icon-git.svg" alt="">Git | 変更の履歴を残す道具 | このあとの git の練習が進められない |
 | <img class="ti" width="26" height="26" src="media/icon-ai.svg" alt="">Claude Code 拡張機能 | VS Code の中でAIに相談できるようにする | AIが使えない |
 
 <div class="note">
@@ -60,5 +60,5 @@
 ## 関連
 
 - [環境構築ナビ](setup.html ':ignore target=_blank')（実際の手順）
-- [Step 0: ターミナル入門](step0-terminal.md)（黒い画面が初めての人向け）
-- [Step 2: git の基本](step2-git.md)
+- [ターミナル入門](step0-terminal.md)（黒い画面が初めての人向け）
+- [git の基本](step2-git.md)
