@@ -67,20 +67,37 @@
     return head + (s.note ? '<br><span class="fd">' + esc(s.note) + '</span>' : '');
   }
 
+  // 枠の中身が「ターミナルに打つ命令」かどうか。同じ枠を、貼り付ける文章にも使っている。
+  var TERM = /^\s*(git|gh|code|npm|npx|node|python3?|pip3?|brew|winget|mkdir|touch|cd|ls|dir|echo|curl|New-Item|xcode-select)\b/;
+  function isTerm(t) { return TERM.test(String(t).split('\n')[0]); }
+
   // そのステップで実際にやったことを見て、関係のあるものだけ出す
   function ctxOf(s) {
     // 判定は「受講者が実際にやること」＝手順を中心に見る。
     // 説明文まで見ると「保存は不要です」のような文まで拾ってしまう。
-    var todo = (pick(s.todo) || []).join(' ');
-    var cmd  = !!(s.cmd || pick(s.cmdMulti));
-    return {
-      cmd:  cmd,                              // コマンドを打つステップか
-      save: /保存し|保存す/.test(todo),        // ファイルを保存するステップか
-      act:  !!(todo || cmd),                  // 何か操作するステップか（説明だけの画面は false）
-      _text: [s.title, s.why, s.expect, s.note, s.ask, todo].join(' ')
+    var raw  = (pick(s.todo) || []).join(' ');
+    var todo = strip(raw);                    // タグを外さないと「<b>保存</b>します」を取り逃がす
+    var boxes = (s.cmd ? [s.cmd] : []).concat(pick(s.cmdMulti) || []);
+    var inline = [];                          // 手順文中の <code> も、打つ命令であることが多い
+    raw.replace(/<code>([\s\S]*?)<\/code>/g, function (_, c) { inline.push(strip(c)); return ''; });
+
+    var ctx = {
+      cmd:   boxes.some(isTerm) || inline.some(isTerm),   // ターミナルに打つステップか
+      paste: boxes.some(function (t) { return !isTerm(t); }), // 枠の中身を貼り付けるステップか
+      save:  /保存/.test(todo),                            // ファイルを保存するステップか
+      reload:/再読み込み/.test(todo),                       // ブラウザを読み直すステップか
+      // 何か操作するステップか。手順が「覚えること」の箇条書きの回は readonly:true を付ける。
+      act:   !s.readonly && !!(raw || boxes.length),
+      _text: strip([s.title, s.why, s.expect, s.note, s.ask, raw].join(' '))
     };
+    // 待ちが発生するステップか（インストール・公開の反映など）
+    ctx.wait = ctx.act && /インストール|Install|ダウンロード|Download|反映|同期|公開されます/.test(ctx._text);
+    // 画面のボタンやメニューを探すステップか。ファイルを編集する回は対象外にする。
+    ctx.ui = ctx.act && !ctx.cmd && !ctx.paste && !ctx.save &&
+             /押し|クリック|選び|選択|ボタン|メニュー|タブ|チェック|入力|開きます/.test(todo);
+    return ctx;
   }
-  // when は ctx のフラグ名（cmd / save / act / gui）か、ステップ本文に含まれる語。
+  // when は ctx のフラグ名（cmd / paste / save / reload / wait / ui / gui / act）か、ステップ本文に含まれる語。
   // 配列を渡すと「すべて満たすとき」だけ表示する。
   function applies(item, ctx) {
     if (!item.when) return true;
@@ -95,15 +112,19 @@
   var AID = [
     { when:'save', t:'保存しましたか？',
       d:'<span class="k">Ctrl</span>+<span class="k">S</span> / <span class="k">Cmd</span>+<span class="k">S</span>。タブに「●」が付いていたら未保存です。' },
+    { when:'reload', t:'ブラウザを再読み込みしましたか？',
+      d:'保存しただけでは、開いている画面は古いままです。<span class="k">F5</span> / <span class="k">Cmd</span>+<span class="k">R</span> で読み直してください。' },
+    { when:'paste', t:'枠の「コピー」ボタンを使いましたか？',
+      d:'手で範囲を選ぶと、はじめか終わりが欠けることがあります。枠の<b>コピー</b>を押してから貼り付けてください。' },
     { when:'cmd', t:'Enter を押しましたか？',
       d:'打ち終わっただけでは実行されません。最後に Enter を押します。' },
     { when:'cmd', t:'打ち間違いはありませんか？',
       d:'大文字と小文字、単語の間の半角スペース。<b>I</b>（アイ）と <b>l</b>（エル）は特に紛らわしいです。<span class="k">↑</span>キーで打ち直せます。' },
-    { when:'gui', t:'少し待ってみましたか？',
-      d:'インストールや読み込みは、終わるまで数十秒かかることがあります。1分ほど置いてから、もう一度見てください。' },
-    { when:'gui', t:'画面の文字が説明と少し違いますか？',
+    { when:'wait', t:'少し待ってみましたか？',
+      d:'インストールや読み込み、公開の反映は、終わるまで時間がかかることがあります。1分ほど置いてから、もう一度見てください。' },
+    { when:'ui', t:'画面の文字が説明と少し違いますか？',
       d:'見た目はときどき変わります。<b>言葉</b>を手がかりに探してください（「Install」「設定」「公開」など）。' },
-    { t:'開き直しましたか？',
+    { when:'act', t:'開き直しましたか？',
       d:'ブラウザは再読み込み（<span class="k">F5</span> / <span class="k">Cmd</span>+<span class="k">R</span>）。VS Code は閉じて開き直すと直ることがよくあります。' }
   ];
 
@@ -198,7 +219,7 @@
     var s = STEPS[st.i], box = document.getElementById('help');
     if (!box || box.innerHTML) { if (box) box.innerHTML = ''; return; }
     var ctx = ctxOf(s);
-    ctx.gui = !ctx.cmd;   // コマンドを打たない＝画面を操作するステップ
+    ctx.gui = ctx.act && !ctx.cmd && !ctx.paste;   // 画面だけを操作するステップ
 
     var own = s.tb || [], seen = {}, gen = [];
     for (var k = 0; k < own.length; k++) seen[own[k].q] = 1;
@@ -214,13 +235,19 @@
       mascot('calm', '<b>大丈夫です。ここで止まる人はたくさんいます。</b><br>' +
              '上から順に試すと、たいてい解決します。<b>全部読む必要はありません。</b>');
 
-    // ① まず疑う3つ
-    h += '<div class="hsec">まず、これだけ確認してください</div><div class="firstaid">';
-    aid.forEach(function (f, i) {
-      h += '<div class="fa"><span class="fn">' + (i + 1) + '</span>' +
-           '<div><b>' + f.t + '</b><br><span class="fd">' + f.d + '</span></div></div>';
-    });
-    h += '</div>';
+    // ① まず疑う3つ（手を動かさない画面では、確認するものが無いので出さない）
+    if (aid.length) {
+      h += '<div class="hsec">まず、これだけ確認してください</div><div class="firstaid">';
+      aid.forEach(function (f, i) {
+        h += '<div class="fa"><span class="fn">' + (i + 1) + '</span>' +
+             '<div><b>' + f.t + '</b><br><span class="fd">' + f.d + '</span></div></div>';
+      });
+      h += '</div>';
+    } else {
+      h += '<div class="hsec">この画面は、読んで進むだけです</div>' +
+           '<div class="note">ぴんと来なくても大丈夫です。ここは手を動かす場面ではないので、' +
+           '<b>そのまま次に進んで構いません</b>。先をやってから戻ると、すっと分かることがよくあります。</div>';
+    }
 
     // ② 症状から探す（検索つき）
     h += '<div class="hsec">症状から探す</div>' +
