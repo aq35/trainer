@@ -29,13 +29,11 @@ key:'trainer-ai-v1',
 common:[
   { q:'言葉の意味が分からない',
     a:'<a href="index.html#/glossary" target="_blank" rel="noopener">用語集</a>にまとめてあります。それでも分からなければ、Claude 本人に「〇〇ってどういう意味？」と聞くのが早いです。' },
-  { q:'Claude Code のパネルが開かない',
+  { when:'Claude Code', q:'Claude Code のパネルが開かない',
     a:'左端のアイコンを上から順に押してみてください。画面右下の「✱ Claude Code」からも開けます。' },
-  { q:'AIの返事が英語で返ってきた',
+  { when:'Claude Code', q:'AIの返事が英語で返ってきた',
     a:'「日本語で答えて」と送れば、それ以降は日本語になります。' },
-  { when:'save', q:'変更したのに何も出てこない',
-    a:'<b>保存していますか？</b> <span class="k">Ctrl</span>+<span class="k">S</span> / <span class="k">Cmd</span>+<span class="k">S</span> を押してください。' }
-],
+  ],
 
 steps:[
 {

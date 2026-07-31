@@ -9,6 +9,7 @@
  *   name:    '研修サポート担当'
  *   channel: 'Slack の #engineer-training'
  *   url:     'https://example.slack.com/archives/C0123456789'
+ *   note:    '（任意）連絡先の下に小さく表示される補足'
  *
  * url は次のようなものが使えます。
  *   Slack   : チャンネルを開いて「リンクをコピー」
@@ -17,7 +18,9 @@
  *   GitHub  : 'https://github.com/aq35/trainer/issues/new'
  */
 window.TRAINER_SUPPORT = {
-  name: '',      // 担当者名や窓口の名前
-  channel: '',   // どこで聞けるか（受講者向けの説明）
-  url: ''        // 押したら飛べる先。無ければ空のままでOK
+  name: '研修サポート窓口',
+  channel: 'GitHub の Issue に書いてください',
+  url: 'https://github.com/aq35/trainer/issues/new',
+  // 補足（任意）。連絡先の下に小さく表示されます。
+  note: 'GitHub のアカウントをまだ作っていない場合は、この研修を案内してくれた人に直接連絡してください。'
 };

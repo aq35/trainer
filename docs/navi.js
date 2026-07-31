@@ -61,22 +61,35 @@
     }
     var who = s.name || 'サポート窓口';
     var where = s.channel ? '（' + esc(s.channel) + '）' : '';
-    return s.url
+    var head = s.url
       ? '連絡先: <a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(who) + '</a>' + where
       : '連絡先: ' + esc(who) + where;
+    return head + (s.note ? '<br><span class="fd">' + esc(s.note) + '</span>' : '');
   }
 
   // そのステップで実際にやったことを見て、関係のあるものだけ出す
   function ctxOf(s) {
-    // 判定は「受講者が実際にやること」＝手順だけを見る。
+    // 判定は「受講者が実際にやること」＝手順を中心に見る。
     // 説明文まで見ると「保存は不要です」のような文まで拾ってしまう。
     var todo = (pick(s.todo) || []).join(' ');
+    var cmd  = !!(s.cmd || pick(s.cmdMulti));
     return {
-      cmd:  !!(s.cmd || pick(s.cmdMulti)),   // コマンドを打つステップか
-      save: /保存し|保存す/.test(todo)        // ファイルを保存するステップか
+      cmd:  cmd,                              // コマンドを打つステップか
+      save: /保存し|保存す/.test(todo),        // ファイルを保存するステップか
+      act:  !!(todo || cmd),                  // 何か操作するステップか（説明だけの画面は false）
+      _text: [s.title, s.why, s.expect, s.note, s.ask, todo].join(' ')
     };
   }
-  function applies(item, ctx) { return !item.when || !!ctx[item.when]; }
+  // when は ctx のフラグ名（cmd / save / act / gui）か、ステップ本文に含まれる語。
+  // 配列を渡すと「すべて満たすとき」だけ表示する。
+  function applies(item, ctx) {
+    if (!item.when) return true;
+    var ws = [].concat(item.when);
+    return ws.every(function (w) {
+      if (w.charAt(0) !== '_' && w in ctx) return !!ctx[w];
+      return ctx._text.indexOf(w) >= 0;
+    });
+  }
 
   // 上から優先度順。そのステップに関係するものだけを、最大3つ表示する。
   var AID = [
