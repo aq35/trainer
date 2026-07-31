@@ -22,7 +22,12 @@
       read: { md: 'what-to-build', label: 'AIに何を作ってもらうか — 使い捨ての仕事と、残る道具', icon: 'icon-ai.svg' } },
     { key: 'trainer-theme-v1', total: 12, label: '自分のテーマで回す', href: 'theme.html', icon: 'icon-ai.svg',
       read: { md: 'what-is-ai-dlc', label: 'AI-DLCって何？ 一人でチームになる方法', icon: 'icon-ai.svg' } },
-    { key: 'trainer-aidlc-v1', total: 12, label: 'AIと回す開発の一周', href: 'ai-dlc.html', icon: 'icon-ai.svg',
+    { key: 'trainer-aidlc-v1', total: 12, label: 'AIと回す開発の一周', href: 'ai-dlc.html', icon: 'icon-ai.svg' },
+    // ここから「案件に入る前の修行」。立場が変わるものばかり
+    { key: 'trainer-review-v1',  total: 8, label: 'レビューする側になる',       href: 'review.html',  icon: 'icon-github.svg' },
+    { key: 'trainer-bug-v1',     total: 7, label: '曖昧な報告から不具合を追う', href: 'bug.html',     icon: 'icon-terminal.svg' },
+    { key: 'trainer-onboard-v1', total: 7, label: '大きなコードに初日で入る',   href: 'onboard.html', icon: 'icon-vscode.svg' },
+    { key: 'trainer-ask-v1',     total: 7, label: '詰まったときに、人を頼る',   href: 'ask.html',     icon: 'icon-key.svg',
       read: { md: 'graduation', label: '案件に入る前の最終チェック', icon: 'icon-key.svg',
               badge: '🎓', undone: '仕上げ', done: '確認した' } }
   ];

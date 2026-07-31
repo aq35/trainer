@@ -19,6 +19,11 @@
   - [10. 🚀 自分のテーマで回す](theme.html ':ignore target=_blank')
   - [　☕ AI-DLCって何？](what-is-ai-dlc.md)
   - [11. 🎯 AIと回す開発の一周](ai-dlc.html ':ignore target=_blank')
+- 案件に入る前の修行
+  - [12. 🔍 レビューする側になる](review.html ':ignore target=_blank')
+  - [13. 🔦 曖昧な報告から不具合を追う](bug.html ':ignore target=_blank')
+  - [14. 🗺️ 大きなコードに初日で入る](onboard.html ':ignore target=_blank')
+  - [15. 🤝 詰まったときに、人を頼る](ask.html ':ignore target=_blank')
   - [　🎓 案件に入る前の最終チェック](graduation.md)
 - 進む先を考える
   - [🧭 どこへ行く？ 職種と土台](path.md)
