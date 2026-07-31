@@ -61,6 +61,11 @@
 - [ ] `CLAUDE.md` に前提を書いて、毎回説明せずに済ませられる
 - [ ] おかしくなったら `/clear` で立て直せる（[自分のテーマで回す](theme.html ':ignore target=_blank')）
 - [ ] **AIに貼ってはいけないもの**が言える（[AIと一緒に直す](ai.html ':ignore target=_blank')）
+- [ ] **打った文字が、自分のPCを出ていく**ことを理解している（[Claudeを分解してみる](what-is-claude-service.md)）
+- [ ] 会話が長いとおかしくなる理由と、その対策（`/clear` と `CLAUDE.md`）が言える
+- [ ] **MCPが何のための仕組みか**説明できる（[AIに道具を持たせる](mcp.html ':ignore target=_blank')）
+- [ ] **最小の権限でトークンを作り**、MCPサーバーをつなげる／外せる
+- [ ] トークンをリポジトリに入れてはいけない理由と、漏らしたときの対処が言える
 - [ ] **Claude と Claude Code の違い**が言える（[そもそも Claude って何？](what-is-claude.md)）
 - [ ] **毎回頼む仕事**と**一度作れば残る道具**を、区別して頼める
 

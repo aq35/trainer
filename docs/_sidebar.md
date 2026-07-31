@@ -25,6 +25,8 @@
   - [13. 🔦 曖昧な報告から不具合を追う](bug.html ':ignore target=_blank')
   - [14. 🗺️ 大きなコードに初日で入る](onboard.html ':ignore target=_blank')
   - [15. 🤝 詰まったときに、人を頼る](ask.html ':ignore target=_blank')
+  - [　☕ Claudeを分解してみる](what-is-claude-service.md)
+  - [16. 🔌 AIに道具を持たせる（MCP）](mcp.html ':ignore target=_blank')
   - [　🎓 案件に入る前の最終チェック](graduation.md)
 - 進む先を考える
   - [🧭 どこへ行く？ 職種と土台](path.md)

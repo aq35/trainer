@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIに道具を持たせる（MCP × GitHub） | エンジニア育成トレーナー</title>
+<link rel="stylesheet" href="navi.css?v=14">
+<script src="config.js?v=14"></script>
+  <link rel="canonical" href="https://aq35.github.io/trainer/mcp.html">
+</head>
+<body>
+
+<header>
+  <div class="hd">
+    <h1>AIに道具を持たせる</h1>
+    <div class="spacer"></div>
+    <a class="home" href="index.html">目次へ</a>
+    <div class="counter" id="counter"></div>
+  </div>
+  <div class="bar"><i id="bar"></i></div>
+</header>
+
+<div class="wrap"><div id="view"></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+window.NAVI = {
+key:'trainer-mcp-v1',
+greeting:'ここまで、AIに何かを見せるときは<b>あなたがコピーして貼って</b>いました。<br>PRの差分、Issueの内容、エラーの画面。<b>その往復を、なくします。</b><br>使うのは <b>MCP</b> という仕組みです。今日は GitHub とつなぎます。',
+
+common:[
+  { q:'言葉の意味が分からない',
+    a:'<a href="index.html#/glossary" target="_blank" rel="noopener">用語集</a>を見てください。' },
+  { when:'cmd', q:'claude というコマンドが見つからない',
+    a:'ターミナルで <code>claude</code> が使えるのは、<b>Claude Code にサインインして使っている人（①のルート）</b>だけです。②③のルートの人は、このステップは<b>読むだけにしてください</b>。仕組みを知っておくだけで十分です。' },
+  { when:'act', q:'0円ルートで進めているので、そもそも Claude Code が無い',
+    a:'<b>このステップは読むだけで構いません。</b>「AIに道具を持たせる」という考え方が分かっていれば、案件で話について行けます。<b>飛ばしても、あとの内容に影響はありません。</b>' }
+],
+
+steps:[
+{
+  icon:'icon-ai.svg', phase:'1. MCPとは何か', readonly:true,
+  title:'AIに「手」を持たせる、共通の規格です',
+  why:'AIは文章を返すことしかできません。<b>外のサービスを見に行くには、別の仕組みが要ります。</b>それが MCP です。',
+  todo:{
+    common:['<b>MCP</b> = Model Context Protocol（モデル・コンテキスト・プロトコル）',
+            '日本語にすると「<b>AIに、外の道具を使わせるための共通の約束ごと</b>」です',
+            'つなぐと、AIが<b>自分で見に行き、自分で操作できる</b>ようになります',
+            'たとえば GitHub をつなぐと … <b>「PR #12 をレビューして」で通じます</b>（差分を貼らなくていい）',
+            'たとえばデータベースをつなぐと … <b>「今月のデータを見て」で通じます</b>']
+  },
+  visual:'media/mcp-why.svg',
+  visualAlt:'MCPが無いとサービスの数×AIの数だけ対応が必要になるが、共通の口を決めれば1つずつで済むという図',
+  expect:'「AIに手を持たせる規格」という理解ができれば十分です。',
+  note:'<b>なぜ「規格」が必要なのか。</b>もし規格が無ければ、<b>サービスの数 × AIの数</b>だけ、つなぎ方を作らなければなりません。<br><b>差し込み口の形を1つに決めれば、それぞれが1回作るだけで済みます。</b>USB と同じ発想です。',
+  ask:'MCP が何のためのものか、つかめましたか？',
+  tb:[
+    { q:'普通に「GitHubを見て」と頼むのとは違うの？',
+      a:'違います。<b>つないでいない状態では、AIは GitHub を見に行けません。</b>知っているのは「学習したときの一般的な知識」だけで、<b>あなたのリポジトリの今の状態は見えていません</b>。つないで初めて、実物を見に行けます。' },
+    { q:'AIが勝手に何でもできるようになる、ということ？',
+      a:'<b>いいえ。渡した鍵の範囲だけ</b>です。このあと GitHub の鍵を作りますが、<b>権限を自分で選びます。</b>読むだけにもできます。<b>渡していないことは、できません。</b>' }
+  ]
+},
+{
+  icon:'icon-key.svg', phase:'2. つなぐ前に', readonly:true,
+  title:'自分が何をコピペしているか、思い出します',
+  why:'<b>道具を増やすことが目的ではありません。</b>減らしたい往復があるから、つなぎます。ここを飛ばすと、使わない設定だけが増えます。',
+  todo:{
+    common:['ここまでの研修で、AIに<b>コピーして貼ったもの</b>を思い出してください',
+            '　・プルリクエストの<b>差分</b>',
+            '　・自動チェックの<b>コメント</b>',
+            '　・<b>Issue やチケット</b>の内容',
+            '　・エラーの<b>画面</b>',
+            '<b>これらが、つなぐ候補です</b>']
+  },
+  expect:'「たしかに毎回貼っていたな」と思い出せれば十分です。',
+  note:'<b>逆に、コピペしていないものはつながなくて構いません。</b>MCP は増やせば賢くなる道具ではありません。<b>往復を減らすためのもの</b>です。<br>この考え方は <a href="index.html#/smarter" target="_blank" rel="noopener">Claude Code を賢くする</a> にもまとめてあります。',
+  ask:'自分がコピペしていたものを、思い出せましたか？',
+  tb:[
+    { q:'あまりコピペした記憶が無い',
+      a:'<b>それなら、いま無理につなぐ必要はありません。</b>今日は「やり方を知る」だけで十分です。案件に入って「毎回これ貼ってるな」と思ったときに、ここへ戻ってきてください。' }
+  ]
+},
+{
+  icon:'icon-github.svg', phase:'3. 鍵を作る',
+  title:'GitHub の鍵（トークン）を、最小の権限で作ります',
+  why:'AIに GitHub を触らせるには、<b>「これは私です」と名乗る鍵</b>が要ります。<b>権限は、必要な分だけ渡します。</b>',
+  todo:{
+    common:['<a href="https://github.com/settings/personal-access-tokens" target="_blank" rel="noopener">github.com/settings/personal-access-tokens</a> を開きます',
+            '<b>Generate new token</b> を押します（Fine-grained（細かく指定できる）ほうです）',
+            '名前は <b>claude-code</b> など、自分が分かるものにします',
+            '有効期限（Expiration）は<b>短く</b>します。<b>30日で十分</b>です',
+            'Repository access で <b>Only select repositories</b> を選び、<b>trainer-practice だけ</b>を選びます',
+            'Permissions で、<b>Contents: Read-only</b> と <b>Pull requests: Read-only</b> と <b>Issues: Read and write</b> を選びます',
+            '<b>Generate token</b> を押し、表示された文字列を<b>コピーします</b>']
+  },
+  expect:'<code>github_pat_</code> で始まる長い文字列が表示されます。',
+  note:'<b>この文字列は、二度と表示されません。</b>閉じる前にコピーしてください。無くしたら、作り直せば済みます。<br><b>そして——絶対に、どこかに貼り付けて保存しないでください。</b>チャット、メモ帳、ファイル、どれもだめです。次のステップですぐ使います。',
+  ask:'トークンを作って、コピーできましたか？',
+  tb:[
+    { q:'権限の選び方が分からない・多すぎる',
+      a:'<b>迷ったら少なく</b>してください。足りなければ、あとで作り直せます。<b>多すぎるほうが危険</b>です。今回は上の3つだけで、この研修の範囲は動きます。' },
+    { q:'なぜ Issues だけ書き込み可にするの？',
+      a:'このあと「AIにIssueを作らせる」を試すためです。<b>Contents を Read-only にしてあるので、コードは書き換えられません。</b>これが「必要な分だけ渡す」ということです。' },
+    { q:'会社のアカウントでやっていい？',
+      a:'<b>やめてください。</b>案件のリポジトリにAIをつなぐのは、必ず<b>担当者の許可を取ってから</b>です。今日は<b>自分の練習リポジトリだけ</b>にしてください。' },
+    { q:'Fine-grained と Classic、どっちを使うの？',
+      a:'<b>Fine-grained（細かく指定できるほう）</b>です。Classic は「全リポジトリに、まとめて権限」になりがちで、<b>事故が大きくなります。</b>' }
+  ]
+},
+{
+  icon:'icon-terminal.svg', phase:'4. つなぐ',
+  title:'コマンド1行で、GitHub をつなぎます',
+  why:'ここが本体です。<b>1行打つだけ</b>で、Claude Code から GitHub が見えるようになります。',
+  todo:{
+    common:['VS Code のターミナルを開きます',
+            '下のコマンドをコピーします',
+            '<b><code>あなたのトークン</code> の部分を、さっきコピーした文字列に置き換えます</b>（記号ごと消します）',
+            'Enter を押します',
+            '<b><code>Added ...</code> と表示されれば、設定が書けています</b>']
+  },
+  cmd:'claude mcp add --transport http github https://api.githubcopilot.com/mcp/ --header "Authorization: Bearer あなたのトークン"',
+  cmdlabel:'ターミナルに打つ（トークンの部分を置き換えてから）',
+  expect:'<code>Added</code> で始まるメッセージが出ます。<b>これは「設定を保存した」という意味だけ</b>で、つながったかどうかはまだ分かりません。次で確認します。',
+  note:'⚠️ <b><code>--scope project</code> を付けないでください。</b>付けると設定が <code>.mcp.json</code> というファイルに書かれ、<b>リポジトリに入ります＝トークンが GitHub に公開されます。</b><br>何も付けなければ、設定は<b>あなたのパソコンの中だけ</b>（<code>~/.claude.json</code>）に保存されます。<b>今日はそのままにしてください。</b>',
+  ask:'Added と表示されましたか？',
+  tb:[
+    { q:'claude というコマンドが無いと言われた',
+      a:'Claude Code にサインインして使っている人（①のルート）以外は、このコマンドは使えません。<b>②③のルートの人は、ここから先は読むだけで構いません。</b>' },
+    { q:'すでに github という名前があると言われた',
+      a:'前に一度つないでいます。<code>claude mcp remove github</code> で消してから、もう一度打ってください。' },
+    { q:'トークンを間違えて打った気がする',
+      a:'<b>このコマンドは、鍵が正しいかを確認しません。</b>間違っていても <code>Added</code> と出ます。次のステップで <b>failed</b> と出たら、<code>claude mcp remove github</code> してやり直してください。' },
+    { q:'コマンドが長すぎて、途中で改行されてしまう',
+      a:'<b>改行されて見えても、1行として入っていれば問題ありません。</b>心配なら、いったんメモ帳に貼ってトークンを置き換えてから、全体をコピーして貼り付けてください。' }
+  ]
+},
+{
+  icon:'icon-terminal.svg', phase:'5. つながったか確認する',
+  title:'本当につながっているか、確かめます',
+  why:'<b>「設定を書いた」と「つながった」は別です。</b>ここを飛ばすと、動かない理由が分からなくなります。',
+  todo:{
+    common:['まずターミナルで、下の1行目を打ちます',
+            '<b>✔ Connected</b> と出れば成功です',
+            '次に <code>claude</code> と打って Claude Code を起動し、中で <b>2行目</b> を打ちます',
+            'つながっているサーバーの一覧が出ます']
+  },
+  cmdMulti:{
+    common:['claude mcp list',
+            '/mcp']
+  },
+  expect:'<b>github</b> が <b>✔ Connected</b> と表示されます。',
+  note:'表示の意味は3つです。<br><b>✔ Connected</b> … つながっています<br><b>! Needs authentication</b> … 鍵が要ります<br><b>✘ Failed to connect</b> … つながりません（鍵が違うか、URLが違います）',
+  ask:'github が Connected になりましたか？',
+  tb:[
+    { q:'Failed to connect と出る',
+      a:'ほぼ<b>トークンの入れ間違い</b>です。<code>claude mcp remove github</code> で消して、もう一度つなぎ直してください。<b>前後に空白が入っている・途中で改行が入っている</b>のがよくある原因です。' },
+    { q:'Needs authentication と出る',
+      a:'Claude Code の中で <code>/mcp</code> を打ち、画面の案内に従ってサインインしてください。<b>サービスによっては、鍵ではなくサインインでつなぐもの</b>があります。' },
+    { q:'/mcp を打つ場所が分からない',
+      a:'ターミナルで <code>claude</code> と打つと、黒い画面の中で Claude Code が起動します。<b>その中の入力欄</b>に <code>/mcp</code> と打ちます。抜けるときは <code>/exit</code> です。' }
+  ]
+},
+{
+  icon:'icon-ai.svg', phase:'6. 使ってみる',
+  title:'貼らずに、GitHubの話が通じることを確かめます',
+  why:'<b>ここが体験の山場です。</b>いままで貼っていたものを、貼らずに頼んでみます。',
+  todo:{
+    common:['Claude Code を起動します（ターミナルで <code>claude</code>）',
+            '下の1行目を送ります。<b>何も貼りません</b>',
+            'AIが<b>自分で GitHub を見に行って</b>答えることを確かめます',
+            '次に2行目を送って、<b>Issue を作らせてみます</b>',
+            'GitHub をブラウザで開いて、<b>実際に Issue ができていること</b>を確認します']
+  },
+  cmdMulti:{
+    common:['私の trainer-practice リポジトリで、開いているプルリクエストを一覧にしてください。',
+            'trainer-practice に「READMEに動かし方の動画を追加する」というIssueを作ってください。本文には、なぜ必要かを2行で書いてください。']
+  },
+  expect:'1つ目は、<b>差分を貼っていないのに</b>PRの一覧が返ってきます。2つ目は、GitHub に<b>実際にIssueができます</b>。',
+  note:'<b>いま起きたことを、正確に理解してください。</b>AIが賢くなったのではありません。<b>手が届く範囲が広がっただけ</b>です。<br>そして——<b>あなたが渡した鍵の範囲でしか動けません。</b>Contents を Read-only にしたので、<b>コードは書き換えられません。</b>試しに「READMEを書き換えて」と頼んでみると、断られるか失敗します。',
+  ask:'貼らずに GitHub の話が通じましたか？',
+  tb:[
+    { q:'リポジトリが見つからないと言われる',
+      a:'トークンで <b>Only select repositories</b> を選んだとき、<b>trainer-practice を選び忘れている</b>可能性があります。GitHub のトークン設定画面で、対象リポジトリを確認してください。' },
+    { q:'Issue が作れないと言われる',
+      a:'権限に <b>Issues: Read and write</b> が入っていません。トークンを作り直すか、既存のトークンの権限を編集してください。<b>これは正しく制限が効いている証拠</b>でもあります。' },
+    { q:'AIが古い情報を答えてくる',
+      a:'MCP を使わずに、<b>学習した知識だけで答えている</b>可能性があります。「<b>MCPでGitHubを見て答えてください</b>」と明示してみてください。' },
+    { q:'作ったIssueを消したい',
+      a:'GitHub の画面で、そのIssueを開いて Close するか、下部の Delete issue から消せます。<b>練習で作ったものなので、消して構いません。</b>' }
+  ]
+},
+{
+  icon:'icon-key.svg', phase:'7. 危ないところを知る',
+  title:'便利さと同じだけ、影響も大きくなります',
+  why:'<b>ここを読まずに案件で使わないでください。</b>MCP は「AIに貼る」より一段、影響の大きい行為です。',
+  todo:{
+    common:['<b>① 鍵は、必要な分だけ・期限つきで</b>。迷ったら Read-only から',
+            '<b>② 鍵をリポジトリに入れない</b>。<code>--scope project</code> は <code>.mcp.json</code> に書かれ、全員に配られます',
+            '<b>③ 案件では、必ず先に許可を取る</b>。「他所ではOKだった」は理由になりません',
+            '<b>④ 確認モードのままにする</b>。AIが操作する前に「やっていいですか」と聞く設定を切らない',
+            '<b>⑤ 使わなくなったら、外す・鍵を無効にする</b>']
+  },
+  expect:'「つなぐ＝会社のデータにAIの手が届くようにすること」だと理解できれば十分です。',
+  note:'<b>とくに②が事故になります。</b>トークンが書かれたファイルをうっかり commit して push すると、<b>その瞬間に公開されます。</b>消しても履歴に残るので、<b>やることは1つ——すぐにその鍵を無効化する</b>ことです。<br>GitHub の設定画面から、いつでも <b>Revoke</b>（無効化）できます。<b>作り直せばいいだけなので、迷ったら消してください。</b>',
+  ask:'5つの注意点を確認できましたか？',
+  tb:[
+    { q:'間違ってトークンを公開してしまった',
+      a:'<b>落ち着いて、順番にやってください。</b>①GitHub の設定画面でその鍵を <b>Revoke</b>（無効化）する ②新しい鍵を作る ③つなぎ直す。<b>①さえやれば、被害は止まります。</b>ファイルから消すのは、そのあとで構いません。' },
+    { q:'案件で「MCPを入れたい」と言うのが怖い',
+      a:'<b>聞くのが正解です。</b>「〇〇の内容を毎回コピペしているので、MCPでつなぎたいのですが、可能でしょうか」——これは<b>効率を上げようとしている提案</b>で、怒られる類の話ではありません。<b>黙って入れるのだけが、だめです。</b>' }
+  ]
+},
+{
+  icon:'icon-terminal.svg', phase:'8. 片付ける',
+  title:'外し方を、先に覚えておきます',
+  why:'<b>入れ方だけ覚えて外せないのは、危険です。</b>ここまで来たら、外し方も1回やっておきます。',
+  todo:{
+    common:['下の1行目で、今つないだものを外します',
+            '2行目で、消えたことを確認します',
+            '<b>もう一度使いたくなったら、4番目のステップをやり直すだけ</b>です',
+            '練習用に作ったトークンも、使わないなら <a href="https://github.com/settings/personal-access-tokens" target="_blank" rel="noopener">GitHub の設定画面</a>から <b>Revoke</b> しておくと安全です']
+  },
+  cmdMulti:{
+    common:['claude mcp remove github',
+            'claude mcp list']
+  },
+  expect:'一覧から github が消えます。',
+  note:'<b>外しても、作ったIssueやコードは消えません。</b>消えるのは「AIから見えるようにする設定」だけです。<br><b>つなぎっぱなしが悪いわけではありません。</b>ただ「いつでも外せる」と知っていることが、安心して使うための条件です。',
+  ask:'外して、一覧から消えたことを確認できましたか？',
+  tb:[
+    { q:'つないだままにしておきたい',
+      a:'<b>構いません。</b>自分の練習リポジトリだけに絞った鍵なので、リスクは小さいです。ただし<b>期限（30日）で自動的に切れます。</b>切れたら、また作り直してください。<b>期限が来るのは、安全に働いている証拠です。</b>' }
+  ]
+},
+{
+  kind:'fin',
+  emoji:'🔌',
+  title:'AIに、道具を持たせられました',
+  lead:'コピーして貼る往復が、1つ消えました。<br><b>そして「渡した鍵の範囲でしか動けない」ことも、自分の手で確かめました。</b>',
+  gained:'MCPが何のための仕組みか説明できる／最小の権限でトークンを作れる／MCPサーバーをつなぎ、状態を確認できる／貼らずにGitHubの話をAIに通せる／権限で行動が制限されることを体験した／外し方と、鍵の無効化を知っている',
+  note:'<b>つなげる先は GitHub だけではありません。</b>課題管理、ブラウザ操作、データベース、社内のドキュメント——<b>あなたがコピペしているものが、全部候補</b>です。<br>探し方と、他の道具の使い方は <a href="index.html#/smarter" target="_blank" rel="noopener">Claude Code を賢くする</a> にまとめてあります。<br><b>ただし、順番を間違えないでください。</b>前提（CLAUDE.md）を渡すのが先で、道具を増やすのは後です。',
+  readNext:{ md:'graduation', label:'案件に入る前の最終チェック',
+             sub:'できるようになったことを、ひとつずつ確かめられます' },
+  nextHref:'index.html#/graduation',
+  nextLabel:'最終チェックへ'
+}
+]};
+</script>
+<script src="navi.js?v=14"></script>
+<script src="credit.js?v=14"></script>
+</body>
+</html>
