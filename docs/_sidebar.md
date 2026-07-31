@@ -15,8 +15,8 @@
   - [8. 🌍 世界に公開する](publish.html ':ignore target=_blank')
   - [9. 🧑‍💻 仕事の一周](work.html ':ignore target=_blank')
   - [10. 🚀 自分のテーマで回す](theme.html ':ignore target=_blank')
-  - [11. 🎯 AIと回す開発の一周](ai-dlc.html ':ignore target=_blank')
   - [　☕ AI-DLCって何？](what-is-ai-dlc.md)
+  - [11. 🎯 AIと回す開発の一周](ai-dlc.html ':ignore target=_blank')
   - [　🎓 案件に入る前の最終チェック](graduation.md)
 - 進む先を考える
   - [🧭 どこへ行く？ 職種と土台](path.md)

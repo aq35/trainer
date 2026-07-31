@@ -17,7 +17,8 @@
       read: { md: 'what-is-service', label: 'サービスって何？ GitHubを分解してみる', icon: 'icon-github.svg' } },
     { key: 'trainer-publish-v1', total: 8, label: '世界に公開する', href: 'publish.html', icon: 'icon-github.svg' },
     { key: 'trainer-work-v1', total: 13, label: '仕事の一周（他人のコードを直す）', href: 'work.html', icon: 'icon-github.svg' },
-    { key: 'trainer-theme-v1', total: 12, label: '自分のテーマで回す', href: 'theme.html', icon: 'icon-ai.svg' },
+    { key: 'trainer-theme-v1', total: 12, label: '自分のテーマで回す', href: 'theme.html', icon: 'icon-ai.svg',
+      read: { md: 'what-is-ai-dlc', label: 'AI-DLCって何？ 一人でチームになる方法', icon: 'icon-ai.svg' } },
     { key: 'trainer-aidlc-v1', total: 12, label: 'AIと回す開発の一周', href: 'ai-dlc.html', icon: 'icon-ai.svg',
       read: { md: 'graduation', label: '案件に入る前の最終チェック', icon: 'icon-key.svg',
               badge: '🎓', undone: '仕上げ', done: '確認した' } }
