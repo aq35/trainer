@@ -29,6 +29,36 @@
     return { pct: Math.round(v.i / s.total * 100), txt: v.i + ' / ' + s.total };
   }
 
+  // 進捗をGitHubのIssueとして報告する
+  function repoName() {
+    var c = window.TRAINER_SUPPORT || {};
+    if (c.repo) return c.repo;
+    var m = /github\.com\/([^\/]+\/[^\/]+)/.exec(c.url || '');
+    return m ? m[1] : '';
+  }
+  function stamp() {
+    var d = new Date(), z = function (n) { return (n < 10 ? '0' : '') + n; };
+    return d.getFullYear() + '-' + z(d.getMonth() + 1) + '-' + z(d.getDate()) + ' ' + z(d.getHours()) + ':' + z(d.getMinutes());
+  }
+  function reportUrl() {
+    var r = repoName();
+    if (!r) return '';
+    var lines = ['## いまの進捗', ''];
+    var done = 0;
+    STEPS.forEach(function (s, i) {
+      var st = state(s);
+      if (st.pct >= 100) done++;
+      lines.push('- [' + (st.pct >= 100 ? 'x' : ' ') + '] ' + (i + 1) + '. ' + s.label + ' — ' + st.txt);
+    });
+    lines.push('');
+    lines.push('報告日時: ' + stamp());
+    lines.push('');
+    lines.push('困っていること・聞きたいことがあれば、ここに書いてください（空のままでも大丈夫です）。');
+    return 'https://github.com/' + r + '/issues/new?labels=' + encodeURIComponent('進捗') +
+           '&title=' + encodeURIComponent('[進捗] ' + done + ' / ' + STEPS.length + ' まで進みました') +
+           '&body=' + encodeURIComponent(lines.join('\n'));
+  }
+
   function drawMap() {
     var el = document.getElementById('map');
     if (!el) return;
@@ -46,6 +76,14 @@
     h += '</div>';
     var all = STEPS.every(function (s) { return state(s).pct >= 100; });
     if (all) h += '<div class="mapall">全部おつかれさまでした。ここまでできれば、案件に入る準備はできています。</div>';
+
+    var u = reportUrl();
+    if (u) {
+      h += '<div class="mapreport"><b>いまの進み具合を、担当者に知らせられます</b><br>' +
+           '<span class="mrsub">GitHub にログインしていれば、上の内容が入った状態で開きます。' +
+           '<b>あとは送信ボタンを押すだけ</b>です。困っていることを書き足しても構いません。</span>' +
+           '<a class="mrbtn" href="' + u + '" target="_blank" rel="noopener">進捗を報告する</a></div>';
+    }
     el.innerHTML = h;
   }
 

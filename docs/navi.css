@@ -138,6 +138,10 @@ details.tb .a{font-size:14px;margin-top:8px;padding-top:8px;border-top:1px solid
 .en{flex:none;width:24px;height:24px;border-radius:50%;background:var(--ink);color:var(--bg);
     display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:700;margin-top:2px}
 
+.report{background:var(--green-l);border:1px solid var(--green-b);border-radius:10px;
+        padding:13px 15px;margin:16px 0;font-size:14px}
+.report .act{margin-top:2px}
+
 .solved{text-align:center;margin-top:14px}
 .solved .link{color:var(--green);font-weight:700;font-size:14px}
 

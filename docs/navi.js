@@ -67,6 +67,42 @@
     return head + (s.note ? '<br><span class="fd">' + esc(s.note) + '</span>' : '');
   }
 
+  // 進捗をGitHubのIssueとして報告する。ログイン済みなら、開いて送信するだけで済む。
+  function repoName() {
+    var s = window.TRAINER_SUPPORT || {};
+    if (s.repo) return s.repo;
+    var m = /github\.com\/([^\/]+\/[^\/]+)/.exec(s.url || '');
+    return m ? m[1] : '';
+  }
+  function issueUrl(title, body) {
+    var r = repoName();
+    if (!r) return '';
+    return 'https://github.com/' + r + '/issues/new?labels=' + encodeURIComponent('進捗') +
+           '&title=' + encodeURIComponent(title) + '&body=' + encodeURIComponent(body);
+  }
+  function stamp() {
+    var d = new Date(), z = function (n) { return (n < 10 ? '0' : '') + n; };
+    return d.getFullYear() + '-' + z(d.getMonth() + 1) + '-' + z(d.getDate()) + ' ' + z(d.getHours()) + ':' + z(d.getMinutes());
+  }
+  function naviName() { return document.title.split('|')[0].trim(); }
+
+  function finReport(s) {
+    var name = naviName();
+    var u = issueUrl('[進捗] ' + name + ' を終えました', [
+      '## ' + name + ' を終えました',
+      '',
+      '- 日時: ' + stamp(),
+      '- できるようになったこと: ' + strip(s.gained || ''),
+      '',
+      'つまずいたところ・感想があれば、ここに書き足してください（空のままでも大丈夫です）。'
+    ].join('\n'));
+    if (!u) return '';
+    return '<div class="report"><b>担当者に、終わったことを知らせましょう</b><br>' +
+           '<span class="fd">GitHub にログインしていれば、内容が入った状態で開きます。<b>あとは送信ボタンを押すだけ</b>です。</span>' +
+           '<div style="margin-top:10px"><a class="act ok" target="_blank" rel="noopener" href="' + u + '">' +
+           '完了を報告する</a></div></div>';
+  }
+
   // 枠の中身が「ターミナルに打つ命令」かどうか。同じ枠を、貼り付ける文章にも使っている。
   var TERM = /^\s*(git|gh|code|npm|npx|node|python3?|pip3?|brew|winget|mkdir|touch|cd|ls|dir|echo|curl|New-Item|xcode-select)\b/;
   function isTerm(t) { return TERM.test(String(t).split('\n')[0]); }
@@ -177,6 +213,7 @@
         mascot('party', '<h2 style="margin:6px 0">' + s.title + '</h2><p class="why" style="margin:0">' + s.lead + '</p>') +
         (s.gained ? '<div class="expect"><div class="t">できるようになったこと</div><div class="m">' + s.gained + '</div></div>' : '') +
         (s.note ? '<div class="note">' + s.note + '</div>' : '') +
+        finReport(s) +
         '<div class="ask"><p>次にやること</p><div class="btns">' +
         '<a class="act ok" style="text-decoration:none;text-align:center" href="' + s.nextHref + '">' + s.nextLabel + '</a>' +
         '</div></div>' +
