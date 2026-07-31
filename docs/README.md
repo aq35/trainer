@@ -85,11 +85,13 @@
 </div>
 
 - <img class="ti" width="26" height="26" src="media/icon-terminal.svg" alt="">[🧭 どこへ行く？ 職種と、共通の土台](path.md) — フロント/バック/データ/インフラ/QAの違いと、**なぜ土台が先なのか**
-- <img class="ti" width="26" height="26" src="media/icon-ai.svg" alt="">[🗓️ 案件まで1か月。何をする？](plan.md) — 開始日と使える時間を入れると、**AIに渡す学習計画の依頼文**ができます
 
-## 全部終わったら
+## 全部終わったら —— 案件の準備へ
 
-- <img class="ti" width="26" height="26" src="media/icon-key.svg" alt="">[🎓 案件に入る前の最終チェック](graduation.md) — できているかを自分で確かめられます
+<b>地図のいちばん下に、この3つが続いています。</b>ここまでが1本の道です。
+
+- <img class="ti" width="26" height="26" src="media/icon-key.svg" alt="">[🎓 案件に入る前の最終チェック](graduation.md) — できているかを自分で確かめます。**弱いところが見つかります**
+- <img class="ti" width="26" height="26" src="media/icon-ai.svg" alt="">[🗓️ 案件まで1か月。何をする？](plan.md) — その弱いところと残り時間から、**学習計画をAIに作らせます**
 - <img class="ti" width="26" height="26" src="media/icon-github.svg" alt="">[🤝 案件に参画する](join.md) — **証拠の集め方・自己紹介の作り方・参画の相談・最初の2週間の動き方**
 
 ## 進め方の約束

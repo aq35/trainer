@@ -36,9 +36,17 @@
     { key: 'trainer-tools-v1', total: 8, label: '使い捨てをやめて、道具にする',   href: 'tools.html', icon: 'icon-vscode.svg' },
     { key: 'trainer-chart-v1', total: 8, label: '数字を、目に見えるようにする',   href: 'chart.html', icon: 'icon-vscode.svg' },
     { key: 'trainer-api-v1',   total: 9, label: 'APIと、問題の切り分け',         href: 'api.html',   icon: 'icon-github.svg' },
-    { key: 'trainer-db-v1',    total: 7, label: '保存先を変えてみる（任意）',     href: 'db.html',    icon: 'icon-folder.svg',
-      read: { md: 'graduation', label: '案件に入る前の最終チェック', icon: 'icon-key.svg',
-              badge: '🎓', undone: '仕上げ', done: '確認した' } }
+    { key: 'trainer-db-v1',    total: 7, label: '保存先を変えてみる（任意）',     href: 'db.html',    icon: 'icon-folder.svg' }
+  ];
+
+  // 全ステップのあとに続く「案件の準備」。手順ではなく、使う道具と入口
+  var TAIL = [
+    { md: 'graduation', label: '案件に入る前の最終チェック', icon: 'icon-key.svg',
+      badge: '🎓', undone: '準備・弱いところを見つける', done: '確認した' },
+    { md: 'plan', label: '案件まで1か月。何をする？（逆算プランナー）', icon: 'icon-ai.svg',
+      badge: '🗓️', undone: '準備・計画を立てる', done: '計画を作った' },
+    { md: 'join', label: '案件に参画する', icon: 'icon-github.svg',
+      badge: '🤝', undone: '準備・相談の入口', done: '読んだ' }
   ];
 
   var READ_KEY = 'trainer-read-v1';
@@ -55,7 +63,7 @@
       if (s.readBefore) out.push(s.readBefore);
       if (s.read) out.push(s.read);
     });
-    return out;
+    return out.concat(TAIL);
   }
 
   // 読み物のページを開いたら「読んだ」として記録する
@@ -107,7 +115,7 @@
     var rn = rs.filter(function (r) { return rdone[r.md]; }).length;
     lines.push('');
     lines.push('読み物（任意）: ' + rn + ' / ' + rs.length + ' 読了');
-    if (rdone['graduation']) lines.push('最終チェック: 確認済み');
+    TAIL.forEach(function (t) { if (rdone[t.md]) lines.push(t.label + ': ' + (t.done || '済')); });
     lines.push('');
     lines.push('報告日時: ' + stamp());
     lines.push('');
@@ -182,6 +190,7 @@
       // 手を動かしたあとに、その道具の話を読む。飛ばしても先に進める。
       if (s.read) h += readingRow(s.read);
     });
+    TAIL.forEach(function (r) { h += readingRow(r); });
     h += '</div>';
     var all = STEPS.every(function (s) { return state(s).pct >= 100; });
     if (all) h += '<div class="mapall">全部おつかれさまでした。ここまでできれば、案件に入る準備はできています。</div>';
@@ -236,7 +245,7 @@
       lines.push('- [' + (st.pct >= 100 ? 'x' : ' ') + '] ' + (i + 1) + '. ' + s.label + ' — ' + st.txt);
     });
     var rdone = read(READ_KEY);
-    if (rdone['graduation']) lines.push('', '最終チェック: 確認済み');
+    TAIL.forEach(function (t) { if (rdone[t.md]) lines.push('', t.label + ': ' + (t.done || '済')); });
     lines.push('', '報告日時: ' + stamp(), '',
       '### 見てもらえる成果物', '',
       '- 公開ページ: ',
