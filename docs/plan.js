@@ -228,12 +228,19 @@
     L.push('現実的で、実行できる学習計画を作ってください。');
     L.push('');
     L.push('# 私の状況');
-    L.push('- 参加する案件の開始まで: ' + (v.left ? 'あと ' + v.left.days + '日（約' + w + '週間）' : '未定'));
+    L.push('- 参加する案件の開始まで: ' + (v.left ? 'あと ' + v.left.days + '日（約' + w + '週間）' : '**未定**'));
     L.push('- 学習にあてられる時間: ' + (HOURS[v.hours] || v.hours) +
            (v.left ? '（この期間で合計およそ ' + (w * Number(v.hours)) + '時間）' : ''));
     L.push('- いまの到達度: ' + ((LEVELS[v.level] || {}).label || v.level));
-    L.push('- 目指す方向: ' + f.label);
+    L.push('- 目指す方向: ' + f.label +
+           (v.field === 'unknown' && v.desc && v.desc.trim()
+             ? '（選んでいませんが、**下の案件内容から判断してください**）' : ''));
     L.push('');
+    if (!v.left) {
+      L.push('# 開始日が未定です');
+      L.push('**まず4週間ぶんの計画**を作ってください。日付が決まったら、作り直します。');
+      L.push('');
+    }
     L.push('# すでにできること');
     canList(v.level).forEach(function (c) { L.push('- ' + c); });
     L.push('');
@@ -250,6 +257,9 @@
       L.push('# 案件の内容（分かっている範囲）');
       L.push(v.desc.trim());
       L.push('');
+      L.push('（この中で見てほしいのは **使う技術・稼働条件・チームの形** だけです。');
+      L.push('　単価・商流・他人の感想は、計画には関係しないので**無視してください**。）');
+      L.push('');
     }
     if (r && !r.ok) {
       L.push('# 時間が足りていません');
@@ -263,7 +273,7 @@
       L.push('');
     }
     L.push('# 作ってほしいもの');
-    L.push('1. **週ごとの計画**（' + (w || 'N') + '週間ぶん）。各週について次を書いてください。');
+    L.push('1. **週ごとの計画**（' + (w ? w + '週間ぶん' : 'まず4週間ぶん') + '）。各週について次を書いてください。');
     L.push('   - その週のゴール（1つだけ。欲張らない）');
     L.push('   - 具体的にやること（手を動かす作業。読むだけの項目は入れない）');
     L.push('   - 終わったと判断する方法（何が動けばOKか）');
@@ -271,12 +281,17 @@
     L.push('3. **捨てるもの**。この期間では手を出さないほうがよいものと、その理由。');
     L.push('4. **初日に聞くこと**。案件の初日に確認すべきことのリスト。');
     L.push('5. **危ないサイン**。「この計画が崩れ始めている」と判断できる目印を3つ。');
+    L.push('6. **この時間で足りるかの評価**。上の学習時間で間に合いそうか、**正直に**書いてください。');
+    L.push('   足りないなら「足りない」と言い、**何を捨てるか**を示してください。');
     L.push('');
     L.push('# 条件');
     L.push('- 私は初心者です。専門用語には短い説明を付けてください。');
     L.push('- **本や動画を「見る」だけの計画にしないでください。** 毎週、手元で動くものが1つ増える形にしてください。');
     L.push('- 使えるのは上に書いた時間だけです。**詰め込みすぎないでください。** 守れない計画は意味がありません。');
     L.push('- **休む日を計画に入れてください。** 毎日やる前提の計画は、必ず折れます。');
+    L.push('- **参画したあとは、学習にあてられる時間が大きく減ります。**（案件の稼働時間があるためです）');
+    L.push('  だから「**参画前に、自分でやっておくべきこと**」と「**参画後に、仕事の中で覚えられること**」を');
+    L.push('  分けてください。**後者を、参画前の計画に入れないでください。**');
     L.push('- 私はAIと一緒に作業します。「AIにこう頼む」という具体例も添えてください。');
     L.push('- 分からない前提があれば、計画を作る前に質問してください。');
     return L.join('\n');
@@ -300,6 +315,8 @@
     L.push('# これから参加する案件');
     if (v.desc && v.desc.trim()) {
       L.push(v.desc.trim());
+      L.push('');
+      L.push('（見てほしいのは **使う技術・稼働条件・チームの形** だけです。単価や他人の感想は無視してください。）');
     } else {
       L.push('（まだ詳しく分かっていません。分かっているのは「' + f.label + '」の方向であることだけです）');
     }
@@ -376,8 +393,11 @@
       '<textarea id="p-weak" placeholder="例: エラーが出ない不具合を切り分けられる／作業前に git pull する習慣がある"></textarea></div>' +
       '<div class="row"><label for="p-desc">案件の内容<br><span style="font-weight:400;font-size:12px;color:#6b7482">分かる範囲で。空でも作れます</span></label>' +
       '<textarea id="p-desc" placeholder="例: 社内で使う勤怠のWebシステムの改修。フロントは React、裏は Java と PostgreSQL、AWS上。人数は5人くらい。&#10;使っている技術の名前が分かるだけでも、マッチ度の判定はかなり正確になります。"></textarea></div>' +
-      '<div class="warn">⚠️ <b>案件の資料をそのまま貼らないでください。</b>会社名・顧客名・個人名は消し、' +
-      '<b>「貼ってよいか」を担当者に確認</b>してから使ってください。分野と規模だけでも、計画は作れます。</div>' +
+      '<div class="warn">⚠️ <b>案件票を、そのまま丸ごと貼らないでください。</b><br>' +
+      '<b>消すもの</b>: 会社名・顧客名・個人名・URL。そして<b>「貼ってよいか」を担当者に確認</b>してから使ってください。<br>' +
+      '<b>要らないもの</b>: 単価・商流・他人の感想。<b>計画には関係しません。</b><br>' +
+      '<b>要るのはこれだけ</b>: <b>使う技術／稼働時間・日数／チームの規模</b>。3行で十分です。</div>' +
+      '<div id="p-hint"></div>' +
       '<div id="p-out"></div>' +
       '<div class="btns">' +
       '<button type="button" class="main" id="p-copy">学習計画の依頼をコピー</button>' +
@@ -406,8 +426,31 @@
       };
     };
 
+    // 入力どうしの食い違いに、その場で気づけるようにする
+    function hint() {
+      var v = state(), el = get('p-hint');
+      if (!el) return;
+      var msgs = [];
+      var d = (v.desc || '').trim();
+      if (v.field === 'unknown' && d) {
+        msgs.push('<b>案件の内容が入っています。</b>「目指す方向」も選んでおくと、計画の精度が上がります。' +
+                  '（分からなければ、そのままで構いません。案件の内容から判断させます）');
+      }
+      if (/円|万円|単価|時給|月額/.test(d)) {
+        msgs.push('<b>金額らしき記述が入っています。</b>計画には要らないので、消しておくのがおすすめです。');
+      }
+      if (d.length > 600) {
+        msgs.push('<b>案件の内容が長すぎます（' + d.length + '文字）。</b>' +
+                  '<b>使う技術・稼働条件・チームの規模</b>の3行に削ると、答えが具体的になります。');
+      }
+      el.innerHTML = msgs.length
+        ? '<div class="warn" style="background:#fffaf0;border-color:#f0dcb0">💡 ' + msgs.join('<br>💡 ') + '</div>'
+        : '';
+    }
+
     function draw() {
       var v = state(), out = get('p-out');
+      hint();
       if (!v.left) {
         out.innerHTML = '<div class="sum">日付を入れると、<b>残り時間と週ごとの配分</b>が出ます。<br>' +
           '<span style="font-size:13px;color:#6b7482">まだ決まっていない場合は、<b>仮の日付（1か月後など）</b>で構いません。' +
@@ -457,7 +500,7 @@
       get(id).addEventListener('change', function () { save(); draw(); });
     });
     ['p-desc', 'p-weak'].forEach(function (id) {
-      get(id).addEventListener('input', save);
+      get(id).addEventListener('input', function () { save(); hint(); });
     });
     get('p-copy').addEventListener('click', function () { save(); copy(prompt(state())); });
     get('p-match').addEventListener('click', function () { save(); copy(matchPrompt(state())); });
