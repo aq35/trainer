@@ -62,6 +62,12 @@
 | [☕ AIはなぜ間違えるのか](why-ai-mistakes.md) | 自信たっぷりに間違える理由と、その付き合い方 | 5. AIと一緒にのあと |
 | [☕ サービスって何？](what-is-service.md) | あなたがやった操作に、業界の名前を付け直す | 7. ブランチのあと |
 
+## 練習用のリポジトリ
+
+9番目の「仕事の一周」で使います。**他人が書いた小さなアプリ**に、不具合3つとあいまいな依頼1つが入っています。
+
+- <img class="ti" width="26" height="26" src="media/icon-github.svg" alt="">[aq35/trainer-practice](https://github.com/aq35/trainer-practice) — インストール不要。**PRを出すと自動で採点されます**
+
 ## 全部終わったら
 
 - <img class="ti" width="26" height="26" src="media/icon-key.svg" alt="">[🎓 案件に入る前の最終チェック](graduation.md) — できているかを自分で確かめられます。**案件に入ると何が変わるか**もここにまとめてあります

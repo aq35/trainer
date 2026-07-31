@@ -14,8 +14,9 @@
 6. **[はじめてのプログラム](docs/code.html)** — HTML/JavaScript を書く・動かす・エラーを読んで直す・自力課題
 7. **[ブランチと安全な進め方](docs/branch.html)** — ブランチ / merge / .gitignore / プルリクエスト（一人で一周）
 8. **[世界に公開する](docs/publish.html)** — GitHub Pages で自分のページを公開し、デプロイを体験する
-9. **[自分のテーマで回す](docs/theme.html)** — 自分で決めたものを作る。CLAUDE.md / Plan モード / `@`指定 / `/clear` / 詰まったときの手順
-10. **[案件に入る前の最終チェック](docs/graduation.md)** — 自己採点と、案件に入ると何が変わるか
+9. **[仕事の一周](docs/work.html)** — 他人のコードを clone して直す。チケット4本／PR／自動採点／AIレビュー／コンフリクト。教材は [aq35/trainer-practice](https://github.com/aq35/trainer-practice)
+10. **[自分のテーマで回す](docs/theme.html)** — 自分で決めたものを作る。CLAUDE.md / Plan モード / `@`指定 / `/clear` / 詰まったときの手順
+11. **[案件に入る前の最終チェック](docs/graduation.md)** — 自己採点と、案件に入ると何が変わるか
 
 読み物は**地図の中に組み込まれています**（該当ステップの直後に ☕ 付きで表示）。
 
@@ -128,7 +129,7 @@ window.TRAINER_COFFEE = {
 | パス | 役割 |
 | --- | --- |
 | `docs/index.html` | docsify のエントリ（Markdown をサイト表示） |
-| `docs/setup.html` … `docs/theme.html` | 対話式ナビ9本（独立した静的HTML） |
+| `docs/setup.html` … `docs/work.html` | 対話式ナビ10本（独立した静的HTML） |
 | `docs/navi.js`, `docs/navi.css` | ナビ共通エンジン。ページ側は手順データのみ持つ。ヘルプの3段構え（初手チェック／症状検索／AI・人への相談）もここ |
 | `docs/config.js` | 運営側が編集する設定（サポート窓口・寄付の受け口） |
 | `docs/progress.js` | トップの進捗マップ、チェックリストの保存、読み物の読了記録、寄付ブロックの描画 |
