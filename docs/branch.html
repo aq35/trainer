@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ブランチと安全な進め方 | エンジニア育成トレーナー</title>
-<link rel="stylesheet" href="navi.css?v=5">
-<script src="config.js?v=5"></script>
+<link rel="stylesheet" href="navi.css?v=6">
+<script src="config.js?v=6"></script>
 </head>
 <body>
 
@@ -144,7 +144,71 @@ steps:[
   ]
 },
 {
-  icon:'icon-key.svg', phase:'5. 上げてはいけないもの',
+  icon:'icon-git.svg', phase:'5. わざと衝突させる',
+  title:'同じ1行を、2か所で別々に直します',
+  why:'これから<b>わざと事故を起こします</b>。案件で必ず出会うものを、安全なうちに一度経験しておきます。',
+  todo:{
+    common:['① 下の1行目を打って、新しい枝に移ります',
+            '② <code>&lt;h1&gt;</code> の文字を <b>枝で直しました</b> に書き換えて保存します',
+            '③ 2行目・3行目を打って記録します',
+            '④ 4行目を打って本線（main）に戻ります',
+            '⑤ <b>同じ <code>&lt;h1&gt;</code></b> を、今度は <b>本線で直しました</b> に書き換えて保存します',
+            '⑥ 5行目・6行目を打って記録します']
+  },
+  cmdMulti:{
+    common:['git switch -c fix-title',
+            'git add index.html',
+            'git commit -m "枝でタイトルを変更"',
+            'git switch main',
+            'git add index.html',
+            'git commit -m "本線でタイトルを変更"']
+  },
+  expect:'<b>同じ行について、食い違う記録が2つ</b>できました。この状態を作るのが、このステップの目的です。',
+  note:'実際の案件では、これが<b>「自分と他の人が、同じ行を直した」</b>という形で起こります。一人で再現しておくと、当日あわてません。',
+  ask:'2つの記録を作れましたか？（まだ何も起きません）',
+  tb:[
+    { q:'switch でエラーが出た',
+      a:'保存したのに commit していない変更が残っています。先に <code>git add index.html</code> と <code>git commit -m "作業中"</code> をしてから、もう一度試してください。' },
+    { q:'同じ行を直したか自信がない',
+      a:'両方とも <code>&lt;h1&gt;</code> の行を直していれば正解です。違う行だと衝突しないので、その場合は次のステップで <b>Merge made</b> と出て終わります。それでも問題ありません。' },
+    { q:'すでに fix-title があると言われた',
+      a:'<code>git switch fix-title</code> で移ってから、②以降を進めてください。' }
+  ]
+},
+{
+  icon:'icon-key.svg', phase:'5. わざと衝突させる',
+  title:'出てきたコンフリクトを、自分で直します',
+  why:'<b>コンフリクトは壊れた状態ではありません。</b>「どっちを残す？」と聞かれているだけです。ここが分かれば、もう怖くありません。',
+  todo:{
+    common:['下のコマンドを打ちます。<b>CONFLICT</b> という英語が出ます',
+            'VS Code で index.html を開きます。見慣れない記号の行が増えています',
+            '<b>残したいほうの1行だけ</b>を残して、<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code> / <code>=======</code> / <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code> の3行を消します',
+            '保存します',
+            '下の2行目・3行目を打って、解決したことを記録します']
+  },
+  cmdMulti:{
+    common:['git merge fix-title',
+            'git add index.html',
+            'git commit -m "コンフリクトを解決した"']
+  },
+  visual:'media/conflict.svg',
+  visualAlt:'コンフリクトの記号の意味と、残す行を選んで記号を消すという説明',
+  expect:'ブラウザを再読み込みすると、<b>自分が残したほうのタイトル</b>が表示されます。',
+  note:'VS Code は親切なので、記号の上に<b>「現在の変更を取り込む」「入力側の変更を取り込む」</b>というリンクを出してくれます。押すだけでも解決できますが、<b>一度は手で消してみてください。</b>何が起きているか分かります。',
+  ask:'コンフリクトを解決して commit できましたか？',
+  tb:[
+    { q:'どっちを残せばいいか分からない',
+      a:'練習なので<b>どちらでも構いません。</b>案件では「相手に確認する」が正解です。勝手に消すのがいちばん危険なので、迷ったら必ず聞いてください。' },
+    { q:'記号を消し忘れたまま commit してしまった',
+      a:'よくある失敗です。ファイルを開いて記号の行を消し、<code>git add index.html</code> → <code>git commit -m "記号を消した"</code> でやり直せます。<b>ブラウザで見ると記号がそのまま表示される</b>ので、すぐ気づけます。' },
+    { q:'もうやめたい・元に戻したい',
+      a:'<code>git merge --abort</code> と打てば、<b>merge を始める前の状態に完全に戻ります。</b>これを知っていれば、いつでも仕切り直せます。' },
+    { q:'CONFLICT が出ずに終わってしまった',
+      a:'違う行を直していた場合はそのまま合流します。<b>成功しているので問題ありません。</b>記号を見ておきたい人は、もう一度、今度は同じ行で試してください。' }
+  ]
+},
+{
+  icon:'icon-key.svg', phase:'6. 上げてはいけないもの',
   title:'秘密の情報を、間違って上げない設定をします',
   why:'<b>ここは事故防止のために必ずやってください。</b>鍵やパスワードをGitHubに上げてしまう事故は、実際によく起きます。',
   todo:{
@@ -171,7 +235,7 @@ steps:[
   ]
 },
 {
-  icon:'icon-github.svg', phase:'6. 現場と同じ形にする',
+  icon:'icon-github.svg', phase:'7. 現場と同じ形にする',
   title:'ブランチを GitHub に上げて、プルリクエストを作ります',
   why:'実際の案件では、直接 main に反映せず「これを取り込んでいいですか」と出します。それがプルリクエスト（PR）です。',
   todo:{
@@ -199,7 +263,7 @@ steps:[
   emoji:'🌿',
   title:'現場と同じ進め方を一周しました',
   lead:'ブランチを切って、作って、確認して、取り込む。<br>これが案件で毎日繰り返す流れです。',
-  gained:'ブランチを作って行き来できる／本線に合流できる／上げてはいけないものを除外できる／プルリクエストを出せる',
+  gained:'ブランチを作って行き来できる／本線に合流できる／コンフリクトを自分で直せる／上げてはいけないものを除外できる／プルリクエストを出せる',
   note:'案件に入ったら、<b>作業を始める前にブランチを切る</b>のが最初の一歩になります。困ったら<a href="index.html#/glossary">用語集</a>と、この画面に戻ってきてください。',
   readNext:{ md:'what-is-service', label:'サービスって何？ GitHubを分解してみる',
              sub:'次の「公開」の前に読むと、やっていることが見えます' },
@@ -208,6 +272,6 @@ steps:[
 }
 ]};
 </script>
-<script src="navi.js?v=5"></script>
+<script src="navi.js?v=6"></script>
 </body>
 </html>

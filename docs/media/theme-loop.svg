@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="300" viewBox="0 0 720 300" role="img" aria-label="自分のテーマを進める1日の型。決める、頼む、読む、動かす、記録する">
+  <rect width="720" height="300" fill="#ffffff"/>
+  <text x="360" y="26" font-family="sans-serif" font-size="14" font-weight="700" fill="#5b6472" text-anchor="middle">毎日これを1〜3周するだけ。大きく作ろうとしないのがコツです</text>
+
+  <!-- 5つの箱 -->
+  <g>
+    <rect x="24" y="60" width="120" height="86" rx="10" fill="#eef3ff" stroke="#c9dbff" stroke-width="1.5"/>
+    <text x="84" y="88" font-family="sans-serif" font-size="22" text-anchor="middle">🎯</text>
+    <text x="84" y="112" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#2f6fed" text-anchor="middle">今日の1つ</text>
+    <text x="84" y="131" font-family="sans-serif" font-size="10.5" fill="#5b6472" text-anchor="middle">30分で終わる大きさ</text>
+  </g>
+  <path d="M148 103 L166 103" stroke="#9aa3b2" stroke-width="2"/><path d="M160 98 L168 103 L160 108 Z" fill="#9aa3b2"/>
+  <g>
+    <rect x="172" y="60" width="120" height="86" rx="10" fill="#f6f2ff" stroke="#ddd0f5" stroke-width="1.5"/>
+    <text x="232" y="88" font-family="sans-serif" font-size="22" text-anchor="middle">💬</text>
+    <text x="232" y="112" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#7c3aed" text-anchor="middle">AIに頼む</text>
+    <text x="232" y="131" font-family="sans-serif" font-size="10.5" fill="#5b6472" text-anchor="middle">範囲を区切って頼む</text>
+  </g>
+  <path d="M296 103 L314 103" stroke="#9aa3b2" stroke-width="2"/><path d="M308 98 L316 103 L308 108 Z" fill="#9aa3b2"/>
+  <g>
+    <rect x="320" y="60" width="120" height="86" rx="10" fill="#fff8e9" stroke="#f0d9a8" stroke-width="1.5"/>
+    <text x="380" y="88" font-family="sans-serif" font-size="22" text-anchor="middle">👀</text>
+    <text x="380" y="112" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#8a6412" text-anchor="middle">差分を読む</text>
+    <text x="380" y="131" font-family="sans-serif" font-size="10.5" fill="#5b6472" text-anchor="middle">分からなければ断る</text>
+  </g>
+  <path d="M444 103 L462 103" stroke="#9aa3b2" stroke-width="2"/><path d="M456 98 L464 103 L456 108 Z" fill="#9aa3b2"/>
+  <g>
+    <rect x="468" y="60" width="110" height="86" rx="10" fill="#eef3ff" stroke="#c9dbff" stroke-width="1.5"/>
+    <text x="523" y="88" font-family="sans-serif" font-size="22" text-anchor="middle">▶️</text>
+    <text x="523" y="112" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#2f6fed" text-anchor="middle">動かす</text>
+    <text x="523" y="131" font-family="sans-serif" font-size="10.5" fill="#5b6472" text-anchor="middle">自分の目で確かめる</text>
+  </g>
+  <path d="M582 103 L600 103" stroke="#9aa3b2" stroke-width="2"/><path d="M594 98 L602 103 L594 108 Z" fill="#9aa3b2"/>
+  <g>
+    <rect x="606" y="60" width="90" height="86" rx="10" fill="#eefaf1" stroke="#b7e3c6" stroke-width="1.5"/>
+    <text x="651" y="88" font-family="sans-serif" font-size="22" text-anchor="middle">💾</text>
+    <text x="651" y="112" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#2b7d52" text-anchor="middle">commit</text>
+    <text x="651" y="131" font-family="sans-serif" font-size="10.5" fill="#5b6472" text-anchor="middle">動いたら記録</text>
+  </g>
+
+  <!-- 戻り矢印 -->
+  <path d="M651 152 L651 176 L84 176 L84 152" fill="none" stroke="#9aa3b2" stroke-width="2" stroke-dasharray="5 4"/>
+  <path d="M79 158 L84 150 L89 158 Z" fill="#9aa3b2"/>
+  <text x="368" y="170" font-family="sans-serif" font-size="11.5" fill="#6b7482" text-anchor="middle">また次の1つへ</text>
+
+  <!-- 下段の注意 -->
+  <rect x="24" y="198" width="330" height="80" rx="9" fill="#fff5f7" stroke="#f6cdd8" stroke-width="1.5"/>
+  <text x="42" y="222" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#be3455">進まなくなったら（15分ルール）</text>
+  <text x="42" y="243" font-family="sans-serif" font-size="11.5" fill="#5b6472">① 動いていた地点に戻す（commit してあるから戻れる）</text>
+  <text x="42" y="261" font-family="sans-serif" font-size="11.5" fill="#5b6472">② もっと小さく割って、もう一度頼む</text>
+
+  <rect x="374" y="198" width="322" height="80" rx="9" fill="#eefaf1" stroke="#b7e3c6" stroke-width="1.5"/>
+  <text x="392" y="222" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#2b7d52">1日の終わりにやること</text>
+  <text x="392" y="243" font-family="sans-serif" font-size="11.5" fill="#5b6472">・commit して push する</text>
+  <text x="392" y="261" font-family="sans-serif" font-size="11.5" fill="#5b6472">・明日の「1つ」をメモに書いておく</text>
+</svg>

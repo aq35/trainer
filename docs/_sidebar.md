@@ -13,6 +13,8 @@
   - [7. 🌿 ブランチと安全な進め方](branch.html ':ignore target=_blank')
   - [　☕ サービスって何？](what-is-service.md)
   - [8. 🌍 世界に公開する](publish.html ':ignore target=_blank')
+  - [9. 🚀 自分のテーマで回す](theme.html ':ignore target=_blank')
+  - [　🎓 案件に入る前の最終チェック](graduation.md)
 - いつでも
   - [⌨️ コマンド練習](drill.html ':ignore target=_blank')
   - [用語集](glossary.md)

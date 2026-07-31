@@ -10,12 +10,15 @@
       read: { md: 'why-git', label: 'なぜ git が生まれたのか', icon: 'icon-git.svg' } },
     { key: 'trainer-github-v1', total: 9, label: 'GitHubに上げる', href: 'github.html', icon: 'icon-github.svg' },
     { key: 'trainer-diff-v1',   total: 6, label: '差分を読む',     href: 'diff.html',   icon: 'icon-terminal.svg' },
-    { key: 'trainer-ai-v1',     total: 7, label: 'AIと一緒に',     href: 'ai.html',     icon: 'icon-ai.svg',
+    { key: 'trainer-ai-v1',     total: 8, label: 'AIと一緒に',     href: 'ai.html',     icon: 'icon-ai.svg',
       read: { md: 'why-ai-mistakes', label: 'AIはなぜ間違えるのか', icon: 'icon-ai.svg' } },
-    { key: 'trainer-code-v1',   total: 11, label: 'はじめてのプログラム', href: 'code.html',   icon: 'icon-vscode.svg' },
-    { key: 'trainer-branch-v1', total: 7, label: 'ブランチと安全な進め方', href: 'branch.html', icon: 'icon-git.svg',
+    { key: 'trainer-code-v1',   total: 12, label: 'はじめてのプログラム', href: 'code.html',   icon: 'icon-vscode.svg' },
+    { key: 'trainer-branch-v1', total: 9, label: 'ブランチと安全な進め方', href: 'branch.html', icon: 'icon-git.svg',
       read: { md: 'what-is-service', label: 'サービスって何？ GitHubを分解してみる', icon: 'icon-github.svg' } },
-    { key: 'trainer-publish-v1', total: 8, label: '世界に公開する', href: 'publish.html', icon: 'icon-github.svg' }
+    { key: 'trainer-publish-v1', total: 8, label: '世界に公開する', href: 'publish.html', icon: 'icon-github.svg' },
+    { key: 'trainer-theme-v1', total: 11, label: '自分のテーマで回す', href: 'theme.html', icon: 'icon-ai.svg',
+      read: { md: 'graduation', label: '案件に入る前の最終チェック', icon: 'icon-key.svg',
+              badge: '🎓', undone: '仕上げ', done: '確認した' } }
   ];
 
   var READ_KEY = 'trainer-read-v1';
@@ -74,10 +77,12 @@
       if (st.pct >= 100) done++;
       lines.push('- [' + (st.pct >= 100 ? 'x' : ' ') + '] ' + (i + 1) + '. ' + s.label + ' — ' + st.txt);
     });
-    var rs = readings(), rdone = read(READ_KEY);
+    var rdone = read(READ_KEY);
+    var rs = readings().filter(function (r) { return !r.badge; });
     var rn = rs.filter(function (r) { return rdone[r.md]; }).length;
     lines.push('');
     lines.push('読み物（任意）: ' + rn + ' / ' + rs.length + ' 読了');
+    if (rdone['graduation']) lines.push('最終チェック: 確認済み');
     lines.push('');
     lines.push('報告日時: ' + stamp());
     lines.push('');
@@ -105,10 +110,10 @@
       if (s.read) {
         var done = !!rdone[s.read.md];
         h += '<a class="mapitem reading' + (done ? ' done' : '') + '" href="#/' + s.read.md + '">' +
-             '<span class="n">☕</span>' +
+             '<span class="n">' + (s.read.badge || '☕') + '</span>' +
              '<img src="media/' + s.read.icon + '" width="24" height="24" alt="">' +
              '<span class="l">' + s.read.label + '</span>' +
-             '<span class="s">' + (done ? '読んだ' : '読み物・任意') + '</span></a>';
+             '<span class="s">' + (done ? (s.read.done || '読んだ') : (s.read.undone || '読み物・任意')) + '</span></a>';
       }
     });
     h += '</div>';
@@ -126,18 +131,25 @@
     el.innerHTML = h;
   }
 
-  // Step 2 のチェックリストを保存できるようにする
+  // チェックリストを保存できるようにする。
+  // ページごとに保存先を分ける（同じ鍵だと、別ページのチェックが混ざる）
+  function checkKey() {
+    var m = /^#\/([a-z0-9-]+)/.exec(location.hash || '');
+    var page = m ? m[1] : '';
+    return (page === 'step2-git' || page === '') ? 'trainer-step2-check' : 'trainer-check-' + page;
+  }
   function wireChecks() {
     var boxes = document.querySelectorAll('.markdown-section .task-list-item input[type=checkbox]');
     if (!boxes.length) return;
-    var saved = read('trainer-step2-check');
+    var key = checkKey();
+    var saved = read(key);
     boxes.forEach(function (b, i) {
       b.disabled = false;
       b.checked = !!saved[i];
       b.onchange = function () {
-        var m = read('trainer-step2-check');
+        var m = read(key);
         m[i] = b.checked;
-        try { localStorage.setItem('trainer-step2-check', JSON.stringify(m)); } catch (e) {}
+        try { localStorage.setItem(key, JSON.stringify(m)); } catch (e) {}
       };
     });
   }

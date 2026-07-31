@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>はじめてのプログラム | エンジニア育成トレーナー</title>
-<link rel="stylesheet" href="navi.css?v=5">
-<script src="config.js?v=5"></script>
+<link rel="stylesheet" href="navi.css?v=6">
+<script src="config.js?v=6"></script>
 </head>
 <body>
 
@@ -137,6 +137,30 @@ steps:[
       a:'① 保存しましたか（タブに「●」が残っていませんか）② ブラウザを再読み込みしましたか。<b>ほぼこの2つのどちらか</b>です。' },
     { q:'どこを書き換えればいいか分からない',
       a:'ダブルクォート <code>"</code> で囲まれた「こんにちは！」を探してください。囲みの記号は消さず、<b>中の文字だけ</b>を書き換えます。' }
+  ]
+},
+{
+  icon:'icon-key.svg', phase:'3. 直して、また動かす',
+  title:'日本語入力のワナを、先に1つ潰します',
+  why:'<b>初心者がいちばん多くハマる原因</b>がこれです。しかも見た目では気づけません。1分だけ使います。',
+  visual:'media/zenkaku-trap.svg',
+  visualAlt:'半角スペースと全角スペース、まっすぐな引用符と曲がった引用符の違い',
+  todo:{
+    common:['<b>日本語入力をオフ</b>にして、<code>&lt;p id="message"&gt;</code> の <code>id</code> の前のスペースを打ち直してみます',
+            '次に、<b>日本語入力をオンのまま</b>スペースを打ってみます',
+            '<b>うすい枠で囲まれた空白</b>が出たら、それが全角スペースです',
+            '確認できたら、全角のほうを消して元に戻し、保存して動くことを確かめます']
+  },
+  expect:'全角スペースを入れると、VS Code が<b>枠で囲んで警告</b>してくれます。そのまま動かすと、動かなくなります。',
+  note:'覚えることは1つだけ。<b>「プログラムを打つときは日本語入力をオフ」</b>。日本語を打つのは、<code>"…"</code> の<b>中身だけ</b>です。<br>メールやWordから貼り付けると <code>“ ”</code>（曲がった引用符）が混ざることもあります。これも同じ理由で動きません。',
+  ask:'全角スペースの見え方を確認できましたか？',
+  tb:[
+    { q:'枠が出ない',
+      a:'VS Code のバージョンによっては出ないことがあります。その場合は<b>「動かないときは、まず全角スペースを疑う」</b>と覚えておいてください。Claude Code に「このファイルに全角スペースが混ざっていませんか」と聞くのも確実です。' },
+    { q:'全角と半角の切り替え方が分からない',
+      a:'Windows は <span class="k">半角/全角</span> キー、Mac は <span class="k">かな</span>/<span class="k">英数</span> キーです。画面右下（Mac は右上）の表示が「A」なら英数、「あ」なら日本語です。' },
+    { q:'消したはずなのに動かない',
+      a:'ほかの行にも混ざっている可能性があります。<b>その行を丸ごと消して、打ち直す</b>のがいちばん早い解決です。' }
   ]
 },
 {
@@ -297,6 +321,6 @@ steps:[
 }
 ]};
 </script>
-<script src="navi.js?v=5"></script>
+<script src="navi.js?v=6"></script>
 </body>
 </html>
