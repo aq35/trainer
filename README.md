@@ -84,7 +84,7 @@ window.TRAINER_SUPPORT = {
 
 ```js
 window.TRAINER_COFFEE = {
-  url: 'https://buymeacoffee.com/ユーザー名',
+  url: 'https://github.com/sponsors/aq35',   // 設定済み
   label: '☕ コーヒーを1杯おごる',
   note: '受け取ったぶんは、この教材の維持と改善に使います。'
 };
@@ -116,10 +116,10 @@ window.TRAINER_COFFEE = {
 
 ### キャッシュについて
 
-各HTMLは `config.js?v=7` のようにバージョンを付けて読み込んでいます。**`config.js` や `navi.js` を変更したら、全HTMLの `?v=` の数字を1つ上げてください。** 上げないと、受講者のブラウザが古いファイルを使い続け、連絡先を変えても反映されません。
+各HTMLは `config.js?v=8` のようにバージョンを付けて読み込んでいます。**`config.js` や `navi.js` を変更したら、全HTMLの `?v=` の数字を1つ上げてください。** 上げないと、受講者のブラウザが古いファイルを使い続け、連絡先を変えても反映されません。
 
 ```
-grep -rl '?v=7' docs/*.html | xargs sed -i '' 's/?v=7/?v=8/g'   # Mac
+grep -rl '?v=8' docs/*.html | xargs sed -i '' 's/?v=8/?v=9/g'   # Mac
 ```
 
 ## ライセンス

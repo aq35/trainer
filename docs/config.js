@@ -45,7 +45,7 @@ window.TRAINER_SUPPORT = {
  *   PayPal.Me       : 'https://paypal.me/ユーザー名'
  */
 window.TRAINER_COFFEE = {
-  url: '',
+  url: 'https://github.com/sponsors/aq35',
   // ボタンの文字（任意）
   label: '☕ コーヒーを1杯おごる',
   // ボタンの下に小さく出る補足（任意）
