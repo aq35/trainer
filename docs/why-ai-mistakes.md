@@ -94,6 +94,6 @@ Claude は、たいていのことを親切に答えてくれます。<br>
 
 ---
 
-- 続きに戻る → [トップページ](/)
-- 実際の使い方 → [AIと一緒に直す](ai.html ':ignore target=_blank')
-- 前の寄り道 → [なぜ git が生まれたのか](why-git.md)
+- 👉 次に進む → [はじめてのプログラム](code.html ':ignore target=_blank')
+- もう一度使ってみる → [AIと一緒に直す](ai.html ':ignore target=_blank')
+- 全体を見る → [トップページ](/)

@@ -293,6 +293,10 @@
         mascot('party', '<h2 style="margin:6px 0">' + s.title + '</h2><p class="why" style="margin:0">' + s.lead + '</p>') +
         (s.gained ? '<div class="expect"><div class="t">できるようになったこと</div><div class="m">' + s.gained + '</div></div>' : '') +
         (s.note ? '<div class="note">' + s.note + '</div>' : '') +
+        // 手を動かした直後は、その道具の背景がいちばん頭に入る
+        (s.readNext ? '<a class="readnext" href="index.html#/' + s.readNext.md + '" target="_blank" rel="noopener">' +
+          '<span class="rc">☕</span><span><b>ひと休みに読む: ' + s.readNext.label + '</b>' +
+          '<span class="rs">' + s.readNext.sub + '（読むだけ・3分。飛ばしても先に進めます）</span></span></a>' : '') +
         finReport(s) +
         '<div class="ask"><p>次にやること</p><div class="btns">' +
         '<a class="act ok" style="text-decoration:none;text-align:center" href="' + s.nextHref + '">' + s.nextLabel + '</a>' +

@@ -1,19 +1,43 @@
-/* 目次ページの「全体地図」と、Step 2 のチェックリストを担当する。
-   進捗は各ナビと同じ localStorage を読むだけで、書き換えはしない。 */
+/* 目次ページの「全体地図」と、「git の基本」のチェックリストを担当する。
+   進捗は各ナビと同じ localStorage を読むだけで、書き換えはしない。
+   読み物だけは「開いたかどうか」をここで記録する。 */
 (function () {
+  // read: そのステップの直後に挟む読み物（任意。読まなくても先に進める）
   var STEPS = [
-    { key: 'trainer-setup-v1',  total: 9, label: '環境構築',      href: 'setup.html',  icon: 'icon-vscode.svg' },
-    { key: null,                          label: 'git の基本',    href: '#/step2-git', icon: 'icon-git.svg', check: 'step2' },
+    { key: 'trainer-setup-v1',  total: 9, label: '環境構築',      href: 'setup.html',  icon: 'icon-vscode.svg',
+      read: { md: 'why-vscode', label: 'なぜ VS Code なのか？ 拡張機能って何？', icon: 'icon-vscode.svg' } },
+    { key: null,                          label: 'git の基本',    href: '#/step2-git', icon: 'icon-git.svg', check: 'step2',
+      read: { md: 'why-git', label: 'なぜ git が生まれたのか', icon: 'icon-git.svg' } },
     { key: 'trainer-github-v1', total: 9, label: 'GitHubに上げる', href: 'github.html', icon: 'icon-github.svg' },
     { key: 'trainer-diff-v1',   total: 6, label: '差分を読む',     href: 'diff.html',   icon: 'icon-terminal.svg' },
-    { key: 'trainer-ai-v1',     total: 7, label: 'AIと一緒に',     href: 'ai.html',     icon: 'icon-ai.svg' },
+    { key: 'trainer-ai-v1',     total: 7, label: 'AIと一緒に',     href: 'ai.html',     icon: 'icon-ai.svg',
+      read: { md: 'why-ai-mistakes', label: 'AIはなぜ間違えるのか', icon: 'icon-ai.svg' } },
     { key: 'trainer-code-v1',   total: 9, label: 'はじめてのプログラム', href: 'code.html',   icon: 'icon-vscode.svg' },
-    { key: 'trainer-branch-v1', total: 7, label: 'ブランチと安全な進め方', href: 'branch.html', icon: 'icon-git.svg' },
+    { key: 'trainer-branch-v1', total: 7, label: 'ブランチと安全な進め方', href: 'branch.html', icon: 'icon-git.svg',
+      read: { md: 'what-is-service', label: 'サービスって何？ GitHubを分解してみる', icon: 'icon-github.svg' } },
     { key: 'trainer-publish-v1', total: 8, label: '世界に公開する', href: 'publish.html', icon: 'icon-github.svg' }
   ];
 
+  var READ_KEY = 'trainer-read-v1';
+
   function read(k) {
     try { return JSON.parse(localStorage.getItem(k) || '{}'); } catch (e) { return {}; }
+  }
+
+  function readings() {
+    return STEPS.filter(function (s) { return s.read; }).map(function (s) { return s.read; });
+  }
+
+  // 読み物のページを開いたら「読んだ」として記録する
+  function markRead() {
+    var m = /^#\/([a-z0-9-]+)/.exec(location.hash || '');
+    if (!m) return;
+    var hit = readings().some(function (r) { return r.md === m[1]; });
+    if (!hit) return;
+    var done = read(READ_KEY);
+    if (done[m[1]]) return;
+    done[m[1]] = true;
+    try { localStorage.setItem(READ_KEY, JSON.stringify(done)); } catch (e) {}
   }
 
   function state(s) {
@@ -50,6 +74,10 @@
       if (st.pct >= 100) done++;
       lines.push('- [' + (st.pct >= 100 ? 'x' : ' ') + '] ' + (i + 1) + '. ' + s.label + ' — ' + st.txt);
     });
+    var rs = readings(), rdone = read(READ_KEY);
+    var rn = rs.filter(function (r) { return rdone[r.md]; }).length;
+    lines.push('');
+    lines.push('読み物（任意）: ' + rn + ' / ' + rs.length + ' 読了');
     lines.push('');
     lines.push('報告日時: ' + stamp());
     lines.push('');
@@ -62,6 +90,7 @@
   function drawMap() {
     var el = document.getElementById('map');
     if (!el) return;
+    var rdone = read(READ_KEY);
     var h = '<div class="map">';
     STEPS.forEach(function (s, i) {
       var st = state(s);
@@ -72,6 +101,15 @@
            '<span class="l">' + s.label + '</span>' +
            '<span class="s">' + st.txt + '</span>' +
            '<span class="pb"><i style="width:' + st.pct + '%"></i></span></a>';
+      // 手を動かしたあとに、その道具の話を読む。飛ばしても先に進める。
+      if (s.read) {
+        var done = !!rdone[s.read.md];
+        h += '<a class="mapitem reading' + (done ? ' done' : '') + '" href="#/' + s.read.md + '">' +
+             '<span class="n">☕</span>' +
+             '<img src="media/' + s.read.icon + '" width="24" height="24" alt="">' +
+             '<span class="l">' + s.read.label + '</span>' +
+             '<span class="s">' + (done ? '読んだ' : '読み物・任意') + '</span></a>';
+      }
     });
     h += '</div>';
     var all = STEPS.every(function (s) { return state(s).pct >= 100; });
@@ -104,7 +142,7 @@
     });
   }
 
-  function run() { drawMap(); wireChecks(); }
+  function run() { markRead(); drawMap(); wireChecks(); }
   window.addEventListener('hashchange', function () { setTimeout(run, 300); });
   document.addEventListener('DOMContentLoaded', function () { setTimeout(run, 400); });
   setTimeout(run, 900);

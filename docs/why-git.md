@@ -89,6 +89,6 @@ GitHub は後に Microsoft に買収されました。「Linuxと対立してい
 
 ---
 
-- 続きに戻る → [トップページ](/)
+- 👉 次に進む → [GitHubに上げる](github.html ':ignore target=_blank')
 - 言葉の意味を確認する → [用語集](glossary.md)
-- 次の寄り道 → [AIはなぜ間違えるのか](why-ai-mistakes.md)
+- 全体を見る → [トップページ](/)

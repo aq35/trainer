@@ -78,6 +78,16 @@
     }
     .markdown-section .mapitem .pb i { display: block; height: 100%; background: #2f6fed; }
     .markdown-section .mapitem.done .pb i { background: #3aa76d; }
+    /* 読み物は「任意の寄り道」だと見た目で分かるようにする */
+    .markdown-section .mapitem.reading {
+      background: #faf7f0; border-style: dashed; border-color: #e0d6c2;
+      margin-left: 18px; padding: 10px 14px;
+    }
+    .markdown-section .mapitem.reading:hover { border-color: #c9a227; }
+    .markdown-section .mapitem.reading .n { background: transparent; font-size: 16px; }
+    .markdown-section .mapitem.reading .l { font-weight: 500; font-size: 14px; }
+    .markdown-section .mapitem.reading.done { background: #f3f7f4; border-color: #b7e3c6; }
+    .markdown-section .mapitem.reading.done .s { color: #2b7d52; }
     .markdown-section .mapall {
       background: #eefaf1; border: 1px solid #b7e3c6; border-radius: 10px;
       padding: 12px 14px; font-size: 14px; color: #2b7d52; margin-top: 10px;
@@ -164,6 +174,10 @@
       .markdown-section .mapitem { background:#1b1f27; border-color:#333a48; }
       .markdown-section .mapitem .n { background:#2a303c; color:#9aa3b2; }
       .markdown-section .mapitem .pb { background:#2a303c; }
+      .markdown-section .mapitem.reading { background:#221e18; border-color:#4a4030; }
+      .markdown-section .mapitem.reading .n { background:transparent; }
+      .markdown-section .mapitem.reading.done { background:#16271e; border-color:#2c5340; }
+      .markdown-section .mapitem.reading.done .s { color:#7fd6a3; }
       .markdown-section .mapall { background:#16271e; border-color:#2c5340; color:#7fd6a3; }
       .markdown-section .mapreport { background:#1b2437; border-color:#31456b; }
       .markdown-section .mapreport .mrsub { color:#9aa3b2; }
@@ -311,7 +325,7 @@
   <script src="https://cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify-mermaid@2/dist/docsify-mermaid.js"></script>
-  <script src="config.js?v=3"></script>
-  <script src="progress.js?v=3"></script>
+  <script src="config.js?v=4"></script>
+  <script src="progress.js?v=4"></script>
 </body>
 </html>
