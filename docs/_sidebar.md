@@ -1,6 +1,7 @@
 - 進める順番
   - [トップ（進捗）](/)
   - [0. ⌨️ ターミナル入門（任意）](step0-terminal.md)
+  - [　☕ そもそも Claude って何？](what-is-claude.md)
   - [1. 🧭 環境構築](setup.html ':ignore target=_blank')
   - [　☕ なぜ VS Code なのか？](why-vscode.md)
   - [2. 📝 git の基本](git.html ':ignore target=_blank')
@@ -14,6 +15,7 @@
   - [　☕ サービスって何？](what-is-service.md)
   - [8. 🌍 世界に公開する](publish.html ':ignore target=_blank')
   - [9. 🧑‍💻 仕事の一周](work.html ':ignore target=_blank')
+  - [　☕ AIに何を作ってもらうか](what-to-build.md)
   - [10. 🚀 自分のテーマで回す](theme.html ':ignore target=_blank')
   - [　☕ AI-DLCって何？](what-is-ai-dlc.md)
   - [11. 🎯 AIと回す開発の一周](ai-dlc.html ':ignore target=_blank')

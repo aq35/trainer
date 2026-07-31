@@ -2,9 +2,11 @@
    進捗は各ナビと同じ localStorage を読むだけで、書き換えはしない。
    読み物だけは「開いたかどうか」をここで記録する。 */
 (function () {
-  // read: そのステップの直後に挟む読み物（任意。読まなくても先に進める）
+  // read:       そのステップの直後に挟む読み物（任意。読まなくても先に進める）
+  // readBefore: そのステップの手前に挟む読み物（道具の正体を先に知りたい人向け）
   var STEPS = [
     { key: 'trainer-setup-v1',  total: 11, label: '環境構築',      href: 'setup.html',  icon: 'icon-vscode.svg',
+      readBefore: { md: 'what-is-claude', label: 'そもそも Claude って何？ Claude Code とは違うの？', icon: 'icon-ai.svg' },
       read: { md: 'why-vscode', label: 'なぜ VS Code なのか？ 拡張機能って何？', icon: 'icon-vscode.svg' } },
     { key: 'trainer-git-v1', total: 11, label: 'git の基本', href: 'git.html', icon: 'icon-git.svg',
       read: { md: 'why-git', label: 'なぜ git が生まれたのか', icon: 'icon-git.svg' } },
@@ -16,7 +18,8 @@
     { key: 'trainer-branch-v1', total: 9, label: 'ブランチと安全な進め方', href: 'branch.html', icon: 'icon-git.svg',
       read: { md: 'what-is-service', label: 'サービスって何？ GitHubを分解してみる', icon: 'icon-github.svg' } },
     { key: 'trainer-publish-v1', total: 8, label: '世界に公開する', href: 'publish.html', icon: 'icon-github.svg' },
-    { key: 'trainer-work-v1', total: 13, label: '仕事の一周（他人のコードを直す）', href: 'work.html', icon: 'icon-github.svg' },
+    { key: 'trainer-work-v1', total: 15, label: '仕事の一周（他人のコードを直す）', href: 'work.html', icon: 'icon-github.svg',
+      read: { md: 'what-to-build', label: 'AIに何を作ってもらうか — 使い捨ての仕事と、残る道具', icon: 'icon-ai.svg' } },
     { key: 'trainer-theme-v1', total: 12, label: '自分のテーマで回す', href: 'theme.html', icon: 'icon-ai.svg',
       read: { md: 'what-is-ai-dlc', label: 'AI-DLCって何？ 一人でチームになる方法', icon: 'icon-ai.svg' } },
     { key: 'trainer-aidlc-v1', total: 12, label: 'AIと回す開発の一周', href: 'ai-dlc.html', icon: 'icon-ai.svg',
@@ -33,7 +36,12 @@
   }
 
   function readings() {
-    return STEPS.filter(function (s) { return s.read; }).map(function (s) { return s.read; });
+    var out = [];
+    STEPS.forEach(function (s) {
+      if (s.readBefore) out.push(s.readBefore);
+      if (s.read) out.push(s.read);
+    });
+    return out;
   }
 
   // 読み物のページを開いたら「読んだ」として記録する
@@ -137,9 +145,19 @@
     var el = document.getElementById('map');
     if (!el) return;
     var rdone = read(READ_KEY);
+    function readingRow(r) {
+      var d = !!rdone[r.md];
+      return '<a class="mapitem reading' + (d ? ' done' : '') + '" href="#/' + r.md + '">' +
+             '<span class="n">' + (r.badge || '☕') + '</span>' +
+             '<img src="media/' + r.icon + '" width="24" height="24" alt="">' +
+             '<span class="l">' + r.label + '</span>' +
+             '<span class="s">' + (d ? (r.done || '読んだ') : (r.undone || '読み物・任意')) + '</span></a>';
+    }
     var h = '<div class="map">';
     STEPS.forEach(function (s, i) {
       var st = state(s);
+      // 手を動かす前に、正体だけ知っておきたい人向け
+      if (s.readBefore) h += readingRow(s.readBefore);
       var cls = st.pct >= 100 ? ' done' : (st.pct > 0 ? ' now' : '');
       h += '<a class="mapitem' + cls + '" href="' + s.href + '">' +
            '<span class="n">' + (st.pct >= 100 ? '✓' : (i + 1)) + '</span>' +
@@ -148,14 +166,7 @@
            '<span class="s">' + st.txt + '</span>' +
            '<span class="pb"><i style="width:' + st.pct + '%"></i></span></a>';
       // 手を動かしたあとに、その道具の話を読む。飛ばしても先に進める。
-      if (s.read) {
-        var done = !!rdone[s.read.md];
-        h += '<a class="mapitem reading' + (done ? ' done' : '') + '" href="#/' + s.read.md + '">' +
-             '<span class="n">' + (s.read.badge || '☕') + '</span>' +
-             '<img src="media/' + s.read.icon + '" width="24" height="24" alt="">' +
-             '<span class="l">' + s.read.label + '</span>' +
-             '<span class="s">' + (done ? (s.read.done || '読んだ') : (s.read.undone || '読み物・任意')) + '</span></a>';
-      }
+      if (s.read) h += readingRow(s.read);
     });
     h += '</div>';
     var all = STEPS.every(function (s) { return state(s).pct >= 100; });
