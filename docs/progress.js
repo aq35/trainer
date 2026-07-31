@@ -12,7 +12,7 @@
     { key: 'trainer-diff-v1',   total: 6, label: '差分を読む',     href: 'diff.html',   icon: 'icon-terminal.svg' },
     { key: 'trainer-ai-v1',     total: 7, label: 'AIと一緒に',     href: 'ai.html',     icon: 'icon-ai.svg',
       read: { md: 'why-ai-mistakes', label: 'AIはなぜ間違えるのか', icon: 'icon-ai.svg' } },
-    { key: 'trainer-code-v1',   total: 9, label: 'はじめてのプログラム', href: 'code.html',   icon: 'icon-vscode.svg' },
+    { key: 'trainer-code-v1',   total: 11, label: 'はじめてのプログラム', href: 'code.html',   icon: 'icon-vscode.svg' },
     { key: 'trainer-branch-v1', total: 7, label: 'ブランチと安全な進め方', href: 'branch.html', icon: 'icon-git.svg',
       read: { md: 'what-is-service', label: 'サービスって何？ GitHubを分解してみる', icon: 'icon-github.svg' } },
     { key: 'trainer-publish-v1', total: 8, label: '世界に公開する', href: 'publish.html', icon: 'icon-github.svg' }

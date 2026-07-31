@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="340" viewBox="0 0 720 340" role="img" aria-label="開発者ツールのタブのうち、初心者が見るのは Elements と Console の2つだけ">
+  <rect width="720" height="340" fill="#ffffff"/>
+  <text x="360" y="26" font-family="sans-serif" font-size="14" font-weight="700" fill="#5b6472" text-anchor="middle">タブはたくさん出ますが、いま見るのは2つだけです</text>
+
+  <!-- ブラウザ枠 -->
+  <rect x="24" y="42" width="672" height="230" rx="9" fill="#f7f9fc" stroke="#c8cfdb" stroke-width="1.5"/>
+  <rect x="24" y="42" width="672" height="26" rx="9" fill="#e7ebf3"/>
+  <rect x="24" y="58" width="672" height="10" fill="#e7ebf3"/>
+  <circle cx="44" cy="55" r="4.5" fill="#ff5f57"/>
+  <circle cx="60" cy="55" r="4.5" fill="#febc2e"/>
+  <circle cx="76" cy="55" r="4.5" fill="#28c840"/>
+
+  <!-- 左: ページ表示 -->
+  <rect x="34" y="78" width="290" height="184" rx="7" fill="#ffffff" stroke="#dde4f0" stroke-width="1.5"/>
+  <text x="179" y="128" font-family="sans-serif" font-size="17" font-weight="700" fill="#2b3440" text-anchor="middle">はじめてのページ</text>
+  <text x="179" y="156" font-family="sans-serif" font-size="12.5" fill="#6b7482" text-anchor="middle">ここに文字が出ます</text>
+  <rect x="134" y="174" width="90" height="30" rx="7" fill="#2f6fed"/>
+  <text x="179" y="194" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#ffffff" text-anchor="middle">押してね</text>
+  <text x="179" y="238" font-family="sans-serif" font-size="11.5" fill="#9aa3b2" text-anchor="middle">いつもの画面（あなたのページ）</text>
+
+  <!-- 右: 開発者ツール -->
+  <rect x="336" y="78" width="350" height="184" rx="7" fill="#22262f"/>
+  <rect x="336" y="78" width="350" height="30" rx="7" fill="#2b303a"/>
+  <rect x="336" y="98" width="350" height="10" fill="#2b303a"/>
+
+  <rect x="346" y="84" width="72" height="20" rx="4" fill="#3d63b8"/>
+  <text x="382" y="98" font-family="sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">Elements</text>
+  <rect x="424" y="84" width="66" height="20" rx="4" fill="#3d63b8"/>
+  <text x="457" y="98" font-family="sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">Console</text>
+  <text x="508" y="98" font-family="sans-serif" font-size="11" fill="#6f7787">Sources</text>
+  <text x="562" y="98" font-family="sans-serif" font-size="11" fill="#6f7787">Network</text>
+  <text x="622" y="98" font-family="sans-serif" font-size="11" fill="#6f7787">…</text>
+
+  <g font-family="monospace" font-size="11.5">
+    <text x="352" y="132" fill="#8fb8ff">&lt;h1&gt;</text><text x="384" y="132" fill="#dfe5ef">はじめてのページ</text><text x="480" y="132" fill="#8fb8ff">&lt;/h1&gt;</text>
+    <text x="352" y="154" fill="#8fb8ff">&lt;p id="message"&gt;</text><text x="470" y="154" fill="#dfe5ef">ここに…</text>
+    <text x="352" y="176" fill="#8fb8ff">&lt;button&gt;</text><text x="414" y="176" fill="#dfe5ef">押してね</text><text x="470" y="176" fill="#8fb8ff">&lt;/button&gt;</text>
+  </g>
+  <text x="352" y="212" font-family="sans-serif" font-size="11.5" fill="#9aa3b2">自分が書いた index.html が、そのまま出ています</text>
+  <text x="352" y="236" font-family="sans-serif" font-size="11.5" fill="#9aa3b2">＝ 特別なものではありません</text>
+
+  <!-- 説明カード -->
+  <rect x="24" y="286" width="330" height="44" rx="9" fill="#eef3ff" stroke="#c9dbff" stroke-width="1.5"/>
+  <text x="42" y="306" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#2f6fed">Elements（要素）</text>
+  <text x="42" y="323" font-family="sans-serif" font-size="11.5" fill="#5b6472">いま画面に出ているものの「中身」を見る</text>
+
+  <rect x="366" y="286" width="330" height="44" rx="9" fill="#fff5f7" stroke="#f6cdd8" stroke-width="1.5"/>
+  <text x="384" y="306" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#be3455">Console（コンソール）</text>
+  <text x="384" y="323" font-family="sans-serif" font-size="11.5" fill="#5b6472">エラーが出ていないかを見る。動かないときは必ずここ</text>
+</svg>
