@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="400" viewBox="0 0 720 400" role="img" aria-label="AI-DLCの工程ごとに、AIが下書きし、人が決めるという分担の図">
+  <rect width="720" height="400" fill="#ffffff"/>
+  <text x="360" y="26" font-family="sans-serif" font-size="14" font-weight="700" fill="#5b6472" text-anchor="middle">工程は変わりません。変わるのは「誰が下書きするか」だけです</text>
+
+  <!-- 見出し列 -->
+  <rect x="24" y="46" width="96" height="40" rx="8" fill="#f7f9fc" stroke="#dde4f0"/>
+  <text x="72" y="71" font-family="sans-serif" font-size="12" font-weight="700" fill="#5b6472" text-anchor="middle">工程</text>
+  <rect x="126" y="46" width="290" height="40" rx="8" fill="#f6f2ff" stroke="#ddd0f5"/>
+  <text x="271" y="65" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#7c3aed" text-anchor="middle">🤖 AIがやること（下書き）</text>
+  <text x="271" y="80" font-family="sans-serif" font-size="10.5" fill="#7c3aed" text-anchor="middle">速い・大量・疲れない</text>
+  <rect x="422" y="46" width="274" height="40" rx="8" fill="#eef3ff" stroke="#c9dbff"/>
+  <text x="559" y="65" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#2f6fed" text-anchor="middle">🙋 人が決めること（責任）</text>
+  <text x="559" y="80" font-family="sans-serif" font-size="10.5" fill="#2f6fed" text-anchor="middle">ここは代われません</text>
+
+  <g font-family="sans-serif" font-size="11.5">
+    <!-- 1 -->
+    <rect x="24" y="92" width="96" height="44" rx="7" fill="#fff8e9" stroke="#f0d9a8"/>
+    <text x="72" y="112" font-size="11.5" font-weight="700" fill="#8a6412" text-anchor="middle">① 要件</text>
+    <text x="72" y="128" font-size="10" fill="#8a6412" text-anchor="middle">何を作るか</text>
+    <rect x="126" y="92" width="290" height="44" rx="7" fill="#fbfaff" stroke="#e6dcfa"/>
+    <text x="140" y="112" fill="#2b3440">聞くべきことを一覧にする</text>
+    <text x="140" y="128" fill="#6b7482">抜けを指摘する／曖昧な言葉を洗い出す</text>
+    <rect x="422" y="92" width="274" height="44" rx="7" fill="#fafcff" stroke="#d9e5fb"/>
+    <text x="436" y="112" fill="#2b3440">やらないことを決める</text>
+    <text x="436" y="128" fill="#6b7482">依頼者に確認を取る</text>
+
+    <!-- 2 -->
+    <rect x="24" y="142" width="96" height="44" rx="7" fill="#fff8e9" stroke="#f0d9a8"/>
+    <text x="72" y="162" font-size="11.5" font-weight="700" fill="#8a6412" text-anchor="middle">② 設計</text>
+    <text x="72" y="178" font-size="10" fill="#8a6412" text-anchor="middle">どう作るか</text>
+    <rect x="126" y="142" width="290" height="44" rx="7" fill="#fbfaff" stroke="#e6dcfa"/>
+    <text x="140" y="162" fill="#2b3440">案を3つ出す／長所と短所を並べる</text>
+    <text x="140" y="178" fill="#6b7482">画面とデータの形を提案する</text>
+    <rect x="422" y="142" width="274" height="44" rx="7" fill="#fafcff" stroke="#d9e5fb"/>
+    <text x="436" y="162" fill="#2b3440">どの案にするかを選ぶ</text>
+    <text x="436" y="178" fill="#6b7482">選んだ理由を残す</text>
+
+    <!-- 3 -->
+    <rect x="24" y="192" width="96" height="44" rx="7" fill="#eefaf1" stroke="#b7e3c6"/>
+    <text x="72" y="212" font-size="11.5" font-weight="700" fill="#2b7d52" text-anchor="middle">③ 分解</text>
+    <text x="72" y="228" font-size="10" fill="#2b7d52" text-anchor="middle">順番を決める</text>
+    <rect x="126" y="192" width="290" height="44" rx="7" fill="#fbfaff" stroke="#e6dcfa"/>
+    <text x="140" y="212" fill="#2b3440">作業を小さく割る／順番を提案する</text>
+    <text x="140" y="228" fill="#6b7482">受け入れ条件をテストの形にする</text>
+    <rect x="422" y="192" width="274" height="44" rx="7" fill="#fafcff" stroke="#d9e5fb"/>
+    <text x="436" y="212" fill="#2b3440">1つ30分以下になっているか見る</text>
+    <text x="436" y="228" fill="#6b7482">どこから着手するか決める</text>
+
+    <!-- 4 -->
+    <rect x="24" y="242" width="96" height="44" rx="7" fill="#eef3ff" stroke="#c9dbff"/>
+    <text x="72" y="262" font-size="11.5" font-weight="700" fill="#2f6fed" text-anchor="middle">④ 実装</text>
+    <text x="72" y="278" font-size="10" fill="#2f6fed" text-anchor="middle">作る</text>
+    <rect x="126" y="242" width="290" height="44" rx="7" fill="#fbfaff" stroke="#e6dcfa"/>
+    <text x="140" y="262" fill="#2b3440">コードを書く</text>
+    <text x="140" y="278" fill="#6b7482">テストを緑にする</text>
+    <rect x="422" y="242" width="274" height="44" rx="7" fill="#fafcff" stroke="#d9e5fb"/>
+    <text x="436" y="262" fill="#2b3440">差分を読んで、採るか断るか</text>
+    <text x="436" y="278" fill="#6b7482">自分の名前で commit する</text>
+
+    <!-- 5 -->
+    <rect x="24" y="292" width="96" height="44" rx="7" fill="#fff5f7" stroke="#f6cdd8"/>
+    <text x="72" y="312" font-size="11.5" font-weight="700" fill="#be3455" text-anchor="middle">⑤ 確認</text>
+    <text x="72" y="328" font-size="10" fill="#be3455" text-anchor="middle">見てもらう</text>
+    <rect x="126" y="292" width="290" height="44" rx="7" fill="#fbfaff" stroke="#e6dcfa"/>
+    <text x="140" y="312" fill="#2b3440">レビューして指摘する</text>
+    <text x="140" y="328" fill="#6b7482">壊れそうな場所を挙げる</text>
+    <rect x="422" y="292" width="274" height="44" rx="7" fill="#fafcff" stroke="#d9e5fb"/>
+    <text x="436" y="312" fill="#2b3440">指摘を採用するか決める</text>
+    <text x="436" y="328" fill="#6b7482">依頼者に見せて、検収をもらう</text>
+
+    <!-- 6 -->
+    <rect x="24" y="342" width="96" height="44" rx="7" fill="#f7f9fc" stroke="#c8cfdb"/>
+    <text x="72" y="362" font-size="11.5" font-weight="700" fill="#5b6472" text-anchor="middle">⑥ 変更</text>
+    <text x="72" y="378" font-size="10" fill="#5b6472" text-anchor="middle">直し続ける</text>
+    <rect x="126" y="342" width="290" height="44" rx="7" fill="#fbfaff" stroke="#e6dcfa"/>
+    <text x="140" y="362" fill="#2b3440">影響する場所を洗い出す</text>
+    <text x="140" y="378" fill="#6b7482">仕様→テスト→コードの順に直す</text>
+    <rect x="422" y="342" width="274" height="44" rx="7" fill="#fafcff" stroke="#d9e5fb"/>
+    <text x="436" y="362" fill="#2b3440">受けるか、断るか、いつやるか</text>
+    <text x="436" y="378" fill="#6b7482">追加の費用と期間を決める</text>
+  </g>
+</svg>

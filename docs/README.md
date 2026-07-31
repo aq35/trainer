@@ -47,6 +47,7 @@
 ## いつでも使えるもの
 
 - <img class="ti" width="26" height="26" src="media/icon-terminal.svg" alt="">[⌨️ コマンド練習](drill.html ':ignore target=_blank') — 覚えたコマンドを、クイズ形式で反復できます。**すきま時間にどうぞ**
+- <img class="ti" width="26" height="26" src="media/icon-ai.svg" alt="">[🧠 Claude Code を賢くする](smarter.md) — **CLAUDE.md・コマンド・MCP**で、AIの目と手を増やします
 - <img class="ti" width="26" height="26" src="media/icon-github.svg" alt="">[🔧 自分のリポジトリに自動チェックを入れる](kit.md) — 研修で使った仕組みは、**個人開発にも持っていけます**
 - <img class="ti" width="26" height="26" src="media/icon-ai.svg" alt="">[用語集](glossary.md) — リポジトリ、コミット、ブランチ、差分…の意味
 
@@ -62,6 +63,7 @@
 | [☕ なぜ git が生まれたのか](why-git.md) | 2005年の事件と、自虐ジョークだった名前の由来 | 2. git の基本のあと |
 | [☕ AIはなぜ間違えるのか](why-ai-mistakes.md) | 自信たっぷりに間違える理由と、その付き合い方 | 5. AIと一緒にのあと |
 | [☕ サービスって何？](what-is-service.md) | あなたがやった操作に、業界の名前を付け直す | 7. ブランチのあと |
+| [☕ AI-DLCって何？](what-is-ai-dlc.md) | 工程は変わらない。変わったのは誰が下書きするか | 10. 自分のテーマのあと |
 
 ## 練習用のリポジトリ
 
