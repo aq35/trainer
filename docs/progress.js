@@ -36,6 +36,7 @@
     { key: 'trainer-tools-v1', total: 8, label: '使い捨てをやめて、道具にする',   href: 'tools.html', icon: 'icon-vscode.svg' },
     { key: 'trainer-chart-v1', total: 8, label: '数字を、目に見えるようにする',   href: 'chart.html', icon: 'icon-vscode.svg' },
     { key: 'trainer-api-v1',   total: 9, label: 'APIと、問題の切り分け',         href: 'api.html',   icon: 'icon-github.svg' },
+    { key: 'trainer-observe-v1', total: 9, label: '観測する力をつける（推測しない道具）', href: 'observe.html', icon: 'icon-terminal.svg' },
     { key: 'trainer-db-v1',    total: 7, label: '保存先を変えてみる（任意）',     href: 'db.html',    icon: 'icon-folder.svg' }
   ];
 

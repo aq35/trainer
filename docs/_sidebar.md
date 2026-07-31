@@ -32,7 +32,8 @@
   - [18. 🛠️ 使い捨てをやめて、道具にする](tools.html ':ignore target=_blank')
   - [19. 📊 数字を、目に見えるようにする](chart.html ':ignore target=_blank')
   - [20. 🔀 APIと、問題の切り分け](api.html ':ignore target=_blank')
-  - [21. 🗄️ 保存先を変えてみる（任意）](db.html ':ignore target=_blank')
+  - [21. 🔬 観測する力をつける](observe.html ':ignore target=_blank')
+  - [22. 🗄️ 保存先を変えてみる（任意）](db.html ':ignore target=_blank')
 - 案件の準備
   - [🎓 案件に入る前の最終チェック](graduation.md)
   - [🗓️ 案件まで1か月。何をする？](plan.md)
