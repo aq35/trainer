@@ -148,7 +148,7 @@
     var c = window.TRAINER_SUPPORT || {}, t = inviteText(user);
     if (copyOnly) { copy('宛先: ' + (c.inviteEmail || '（担当者）') + '\n件名: ' + t.subject + '\n\n' + t.body,
                          'コピーしました。チャットなどで送ってください。'); return; }
-    window.location.href = 'mailto:' + encodeURIComponent(c.inviteEmail) +
+    window.location.href = 'mailto:' + String(c.inviteEmail).trim() +
       '?subject=' + encodeURIComponent(t.subject) + '&body=' + encodeURIComponent(t.body);
   }
 
