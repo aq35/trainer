@@ -22,7 +22,7 @@ window.TRAINER_SUPPORT = {
    * 受講者が GitHub のユーザー名を送ってくるので、届いたら
    * 相談用リポジトリの Settings → Collaborators → Add people で招待してください。
    * 例: 'training@example.com'                                     */
-  inviteEmail: '',
+  inviteEmail: 'nagaresteller@gmail.com',
 
   name: '研修サポート窓口',
   channel: 'GitHub の Issue に書いてください',
