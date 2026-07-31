@@ -17,6 +17,7 @@
   - [10. 🚀 自分のテーマで回す](theme.html ':ignore target=_blank')
   - [　🎓 案件に入る前の最終チェック](graduation.md)
 - いつでも
+  - [🔧 自分のリポジトリに自動チェック](kit.md)
   - [⌨️ コマンド練習](drill.html ':ignore target=_blank')
   - [用語集](glossary.md)
 - この教材について

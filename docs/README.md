@@ -47,6 +47,7 @@
 ## いつでも使えるもの
 
 - <img class="ti" width="26" height="26" src="media/icon-terminal.svg" alt="">[⌨️ コマンド練習](drill.html ':ignore target=_blank') — 覚えたコマンドを、クイズ形式で反復できます。**すきま時間にどうぞ**
+- <img class="ti" width="26" height="26" src="media/icon-github.svg" alt="">[🔧 自分のリポジトリに自動チェックを入れる](kit.md) — 研修で使った仕組みは、**個人開発にも持っていけます**
 - <img class="ti" width="26" height="26" src="media/icon-ai.svg" alt="">[用語集](glossary.md) — リポジトリ、コミット、ブランチ、差分…の意味
 
 ## 読み物について
