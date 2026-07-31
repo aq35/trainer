@@ -31,7 +31,8 @@
   - [17. ⚡ 動くけど遅い、を直す](perf.html ':ignore target=_blank')
   - [18. 🛠️ 使い捨てをやめて、道具にする](tools.html ':ignore target=_blank')
   - [19. 📊 数字を、目に見えるようにする](chart.html ':ignore target=_blank')
-  - [20. 🗄️ 保存先を変えてみる（任意）](db.html ':ignore target=_blank')
+  - [20. 🔀 APIと、問題の切り分け](api.html ':ignore target=_blank')
+  - [21. 🗄️ 保存先を変えてみる（任意）](db.html ':ignore target=_blank')
   - [　🎓 案件に入る前の最終チェック](graduation.md)
 - 進む先を考える
   - [🧭 どこへ行く？ 職種と土台](path.md)
