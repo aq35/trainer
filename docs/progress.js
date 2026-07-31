@@ -155,6 +155,49 @@
     });
   }
 
+  // 「参画の準備ができました」の申請ボタン。到達状況を入れた状態でIssueを開く。
+  function joinUrl() {
+    var r = repoName();
+    if (!r) return '';
+    var lines = ['## 参画の準備ができました', '',
+      '研修を終えたので、案件への参画を相談させてください。', '',
+      '### 到達状況（自動）', ''];
+    var done = 0;
+    STEPS.forEach(function (s, i) {
+      var st = state(s);
+      if (st.pct >= 100) done++;
+      lines.push('- [' + (st.pct >= 100 ? 'x' : ' ') + '] ' + (i + 1) + '. ' + s.label + ' — ' + st.txt);
+    });
+    var rdone = read(READ_KEY);
+    if (rdone['graduation']) lines.push('', '最終チェック: 確認済み');
+    lines.push('', '報告日時: ' + stamp(), '',
+      '### 見てもらえる成果物', '',
+      '- 公開ページ: ',
+      '- 練習リポジトリのPR一覧: ',
+      '- 自分のテーマのリポジトリ: ',
+      '',
+      '### いま自信が無いところ（正直に）', '',
+      '- ',
+      '',
+      '### 希望・相談したいこと', '',
+      '- 働ける時間帯や開始時期など、あれば書いてください');
+    return 'https://github.com/' + r + '/issues/new?labels=' + encodeURIComponent('参画') +
+           '&title=' + encodeURIComponent('[参画] 準備ができました（' + done + ' / ' + STEPS.length + ' 完了）') +
+           '&body=' + encodeURIComponent(lines.join('\n'));
+  }
+
+  function drawJoin() {
+    var el = document.getElementById('joinbtn');
+    if (!el) return;
+    var u = joinUrl();
+    if (!u) { el.innerHTML = ''; return; }
+    el.innerHTML = '<div class="mapreport"><b>準備ができたことを、担当者に知らせます</b><br>' +
+      '<span class="mrsub">押すと、<b>いまの到達状況が入力済み</b>の状態で申請の画面が開きます。' +
+      '成果物のURLと、自信が無いところを書き足して送ってください。<br>' +
+      '<b>全部のステップが終わっていなくても構いません。</b>相談の入口です。</span>' +
+      '<a class="mrbtn" href="' + u + '" target="_blank" rel="noopener">参画の相談をする</a></div>';
+  }
+
   // 寄付の案内。config.js に url が書かれていないときは、何も出さない。
   function drawCoffee() {
     var el = document.getElementById('coffee');
@@ -173,7 +216,7 @@
       '</div>';
   }
 
-  function run() { markRead(); drawMap(); wireChecks(); drawCoffee(); }
+  function run() { markRead(); drawMap(); wireChecks(); drawJoin(); drawCoffee(); }
   window.addEventListener('hashchange', function () { setTimeout(run, 300); });
   document.addEventListener('DOMContentLoaded', function () { setTimeout(run, 400); });
   setTimeout(run, 900);

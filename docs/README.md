@@ -80,7 +80,8 @@
 
 ## 全部終わったら
 
-- <img class="ti" width="26" height="26" src="media/icon-key.svg" alt="">[🎓 案件に入る前の最終チェック](graduation.md) — できているかを自分で確かめられます。**案件に入ると何が変わるか**もここにまとめてあります
+- <img class="ti" width="26" height="26" src="media/icon-key.svg" alt="">[🎓 案件に入る前の最終チェック](graduation.md) — できているかを自分で確かめられます
+- <img class="ti" width="26" height="26" src="media/icon-github.svg" alt="">[🤝 案件に参画する](join.md) — **証拠の集め方・自己紹介の作り方・参画の相談・最初の2週間の動き方**
 
 ## 進め方の約束
 
