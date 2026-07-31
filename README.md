@@ -98,10 +98,10 @@ window.TRAINER_SUPPORT = {
 
 ### キャッシュについて
 
-各HTMLは `config.js?v=2` のようにバージョンを付けて読み込んでいます。**`config.js` や `navi.js` を変更したら、全HTMLの `?v=` の数字を1つ上げてください。** 上げないと、受講者のブラウザが古いファイルを使い続け、連絡先を変えても反映されません。
+各HTMLは `config.js?v=3` のようにバージョンを付けて読み込んでいます。**`config.js` や `navi.js` を変更したら、全HTMLの `?v=` の数字を1つ上げてください。** 上げないと、受講者のブラウザが古いファイルを使い続け、連絡先を変えても反映されません。
 
 ```
-grep -rl '?v=2' docs/*.html | xargs sed -i '' 's/?v=2/?v=3/g'   # Mac
+grep -rl '?v=3' docs/*.html | xargs sed -i '' 's/?v=3/?v=4/g'   # Mac
 ```
 
 ## ライセンス

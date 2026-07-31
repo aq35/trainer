@@ -217,21 +217,49 @@
   var tried = [];
 
   // 同じステップに長くとどまっている人に、こちらから声をかける
-  var STUCK_MIN = 15;
-  function stampStep() {
-    try {
-      var m = JSON.parse(localStorage.getItem(CFG.key + ':t') || '{}');
-      if (!m[st.i]) { m[st.i] = Date.now(); localStorage.setItem(CFG.key + ':t', JSON.stringify(m)); }
-      return m[st.i];
-    } catch (e) { return Date.now(); }
+  var STUCK_MIN = 15;      // これだけ同じステップにいたら声をかける
+  var AWAY_MIN  = 10;      // これだけ間隔が空いたら「離席していた」とみなして測り直す
+  var tick = null;
+
+  function readT()  { try { return JSON.parse(localStorage.getItem(CFG.key + ':t') || '{}'); } catch (e) { return {}; } }
+  function writeT(m){ try { localStorage.setItem(CFG.key + ':t', JSON.stringify(m)); } catch (e) {} }
+
+  // いまのステップに「まだ居る」ことを記録し、滞在の開始時刻を返す。
+  // 前回の記録から離れていたら、寝ていた時間を数えないように測り直す。
+  function touchStep() {
+    var m = readT(), e = m[st.i], now = Date.now();
+    if (!e || typeof e !== 'object' || !e.seen || now - e.seen > AWAY_MIN * 60000) {
+      e = { start: now, seen: now };
+    } else {
+      e.seen = now;
+    }
+    m[st.i] = e; writeT(m);
+    return e.start;
   }
-  function stuckBanner() {
-    var since = stampStep();
-    var min = Math.floor((Date.now() - since) / 60000);
-    if (min < STUCK_MIN) return '';
+  // ステップを離れたら計測を捨てる。次に来たときは 0 から数え直す。
+  function clearStep(i) { var m = readT(); delete m[i]; writeT(m); }
+
+  function stuckHtml(min) {
     return '<div class="stuck"><b>このステップで' + min + '分ほど経っています。</b><br>' +
            'ここで止まるのは珍しくありません。一人で粘らず、下の「うまくいきません」から状況をコピーして相談してください。<br>' +
            support() + '</div>';
+  }
+  function stuckBanner() {
+    var min = Math.floor((Date.now() - touchStep()) / 60000);
+    return min < STUCK_MIN ? '' : stuckHtml(min);
+  }
+
+  // 画面を開いたまま止まっている人にも気づけるよう、1分ごとに見に行く。
+  // 画面全体を描き直すと読んでいる位置が飛ぶので、バナーだけ差し込む。
+  function watchStuck(on) {
+    clearInterval(tick); tick = null;
+    if (!on) return;
+    tick = setInterval(function () {
+      var min = Math.floor((Date.now() - touchStep()) / 60000);
+      if (min < STUCK_MIN || document.querySelector('.stuck')) return;
+      var ask = document.querySelector('.ask');
+      if (ask) ask.insertAdjacentHTML('beforebegin', stuckHtml(min));
+    }, 60000);
   }
 
   function render() {
@@ -246,6 +274,7 @@
     window.scrollTo(0, 0);
 
     if (s.kind === 'os') {
+      watchStuck(false);
       v.innerHTML = '<div class="card"><span class="phase">' + s.phase + '</span>' +
         mascot('hello', CFG.greeting || 'ここから一緒に進めます。<b>1画面に1つのことしかやりません。</b>分からなくなっても大丈夫なので、気楽にどうぞ。') +
         '<h2>' + s.title + '</h2><p class="why">' + s.why + '</p>' +
@@ -258,6 +287,8 @@
     }
 
     if (s.kind === 'fin') {
+      watchStuck(false);
+      clearStep(st.i);
       v.innerHTML = '<div class="card">' +
         mascot('party', '<h2 style="margin:6px 0">' + s.title + '</h2><p class="why" style="margin:0">' + s.lead + '</p>') +
         (s.gained ? '<div class="expect"><div class="t">できるようになったこと</div><div class="m">' + s.gained + '</div></div>' : '') +
@@ -300,6 +331,7 @@
          '<button class="link" data-reset="1">最初からやり直す</button></div></div>';
 
     v.innerHTML = h;
+    watchStuck(true);
   }
 
   function showHelp() {
@@ -465,6 +497,7 @@
       var n = st.i + parseInt(t.dataset.go, 10);
       if (n < 0) n = 0;
       if (n > STEPS.length - 1) n = STEPS.length - 1;
+      if (n !== st.i) { clearStep(st.i); tried = []; }   // 離れたステップの計測と記録は持ち越さない
       st.i = n; save(); render(); return;
     }
     if (t.dataset.help) { showHelp(); return; }
@@ -479,7 +512,7 @@
     if (t.dataset.report) { report(); return; }
     if (t.dataset.copy !== undefined) { copy(t.dataset.copy); return; }
     if (t.dataset.reset) {
-      if (confirm('最初からやり直しますか？')) { st = { os: null, i: 0 }; save(); render(); }
+      if (confirm('最初からやり直しますか？')) { writeT({}); tried = []; st = { os: null, i: 0 }; save(); render(); }
       return;
     }
   });
