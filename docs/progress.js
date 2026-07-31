@@ -6,7 +6,7 @@
   var STEPS = [
     { key: 'trainer-setup-v1',  total: 11, label: '環境構築',      href: 'setup.html',  icon: 'icon-vscode.svg',
       read: { md: 'why-vscode', label: 'なぜ VS Code なのか？ 拡張機能って何？', icon: 'icon-vscode.svg' } },
-    { key: null,                          label: 'git の基本',    href: '#/step2-git', icon: 'icon-git.svg', check: 'step2',
+    { key: 'trainer-git-v1', total: 11, label: 'git の基本', href: 'git.html', icon: 'icon-git.svg',
       read: { md: 'why-git', label: 'なぜ git が生まれたのか', icon: 'icon-git.svg' } },
     { key: 'trainer-github-v1', total: 8, label: 'GitHubに上げる', href: 'github.html', icon: 'icon-github.svg' },
     { key: 'trainer-diff-v1',   total: 6, label: '差分を読む',     href: 'diff.html',   icon: 'icon-terminal.svg' },

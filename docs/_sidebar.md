@@ -3,7 +3,7 @@
   - [0. ⌨️ ターミナル入門（任意）](step0-terminal.md)
   - [1. 🧭 環境構築](setup.html ':ignore target=_blank')
   - [　☕ なぜ VS Code なのか？](why-vscode.md)
-  - [2. git の基本](step2-git.md)
+  - [2. 📝 git の基本](git.html ':ignore target=_blank')
   - [　☕ なぜ git が生まれたのか](why-git.md)
   - [3. 🚀 GitHubに上げる](github.html ':ignore target=_blank')
   - [4. 🔍 差分を読む](diff.html ':ignore target=_blank')

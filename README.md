@@ -7,7 +7,7 @@
 ## 受講者が進む順番
 
 1. **[環境構築ナビ](docs/setup.html)** — VS Code / Git / Claude Code / Bedrock接続
-2. [git の基本](docs/step2-git.md) — 記録する・戻す（読み物・10分）
+2. **[git の基本](docs/git.html)** — 記録する・確認する・壊して戻す（11ステップ）
 3. **[GitHubナビ](docs/github.html)** — アカウント作成から push まで
 4. **[差分を読む](docs/diff.html)** — AIの提案を読んで判断するための土台
 5. **[AIと一緒に直す](docs/ai.html)** — 権限モード・承認・拒否・取り消し・頼み方
@@ -166,7 +166,7 @@ window.TRAINER_COFFEE = {
 | パス | 役割 |
 | --- | --- |
 | `docs/index.html` | docsify のエントリ（Markdown をサイト表示） |
-| `docs/setup.html` … `docs/work.html` | 対話式ナビ10本（独立した静的HTML） |
+| `docs/setup.html` … `docs/ai-dlc.html` | 対話式ナビ12本（独立した静的HTML）。**受講者が進む回は、すべてこの形式** |
 | `docs/navi.js`, `docs/navi.css` | ナビ共通エンジン。ページ側は手順データのみ持つ。ヘルプの3段構え（初手チェック／症状検索／AI・人への相談）もここ |
 | `docs/config.js` | 運営側が編集する設定（サポート窓口・寄付の受け口） |
 | `docs/plan.js` | 逆算プランナー（開始日から週割りを出し、AIへの依頼文を生成） |

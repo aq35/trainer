@@ -61,4 +61,4 @@
 
 - [環境構築ナビ](setup.html ':ignore target=_blank')（実際の手順）
 - [ターミナル入門](step0-terminal.md)（黒い画面が初めての人向け）
-- [git の基本](step2-git.md)
+- [git の基本](git.html ':ignore target=_blank')

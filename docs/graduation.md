@@ -18,7 +18,7 @@
 
 ## 2. 記録が残せる
 
-- [ ] `git status` / `add` / `commit` / `log` / `restore` の意味が言える（[git の基本](step2-git.md)）
+- [ ] `git status` / `add` / `commit` / `log` / `restore` の意味が言える（[git の基本](git.html ':ignore target=_blank')）
 - [ ] 壊しても、動いていた地点に戻せる
 - [ ] GitHub に上げられる（[GitHubに上げる](github.html ':ignore target=_blank')）
 - [ ] ブランチを作って、本線に取り込める（[ブランチと安全な進め方](branch.html ':ignore target=_blank')）

@@ -67,97 +67,11 @@
     return head + (s.note ? '<br><span class="fd">' + esc(s.note) + '</span>' : '');
   }
 
-  // 進捗をGitHubのIssueとして報告する。ログイン済みなら、開いて送信するだけで済む。
-  function repoName() {
-    var s = window.TRAINER_SUPPORT || {};
-    if (s.repo) return s.repo;
-    var m = /github\.com\/([^\/]+\/[^\/]+)/.exec(s.url || '');
-    return m ? m[1] : '';
-  }
-  function issueUrl(title, body) {
-    var r = repoName();
-    if (!r) return '';
-    return 'https://github.com/' + r + '/issues/new?labels=' + encodeURIComponent('進捗') +
-           '&title=' + encodeURIComponent(title) + '&body=' + encodeURIComponent(body);
-  }
   function stamp() {
     var d = new Date(), z = function (n) { return (n < 10 ? '0' : '') + n; };
     return d.getFullYear() + '-' + z(d.getMonth() + 1) + '-' + z(d.getDate()) + ' ' + z(d.getHours()) + ':' + z(d.getMinutes());
   }
   function naviName() { return document.title.split('|')[0].trim(); }
-
-  function finReport(s) {
-    var name = naviName();
-    var text = [
-      name + ' を終えました。',
-      '',
-      '・日時: ' + stamp(),
-      '・できるようになったこと: ' + strip(s.gained || ''),
-      '',
-      '（つまずいたところ・感想があれば、ここに書き足してください）'
-    ].join('\n');
-
-    // GitHub の相談用リポジトリが設定してあれば、Issue を開く形にする。
-    // 設定が無い場合（LINE・チャットなど）は、文章をコピーして貼ってもらう。
-    var u = issueUrl('[進捗] ' + name + ' を終えました', text);
-    var body = u
-      ? '<div style="margin-top:10px"><a class="act ok" target="_blank" rel="noopener" href="' + u + '">' +
-        '完了を報告する</a></div>'
-      : '<div style="margin-top:10px"><button type="button" class="act ok" data-copy="' + esc(text) + '">' +
-        '完了の連絡をコピー</button></div>';
-    var lead = u
-      ? '<span class="fd">GitHub にログインしていれば、内容が入った状態で開きます。<b>あとは送信ボタンを押すだけ</b>です。</span>'
-      : '<span class="fd">コピーして、そのまま担当者に送ってください。<br>' + support() + '</span>';
-    return '<div class="report"><b>担当者に、終わったことを知らせましょう</b><br>' + lead + body + '</div>';
-  }
-
-  // 参加申請。受講者のGitHubユーザー名を運営に送ってもらう。
-  // ログイン中のユーザー名はこちらからは読めないので、本人に入力してもらう。
-  function inviteBlock() {
-    var c = window.TRAINER_SUPPORT || {};
-    if (!c.inviteEmail) {
-      return '<div class="note"><b>申請先がまだ決まっていません。</b>' +
-             'この研修を案内してくれた人に、自分の GitHub ユーザー名を直接伝えてください。</div>';
-    }
-    return '<div class="invite">' +
-      '<label for="ghuser"><b>あなたの GitHub ユーザー名</b></label>' +
-      '<div class="fd">GitHub の右上のアイコンを押すと、いちばん上に表示されています。</div>' +
-      '<input id="ghuser" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="例: taro-yamada">' +
-      '<div class="btns" style="margin-top:12px">' +
-      '<button type="button" class="act ok" data-invite="1">メールで申請する</button>' +
-      '<button type="button" class="act ng" data-invitecopy="1">文章をコピーする</button>' +
-      '</div>' +
-      '<div class="fd" style="margin-top:8px">メールが開かないときは「文章をコピーする」を押して、' +
-      'いつもお使いの方法（チャットなど）で送ってください。</div></div>';
-  }
-
-  function inviteText(user) {
-    return {
-      subject: '[研修] 参加申請',
-      body: [
-        '研修に参加します。相談用リポジトリへの招待をお願いします。',
-        '',
-        '・GitHub ユーザー名: ' + user,
-        '・申請日時: ' + stamp(),
-        ''
-      ].join('\n')
-    };
-  }
-
-  function doInvite(copyOnly) {
-    var el = document.getElementById('ghuser');
-    var user = el ? el.value.trim() : '';
-    if (!user) {
-      toast('GitHub のユーザー名を入れてください');
-      if (el) el.focus();
-      return;
-    }
-    var c = window.TRAINER_SUPPORT || {}, t = inviteText(user);
-    if (copyOnly) { copy('宛先: ' + (c.inviteEmail || '（担当者）') + '\n件名: ' + t.subject + '\n\n' + t.body,
-                         'コピーしました。チャットなどで送ってください。'); return; }
-    window.location.href = 'mailto:' + String(c.inviteEmail).trim() +
-      '?subject=' + encodeURIComponent(t.subject) + '&body=' + encodeURIComponent(t.body);
-  }
 
   // 枠の中身が「ターミナルに打つ命令」かどうか。同じ枠を、貼り付ける文章にも使っている。
   var TERM = /^\s*(git|gh|code|npm|npx|node|python3?|pip3?|brew|winget|mkdir|touch|cd|ls|dir|echo|curl|New-Item|xcode-select)\b/;
@@ -304,7 +218,6 @@
         (s.readNext ? '<a class="readnext" href="index.html#/' + s.readNext.md + '" target="_blank" rel="noopener">' +
           '<span class="rc">☕</span><span><b>ひと休みに読む: ' + s.readNext.label + '</b>' +
           '<span class="rs">' + s.readNext.sub + '（読むだけ・3分。飛ばしても先に進めます）</span></span></a>' : '') +
-        finReport(s) +
         '<div class="ask"><p>次にやること</p><div class="btns">' +
         '<a class="act ok" style="text-decoration:none;text-align:center" href="' + s.nextHref + '">' + s.nextLabel + '</a>' +
         '</div></div>' +
@@ -324,7 +237,6 @@
     var list = pick(s.todo);
     if (list) { h += '<ol class="todo">'; for (var i = 0; i < list.length; i++) h += '<li>' + list[i] + '</li>'; h += '</ol>'; }
 
-    if (s.invite)  h += inviteBlock();
     if (s.visual)  h += fig(s.visual, s.visualAlt);
     if (s.visual2) h += fig(s.visual2, s.visual2Alt);
 
@@ -515,8 +427,7 @@
       st.i = n; save(); render(); return;
     }
     if (t.dataset.help) { showHelp(); return; }
-    if (t.dataset.invite) { doInvite(false); return; }
-    if (t.dataset.invitecopy) { doInvite(true); return; }
+
     if (t.dataset.aiprompt) { aiPrompt(); return; }
     if (t.dataset.solved) {
       var box = document.getElementById('help'); if (box) box.innerHTML = '';

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>git の基本 | エンジニア育成トレーナー</title>
+<link rel="stylesheet" href="navi.css?v=13">
+<script src="config.js?v=13"></script>
+  <link rel="canonical" href="https://aq35.github.io/trainer/git.html">
+</head>
+<body>
+
+<header>
+  <div class="hd">
+    <h1>git の基本</h1>
+    <div class="spacer"></div>
+    <a class="home" href="index.html">目次へ</a>
+    <div class="counter" id="counter"></div>
+  </div>
+  <div class="bar"><i id="bar"></i></div>
+</header>
+
+<div class="wrap"><div id="view"></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+window.NAVI = {
+key:'trainer-git-v1',
+greeting:'<b>覚えるコマンドは5つだけ</b>です。しかも Windows と Mac で同じ。<br>全部を理解してから進む必要はありません。<b>まず1回やってみる</b>順番で進めます。',
+
+common:[
+  { when:'cmd', q:'黒い画面（ターミナル）の出し方が分からない',
+    a:'VS Code のメニュー「表示」→「ターミナル」で、画面の下半分に出てきます。' },
+  { when:'cmd', q:'command not found / not recognized と出た',
+    a:'ほぼ打ち間違いです。スペルと、単語の間の<b>半角スペース</b>を見直してください。それでも出るときは、VS Code を閉じて開き直すと直ることがあります。' },
+  { q:'英語がたくさん出てきて不安',
+    a:'<b>読まなくて大丈夫です。</b>そのままコピーして Claude に貼り、「これはどういう意味？」と聞いてください。これが一番早く、一番身につきます。' }
+],
+
+steps:[
+{
+  icon:'icon-git.svg', phase:'1. なぜ使うのか', readonly:true,
+  title:'git は、ゲームのセーブポイントです',
+  why:'これだけです。<b>好きなところで保存して、好きなところに戻れます。</b>',
+  visual:'media/why-git.svg',
+  visualAlt:'ファイル名で管理する場合とgitで管理する場合の比較',
+  expect:'理屈はこの後わかります。<b>まず1回やってみましょう。</b>',
+  note:'この道具がどうやって生まれたのかは<a href="index.html#/why-git" target="_blank" rel="noopener">寄り道の読み物</a>にまとめてあります。<b>今は読まなくて大丈夫</b>です。',
+  ask:'「セーブポイント」というイメージ、つかめましたか？',
+  tb:[
+    { q:'ファイル名を変えて保存するのと何が違う？',
+      a:'「最終版_v2_修正済み.txt」が増えていく方式と違い、<b>1つのファイルのまま、いつでも過去に戻れます</b>。しかも「何をしたか」の説明が全部残ります。' },
+    { q:'一人で使う意味はある？',
+      a:'あります。<b>壊しても戻せる</b>ので、思いきって試せるようになります。この安心感が、上達の速さを変えます。' }
+  ]
+},
+{
+  icon:'icon-vscode.svg', phase:'2. 準備',
+  title:'最初の1回だけ、自分の名前を教えます',
+  why:'git は「誰が記録したか」を残します。名前とメールを一度だけ登録します。',
+  todo:{
+    common:['環境構築で作った <b>practice</b> フォルダを VS Code で開きます（「ファイル」→「フォルダーを開く」）',
+            'メニュー「表示」→「ターミナル」を開きます',
+            '下の3行を、1行ずつ打って Enter を押します（名前とメールは自分のものに置き換えます）']
+  },
+  cmdMulti:{
+    common:['git config --global user.name "あなたの名前"',
+            'git config --global user.email "あなたのメールアドレス"',
+            'git config --global init.defaultBranch main']
+  },
+  expect:'何も表示されなければ成功です。<b>「何も出ない＝うまくいった」</b>がターミナルの作法です。',
+  note:'3行目は「最初の枝の名前を main にそろえる」指定です。書いておくと、この先の説明と画面が一致します。<br>ここで書いた名前とメールは<b>記録に残り、GitHubに上げると他の人にも見えます。</b>会社のルールがあればそれに従ってください。後からいつでも変更できます。',
+  ask:'3行とも打てましたか？',
+  tb:[
+    { q:'practice フォルダが見つからない',
+      a:'デスクトップにあります。VS Code の「ファイル」→「最近使用した項目」からも開けます。無ければ、環境構築ナビの「作業用のフォルダを開きます」に戻ってください。' },
+    { q:'本名を入れるのが不安',
+      a:'ニックネームでも構いません。ただし<b>チームでは本名が求められることが多い</b>です。迷ったら担当者に確認してください。後から変えられます。' },
+    { q:'引用符（"）はどうする？',
+      a:'そのまま残してください。名前に空白が入っても1つのまとまりとして扱うための記号です。' }
+  ]
+},
+{
+  icon:'icon-git.svg', phase:'2. 準備',
+  title:'このフォルダで、記録を始める宣言をします',
+  why:'「ここは履歴を残すフォルダです」と git に伝えます。<b>最初の1回だけ</b>です。',
+  todo:{
+    common:['ターミナルに、下のコマンドを打ちます']
+  },
+  cmd:'git init',
+  cmdlabel:'記録を始めます',
+  expect:'最後の行に <code>Initialized empty Git repository ...</code> と出れば成功です。',
+  note:'「hint:」で始まる長い英語が出ることがありますが、<b>エラーではありません。</b>案内文なので、無視して進んで構いません。',
+  ask:'Initialized ... と表示されましたか？',
+  tb:[
+    { q:'長い英語がたくさん出てきた',
+      a:'正常です。「最初の枝の名前を変えられますよ」という案内が出ることがあります。<b>最後の行</b>だけ見てください。' },
+    { q:'すでに存在する、と言われた',
+      a:'前に一度実行しています。<b>そのまま次に進んで問題ありません。</b>' }
+  ]
+},
+{
+  icon:'icon-vscode.svg', phase:'3. 1回やってみる',
+  title:'ファイルを1つ作って、保存します',
+  why:'記録するものを用意します。中身は何でも構いません。',
+  todo:{
+    common:['VS Code の左側のファイル一覧で<b>右クリック</b>→「新しいファイル」',
+            '名前を <b>hello.txt</b> にします',
+            '中に好きな文章を1行書きます',
+            '<b>必ず保存します</b>（<span class="k">Ctrl</span>+<span class="k">S</span> / <span class="k">Cmd</span>+<span class="k">S</span>）']
+  },
+  expect:'タブの「●」が消えていれば、保存できています。',
+  note:'<b>VS Code は自動で保存しません。</b>タブに「●」が付いていたら未保存の印です。<b>保存し忘れは、この先いちばん多いつまずきです。</b>',
+  ask:'hello.txt を作って保存できましたか？',
+  tb:[
+    { q:'「新しいファイル」が出てこない',
+      a:'ファイル名のない<b>余白</b>で右クリックしてください。フォルダ名の上だと別のメニューが出ます。' },
+    { q:'「●」が消えない',
+      a:'保存されていません。ファイルの中をクリックしてから、もう一度 <span class="k">Ctrl</span>+<span class="k">S</span> / <span class="k">Cmd</span>+<span class="k">S</span> を押してください。' }
+  ]
+},
+{
+  icon:'icon-git.svg', phase:'3. 1回やってみる',
+  title:'1つ目のセーブポイントを作ります',
+  why:'ここが git の中心です。<b>2行打つだけ</b>で記録が残ります。',
+  todo:{
+    common:['ターミナルに戻ります',
+            '下の2行を、順に打って Enter を押します']
+  },
+  cmdMulti:{
+    common:['git add hello.txt',
+            'git commit -m "最初のファイルを作った"']
+  },
+  expect:'何行か英語が表示されたら成功です。<b>あなたは今、1つ目のセーブポイントを作りました。</b>',
+  note:'意味はまだ分からなくて大丈夫です。<b>次の画面で説明します。</b>',
+  ask:'エラーが出ずに、英語が表示されましたか？',
+  tb:[
+    { q:'Please tell me who you are と出た',
+      a:'名前の登録が終わっていません。2つ前のステップに戻って、<code>git config</code> の3行を打ってください。' },
+    { q:'nothing to commit と出た',
+      a:'保存できていない可能性が高いです。VS Code に戻って保存してから、もう一度 <code>git add hello.txt</code> からやり直してください。' },
+    { q:'-m "..." って何？',
+      a:'そのセーブポイントの<b>名前</b>です。後から履歴を見たときに「何をした記録か」が分かるようにするメモだと思ってください。' }
+  ]
+},
+{
+  icon:'icon-git.svg', phase:'4. いま何が起きたのか', readonly:true,
+  title:'2行の意味は、この図のとおりです',
+  why:'さっき打った2行は、この図の矢印そのものです。',
+  visual:'media/git-three-places.svg',
+  visualAlt:'作業場所・ステージ・履歴の3つの場所',
+  expect:'<b>git add</b> … 記録したいファイルを選んで台に載せる<br><b>git commit</b> … 載せたものをまとめて記録する',
+  note:'「なぜ2段階なのか」と思うかもしれません。10個ファイルを直しても、<b>今回記録したいのは3個だけ</b>ということがよくあるからです。<b>写真に写る人を選んでからシャッターを切る</b>、と同じです。',
+  ask:'add と commit の役割の違い、分かりましたか？',
+  tb:[
+    { q:'やっぱり2段階が面倒に感じる',
+      a:'慣れると、これが<b>「何を記録しようとしているか」を意識する時間</b>になります。今は形だけ覚えておけば十分です。' },
+    { q:'全部まとめて add したい',
+      a:'ファイル名のかわりに <code>.</code>（ドット）を打つと、変更した全ファイルが対象になります（<code>git add .</code>）。慣れるまでは1つずつ指定するのがおすすめです。' }
+  ]
+},
+{
+  icon:'icon-terminal.svg', phase:'5. もう一周する',
+  title:'今の状況を、git に聞いてみます',
+  why:'1回だと覚えません。もう一周します。<b>迷ったら status</b>、が合言葉です。',
+  todo:{
+    common:['<b>hello.txt</b> に、何か1行書き足して<b>保存</b>します',
+            'ターミナルで下のコマンドを打ちます',
+            '英語がたくさん出ますが、<b>見るのは2か所だけ</b>です（下の図）']
+  },
+  cmd:'git status',
+  cmdlabel:'今どうなっているかを聞きます',
+  visual:'media/git-status-read.svg',
+  visualAlt:'git status の読み方',
+  expect:'<b>赤い色</b>で hello.txt が出ています。「まだ台に載っていない」という意味です。',
+  note:'<code>git status</code> は<b>いちばん使うコマンド</b>です。分からなくなったら、まずこれを打ってください。',
+  ask:'赤い文字で hello.txt が表示されましたか？',
+  tb:[
+    { q:'nothing to commit と出た',
+      a:'書き足したあとに<b>保存</b>していない可能性があります。VS Code で保存してから、もう一度打ってください。' },
+    { q:'色が付いていない',
+      a:'環境によっては白黒です。<b>問題ありません。</b>ファイル名が並んでいれば同じ意味です。' }
+  ]
+},
+{
+  icon:'icon-git.svg', phase:'5. もう一周する',
+  title:'2つ目を記録して、履歴を見ます',
+  why:'同じ2行を、もう一度打ちます。<b>体に入れるのが目的</b>です。',
+  todo:{
+    common:['下の1行目・2行目を打って記録します',
+            '3行目を打って、履歴を見ます']
+  },
+  cmdMulti:{
+    common:['git add hello.txt',
+            'git commit -m "説明を1行足した"',
+            'git log --oneline']
+  },
+  expect:'<b>セーブポイントが2つ並んで見えれば成功です。</b>これがあなたの作業の記録です。',
+  note:'長い履歴のときは、<span class="k">Q</span> キーを押すと表示が終わります。（画面の下に <code>:</code> だけが出て止まったときも同じです）',
+  ask:'2行の履歴が表示されましたか？',
+  tb:[
+    { q:'画面が止まって、何も打てなくなった',
+      a:'履歴の表示中です。<b><span class="k">Q</span> キー</b>を押すと戻ります。' },
+    { q:'1行しか出ない',
+      a:'2回目の commit が終わっていません。<code>git status</code> で、記録されていない変更が残っていないか確認してください。' }
+  ]
+},
+{
+  icon:'icon-key.svg', phase:'6. 壊して、戻す',
+  title:'わざと壊して、戻します',
+  why:'<b>ここが一番大事な体験です。</b>これができると分かれば、怖くなくなります。',
+  todo:{
+    common:['<b>hello.txt</b> を開いて、<b>中身を全部消して保存</b>します（普段なら青ざめる場面です）',
+            '下のコマンドを打ちます',
+            'VS Code の画面を見てください']
+  },
+  cmd:'git restore hello.txt',
+  cmdlabel:'直前の記録の状態に戻します',
+  visual:'media/git-restore.svg',
+  visualAlt:'壊したファイルをrestoreで戻す',
+  expect:'<b>消したはずの文章が戻っています。</b>',
+  note:'<b>これが git を使う一番の理由です。</b>commit してあれば、何をやらかしても戻せます。だから安心して試せます。<br>逆に言うと、<b>commit していないものは戻せません。</b>「区切りがついたら commit」を癖にしてください。',
+  ask:'消した内容が戻ってきましたか？',
+  tb:[
+    { q:'戻らない',
+      a:'ファイル名が違う可能性があります。<code>git status</code> で、変更されているファイル名を確認してから、その名前で <code>git restore</code> を実行してください。' },
+    { q:'怖くて消せない',
+      a:'大丈夫です。<b>commit してあるので必ず戻せます。</b>ここで一度体験しておくと、この先ずっと安心して作業できます。' },
+    { q:'commit していないものは本当に戻せない？',
+      a:'戻せません。だからこそ<b>30分に1回くらいの気持ちで commit</b> してください。多すぎて困ることはありません。' }
+  ]
+},
+{
+  icon:'icon-terminal.svg', phase:'7. まとめ', readonly:true,
+  title:'覚えるのは、この5つだけです',
+  why:'Windows も Mac も同じです。<b>この5つで、しばらく困りません。</b>',
+  todo:{
+    common:['<code>git status</code> … 今どうなってる？',
+            '<code>git add ファイル名</code> … 記録するものを選ぶ',
+            '<code>git commit -m "説明"</code> … 記録する',
+            '<code>git log --oneline</code> … 履歴を見る',
+            '<code>git restore ファイル名</code> … 直前の記録に戻す']
+  },
+  expect:'全部覚えていなくて構いません。<b>忘れたら、この画面に戻ってくればいい</b>だけです。',
+  note:'同じことが<b>VS Code のボタンでもできます。</b>「ソース管理」の画面を開く＝status、ファイル横の「＋」＝add、メッセージを書いて「コミット」＝commit。<b>どちらを使っても結果は同じ</b>です。',
+  ask:'5つのコマンドを確認しましたか？',
+  tb:[
+    { q:'覚えられる気がしない',
+      a:'覚えなくて大丈夫です。<b>使っているうちに勝手に覚えます。</b>それまでは<a href="drill.html" target="_blank" rel="noopener">コマンド練習</a>で反復するか、この画面を開いてください。' },
+    { q:'ボタンとコマンド、どっちを使うべき？',
+      a:'どちらでも構いません。<b>慣れるまではボタン、慣れたらターミナル</b>という人が多いです。ただし<b>コマンドは説明しやすい</b>ので、人に聞くときはコマンドのほうが早いです。' }
+  ]
+},
+{
+  icon:'icon-ai.svg', phase:'7. まとめ',
+  title:'最後に、AIに履歴を読ませてみます',
+  why:'<b>これがこの先の開発の進め方</b>の入り口です。1回だけ試します。',
+  todo:{
+    common:['Claude Code のパネルを開きます（ブラウザ版でも構いません）',
+            '下の文章を送ります']
+  },
+  cmd:'今このフォルダで git log を見て、私がこれまで何をしたか説明してください。',
+  cmdlabel:'これをコピーして、AIに送ります',
+  expect:'自分の作業履歴を、AIが読んで説明してくれます。',
+  note:'<b>記録を残す意味が、ここで1つ増えます。</b>履歴は、あなただけでなく<b>AIにとっても読める資料</b>です。丁寧に commit しておくほど、あとで効いてきます。',
+  ask:'AIから説明が返ってきましたか？',
+  tb:[
+    { q:'まだ Claude Code を入れていない',
+      a:'<b>飛ばして構いません。</b>「できました」を押して次に進んでください。あとで戻ってきても大丈夫です。' },
+    { q:'履歴が読めないと言われた',
+      a:'practice フォルダを開いた状態になっているか確認してください。別のフォルダを開いていると、履歴が見つかりません。' }
+  ]
+},
+{
+  kind:'fin',
+  emoji:'📝',
+  title:'git の基本が身につきました',
+  lead:'記録して、確認して、戻す。<br><b>これが開発のいちばん下の土台</b>です。この上に全部が乗ります。',
+  gained:'名前を登録できる／記録を始められる／add と commit で記録できる／status で状況を確認できる／履歴を見られる／壊しても restore で戻せる',
+  note:'困ったときの合言葉は<b>「迷ったら git status」</b>。そして<b>区切りがついたら commit</b>。この2つだけ覚えておいてください。',
+  readNext:{ md:'why-git', label:'なぜ git が生まれたのか',
+             sub:'2005年の事件と、自虐ジョークだった名前の由来' },
+  nextHref:'github.html',
+  nextLabel:'次: GitHubに上げる'
+}
+]};
+</script>
+<script src="navi.js?v=13"></script>
+<script src="credit.js?v=13"></script>
+</body>
+</html>
