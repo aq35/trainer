@@ -34,6 +34,7 @@
     // ここから「動くものを、良くする」
     { key: 'trainer-perf-v1',  total: 9, label: '動くけど遅い、を直す',           href: 'perf.html',  icon: 'icon-terminal.svg' },
     { key: 'trainer-tools-v1', total: 8, label: '使い捨てをやめて、道具にする',   href: 'tools.html', icon: 'icon-vscode.svg' },
+    { key: 'trainer-chart-v1', total: 8, label: '数字を、目に見えるようにする',   href: 'chart.html', icon: 'icon-vscode.svg' },
     { key: 'trainer-db-v1',    total: 7, label: '保存先を変えてみる（任意）',     href: 'db.html',    icon: 'icon-folder.svg',
       read: { md: 'graduation', label: '案件に入る前の最終チェック', icon: 'icon-key.svg',
               badge: '🎓', undone: '仕上げ', done: '確認した' } }
