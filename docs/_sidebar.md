@@ -16,6 +16,9 @@
   - [9. 🧑‍💻 仕事の一周](work.html ':ignore target=_blank')
   - [10. 🚀 自分のテーマで回す](theme.html ':ignore target=_blank')
   - [　🎓 案件に入る前の最終チェック](graduation.md)
+- 進む先を考える
+  - [🧭 どこへ行く？ 職種と土台](path.md)
+  - [🗓️ 案件まで1か月。何をする？](plan.md)
 - いつでも
   - [🔧 自分のリポジトリに自動チェック](kit.md)
   - [⌨️ コマンド練習](drill.html ':ignore target=_blank')

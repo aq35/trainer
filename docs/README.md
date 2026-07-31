@@ -69,6 +69,15 @@
 
 - <img class="ti" width="26" height="26" src="media/icon-github.svg" alt="">[aq35/trainer-practice](https://github.com/aq35/trainer-practice) — インストール不要。**PRを出すと自動で採点されます**
 
+## 行き先を考える
+
+<div class="note">
+<b>「バックエンドをやりたいので、まず Go と DB から」</b>——この順番でつまずく人がとても多いです。<b>職種が違っても、土台の8割は同じもの</b>を使っています。
+</div>
+
+- <img class="ti" width="26" height="26" src="media/icon-terminal.svg" alt="">[🧭 どこへ行く？ 職種と、共通の土台](path.md) — フロント/バック/データ/インフラ/QAの違いと、**データアナリスト志望の人向けの話**
+- <img class="ti" width="26" height="26" src="media/icon-ai.svg" alt="">[🗓️ 案件まで1か月。何をする？](plan.md) — 開始日と使える時間を入れると、**AIに渡す学習計画の依頼文**ができます
+
 ## 全部終わったら
 
 - <img class="ti" width="26" height="26" src="media/icon-key.svg" alt="">[🎓 案件に入る前の最終チェック](graduation.md) — できているかを自分で確かめられます。**案件に入ると何が変わるか**もここにまとめてあります

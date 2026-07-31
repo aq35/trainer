@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="380" viewBox="0 0 720 380" role="img" aria-label="どの職種に進んでも、土台の8割は共通しているという図">
+  <rect width="720" height="380" fill="#ffffff"/>
+  <text x="360" y="26" font-family="sans-serif" font-size="14" font-weight="700" fill="#5b6472" text-anchor="middle">職種が違っても、土台は同じものを使っています</text>
+
+  <!-- 枝（職種） -->
+  <g font-family="sans-serif">
+    <rect x="24" y="52" width="126" height="94" rx="10" fill="#eef3ff" stroke="#c9dbff" stroke-width="1.5"/>
+    <text x="87" y="78" font-size="20" text-anchor="middle">🖥️</text>
+    <text x="87" y="100" font-size="12.5" font-weight="700" fill="#2f6fed" text-anchor="middle">フロント</text>
+    <text x="87" y="119" font-size="10.5" fill="#5b6472" text-anchor="middle">画面を作る</text>
+    <text x="87" y="135" font-size="10" fill="#9aa3b2" text-anchor="middle">+ React / CSS</text>
+
+    <rect x="162" y="52" width="126" height="94" rx="10" fill="#eefaf1" stroke="#b7e3c6" stroke-width="1.5"/>
+    <text x="225" y="78" font-size="20" text-anchor="middle">⚙️</text>
+    <text x="225" y="100" font-size="12.5" font-weight="700" fill="#2b7d52" text-anchor="middle">バックエンド</text>
+    <text x="225" y="119" font-size="10.5" fill="#5b6472" text-anchor="middle">裏側を作る</text>
+    <text x="225" y="135" font-size="10" fill="#9aa3b2" text-anchor="middle">+ Go / DB</text>
+
+    <rect x="300" y="52" width="126" height="94" rx="10" fill="#f6f2ff" stroke="#ddd0f5" stroke-width="1.5"/>
+    <text x="363" y="78" font-size="20" text-anchor="middle">📊</text>
+    <text x="363" y="100" font-size="12.5" font-weight="700" fill="#7c3aed" text-anchor="middle">データ</text>
+    <text x="363" y="119" font-size="10.5" fill="#5b6472" text-anchor="middle">数字から答えを出す</text>
+    <text x="363" y="135" font-size="10" fill="#9aa3b2" text-anchor="middle">+ SQL / 可視化</text>
+
+    <rect x="438" y="52" width="126" height="94" rx="10" fill="#fff8e9" stroke="#f0d9a8" stroke-width="1.5"/>
+    <text x="501" y="78" font-size="20" text-anchor="middle">🏗️</text>
+    <text x="501" y="100" font-size="12.5" font-weight="700" fill="#8a6412" text-anchor="middle">インフラ</text>
+    <text x="501" y="119" font-size="10.5" fill="#5b6472" text-anchor="middle">動く場所を用意する</text>
+    <text x="501" y="135" font-size="10" fill="#9aa3b2" text-anchor="middle">+ クラウド</text>
+
+    <rect x="576" y="52" width="120" height="94" rx="10" fill="#fff5f7" stroke="#f6cdd8" stroke-width="1.5"/>
+    <text x="636" y="78" font-size="20" text-anchor="middle">🔍</text>
+    <text x="636" y="100" font-size="12.5" font-weight="700" fill="#be3455" text-anchor="middle">品質・QA</text>
+    <text x="636" y="119" font-size="10.5" fill="#5b6472" text-anchor="middle">壊れ方を見つける</text>
+    <text x="636" y="135" font-size="10" fill="#9aa3b2" text-anchor="middle">+ テスト設計</text>
+  </g>
+
+  <!-- 枝から土台への線 -->
+  <g stroke="#c8cfdb" stroke-width="2" stroke-dasharray="4 4">
+    <path d="M87 146 L87 178"/><path d="M225 146 L225 178"/><path d="M363 146 L363 178"/>
+    <path d="M501 146 L501 178"/><path d="M636 146 L636 178"/>
+  </g>
+
+  <!-- 土台 -->
+  <rect x="24" y="182" width="672" height="120" rx="12" fill="#f7f9fc" stroke="#2f6fed" stroke-width="2"/>
+  <text x="360" y="208" font-family="sans-serif" font-size="14" font-weight="700" fill="#2f6fed" text-anchor="middle">共通の土台 —— この研修でやること</text>
+
+  <g font-family="sans-serif" font-size="11.5" fill="#2b3440">
+    <rect x="44" y="222" width="150" height="26" rx="6" fill="#ffffff" stroke="#dde4f0"/>
+    <text x="119" y="239" text-anchor="middle">記録を残す（git）</text>
+    <rect x="204" y="222" width="150" height="26" rx="6" fill="#ffffff" stroke="#dde4f0"/>
+    <text x="279" y="239" text-anchor="middle">他人のコードを読む</text>
+    <rect x="364" y="222" width="150" height="26" rx="6" fill="#ffffff" stroke="#dde4f0"/>
+    <text x="439" y="239" text-anchor="middle">差分を読んで決める</text>
+    <rect x="524" y="222" width="152" height="26" rx="6" fill="#ffffff" stroke="#dde4f0"/>
+    <text x="600" y="239" text-anchor="middle">レビューを受ける</text>
+
+    <rect x="44" y="256" width="150" height="26" rx="6" fill="#ffffff" stroke="#dde4f0"/>
+    <text x="119" y="273" text-anchor="middle">原因を切り分ける</text>
+    <rect x="204" y="256" width="150" height="26" rx="6" fill="#ffffff" stroke="#dde4f0"/>
+    <text x="279" y="273" text-anchor="middle">あいまいな依頼を聞く</text>
+    <rect x="364" y="256" width="150" height="26" rx="6" fill="#ffffff" stroke="#dde4f0"/>
+    <text x="439" y="273" text-anchor="middle">AIと組んで進める</text>
+    <rect x="524" y="256" width="152" height="26" rx="6" fill="#ffffff" stroke="#dde4f0"/>
+    <text x="600" y="273" text-anchor="middle">最後まで届ける</text>
+  </g>
+
+  <text x="360" y="330" font-family="sans-serif" font-size="13" font-weight="700" fill="#2b7d52" text-anchor="middle">土台が8割。職種ごとの上乗せは2割です</text>
+  <text x="360" y="352" font-family="sans-serif" font-size="11.5" fill="#6b7482" text-anchor="middle">上乗せの部分は、AIに手伝ってもらいながら、案件に入ってからでも身につきます</text>
+  <text x="360" y="370" font-family="sans-serif" font-size="11.5" fill="#be3455" text-anchor="middle">土台が無いまま上乗せから始めると、教わっても身につきません</text>
+</svg>
