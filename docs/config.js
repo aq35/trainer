@@ -15,7 +15,7 @@
  *   Slack   : チャンネルを開いて「リンクをコピー」
  *   Teams   : チャンネルの「…」→「チャネルへのリンクを取得」
  *   メール   : 'mailto:support@example.com'
- *   GitHub  : 'https://github.com/aq35/trainer/issues/new'
+ *   GitHub  : 'https://github.com/aq35/trainer-support/issues/new'（非公開リポジトリを推奨）
  */
 window.TRAINER_SUPPORT = {
   /* 参加申請のあて先メールアドレス。
@@ -25,8 +25,8 @@ window.TRAINER_SUPPORT = {
   inviteEmail: 'nagaresteller@gmail.com',
 
   name: '研修サポート窓口',
-  channel: 'GitHub の Issue に書いてください',
-  url: 'https://github.com/aq35/trainer/issues/new',
+  channel: '研修グループの GitHub Issue に書いてください',
+  url: 'https://github.com/aq35/trainer-support/issues/new',
   // 補足（任意）。連絡先の下に小さく表示されます。
-  note: 'GitHub のアカウントをまだ作っていない場合は、この研修を案内してくれた人に直接連絡してください。'
+  note: 'ページが開けない（404）ときは、まだ研修グループに招待されていません。GitHub のアカウントがまだの場合も含め、この研修を案内してくれた人に直接連絡してください。'
 };

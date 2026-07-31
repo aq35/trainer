@@ -29,10 +29,10 @@
 
 そこで、相談と進捗の受け口は**別の非公開リポジトリ**に分けます。
 
-1. 非公開リポジトリを作る（例: `aq35/trainer-support`）
+1. 非公開リポジトリを作る（**作成済み: `aq35/trainer-support`**）
 2. この教材リポジトリ側は `Settings → Features → Issues` の**チェックを外す**
-3. `docs/config.js` の `url` を、非公開リポジトリの `issues/new` に向ける
-4. `docs/config.js` の `inviteEmail` に、参加申請を受け取るメールアドレスを書く
+3. `docs/config.js` の `url` を、非公開リポジトリの `issues/new` に向ける（**設定済み**）
+4. `docs/config.js` の `inviteEmail` に、参加申請を受け取るメールアドレスを書く（**設定済み**）
 
 受講者は GitHubナビの「研修グループへの参加を申請します」で、自分の GitHub ユーザー名を送ってきます。届いたら、非公開リポジトリの `Settings → Collaborators → Add people` でそのユーザー名を招待してください。**無料プランでも、非公開リポジトリのコラボレーターは人数制限なく追加できます。**
 
