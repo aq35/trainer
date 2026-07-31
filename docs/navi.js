@@ -472,7 +472,7 @@
 
   function report() {
     var s = STEPS[st.i];
-    var min = Math.floor((Date.now() - stampStep()) / 60000);
+    var min = Math.floor((Date.now() - touchStep()) / 60000);
     var t = '【' + (document.title.split('|')[0].trim()) + 'でつまずきました】\n' +
             (needsOs() ? '・パソコン: ' + osName() + '\n' : '') +
             '・止まった場所: ' + st.i + 'ステップ目「' + s.title + '」\n' +
