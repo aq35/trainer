@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="290" viewBox="0 0 720 290" role="img" aria-label="1つの作業のうちコードを書く時間は一部でしかない。調査・テスト・レビュー・手戻り・確認が大半を占める">
+  <rect width="720" height="290" fill="#ffffff"/>
+
+  <text x="24" y="30" font-family="sans-serif" font-size="13" font-weight="700" fill="#8892a0">見積もるときに、頭に浮かんでいるもの</text>
+  <rect x="24" y="42" width="180" height="34" rx="6" fill="#2f6fed"/>
+  <text x="114" y="64" font-family="sans-serif" font-size="12.5" fill="#ffffff" text-anchor="middle">コードを書く</text>
+  <text x="216" y="64" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#c0392b">「2時間ですね」</text>
+
+  <text x="24" y="118" font-family="sans-serif" font-size="13" font-weight="700" fill="#2f6fed">実際に発生するもの</text>
+
+  <g font-family="sans-serif" font-size="11">
+    <rect x="24" y="132" width="120" height="34" rx="6" fill="#9fb4d8"/>
+    <text x="84" y="154" fill="#1b2a44" text-anchor="middle">調べる</text>
+
+    <rect x="148" y="132" width="180" height="34" rx="6" fill="#2f6fed"/>
+    <text x="238" y="154" fill="#ffffff" text-anchor="middle">コードを書く</text>
+
+    <rect x="332" y="132" width="104" height="34" rx="6" fill="#9fb4d8"/>
+    <text x="384" y="154" fill="#1b2a44" text-anchor="middle">テストを書く</text>
+
+    <rect x="440" y="132" width="128" height="34" rx="6" fill="#c3cede"/>
+    <text x="504" y="154" fill="#1b2a44" text-anchor="middle">レビュー待ち・対応</text>
+
+    <rect x="572" y="132" width="60" height="34" rx="6" fill="#c3cede"/>
+    <text x="602" y="154" fill="#1b2a44" text-anchor="middle">手戻り</text>
+
+    <rect x="636" y="132" width="60" height="34" rx="6" fill="#c3cede"/>
+    <text x="666" y="154" fill="#1b2a44" text-anchor="middle">確認</text>
+  </g>
+
+  <path d="M148 176 L148 192 M328 176 L328 192" stroke="#2f6fed" stroke-width="1.5"/>
+  <path d="M148 186 L328 186" stroke="#2f6fed" stroke-width="1.5"/>
+  <text x="238" y="208" font-family="sans-serif" font-size="12" font-weight="700" fill="#2f6fed" text-anchor="middle">全体の3〜5割</text>
+
+  <path d="M24 232 L696 232" stroke="#c7cede" stroke-width="1"/>
+  <text x="24" y="256" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#c0392b">見積もりが外れる原因は、難しさの読み違いではなく「入れ忘れ」</text>
+  <text x="24" y="276" font-family="sans-serif" font-size="11.5" fill="#8892a0">だから「コードを書くのに2時間」でも、見積もりは半日〜1日になる。これは水増しではありません</text>
+</svg>

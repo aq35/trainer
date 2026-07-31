@@ -19,6 +19,7 @@
   - [10. 🚀 自分のテーマで回す](theme.html ':ignore target=_blank')
   - [　☕ AI-DLCって何？](what-is-ai-dlc.md)
   - [11. 🎯 AIと回す開発の一周](ai-dlc.html ':ignore target=_blank')
+  - [　☕ どれくらいで終わる？ 工数の見積もり](estimate.md)
 - 案件に入る前の修行
   - [12. 🔍 レビューする側になる](review.html ':ignore target=_blank')
   - [13. 🔦 曖昧な報告から不具合を追う](bug.html ':ignore target=_blank')
