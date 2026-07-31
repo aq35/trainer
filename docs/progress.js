@@ -30,7 +30,11 @@
     { key: 'trainer-onboard-v1', total: 7, label: '大きなコードに初日で入る',   href: 'onboard.html', icon: 'icon-vscode.svg' },
     { key: 'trainer-ask-v1',     total: 7, label: '詰まったときに、人を頼る',   href: 'ask.html',     icon: 'icon-key.svg' },
     { key: 'trainer-mcp-v1',     total: 8, label: 'AIに道具を持たせる（MCP × GitHub）', href: 'mcp.html', icon: 'icon-ai.svg',
-      readBefore: { md: 'what-is-claude-service', label: 'Claudeを分解してみる — AIも、ただのサービスです', icon: 'icon-ai.svg' },
+      readBefore: { md: 'what-is-claude-service', label: 'Claudeを分解してみる — AIも、ただのサービスです', icon: 'icon-ai.svg' } },
+    // ここから「動くものを、良くする」
+    { key: 'trainer-perf-v1',  total: 9, label: '動くけど遅い、を直す',           href: 'perf.html',  icon: 'icon-terminal.svg' },
+    { key: 'trainer-tools-v1', total: 8, label: '使い捨てをやめて、道具にする',   href: 'tools.html', icon: 'icon-vscode.svg' },
+    { key: 'trainer-db-v1',    total: 7, label: '保存先を変えてみる（任意）',     href: 'db.html',    icon: 'icon-folder.svg',
       read: { md: 'graduation', label: '案件に入る前の最終チェック', icon: 'icon-key.svg',
               badge: '🎓', undone: '仕上げ', done: '確認した' } }
   ];

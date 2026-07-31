@@ -27,6 +27,10 @@
   - [15. 🤝 詰まったときに、人を頼る](ask.html ':ignore target=_blank')
   - [　☕ Claudeを分解してみる](what-is-claude-service.md)
   - [16. 🔌 AIに道具を持たせる（MCP）](mcp.html ':ignore target=_blank')
+- 動くものを、良くする
+  - [17. ⚡ 動くけど遅い、を直す](perf.html ':ignore target=_blank')
+  - [18. 🛠️ 使い捨てをやめて、道具にする](tools.html ':ignore target=_blank')
+  - [19. 🗄️ 保存先を変えてみる（任意）](db.html ':ignore target=_blank')
   - [　🎓 案件に入る前の最終チェック](graduation.md)
 - 進む先を考える
   - [🧭 どこへ行く？ 職種と土台](path.md)
