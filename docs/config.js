@@ -30,3 +30,24 @@ window.TRAINER_SUPPORT = {
   // 補足（任意）。連絡先の下に小さく表示されます。
   note: 'ページが開けない（404）ときは、まだ研修グループに招待されていません。GitHub のアカウントがまだの場合も含め、この研修を案内してくれた人に直接連絡してください。'
 };
+
+/* 任意: 教材の維持に対する寄付（コーヒー1杯）の受け口。
+ *
+ * url を空のままにすると、寄付の案内は<b>どこにも表示されません</b>。
+ * この教材は無料で、寄付は完全な任意です。受講者に見せたくない場合は、
+ * 空のままにしておいてください。
+ *
+ * url に使えるもの（どれか1つ）:
+ *   Buy Me a Coffee : 'https://buymeacoffee.com/ユーザー名'
+ *   GitHub Sponsors : 'https://github.com/sponsors/ユーザー名'
+ *   Ko-fi           : 'https://ko-fi.com/ユーザー名'
+ *   OFUSE           : 'https://ofuse.me/ユーザー名'
+ *   PayPal.Me       : 'https://paypal.me/ユーザー名'
+ */
+window.TRAINER_COFFEE = {
+  url: '',
+  // ボタンの文字（任意）
+  label: '☕ コーヒーを1杯おごる',
+  // ボタンの下に小さく出る補足（任意）
+  note: '受け取ったぶんは、この教材の維持と改善に使います。'
+};

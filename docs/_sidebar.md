@@ -18,5 +18,7 @@
 - いつでも
   - [⌨️ コマンド練習](drill.html ':ignore target=_blank')
   - [用語集](glossary.md)
+- この教材について
+  - [☕ 無料である理由](about.md)
 - 困ったとき
   - [環境構築でやっていること](step1-setup.md)

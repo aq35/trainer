@@ -154,7 +154,25 @@
     });
   }
 
-  function run() { markRead(); drawMap(); wireChecks(); }
+  // 寄付の案内。config.js に url が書かれていないときは、何も出さない。
+  function drawCoffee() {
+    var el = document.getElementById('coffee');
+    if (!el) return;
+    var c = window.TRAINER_COFFEE || {};
+    if (!c.url) { el.innerHTML = ''; el.style.display = 'none'; return; }
+    el.style.display = '';
+    el.innerHTML = '<div class="coffee">' +
+      '<img src="media/icon-coffee.svg" width="40" height="40" alt="">' +
+      '<div class="ct"><b>この教材は無料です。これからも無料のままです。</b>' +
+      '<span class="cs">気に入って、余裕があるときだけで構いません。' +
+      '<b>払わなくても、内容は1文字も変わりません。</b></span></div>' +
+      '<a class="cbtn" href="' + c.url + '" target="_blank" rel="noopener">' +
+      (c.label || '☕ コーヒーを1杯おごる') + '</a>' +
+      (c.note ? '<span class="cn">' + c.note + '</span>' : '') +
+      '</div>';
+  }
+
+  function run() { markRead(); drawMap(); wireChecks(); drawCoffee(); }
   window.addEventListener('hashchange', function () { setTimeout(run, 300); });
   document.addEventListener('DOMContentLoaded', function () { setTimeout(run, 400); });
   setTimeout(run, 900);

@@ -103,6 +103,28 @@
     }
     .markdown-section .mapreport .mrbtn:hover { background: #245ad0; }
 
+    /* 寄付の案内。教材の邪魔をしないよう、控えめな見た目にする */
+    .markdown-section .coffee {
+      display: grid; grid-template-columns: 40px 1fr auto; gap: 14px; align-items: center;
+      background: #faf7f0; border: 1px dashed #e0d6c2; border-radius: 12px;
+      padding: 16px 18px; margin: 1.6em 0;
+    }
+    .markdown-section .coffee img { width: 40px; height: 40px; }
+    .markdown-section .coffee .ct { font-size: 14px; }
+    .markdown-section .coffee .cs { display: block; font-size: 12.5px; color: #6b7482; margin-top: 3px; }
+    .markdown-section .coffee .cbtn {
+      background: #c9a227; color: #fff; font-weight: 700; text-decoration: none;
+      border-radius: 9px; padding: 11px 18px; white-space: nowrap; font-size: 14px;
+    }
+    .markdown-section .coffee .cbtn:hover { background: #ab8a1c; }
+    .markdown-section .coffee .cn {
+      grid-column: 1 / -1; font-size: 12px; color: #6b7482;
+    }
+    @media (max-width: 560px) {
+      .markdown-section .coffee { grid-template-columns: 40px 1fr; }
+      .markdown-section .coffee .cbtn { grid-column: 1 / -1; text-align: center; }
+    }
+
     .markdown-section .task-list-item { list-style: none; }
     .markdown-section .task-list-item input { margin-right: 8px; transform: scale(1.3); }
 
@@ -178,6 +200,9 @@
       .markdown-section .mapitem.reading .n { background:transparent; }
       .markdown-section .mapitem.reading.done { background:#16271e; border-color:#2c5340; }
       .markdown-section .mapitem.reading.done .s { color:#7fd6a3; }
+      .markdown-section .coffee { background:#221e18; border-color:#4a4030; }
+      .markdown-section .coffee .cs, .markdown-section .coffee .cn { color:#9aa3b2; }
+      .markdown-section .coffee .cbtn { color:#10141c; }
       .markdown-section .mapall { background:#16271e; border-color:#2c5340; color:#7fd6a3; }
       .markdown-section .mapreport { background:#1b2437; border-color:#31456b; }
       .markdown-section .mapreport .mrsub { color:#9aa3b2; }
@@ -325,7 +350,7 @@
   <script src="https://cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify-mermaid@2/dist/docsify-mermaid.js"></script>
-  <script src="config.js?v=6"></script>
-  <script src="progress.js?v=6"></script>
+  <script src="config.js?v=7"></script>
+  <script src="progress.js?v=7"></script>
 </body>
 </html>

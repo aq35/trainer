@@ -14,12 +14,16 @@
 6. **[はじめてのプログラム](docs/code.html)** — HTML/JavaScript を書く・動かす・エラーを読んで直す・自力課題
 7. **[ブランチと安全な進め方](docs/branch.html)** — ブランチ / merge / .gitignore / プルリクエスト（一人で一周）
 8. **[世界に公開する](docs/publish.html)** — GitHub Pages で自分のページを公開し、デプロイを体験する
+9. **[自分のテーマで回す](docs/theme.html)** — 自分で決めたものを作る。CLAUDE.md / Plan モード / `@`指定 / `/clear` / 詰まったときの手順
+10. **[案件に入る前の最終チェック](docs/graduation.md)** — 自己採点と、案件に入ると何が変わるか
+
+読み物は**地図の中に組み込まれています**（該当ステップの直後に ☕ 付きで表示）。
 
 いつでも: **[コマンド練習](docs/drill.html)** — 20問のクイズ形式ドリル（分野別・成績保存・間違いだけ再挑戦）
 
 読み物（寄り道）: [なぜ VS Code なのか？](docs/why-vscode.md) / [なぜ git が生まれたのか](docs/why-git.md) / [AIはなぜ間違えるのか](docs/why-ai-mistakes.md) / [サービスって何？](docs/what-is-service.md)
 
-補足資料: [用語集](docs/glossary.md) / [Step 0: ターミナル入門](docs/step0-terminal.md) / [環境構築でやっていること](docs/step1-setup.md)
+補足資料: [この教材について（無料である理由）](docs/about.md) / [用語集](docs/glossary.md) / [ターミナル入門](docs/step0-terminal.md) / [環境構築でやっていること](docs/step1-setup.md)
 
 トップページには全体の進捗マップが出ます（各ナビの進み具合をブラウザから読み取って表示）。
 
@@ -74,7 +78,21 @@ window.TRAINER_SUPPORT = {
 
 受講者側は VS Code の `Disable Login Prompt` をオンにし、`~/.claude/settings.json` の `env` に書き込む流れです（ナビが誘導します）。ターミナルの環境変数では VS Code 拡張機能に反映されないため、この方式にしています。
 
-### 3. GitHub Pages
+### 3. 寄付（コーヒー）の受け口（任意）
+
+`docs/config.js` の `TRAINER_COFFEE.url` に、Buy Me a Coffee / GitHub Sponsors / Ko-fi / OFUSE / PayPal.Me などのURLを書くと、トップページ・[この教材について](docs/about.md)・最終チェックの3か所に控えめなブロックが出ます。**空のままなら、どこにも表示されません。**
+
+```js
+window.TRAINER_COFFEE = {
+  url: 'https://buymeacoffee.com/ユーザー名',
+  label: '☕ コーヒーを1杯おごる',
+  note: '受け取ったぶんは、この教材の維持と改善に使います。'
+};
+```
+
+**方針**: この教材は無料であることを前提に設計しています。受講者が対価を求められていると感じる見せ方（優先サポート、限定コンテンツ、支払い前提の導線）は入れないでください。`docs/about.md` に「払っても払わなくても内容は変わらない」と明記してあります。
+
+### 4. GitHub Pages
 
 `Settings > Pages > Build and deployment > Source` を `Deploy from a branch`、Branch を `main`、フォルダを `/docs` に設定します。
 
@@ -87,10 +105,10 @@ window.TRAINER_SUPPORT = {
 | パス | 役割 |
 | --- | --- |
 | `docs/index.html` | docsify のエントリ（Markdown をサイト表示） |
-| `docs/setup.html`, `docs/github.html` | 対話式ナビ（独立した静的HTML） |
+| `docs/setup.html` … `docs/theme.html` | 対話式ナビ9本（独立した静的HTML） |
 | `docs/navi.js`, `docs/navi.css` | ナビ共通エンジン。ページ側は手順データのみ持つ。ヘルプの3段構え（初手チェック／症状検索／AI・人への相談）もここ |
-| `docs/config.js` | 運営側が編集する設定（サポート窓口） |
-| `docs/progress.js` | トップの進捗マップと Step 2 のチェックリスト |
+| `docs/config.js` | 運営側が編集する設定（サポート窓口・寄付の受け口） |
+| `docs/progress.js` | トップの進捗マップ、チェックリストの保存、読み物の読了記録、寄付ブロックの描画 |
 | `docs/drill.html`, `docs/drill.js` | コマンド練習ドリル（設問は drill.js の Q 配列） |
 | `docs/media/` | 図版（SVG） |
 
@@ -98,10 +116,10 @@ window.TRAINER_SUPPORT = {
 
 ### キャッシュについて
 
-各HTMLは `config.js?v=3` のようにバージョンを付けて読み込んでいます。**`config.js` や `navi.js` を変更したら、全HTMLの `?v=` の数字を1つ上げてください。** 上げないと、受講者のブラウザが古いファイルを使い続け、連絡先を変えても反映されません。
+各HTMLは `config.js?v=7` のようにバージョンを付けて読み込んでいます。**`config.js` や `navi.js` を変更したら、全HTMLの `?v=` の数字を1つ上げてください。** 上げないと、受講者のブラウザが古いファイルを使い続け、連絡先を変えても反映されません。
 
 ```
-grep -rl '?v=3' docs/*.html | xargs sed -i '' 's/?v=3/?v=4/g'   # Mac
+grep -rl '?v=7' docs/*.html | xargs sed -i '' 's/?v=7/?v=8/g'   # Mac
 ```
 
 ## ライセンス
