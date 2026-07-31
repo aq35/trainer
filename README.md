@@ -94,7 +94,15 @@ window.TRAINER_SUPPORT = {
 | `docs/drill.html`, `docs/drill.js` | コマンド練習ドリル（設問は drill.js の Q 配列） |
 | `docs/media/` | 図版（SVG） |
 
-新しいナビを増やす場合は、`navi.css` / `navi.js` を読み込み、`window.NAVI = { key, steps, common }` を定義した HTML を追加してください。
+新しいナビを増やす場合は、`navi.css` / `navi.js` / `config.js` を読み込み、`window.NAVI = { key, steps, common }` を定義した HTML を追加してください。
+
+### キャッシュについて
+
+各HTMLは `config.js?v=2` のようにバージョンを付けて読み込んでいます。**`config.js` や `navi.js` を変更したら、全HTMLの `?v=` の数字を1つ上げてください。** 上げないと、受講者のブラウザが古いファイルを使い続け、連絡先を変えても反映されません。
+
+```
+grep -rl '?v=2' docs/*.html | xargs sed -i '' 's/?v=2/?v=3/g'   # Mac
+```
 
 ## ライセンス
 
