@@ -8,7 +8,7 @@
       read: { md: 'why-vscode', label: 'なぜ VS Code なのか？ 拡張機能って何？', icon: 'icon-vscode.svg' } },
     { key: null,                          label: 'git の基本',    href: '#/step2-git', icon: 'icon-git.svg', check: 'step2',
       read: { md: 'why-git', label: 'なぜ git が生まれたのか', icon: 'icon-git.svg' } },
-    { key: 'trainer-github-v1', total: 9, label: 'GitHubに上げる', href: 'github.html', icon: 'icon-github.svg' },
+    { key: 'trainer-github-v1', total: 8, label: 'GitHubに上げる', href: 'github.html', icon: 'icon-github.svg' },
     { key: 'trainer-diff-v1',   total: 6, label: '差分を読む',     href: 'diff.html',   icon: 'icon-terminal.svg' },
     { key: 'trainer-ai-v1',     total: 8, label: 'AIと一緒に',     href: 'ai.html',     icon: 'icon-ai.svg',
       read: { md: 'why-ai-mistakes', label: 'AIはなぜ間違えるのか', icon: 'icon-ai.svg' } },
@@ -25,6 +25,8 @@
   ];
 
   var READ_KEY = 'trainer-read-v1';
+
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
 
   function read(k) {
     try { return JSON.parse(localStorage.getItem(k) || '{}'); } catch (e) { return {}; }
@@ -70,10 +72,8 @@
     var d = new Date(), z = function (n) { return (n < 10 ? '0' : '') + n; };
     return d.getFullYear() + '-' + z(d.getMonth() + 1) + '-' + z(d.getDate()) + ' ' + z(d.getHours()) + ':' + z(d.getMinutes());
   }
-  function reportUrl() {
-    var r = repoName();
-    if (!r) return '';
-    var lines = ['## いまの進捗', ''];
+  function reportText() {
+    var lines = ['いまの進捗', ''];
     var done = 0;
     STEPS.forEach(function (s, i) {
       var st = state(s);
@@ -90,10 +90,48 @@
     lines.push('報告日時: ' + stamp());
     lines.push('');
     lines.push('困っていること・聞きたいことがあれば、ここに書いてください（空のままでも大丈夫です）。');
-    return 'https://github.com/' + r + '/issues/new?labels=' + encodeURIComponent('進捗') +
-           '&title=' + encodeURIComponent('[進捗] ' + done + ' / ' + STEPS.length + ' まで進みました') +
-           '&body=' + encodeURIComponent(lines.join('\n'));
+    return { text: lines.join('\n'), done: done };
   }
+  function reportUrl() {
+    var r = repoName();
+    if (!r) return '';
+    var t = reportText();
+    return 'https://github.com/' + r + '/issues/new?labels=' + encodeURIComponent('進捗') +
+           '&title=' + encodeURIComponent('[進捗] ' + t.done + ' / ' + STEPS.length + ' まで進みました') +
+           '&body=' + encodeURIComponent(t.text);
+  }
+
+  // 文章をコピーする（連絡先が GitHub でないときは、これで送ってもらう）
+  function toast(msg) {
+    var t = document.querySelector('.plantoast');
+    if (!t) { t = document.createElement('div'); t.className = 'plantoast'; document.body.appendChild(t); }
+    t.textContent = msg; t.classList.add('on');
+    setTimeout(function () { t.classList.remove('on'); }, 2400);
+  }
+  function copy(text) {
+    function fallback() {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); toast('コピーしました。担当者に送ってください'); }
+      catch (e) { toast('コピーできませんでした'); }
+      document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { toast('コピーしました。担当者に送ってください'); }, fallback);
+    } else fallback();
+  }
+  // 連絡先の1行（config.js の設定から作る）
+  function contactLine() {
+    var c = window.TRAINER_SUPPORT || {};
+    if (!c.name && !c.channel) return '連絡先は、この研修を案内してくれた人に聞いてください。';
+    var who = c.name || 'サポート窓口';
+    return '送り先: ' + (c.channel ? who + '（' + c.channel + '）' : who);
+  }
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest ? e.target.closest('[data-copytext]') : null;
+    if (t) copy(t.getAttribute('data-copytext'));
+  });
 
   function drawMap() {
     var el = document.getElementById('map');
@@ -124,13 +162,17 @@
     if (all) h += '<div class="mapall">全部おつかれさまでした。ここまでできれば、案件に入る準備はできています。</div>';
 
     var u = reportUrl();
+    h += '<div class="mapreport"><b>いまの進み具合を、担当者に知らせられます</b><br>';
     if (u) {
-      h += '<div class="mapreport"><b>いまの進み具合を、担当者に知らせられます</b><br>' +
-           '<span class="mrsub">GitHub にログインしていれば、上の内容が入った状態で開きます。' +
-           '<b>あとは送信ボタンを押すだけ</b>です。困っていることを書き足しても構いません。<br>' +
-           '「404」と出るときは、まだ研修グループに招待されていません。招待が届いてから押してください。</span>' +
-           '<a class="mrbtn" href="' + u + '" target="_blank" rel="noopener">進捗を報告する</a></div>';
+      h += '<span class="mrsub">GitHub にログインしていれば、上の内容が入った状態で開きます。' +
+           '<b>あとは送信ボタンを押すだけ</b>です。</span>' +
+           '<a class="mrbtn" href="' + u + '" target="_blank" rel="noopener">進捗を報告する</a>';
+    } else {
+      h += '<span class="mrsub">押すと、いまの進み具合が文章になってコピーされます。' +
+           '<b>LINEでもチャットでも、いつもの方法で送ってください。</b><br>' + contactLine() + '</span>' +
+           '<button type="button" class="mrbtn" data-copytext="' + esc(reportText().text) + '">進捗をコピーする</button>';
     }
+    h += '</div>';
     el.innerHTML = h;
   }
 
@@ -158,10 +200,8 @@
   }
 
   // 「参画の準備ができました」の申請ボタン。到達状況を入れた状態でIssueを開く。
-  function joinUrl() {
-    var r = repoName();
-    if (!r) return '';
-    var lines = ['## 参画の準備ができました', '',
+  function joinText() {
+    var lines = ['参画の準備ができました', '',
       '研修を終えたので、案件への参画を相談させてください。', '',
       '### 到達状況（自動）', ''];
     var done = 0;
@@ -183,21 +223,34 @@
       '',
       '### 希望・相談したいこと', '',
       '- 働ける時間帯や開始時期など、あれば書いてください');
+    return { text: lines.join('\n'), done: done };
+  }
+  function joinUrl() {
+    var r = repoName();
+    if (!r) return '';
+    var t = joinText();
     return 'https://github.com/' + r + '/issues/new?labels=' + encodeURIComponent('参画') +
-           '&title=' + encodeURIComponent('[参画] 準備ができました（' + done + ' / ' + STEPS.length + ' 完了）') +
-           '&body=' + encodeURIComponent(lines.join('\n'));
+           '&title=' + encodeURIComponent('[参画] 準備ができました（' + t.done + ' / ' + STEPS.length + ' 完了）') +
+           '&body=' + encodeURIComponent(t.text);
   }
 
   function drawJoin() {
     var el = document.getElementById('joinbtn');
     if (!el) return;
     var u = joinUrl();
-    if (!u) { el.innerHTML = ''; return; }
-    el.innerHTML = '<div class="mapreport"><b>準備ができたことを、担当者に知らせます</b><br>' +
-      '<span class="mrsub">押すと、<b>いまの到達状況が入力済み</b>の状態で申請の画面が開きます。' +
-      '成果物のURLと、自信が無いところを書き足して送ってください。<br>' +
-      '<b>全部のステップが終わっていなくても構いません。</b>相談の入口です。</span>' +
-      '<a class="mrbtn" href="' + u + '" target="_blank" rel="noopener">参画の相談をする</a></div>';
+    var h = '<div class="mapreport"><b>準備ができたことを、担当者に知らせます</b><br>';
+    if (u) {
+      h += '<span class="mrsub">押すと、<b>いまの到達状況が入力済み</b>の状態で申請の画面が開きます。' +
+        '成果物のURLと、自信が無いところを書き足して送ってください。<br>' +
+        '<b>全部のステップが終わっていなくても構いません。</b>相談の入口です。</span>' +
+        '<a class="mrbtn" href="' + u + '" target="_blank" rel="noopener">参画の相談をする</a>';
+    } else {
+      h += '<span class="mrsub">押すと、<b>いまの到達状況が文章になってコピー</b>されます。' +
+        '成果物のURLと、自信が無いところを書き足して、いつもの方法で送ってください。<br>' +
+        '<b>全部のステップが終わっていなくても構いません。</b>相談の入口です。<br>' + contactLine() + '</span>' +
+        '<button type="button" class="mrbtn" data-copytext="' + esc(joinText().text) + '">参画の相談をコピー</button>';
+    }
+    el.innerHTML = h + '</div>';
   }
 
   // 寄付の案内。config.js に url が書かれていないときは、何も出さない。

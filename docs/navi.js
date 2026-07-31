@@ -88,20 +88,27 @@
 
   function finReport(s) {
     var name = naviName();
-    var u = issueUrl('[進捗] ' + name + ' を終えました', [
-      '## ' + name + ' を終えました',
+    var text = [
+      name + ' を終えました。',
       '',
-      '- 日時: ' + stamp(),
-      '- できるようになったこと: ' + strip(s.gained || ''),
+      '・日時: ' + stamp(),
+      '・できるようになったこと: ' + strip(s.gained || ''),
       '',
-      'つまずいたところ・感想があれば、ここに書き足してください（空のままでも大丈夫です）。'
-    ].join('\n'));
-    if (!u) return '';
-    return '<div class="report"><b>担当者に、終わったことを知らせましょう</b><br>' +
-           '<span class="fd">GitHub にログインしていれば、内容が入った状態で開きます。<b>あとは送信ボタンを押すだけ</b>です。<br>' +
-           '「404」と出る場合は、まだ研修グループに招待されていません。招待が届いてから、もう一度押してください。</span>' +
-           '<div style="margin-top:10px"><a class="act ok" target="_blank" rel="noopener" href="' + u + '">' +
-           '完了を報告する</a></div></div>';
+      '（つまずいたところ・感想があれば、ここに書き足してください）'
+    ].join('\n');
+
+    // GitHub の相談用リポジトリが設定してあれば、Issue を開く形にする。
+    // 設定が無い場合（LINE・チャットなど）は、文章をコピーして貼ってもらう。
+    var u = issueUrl('[進捗] ' + name + ' を終えました', text);
+    var body = u
+      ? '<div style="margin-top:10px"><a class="act ok" target="_blank" rel="noopener" href="' + u + '">' +
+        '完了を報告する</a></div>'
+      : '<div style="margin-top:10px"><button type="button" class="act ok" data-copy="' + esc(text) + '">' +
+        '完了の連絡をコピー</button></div>';
+    var lead = u
+      ? '<span class="fd">GitHub にログインしていれば、内容が入った状態で開きます。<b>あとは送信ボタンを押すだけ</b>です。</span>'
+      : '<span class="fd">コピーして、そのまま担当者に送ってください。<br>' + support() + '</span>';
+    return '<div class="report"><b>担当者に、終わったことを知らせましょう</b><br>' + lead + body + '</div>';
   }
 
   // 参加申請。受講者のGitHubユーザー名を運営に送ってもらう。
