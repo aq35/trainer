@@ -57,6 +57,35 @@
 
   var HOURS = { 3: '週3時間（平日30分くらい）', 7: '週7時間（1日1時間）', 14: '週14時間（1日2時間）', 25: '週25時間以上（ほぼ専念）' };
 
+  // 研修で「実際に手を動かしたこと」の棚卸し。案件とのマッチ度を測るために使う。
+  // from … その到達度に達していれば、身についているとみなす
+  var SKILLS = [
+    { from: 'early', cat: '道具・環境',   items: ['VS Code の操作', 'ターミナルの基本操作', 'git（commit / branch / merge / restore / コンフリクト解決）'] },
+    { from: 'base',  cat: '道具・環境',   items: ['GitHub（clone / push / プルリクエスト / レビューを受ける）', 'GitHub Pages での公開'] },
+    { from: 'base',  cat: '実装',         items: ['HTML / CSS / JavaScript の基本', 'DOM操作（画面の書き換え）', 'fetch と JSON の読み書き'] },
+    { from: 'base',  cat: '調査',         items: ['ブラウザ開発者ツール（Console / Network）でのエラー調査'] },
+    { from: 'work',  cat: '仕事の進め方', items: ['既存コードを読んで、直す場所を見つける', 'プルリクエストに読める説明を書く', '自動チェック（GitHub Actions）の指摘を読んで直す', 'あいまいな依頼に、着手前に質問する'] },
+    { from: 'work',  cat: 'テスト',       items: ['単体テストを書く（node:test）', 'テストに守られたリファクタリング'] },
+    { from: 'theme', cat: 'AIとの開発',   items: ['CLAUDE.md で前提を渡す', '差分を読んで採否を自分で決める', '要件を聞き出し、受け入れ条件を先に決める', '作業を30分単位に割って見積もる'] },
+    { from: 'trained', cat: 'チーム',     items: ['コードレビューをする側', '曖昧な不具合報告からの再現と切り分け', '知らない大きさのコードベースへの入り方', '相談・進捗報告・遅れの伝え方'] },
+    { from: 'trained', cat: 'AIの拡張',   items: ['MCP で外部サービス（GitHub）をつなぐ'] },
+    { from: 'full',  cat: '品質・性能',   items: ['計測してから直す（計算量とパフォーマンス）', '計測の道具化と、ログの設計', 'データの可視化（ライブラリ無しのSVG）'] },
+    { from: 'full',  cat: '調査',         items: ['HTTPステータスでフロント／バックを切り分ける', '静的解析（言語サーバ）で参照を正確に追う', 'git bisect / blame で原因コミットを確定させる'] }
+  ];
+
+  // その到達度までに身についている項目を、カテゴリごとにまとめて返す
+  function skillsFor(level) {
+    var max = LEVEL_ORDER.indexOf(level);
+    if (max < 0) max = 0;
+    var by = {}, order = [];
+    SKILLS.forEach(function (g) {
+      if (LEVEL_ORDER.indexOf(g.from) > max) return;
+      if (!by[g.cat]) { by[g.cat] = []; order.push(g.cat); }
+      by[g.cat] = by[g.cat].concat(g.items);
+    });
+    return order.map(function (c) { return { cat: c, items: by[c] }; });
+  }
+
   var SAVE_KEY = 'trainer-plan-v1';
 
   function readLS(k) {
@@ -253,6 +282,53 @@
     return L.join('\n');
   }
 
+  // 案件の技術領域と、研修で身につけたものが、どれだけ噛み合うかを測る
+  function matchPrompt(v) {
+    var f = FIELDS[v.field] || FIELDS.unknown;
+    var L = [];
+    L.push('私は未経験からエンジニアを目指していて、ある研修を進めてきました。');
+    L.push('これから参加する案件で、**学んだことがどれだけ通用するか**を判定してください。');
+    L.push('');
+    L.push('# 研修で、実際に手を動かしたこと');
+    L.push('（読んだだけのものは含めていません。すべて自分で動かしたものです）');
+    L.push('');
+    skillsFor(v.level).forEach(function (g) {
+      L.push('## ' + g.cat);
+      g.items.forEach(function (i) { L.push('- ' + i); });
+      L.push('');
+    });
+    L.push('# これから参加する案件');
+    if (v.desc && v.desc.trim()) {
+      L.push(v.desc.trim());
+    } else {
+      L.push('（まだ詳しく分かっていません。分かっているのは「' + f.label + '」の方向であることだけです）');
+    }
+    L.push('');
+    if (v.left) {
+      L.push('参加まで あと ' + v.left.days + '日（約' + v.left.weeks + '週間）。');
+      L.push('学習にあてられるのは ' + (HOURS[v.hours] || v.hours) + ' です。');
+      L.push('');
+    }
+    L.push('# 判定してほしいこと');
+    L.push('1. **そのまま通用するもの**。上の項目のうち、この案件で初日から使えるものを挙げてください。');
+    L.push('2. **形を変えれば通用するもの**。考え方は同じだが、道具や言語が違うもの。');
+    L.push('   「研修での◯◯は、この案件での△△にあたる」という形で対応づけてください。');
+    L.push('3. **足りないもの**。案件で必要なのに、上の一覧に無いもの。**優先度の高い順に、5つまで**。');
+    L.push('   それぞれについて「なぜ必要か」と「研修のどの経験の延長で学べるか」も書いてください。');
+    L.push('4. **マッチ度**。全体として何割くらい通用しそうか、**根拠つき**で。');
+    L.push('   楽観的に言わないでください。**低いなら低いと言ってください。**');
+    L.push('5. **最初に埋めるべき1つ**。参加までに、いちばん先に手を付けるべきものを1つだけ。');
+    L.push('6. **初日に確認すべきこと**。この案件特有の、聞いておかないと詰まることを3つ。');
+    L.push('');
+    L.push('# 条件');
+    L.push('- 私は初心者です。専門用語には短い説明を付けてください。');
+    L.push('- **上の一覧に無いことは、できません。** できる前提で判定しないでください。');
+    L.push('- **足りないものを並べて終わりにしないでください。** 通用するものを先に、具体的に挙げてください。');
+    L.push('  「何が通用するか」が分からないと、初日に何も出せません。');
+    L.push('- 案件の情報が足りずに判定できない部分があれば、**何が分かれば判定できるか**を教えてください。');
+    return L.join('\n');
+  }
+
   function weeklyPrompt() {
     return [
       'いまの学習計画について、今週の振り返りをします。',
@@ -299,12 +375,13 @@
       '<a href="#/graduation">最終チェック</a>の「できていない項目をコピー」から貼れます</span></label>' +
       '<textarea id="p-weak" placeholder="例: エラーが出ない不具合を切り分けられる／作業前に git pull する習慣がある"></textarea></div>' +
       '<div class="row"><label for="p-desc">案件の内容<br><span style="font-weight:400;font-size:12px;color:#6b7482">分かる範囲で。空でも作れます</span></label>' +
-      '<textarea id="p-desc" placeholder="例: 社内で使う勤怠のWebシステムの改修。フロントは React、裏は Java。人数は5人くらい。"></textarea></div>' +
+      '<textarea id="p-desc" placeholder="例: 社内で使う勤怠のWebシステムの改修。フロントは React、裏は Java と PostgreSQL、AWS上。人数は5人くらい。&#10;使っている技術の名前が分かるだけでも、マッチ度の判定はかなり正確になります。"></textarea></div>' +
       '<div class="warn">⚠️ <b>案件の資料をそのまま貼らないでください。</b>会社名・顧客名・個人名は消し、' +
       '<b>「貼ってよいか」を担当者に確認</b>してから使ってください。分野と規模だけでも、計画は作れます。</div>' +
       '<div id="p-out"></div>' +
       '<div class="btns">' +
-      '<button type="button" class="main" id="p-copy">AIに渡す文章をコピー</button>' +
+      '<button type="button" class="main" id="p-copy">学習計画の依頼をコピー</button>' +
+      '<button type="button" class="sub" id="p-match">案件とのマッチ度を測る</button>' +
       '<button type="button" class="sub" id="p-week">毎週の振り返り用をコピー</button>' +
       '</div></div>';
 
@@ -383,6 +460,7 @@
       get(id).addEventListener('input', save);
     });
     get('p-copy').addEventListener('click', function () { save(); copy(prompt(state())); });
+    get('p-match').addEventListener('click', function () { save(); copy(matchPrompt(state())); });
     get('p-week').addEventListener('click', function () { copy(weeklyPrompt()); });
     draw();
   }

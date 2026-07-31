@@ -14,6 +14,7 @@
   - [7. 🌿 ブランチと安全な進め方](branch.html ':ignore target=_blank')
   - [　☕ サービスって何？](what-is-service.md)
   - [8. 🌍 世界に公開する](publish.html ':ignore target=_blank')
+  - [　☕ インフラの世界と、その入り口](infra.md)
   - [9. 🧑‍💻 仕事の一周](work.html ':ignore target=_blank')
   - [　☕ AIに何を作ってもらうか](what-to-build.md)
   - [10. 🚀 自分のテーマで回す](theme.html ':ignore target=_blank')
