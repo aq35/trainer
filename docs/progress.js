@@ -229,8 +229,39 @@
         var m = read(key);
         m[i] = b.checked;
         try { localStorage.setItem(key, JSON.stringify(m)); } catch (e) {}
+        drawWeak();
       };
     });
+    drawWeak();
+  }
+
+  // チェックが付いていない項目を集めて、そのままコピーできるようにする。
+  // 逆算プランナーの「まだ自信が無いところ」に貼るためのもの。
+  function weakItems() {
+    var out = [];
+    document.querySelectorAll('.markdown-section .task-list-item').forEach(function (li) {
+      var b = li.querySelector('input[type=checkbox]');
+      if (!b || b.checked) return;
+      var t = (li.textContent || '').replace(/\s+/g, ' ').trim();
+      if (t) out.push('- ' + t);
+    });
+    return out;
+  }
+  function drawWeak() {
+    var el = document.getElementById('weakcopy');
+    if (!el) return;
+    var w = weakItems();
+    if (!w.length) {
+      el.innerHTML = '<div class="mapreport"><b>チェックが全部付きました。おつかれさまでした。</b><br>' +
+        '<span class="mrsub">それでも不安なところがあれば、逆算プランナーに自分の言葉で書いてください。</span></div>';
+      return;
+    }
+    var text = ['まだ自信が無いところ（' + w.length + '件）', ''].concat(w).join('\n');
+    el.innerHTML = '<div class="mapreport"><b>まだチェックが付いていない項目が ' + w.length + ' 件あります</b><br>' +
+      '<span class="mrsub">押すと、その一覧がコピーされます。' +
+      '<b>次の「逆算プランナー」の「まだ自信が無いところ」に貼ってください。</b><br>' +
+      'そこを埋める計画を、AIが作ります。</span>' +
+      '<button type="button" class="mrbtn" data-copytext="' + esc(text) + '">できていない項目をコピー</button></div>';
   }
 
   // 「参画の準備ができました」の申請ボタン。到達状況を入れた状態でIssueを開く。
