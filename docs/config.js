@@ -18,6 +18,12 @@
  *   GitHub  : 'https://github.com/aq35/trainer/issues/new'
  */
 window.TRAINER_SUPPORT = {
+  /* 参加申請のあて先メールアドレス。
+   * 受講者が GitHub のユーザー名を送ってくるので、届いたら
+   * 相談用リポジトリの Settings → Collaborators → Add people で招待してください。
+   * 例: 'training@example.com'                                     */
+  inviteEmail: '',
+
   name: '研修サポート窓口',
   channel: 'GitHub の Issue に書いてください',
   url: 'https://github.com/aq35/trainer/issues/new',

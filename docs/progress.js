@@ -4,7 +4,7 @@
   var STEPS = [
     { key: 'trainer-setup-v1',  total: 9, label: '環境構築',      href: 'setup.html',  icon: 'icon-vscode.svg' },
     { key: null,                          label: 'git の基本',    href: '#/step2-git', icon: 'icon-git.svg', check: 'step2' },
-    { key: 'trainer-github-v1', total: 8, label: 'GitHubに上げる', href: 'github.html', icon: 'icon-github.svg' },
+    { key: 'trainer-github-v1', total: 9, label: 'GitHubに上げる', href: 'github.html', icon: 'icon-github.svg' },
     { key: 'trainer-diff-v1',   total: 6, label: '差分を読む',     href: 'diff.html',   icon: 'icon-terminal.svg' },
     { key: 'trainer-ai-v1',     total: 7, label: 'AIと一緒に',     href: 'ai.html',     icon: 'icon-ai.svg' },
     { key: 'trainer-code-v1',   total: 9, label: 'はじめてのプログラム', href: 'code.html',   icon: 'icon-vscode.svg' },
@@ -81,7 +81,8 @@
     if (u) {
       h += '<div class="mapreport"><b>いまの進み具合を、担当者に知らせられます</b><br>' +
            '<span class="mrsub">GitHub にログインしていれば、上の内容が入った状態で開きます。' +
-           '<b>あとは送信ボタンを押すだけ</b>です。困っていることを書き足しても構いません。</span>' +
+           '<b>あとは送信ボタンを押すだけ</b>です。困っていることを書き足しても構いません。<br>' +
+           '「404」と出るときは、まだ研修グループに招待されていません。招待が届いてから押してください。</span>' +
            '<a class="mrbtn" href="' + u + '" target="_blank" rel="noopener">進捗を報告する</a></div>';
     }
     el.innerHTML = h;
