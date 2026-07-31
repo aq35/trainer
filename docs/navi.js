@@ -311,6 +311,9 @@
             (s.icon ? '<img class="ico" src="media/' + s.icon + '" alt="">' : '') +
             '<div><h2>' + s.title + '</h2><p class="why" style="margin-bottom:0">' + s.why + '</p></div></div>';
 
+    // 一部の人だけが飛ばしてよいステップに出す案内
+    if (s.skip) h += '<div class="skip">' + s.skip + '</div>';
+
     var list = pick(s.todo);
     if (list) { h += '<ol class="todo">'; for (var i = 0; i < list.length; i++) h += '<li>' + list[i] + '</li>'; h += '</ol>'; }
 

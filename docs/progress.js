@@ -4,7 +4,7 @@
 (function () {
   // read: そのステップの直後に挟む読み物（任意。読まなくても先に進める）
   var STEPS = [
-    { key: 'trainer-setup-v1',  total: 9, label: '環境構築',      href: 'setup.html',  icon: 'icon-vscode.svg',
+    { key: 'trainer-setup-v1',  total: 10, label: '環境構築',      href: 'setup.html',  icon: 'icon-vscode.svg',
       read: { md: 'why-vscode', label: 'なぜ VS Code なのか？ 拡張機能って何？', icon: 'icon-vscode.svg' } },
     { key: null,                          label: 'git の基本',    href: '#/step2-git', icon: 'icon-git.svg', check: 'step2',
       read: { md: 'why-git', label: 'なぜ git が生まれたのか', icon: 'icon-git.svg' } },

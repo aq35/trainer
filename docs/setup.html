@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>環境構築ナビ | エンジニア育成トレーナー</title>
-<link rel="stylesheet" href="navi.css?v=8">
-<script src="config.js?v=8"></script>
+<link rel="stylesheet" href="navi.css?v=9">
+<script src="config.js?v=9"></script>
 </head>
 <body>
 
@@ -40,6 +40,27 @@ steps:[
   id:'os', kind:'os', phase:'はじめに',
   title:'まず、お使いのパソコンを教えてください',
   why:'WindowsとMacで画面も手順も違います。選んだほうだけを表示するので、迷わなくて済みます。'
+},
+{
+  id:'route', icon:'icon-key.svg', phase:'はじめに', readonly:true,
+  title:'始め方が2通りあります',
+  why:'この研修は<b>会社の研修としても、一人でも</b>進められます。どちらかで、AIの準備だけが変わります。',
+  todo:{
+    common:['<b>誰かに案内されて来た人</b> … その人から <b>APIキー</b> をもらってください。このまま上から順に進めます',
+            '<b>自分で見つけて、一人で始めた人</b> … <b>0円で最後まで進める道</b>があります。<a href="index.html#/alone" target="_blank" rel="noopener">担当者がいない人へ</a>を先に読んでください',
+            'どちらか分かったら「できました」を押して次へ進みます']
+  },
+  expect:'一人で始めた人は、このあと<b>5つのステップを飛ばします</b>（どこを飛ばすかは、上のページに表で書いてあります）。',
+  note:'<b>一人でも、学べる内容は同じです。</b>違うのは「AIをどこで動かすか」だけで、git も GitHub も公開も、すべて本編どおりに進められます。',
+  ask:'自分がどちらか分かりましたか？',
+  tb:[
+    { q:'案内されて来たけど、APIキーをもらっていない',
+      a:'案内してくれた人に「Claude Code 用のAPIキーとリージョンをください」と伝えてください。<b>届くまでの間も、Git を入れるところまでは進められます。</b>' },
+    { q:'一人だけど、お金を払ってでも同じ環境がいい',
+      a:'できます。<a href="index.html#/alone" target="_blank" rel="noopener">担当者がいない人へ</a>の「B. Claude の有料プランを使う」を見てください。<b>まず0円で一周してから決めるのがおすすめです。</b>' },
+    { q:'APIキーって何？',
+      a:'AIに接続するための<b>パスワードのようなもの</b>です。持っていなくても、この研修は最後まで進められます。' }
+  ]
 },
 {
   id:'vscode', icon:'icon-vscode.svg', phase:'1. 道具をそろえる',
@@ -141,6 +162,7 @@ steps:[
 {
   id:'claude-ext', icon:'icon-ai.svg', phase:'4. Claude Code を入れる',
   title:'Claude Code を VS Code に追加します',
+  skip:'☕ <b>一人で始めた人は、このステップを飛ばしてください。</b>ブラウザの Claude を使うので、拡張機能は要りません。→ <a href="index.html#/alone" target="_blank" rel="noopener">0円で進む道</a>',
   why:'AIと相談しながら作業できるようになります。ここが今日のメインです。',
   todo:{
     common:['VS Code の左端に縦に並んだアイコンの中から、四角が4つ並んだアイコンを押します',
@@ -167,6 +189,7 @@ steps:[
 {
   id:'nologin', icon:'icon-ai.svg', phase:'5. つなぐ',
   title:'サインイン画面を出さない設定にします',
+  skip:'☕ <b>一人で始めた人は、このステップを飛ばしてください。</b>「できました」を押して次へ進んで構いません。→ <a href="index.html#/alone" target="_blank" rel="noopener">0円で進む道</a>',
   why:'この研修では、個人のアカウントではなく会社のAWS経由でAIを使います。そのため、標準のサインイン画面は使いません。先に切っておきます。',
   todo:{
     common:['VS Code の設定を開きます（<span class="k">Ctrl</span>+<span class="k">,</span> / Mac は <span class="k">Cmd</span>+<span class="k">,</span>）',
@@ -187,6 +210,7 @@ steps:[
   id:'settings', icon:'icon-key.svg', phase:'5. つなぐ',
   title:'APIキーを設定します',
   why:'担当者から配られた<b>APIキー</b>を、設定ファイルに1回書いておきます。一度書けば、次からは何もしなくて済みます。',
+  skip:'☕ <b>一人で始めた人は、このステップを飛ばしてください。</b>「できました」を押して次へ進んで構いません。→ <a href="index.html#/alone" target="_blank" rel="noopener">0円で進む道</a>',
   todo:{
     common:['担当者から配布された<b>APIキー</b>と<b>リージョン</b>を手元に用意します',
             '下のコマンドをコピーして、VS Code のターミナルに貼り付けて Enter を押します',
@@ -222,6 +246,7 @@ steps:[
 {
   id:'restart', icon:'icon-vscode.svg', phase:'5. つなぐ',
   title:'VS Code を閉じて、開き直します',
+  skip:'☕ <b>一人で始めた人は、このステップを飛ばしてください。</b>「できました」を押して次へ進んで構いません。→ <a href="index.html#/alone" target="_blank" rel="noopener">0円で進む道</a>',
   why:'いま書いた設定は、開き直したときに読み込まれます。ここを飛ばすと必ず失敗します。',
   todo:{
     common:['VS Code を完全に閉じます',
@@ -238,6 +263,7 @@ steps:[
 {
   id:'talk', icon:'icon-ai.svg', phase:'5. つなぐ',
   title:'AIに話しかけてみます',
+  skip:'☕ <b>一人で始めた人は、ここは <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a> をブラウザで開いて、同じことを聞いてみてください。</b>→ <a href="index.html#/alone" target="_blank" rel="noopener">0円で進む道</a>',
   why:'最後の確認です。ここで返事が来たら、環境構築は完了です。',
   todo:{
     common:['VS Code の左端に増えた Claude Code のアイコンを押します',
@@ -272,6 +298,6 @@ steps:[
 }
 ]};
 </script>
-<script src="navi.js?v=8"></script>
+<script src="navi.js?v=9"></script>
 </body>
 </html>
