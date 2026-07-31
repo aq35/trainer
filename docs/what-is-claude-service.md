@@ -74,7 +74,7 @@
 
 <div class="qa">
 <div class="q">会話が長くなると、AIがおかしくなるのはこれですか？</div>
-<div class="a"><b>大きな原因のひとつです。</b>最初に伝えた前提が、window から押し出されて消えているのです。<br>だから<b><code>/clear</code> で会話を切り直す</b>のが効きます（<a href="theme.html ':ignore target=_blank'">自分のテーマで回す</a>でやりました）。そして<b><code>CLAUDE.md</code> に前提を書いておけば、毎回自動で読み込まれる</b>ので、忘れられません。<b>あの2つは、この制限への対策でした。</b></div>
+<div class="a"><b>大きな原因のひとつです。</b>最初に伝えた前提が、window から押し出されて消えているのです。<br>だから<b><code>/clear</code> で会話を切り直す</b>のが効きます（<a href="theme.html" target="_blank" rel="noopener">自分のテーマで回す</a>でやりました）。そして<b><code>CLAUDE.md</code> に前提を書いておけば、毎回自動で読み込まれる</b>ので、忘れられません。<b>あの2つは、この制限への対策でした。</b></div>
 </div>
 
 ## 認証 — なぜサインインが要るのか
