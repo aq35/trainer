@@ -39,11 +39,12 @@ window.TRAINER_SUPPORT = {
 
 ### 2. Bedrock の接続情報を配布する
 
-受講者には次の3つを渡します。値そのものは、このリポジトリには置かないでください。
+受講者には次の2つを渡します。値そのものは、このリポジトリには置かないでください。
 
+- **Amazon Bedrock の APIキー**（`AWS_BEARER_TOKEN_BEDROCK` に入る値）
 - AWS リージョン
-- `AWS_ACCESS_KEY_ID`
-- `AWS_SECRET_ACCESS_KEY`
+
+アクセスキーとシークレットキーの2つを配る方式ではなく、**APIキー1つ**にしています。受講者に渡す値が減り、AWSの認証情報の概念を説明せずに済むためです。APIキーは Amazon Bedrock のコンソールで発行できます。
 
 受講者側は VS Code の `Disable Login Prompt` をオンにし、`~/.claude/settings.json` の `env` に書き込む流れです（ナビが誘導します）。ターミナルの環境変数では VS Code 拡張機能に反映されないため、この方式にしています。
 
