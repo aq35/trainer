@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="320" viewBox="0 0 720 320" role="img" aria-label="JSONファイル1つで全部を読み込む形と、データベースに必要な行だけ聞く形を比べた図">
+  <rect width="720" height="320" fill="#ffffff"/>
+
+  <text x="180" y="26" font-family="sans-serif" font-size="13" font-weight="700" fill="#26456f" text-anchor="middle">いま — ファイル1つ</text>
+  <rect x="24" y="40" width="312" height="176" rx="10" fill="#f7f9fd" stroke="#c7cede" stroke-width="1.5"/>
+  <text x="44" y="66" font-family="monospace" font-size="11.5" font-weight="700" fill="#26456f">data/tasks.json</text>
+  <rect x="44" y="78" width="272" height="60" rx="6" fill="#eef4ff" stroke="#9fb4d8"/>
+  <text x="58" y="98" font-family="monospace" font-size="10.5" fill="#26456f">[ { id: 1, … }, { id: 2, … }, …</text>
+  <text x="58" y="118" font-family="monospace" font-size="10.5" fill="#26456f">  { id: 12, … } ]</text>
+  <text x="44" y="162" font-family="sans-serif" font-size="12.5" fill="#26456f">読むとき ＝ <tspan font-weight="700">全部まとめて読み込む</tspan></text>
+  <text x="44" y="184" font-family="sans-serif" font-size="12.5" fill="#26456f">絞るとき ＝ <tspan font-weight="700">JavaScript 側で filter</tspan></text>
+  <text x="44" y="206" font-family="sans-serif" font-size="11.5" fill="#2f8f4e">12件なら、これで十分です</text>
+
+  <text x="540" y="26" font-family="sans-serif" font-size="13" font-weight="700" fill="#26456f" text-anchor="middle">DB — 表と行</text>
+  <rect x="384" y="40" width="312" height="176" rx="10" fill="#f7f9fd" stroke="#c7cede" stroke-width="1.5"/>
+  <text x="404" y="66" font-family="monospace" font-size="11.5" font-weight="700" fill="#26456f">tasks（表）</text>
+  <rect x="404" y="78" width="272" height="60" rx="6" fill="#eef7f1" stroke="#a9d5bb"/>
+  <path d="M404 96 L676 96" stroke="#a9d5bb"/>
+  <path d="M404 117 L676 117" stroke="#a9d5bb"/>
+  <path d="M470 78 L470 138 M560 78 L560 138" stroke="#a9d5bb"/>
+  <text x="414" y="92" font-family="monospace" font-size="10" fill="#1f5c39">id</text>
+  <text x="480" y="92" font-family="monospace" font-size="10" fill="#1f5c39">title</text>
+  <text x="570" y="92" font-family="monospace" font-size="10" fill="#1f5c39">done</text>
+  <text x="414" y="112" font-family="monospace" font-size="10" fill="#1f5c39">1</text>
+  <text x="480" y="112" font-family="monospace" font-size="10" fill="#1f5c39">買い物に行く</text>
+  <text x="570" y="112" font-family="monospace" font-size="10" fill="#1f5c39">false</text>
+  <text x="414" y="133" font-family="monospace" font-size="10" fill="#1f5c39">2</text>
+  <text x="480" y="133" font-family="monospace" font-size="10" fill="#1f5c39">資料を直す</text>
+  <text x="570" y="133" font-family="monospace" font-size="10" fill="#1f5c39">true</text>
+  <text x="404" y="162" font-family="sans-serif" font-size="12.5" fill="#26456f">読むとき ＝ <tspan font-weight="700">欲しい行だけ聞く</tspan></text>
+  <text x="404" y="184" font-family="monospace" font-size="10.5" fill="#1f5c39">SELECT * FROM tasks WHERE done = 0</text>
+  <text x="404" y="206" font-family="sans-serif" font-size="11.5" fill="#2f8f4e">増えても、渡ってくる量は変わらない</text>
+
+  <path d="M24 234 L696 234" stroke="#c7cede" stroke-width="1"/>
+
+  <text x="24" y="260" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#c0392b">乗り換えるべきなのは、いつ？</text>
+  <text x="24" y="282" font-family="sans-serif" font-size="12" fill="#26456f">✗ 「そろそろDBを使ったほうが本格的だから」——理由になっていません</text>
+  <text x="24" y="304" font-family="sans-serif" font-size="12" fill="#26456f">✓ <tspan font-weight="700">困り始めてから。</tspan>遅い・同時に書くと壊れる・欲しい形で取り出せない——測ってから決める</text>
+</svg>
