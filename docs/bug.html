@@ -143,7 +143,8 @@ steps:[
             '4〜6行目で記録して、プルリクエストを出します']
   },
   cmdMulti:{
-    common:['git switch main && git pull',
+    common:['git switch main',
+            'git pull',
             'git switch -c fix/8-escape',
             '@public/app.js で、データから来た文字列をそのまま HTML に埋め込んでいるところを、エスケープするように直してください。条件: escapeHtml は public/logic.js に置いて export する / タイトルだけでなくデータ由来の文字列はすべて通す / 見た目は変えない',
             'git add .',

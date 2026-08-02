@@ -93,7 +93,9 @@ steps:[
             '<b>分からない言葉があれば、その場で聞き返します</b>']
   },
   cmdMulti:{
-    common:['git switch main && git pull && git switch -c feat/11-db',
+    common:['git switch main',
+            'git pull',
+            'git switch -c feat/11-db',
             'Node.js の SQLite を使って、いまの public/data/tasks.json の内容をデータベースに移したいです。まだコードは書かないでください。先に次を教えてください: 1. どんなファイルを作ることになるか（一覧と役割） 2. テーブルはどういう形にするか（列の名前と種類） 3. tags は配列ですが、データベースではどう持つのが普通ですか。選択肢と、それぞれの長所短所を教えてください 4. この作業でいちばん間違えやすいところはどこですか']
   },
   expect:'ファイル一覧、テーブルの形、tags の持ち方の選択肢が、文章で返ってきます。',

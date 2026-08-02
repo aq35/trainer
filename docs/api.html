@@ -128,7 +128,8 @@ steps:[
             '<code>tasks.json</code> の行をクリックして、<b>Response</b> タブを開きます',
             '<b>実際に返ってきた中身</b>を見てください']
   },
-  cmd:'git switch main && git pull',
+  cmd:'git switch main',
+  cmdMulti:{ common:['git pull'] },
   cmdlabel:'まず最新にします',
   expect:'Status が <b>200</b>、Response に<b>タスクのJSON</b>が入っています。Console は赤なし。',
   note:'<b>Response タブを見ない人が、とても多いです。</b>「200なのに画面が変」のときは、<b>ここを開けば一発</b>。空だったりHTMLだったりします。<br><b>見るのは4つだけ</b>——Status / Name / Response / Time。',

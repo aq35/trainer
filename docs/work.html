@@ -269,7 +269,8 @@ steps:[
             '直したら push して、プルリクエストを作ります']
   },
   cmdMulti:{
-    common:['git switch main && git pull',
+    common:['git switch main',
+            'git pull',
             'git switch -c fix/2-overdue',
             'git add public/logic.js',
             'git commit -m "期限切れの判定が逆になっていたのを直した"',
@@ -302,7 +303,8 @@ steps:[
             'push して、プルリクエストを作ります']
   },
   cmdMulti:{
-    common:['git switch main && git pull',
+    common:['git switch main',
+            'git pull',
             'git switch -c feat/1-search']
   },
   expect:'検索欄に文字を入れると絞り込まれ、テストが 🟢 緑になります。',
@@ -329,7 +331,8 @@ steps:[
             '7・8行目で解決を記録します']
   },
   cmdMulti:{
-    common:['git switch main && git pull',
+    common:['git switch main',
+            'git pull',
             'git switch -c fix/4-title',
             '（ここで public/index.html の h1 を書き換えて保存）',
             'git add public/index.html',
@@ -363,7 +366,8 @@ steps:[
             '5〜7行目で記録して、プルリクエストを出します']
   },
   cmdMulti:{
-    common:['git switch main && git pull',
+    common:['git switch main',
+            'git pull',
             'git switch -c test/5-summary',
             'npm test',
             'git restore public/logic.js',
@@ -398,7 +402,8 @@ steps:[
             '5〜7行目で記録して、プルリクエストを出します']
   },
   cmdMulti:{
-    common:['git switch main && git pull',
+    common:['git switch main',
+            'git pull',
             'git switch -c chore/6-refactor',
             'npm test',
             'npm test',
