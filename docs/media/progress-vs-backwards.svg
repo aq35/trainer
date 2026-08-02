@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="320" viewBox="0 0 720 320" role="img" aria-label="進捗率で見ると全体の何割終わったかしか分からないが、逆算で見ると残り時間から必要なものが決まるという対比の図">
+  <rect width="720" height="320" fill="#ffffff"/>
+
+  <text x="180" y="26" font-family="sans-serif" font-size="13" font-weight="700" fill="#c0392b" text-anchor="middle">進捗率で見る</text>
+  <text x="540" y="26" font-family="sans-serif" font-size="13" font-weight="700" fill="#2f8f4e" text-anchor="middle">逆算で見る</text>
+
+  <rect x="24" y="40" width="312" height="200" rx="10" fill="#fdf0ee" stroke="#e6b5ad" stroke-width="1.5"/>
+  <text x="44" y="66" font-family="sans-serif" font-size="12" fill="#7a2f24">起点は「カリキュラム」</text>
+
+  <rect x="44" y="78" width="272" height="20" rx="4" fill="#f2dcd8"/>
+  <rect x="44" y="78" width="204" height="20" rx="4" fill="#c0392b"/>
+  <text x="180" y="93" font-family="sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">17 / 22 終わった</text>
+
+  <text x="44" y="126" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#7a2f24">言えること</text>
+  <text x="44" y="148" font-family="sans-serif" font-size="12" fill="#7a2f24">「あと5ステップです」</text>
+
+  <text x="44" y="180" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#c0392b">言えないこと</text>
+  <text x="44" y="200" font-family="sans-serif" font-size="11.5" fill="#7a2f24">・間に合うのか</text>
+  <text x="44" y="218" font-family="sans-serif" font-size="11.5" fill="#7a2f24">・何を捨てていいのか</text>
+
+  <rect x="384" y="40" width="312" height="200" rx="10" fill="#eef7f1" stroke="#a9d5bb" stroke-width="1.5"/>
+  <text x="404" y="66" font-family="sans-serif" font-size="12" fill="#1f5c39">起点は「案件の初日」</text>
+
+  <path d="M404 88 L676 88" stroke="#a9d5bb" stroke-width="2"/>
+  <circle cx="404" cy="88" r="4" fill="#2f8f4e"/>
+  <circle cx="676" cy="88" r="6" fill="#c0392b"/>
+  <text x="404" y="80" font-family="sans-serif" font-size="10.5" fill="#1f5c39">今日</text>
+  <text x="676" y="80" font-family="sans-serif" font-size="10.5" font-weight="700" fill="#c0392b" text-anchor="end">初日</text>
+  <text x="540" y="106" font-family="sans-serif" font-size="11" font-weight="700" fill="#1f5c39" text-anchor="middle">残り3週間 × 週7時間 ＝ 21時間</text>
+
+  <text x="404" y="136" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#1f5c39">やること（3つに絞る）</text>
+  <text x="404" y="157" font-family="sans-serif" font-size="11.5" fill="#1f5c39">✓ 差分を読む　✓ PRの出し方　✓ 相談の型</text>
+
+  <text x="404" y="186" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#c0392b">やらないこと（先に決める）</text>
+  <text x="404" y="207" font-family="sans-serif" font-size="11.5" fill="#7a2f24">✗ 案件の技術は、入ってから覚える</text>
+  <text x="404" y="225" font-family="sans-serif" font-size="11.5" fill="#7a2f24">✗ 興味で広げた部分</text>
+
+  <path d="M24 262 L696 262" stroke="#c7cede" stroke-width="1"/>
+
+  <text x="360" y="288" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#26456f" text-anchor="middle">「どれだけやったか」と「あと何が要るか」は、まったく別の質問です。</text>
+  <text x="360" y="310" font-family="sans-serif" font-size="12" font-weight="700" fill="#2f8f4e" text-anchor="middle">現場で必要なのは、右だけ。——ただし、削るのは2割のほうで、土台ではありません。</text>
+</svg>

@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="340" viewBox="0 0 720 340" role="img" aria-label="AI-DLCの6工程で、AIがクライアント役と下書き役を交互に担い、決めるのは常に人であることを示した図">
+  <rect width="720" height="340" fill="#ffffff"/>
+
+  <text x="360" y="26" font-family="sans-serif" font-size="13" font-weight="700" fill="#26456f" text-anchor="middle">工程は6つ。AIが下書きし、決めるのは毎回あなたです</text>
+
+  <text x="24" y="60" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#6b4f96">AIの役</text>
+  <text x="24" y="150" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#8892a0">工程</text>
+  <text x="24" y="242" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#2f8f4e">あなたの役</text>
+
+  <rect x="96" y="42" width="92" height="46" rx="8" fill="#f4eefc" stroke="#c4aee6"/>
+  <text x="142" y="62" font-family="sans-serif" font-size="11" font-weight="700" fill="#4a2f77" text-anchor="middle">クライアント</text>
+  <text x="142" y="78" font-family="sans-serif" font-size="10" fill="#6b4f96" text-anchor="middle">要望を言う人</text>
+
+  <rect x="196" y="42" width="92" height="46" rx="8" fill="#f4eefc" stroke="#c4aee6"/>
+  <text x="242" y="62" font-family="sans-serif" font-size="11" font-weight="700" fill="#4a2f77" text-anchor="middle">案を出す</text>
+  <text x="242" y="78" font-family="sans-serif" font-size="10" fill="#6b4f96" text-anchor="middle">作り方を複数</text>
+
+  <rect x="296" y="42" width="92" height="46" rx="8" fill="#f4eefc" stroke="#c4aee6"/>
+  <text x="342" y="62" font-family="sans-serif" font-size="11" font-weight="700" fill="#4a2f77" text-anchor="middle">割る</text>
+  <text x="342" y="78" font-family="sans-serif" font-size="10" fill="#6b4f96" text-anchor="middle">30分の単位に</text>
+
+  <rect x="396" y="42" width="92" height="46" rx="8" fill="#f4eefc" stroke="#c4aee6"/>
+  <text x="442" y="62" font-family="sans-serif" font-size="11" font-weight="700" fill="#4a2f77" text-anchor="middle">書く</text>
+  <text x="442" y="78" font-family="sans-serif" font-size="10" fill="#6b4f96" text-anchor="middle">1つずつ実装</text>
+
+  <rect x="496" y="42" width="92" height="46" rx="8" fill="#f4eefc" stroke="#c4aee6"/>
+  <text x="542" y="62" font-family="sans-serif" font-size="11" font-weight="700" fill="#4a2f77" text-anchor="middle">検収する</text>
+  <text x="542" y="78" font-family="sans-serif" font-size="10" fill="#6b4f96" text-anchor="middle">また客に戻る</text>
+
+  <rect x="596" y="42" width="92" height="46" rx="8" fill="#f4eefc" stroke="#c4aee6"/>
+  <text x="642" y="62" font-family="sans-serif" font-size="11" font-weight="700" fill="#4a2f77" text-anchor="middle">追加を言う</text>
+  <text x="642" y="78" font-family="sans-serif" font-size="10" fill="#6b4f96" text-anchor="middle">変更の要望</text>
+
+  <path d="M96 116 L688 116" stroke="#c7cede" stroke-width="1"/>
+  <g font-family="sans-serif" font-size="11.5" font-weight="700" fill="#26456f" text-anchor="middle">
+    <text x="142" y="140">① 要件</text>
+    <text x="242" y="140">② 設計</text>
+    <text x="342" y="140">③ 分解</text>
+    <text x="442" y="140">④ 実装</text>
+    <text x="542" y="140">⑤ 検収</text>
+    <text x="642" y="140">⑥ 変更</text>
+  </g>
+  <path d="M96 156 L688 156" stroke="#c7cede" stroke-width="1"/>
+
+  <g>
+    <path d="M142 156 L142 176" stroke="#2f8f4e" stroke-width="1.5"/>
+    <path d="M242 156 L242 176" stroke="#2f8f4e" stroke-width="1.5"/>
+    <path d="M342 156 L342 176" stroke="#2f8f4e" stroke-width="1.5"/>
+    <path d="M442 156 L442 176" stroke="#2f8f4e" stroke-width="1.5"/>
+    <path d="M542 156 L542 176" stroke="#2f8f4e" stroke-width="1.5"/>
+    <path d="M642 156 L642 176" stroke="#2f8f4e" stroke-width="1.5"/>
+  </g>
+
+  <rect x="96" y="180" width="92" height="46" rx="8" fill="#eef7f1" stroke="#a9d5bb"/>
+  <text x="142" y="200" font-family="sans-serif" font-size="11" font-weight="700" fill="#1f5c39" text-anchor="middle">質問する</text>
+  <text x="142" y="216" font-family="sans-serif" font-size="10" fill="#4a7a5f" text-anchor="middle">曖昧を潰す</text>
+
+  <rect x="196" y="180" width="92" height="46" rx="8" fill="#eef7f1" stroke="#a9d5bb"/>
+  <text x="242" y="200" font-family="sans-serif" font-size="11" font-weight="700" fill="#1f5c39" text-anchor="middle">選ぶ</text>
+  <text x="242" y="216" font-family="sans-serif" font-size="10" fill="#4a7a5f" text-anchor="middle">理由を1行書く</text>
+
+  <rect x="296" y="180" width="92" height="46" rx="8" fill="#eef7f1" stroke="#a9d5bb"/>
+  <text x="342" y="200" font-family="sans-serif" font-size="11" font-weight="700" fill="#1f5c39" text-anchor="middle">受け入れ条件</text>
+  <text x="342" y="216" font-family="sans-serif" font-size="10" fill="#4a7a5f" text-anchor="middle">先に決める</text>
+
+  <rect x="396" y="180" width="92" height="46" rx="8" fill="#eef7f1" stroke="#a9d5bb"/>
+  <text x="442" y="200" font-family="sans-serif" font-size="11" font-weight="700" fill="#1f5c39" text-anchor="middle">差分を読む</text>
+  <text x="442" y="216" font-family="sans-serif" font-size="10" fill="#4a7a5f" text-anchor="middle">都度 commit</text>
+
+  <rect x="496" y="180" width="92" height="46" rx="8" fill="#eef7f1" stroke="#a9d5bb"/>
+  <text x="542" y="200" font-family="sans-serif" font-size="11" font-weight="700" fill="#1f5c39" text-anchor="middle">見せる</text>
+  <text x="542" y="216" font-family="sans-serif" font-size="10" fill="#4a7a5f" text-anchor="middle">条件と突き合わせ</text>
+
+  <rect x="596" y="180" width="92" height="46" rx="8" fill="#eef7f1" stroke="#a9d5bb"/>
+  <text x="642" y="200" font-family="sans-serif" font-size="11" font-weight="700" fill="#1f5c39" text-anchor="middle">受けるか決める</text>
+  <text x="642" y="216" font-family="sans-serif" font-size="10" fill="#4a7a5f" text-anchor="middle">断ってもいい</text>
+
+  <path d="M24 252 L696 252" stroke="#c7cede" stroke-width="1"/>
+
+  <text x="24" y="278" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#26456f">AIは<tspan fill="#4a2f77">2つの役</tspan>を行き来します —— 要望を言う「客」と、手を動かす「作り手」。</text>
+  <text x="24" y="300" font-family="sans-serif" font-size="12" fill="#26456f">だから毎回、<tspan font-weight="700">いまAIがどちらの役なのか</tspan>を意識してください。混ざると、自分で自分に発注することになります。</text>
+  <text x="24" y="324" font-family="sans-serif" font-size="12" font-weight="700" fill="#2f8f4e">下の段は、6回とも「決める」です。ここだけは、誰にも渡せません。</text>
+</svg>

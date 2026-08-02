@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="320" viewBox="0 0 720 320" role="img" aria-label="土台づくり、案件まで1か月の逆算、参画という3段階の時間軸。土台は誰にでも同じで、逆算部分は一人ひとり違う">
+  <rect width="720" height="320" fill="#ffffff"/>
+
+  <text x="360" y="26" font-family="sans-serif" font-size="13" font-weight="700" fill="#26456f" text-anchor="middle">案件に入るまでの、全体の形</text>
+
+  <rect x="24" y="44" width="360" height="86" rx="10" fill="#eef4ff" stroke="#9fb4d8" stroke-width="1.5"/>
+  <text x="204" y="70" font-family="sans-serif" font-size="13" font-weight="700" fill="#26456f" text-anchor="middle">① 土台をつくる（この教材の22ステップ）</text>
+  <text x="204" y="92" font-family="sans-serif" font-size="11.5" fill="#5a6f92" text-anchor="middle">git／差分を読む／PR／不具合を追う／測る／相談する</text>
+  <text x="204" y="114" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#2f6fed" text-anchor="middle">誰にでも同じものを渡します。50〜75時間ほど</text>
+
+  <rect x="400" y="44" width="296" height="86" rx="10" fill="#fdf7e8" stroke="#e2c98a" stroke-width="1.5"/>
+  <text x="548" y="70" font-family="sans-serif" font-size="13" font-weight="700" fill="#7a5c1a" text-anchor="middle">② 案件まで1か月（逆算）</text>
+  <text x="548" y="92" font-family="sans-serif" font-size="11.5" fill="#a8862f" text-anchor="middle">案件の技術／残り時間／自分の弱点から決める</text>
+  <text x="548" y="114" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#c0392b" text-anchor="middle">一人ひとり、まったく違います</text>
+
+  <path d="M384 87 L400 87" stroke="#9fb4d8" stroke-width="2"/>
+  <path d="M394 82 L403 87 L394 92 Z" fill="#9fb4d8"/>
+
+  <path d="M360 138 L360 158" stroke="#2f8f4e" stroke-width="2"/>
+  <path d="M354 150 L360 160 L366 150 Z" fill="#2f8f4e"/>
+
+  <rect x="230" y="164" width="260" height="46" rx="10" fill="#eef7f1" stroke="#a9d5bb" stroke-width="1.5"/>
+  <text x="360" y="192" font-family="sans-serif" font-size="13" font-weight="700" fill="#1f5c39" text-anchor="middle">③ 参画。ここからは、仕事の中で覚えます</text>
+
+  <path d="M24 232 L696 232" stroke="#c7cede" stroke-width="1"/>
+
+  <text x="24" y="256" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#c0392b">急いでいる人が、いちばんやりがちな間違い</text>
+  <text x="24" y="278" font-family="sans-serif" font-size="12" fill="#26456f">✗ ①を飛ばして、いきなり②へ —— 土台が無いと、②で覚えたことも残りません</text>
+  <text x="24" y="300" font-family="sans-serif" font-size="12" fill="#26456f">✓ <tspan font-weight="700">削るなら②のほう。</tspan>①は10年使えて、②は3年で入れ替わります</text>
+</svg>
