@@ -167,11 +167,11 @@ steps:[
   todo:{
     common:['下の1行目で、練習用のブランチを取ってきます',
             '2行目に切り替え、3行目で<b>いま落ちていること</b>を確認します',
-            '<code>git log --oneline</code> で履歴を見ます。<b>11個あります</b>',
+            '<code>git log --oneline</code> で履歴を見ます。<b>いちばん上から11個ぶんが、今日の探索範囲</b>です',
             '<b>犯人のメッセージは「レポートの件数計算を整理した」です。読んで分かりますか？</b>',
             '4〜6行目で探索を始めます。<b>gitが真ん中のコミットに移動します</b>',
             'あとは <code>npm test</code> を打ち、通れば <code>git bisect good</code>、落ちれば <code>git bisect bad</code>',
-            '<b>4回ほどで、犯人が1つに確定します</b>']
+            '<b>3回ほど判定すると、犯人が1つに確定します</b>']
   },
   cmdMulti:{
     common:['git fetch origin bisect-practice',
@@ -202,7 +202,7 @@ steps:[
             '下の順に打ちます',
             '<b>最後の1行で、全部が自動で進みます</b>',
             '　テストが通れば good、落ちれば bad と、<b>gitが自分で判断</b>します',
-            '<b>2ステップで犯人が出ます</b>。終わったら <code>git bisect reset</code>']
+            '<b>数回テストが走り、犯人が出ます</b>。終わったら <code>git bisect reset</code>']
   },
   cmdMulti:{
     common:['git bisect start',
@@ -212,7 +212,7 @@ steps:[
             'git bisect reset']
   },
   expect:'画面が数行流れたあと、<b><code>f6822e6 ... is the first bad commit</code></b> と出ます。<b>あなたは何も判定していません。</b>',
-  note:'<b>コミット数が増えても、手間はほとんど増えません。</b>10個なら4回、<b>100個でも7回、1000個でも10回</b>。<br>——<a href="perf.html" target="_blank" rel="noopener">遅いを直す</a>で見た「2乗で増える」の、ちょうど反対です。',
+  note:'<b>コミット数が増えても、手間はほとんど増えません。</b>10個なら3〜4回、<b>100個でも7回、1000個でも10回</b>。<br>——<a href="perf.html" target="_blank" rel="noopener">遅いを直す</a>で見た「2乗で増える」の、ちょうど反対です。',
   ask:'全自動で、犯人を出せましたか？',
   tb:[
     { q:'git bisect run が動かない',

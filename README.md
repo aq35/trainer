@@ -6,7 +6,7 @@
 
 ## 受講者が進む順番
 
-1. **[環境構築ナビ](docs/setup.html)** — VS Code / Git / Claude Code / Bedrock接続
+1. **[環境構築ナビ](docs/setup.html)** — VS Code / Git / Claude Code。AIの用意は3ルート（①Claude Code を契約 ②会社配布のキー＝Bedrock ③0円）
 2. **[git の基本](docs/git.html)** — 記録する・確認する・壊して戻す（11ステップ）
 3. **[GitHubナビ](docs/github.html)** — アカウント作成から push まで
 4. **[差分を読む](docs/diff.html)** — AIの提案を読んで判断するための土台
@@ -14,10 +14,22 @@
 6. **[はじめてのプログラム](docs/code.html)** — HTML/JavaScript を書く・動かす・エラーを読んで直す・自力課題
 7. **[ブランチと安全な進め方](docs/branch.html)** — ブランチ / merge / .gitignore / プルリクエスト（一人で一周）
 8. **[世界に公開する](docs/publish.html)** — GitHub Pages で自分のページを公開し、デプロイを体験する
-9. **[仕事の一周](docs/work.html)** — 他人のコードを clone して直す。チケット4本／PR／自動採点／AIレビュー／コンフリクト。教材は [aq35/trainer-practice](https://github.com/aq35/trainer-practice)
+9. **[仕事の一周](docs/work.html)** — 他人のコードを clone して直す。チケット6本／PR／自動採点／AIレビュー／コンフリクト。教材は [aq35/trainer-practice](https://github.com/aq35/trainer-practice)（全14チケット）
 10. **[自分のテーマで回す](docs/theme.html)** — 自分で決めたものを作る。CLAUDE.md / Plan モード / `@`指定 / `/clear` / 詰まったときの手順
 11. **[AIと回す開発の一周](docs/ai-dlc.html)** — AIがクライアント役。要件→設計→分解→実装→検収→変更まで一人で一周
-12. **[案件に入る前の最終チェック](docs/graduation.md)** — 自己採点と、案件に入ると何が変わるか
+12. **[レビューする側になる](docs/review.html)** — 問題を7つ植えたPRを実際にレビューする
+13. **[曖昧な報告から不具合を追う](docs/bug.html)** — 「なんかおかしい気がします」だけを手がかりに再現する
+14. **[大きなコードに初日で入る](docs/onboard.html)** — この教材のリポジトリ（約1万行）が題材
+15. **[詰まったときに、人を頼る](docs/ask.html)** — 15分ルール、相談文の4点セット
+16. **[AIに道具を持たせる（MCP × GitHub）](docs/mcp.html)** — 最小の権限で鍵を作り、つなぎ、外す
+17. **[動くけど遅い、を直す](docs/perf.html)** — 測る→特定→直す→もう一度測る
+18. **[使い捨てをやめて、道具にする](docs/tools.html)** — 計測を、テスト付きの道具に
+19. **[数字を、目に見えるようにする](docs/chart.html)** — 計測結果をSVGの棒グラフに
+20. **[APIと、問題の切り分け](docs/api.html)** — Console と Network で、フロント側かサーバー側かを判定
+21. **[観測する力をつける](docs/observe.html)** — 言語サーバ・git blame・git bisect（Node.js が要ります）
+22. **[保存先を変えてみる（任意）](docs/db.html)** — SQLite を入れて、壊して、直す（Node.js 22 以上）
+
+仕上げ: **[案件に入る前の最終チェック](docs/graduation.md)** → **[案件まで1か月。何をする？](docs/plan.md)** → **[案件に参画する](docs/join.md)**
 
 読み物は**地図の中に組み込まれています**（該当ステップの直後に ☕ 付きで表示）。
 
@@ -29,7 +41,7 @@
 
 いつでも: **[コマンド練習](docs/drill.html)** — 31問のクイズ形式ドリル（分野別・成績保存・間違いだけ再挑戦）
 
-読み物（寄り道）: [なぜ VS Code なのか？](docs/why-vscode.md) / [なぜ git が生まれたのか](docs/why-git.md) / [AIはなぜ間違えるのか](docs/why-ai-mistakes.md) / [サービスって何？](docs/what-is-service.md)
+読み物（寄り道・全10本）: [そもそも Claude って何？](docs/what-is-claude.md) / [なぜ VS Code なのか？](docs/why-vscode.md) / [なぜ git が生まれたのか](docs/why-git.md) / [AIはなぜ間違えるのか](docs/why-ai-mistakes.md) / [サービスって何？](docs/what-is-service.md) / [インフラの世界と、その入り口](docs/infra.md) / [AIに何を作ってもらうか](docs/what-to-build.md) / [AI-DLCって何？](docs/what-is-ai-dlc.md) / [工数の見積もり方](docs/estimate.md) / [Claudeを分解してみる](docs/what-is-claude-service.md)
 
 補足資料: [この教材について（無料である理由）](docs/about.md) / [担当者がいない人へ（0円ルート）](docs/alone.md) / [用語集](docs/glossary.md) / [ターミナル入門](docs/step0-terminal.md) / [環境構築でやっていること](docs/step1-setup.md)
 
@@ -71,7 +83,7 @@ window.TRAINER_SUPPORT = {
 
 研修を終えた受講者は、[案件に参画する](docs/join.md)の案内に沿って**参画の相談Issue**を出します（ラベル `参画`）。運営側が受け取るのは次の情報です。
 
-- **到達状況**（10ステップの完了状況が自動で入ります）
+- **到達状況**（22ステップの完了状況が自動で入ります）
 - **成果物のURL** — 公開ページ／`trainer-practice` のPR一覧／自分のテーマのリポジトリ
 - **本人が自覚している弱点**（正直に書くよう促しています）
 - 希望する時間帯・開始時期
@@ -100,8 +112,8 @@ window.TRAINER_SUPPORT = {
 - ③には **「AIに聞く文章をコピー」** があります。今のステップ・手順・期待される結果を含んだ質問文が生成されるので、受講者は〈実際に起きたこと〉を書き足すだけです。**良い質問の型そのものを渡す**狙いがあります
 - **「今の状況をコピー」** では、どのステップで何ができなかったか、経過時間、**自分で試した項目**までが文章になります。スクリーンショットの撮り方も案内しています
 - 同じステップに **15分以上**とどまっている受講者には、ナビ側から**自動で声かけ**が表示されます。ステップを完了すると計測はリセットされます
-- **読み物は地図の中に組み込んであります**（☕ 付きの行）。手を動かした直後に、その道具の背景を読む並びです。**任意**ですが、開くと「読んだ」として記録され、進捗報告にも `読み物（任意）: n / 4 読了` として入ります
-- **9番目の「自分のテーマで回す」が、案件参画への橋渡し**です。`CLAUDE.md`・Plan モード・`@` でのファイル指定・`/clear` を実地で教え、**自分で決めたテーマを1週間進めてもらう**構成です。ここまで来ると、受講者から週次で進捗Issueが届くようになります
+- **読み物は地図の中に組み込んであります**（☕ 付きの行）。手を動かした直後に、その道具の背景を読む並びです。**任意**ですが、開くと「読んだ」として記録され、進捗報告にも `読み物（任意）: n / 10 読了` として入ります
+- **10番目の「自分のテーマで回す」が、案件参画への橋渡し**です。`CLAUDE.md`・Plan モード・`@` でのファイル指定・`/clear` を実地で教え、**自分で決めたテーマを1週間進めてもらう**構成です。ここまで来ると、受講者から週次で進捗Issueが届くようになります
 - **[🎓 最終チェック](docs/graduation.md)** は自己採点の表です。**全部にチェックが付くことを条件にしないでください。**「どこが弱いか」を本人と共有する道具として使うほうが機能します
 
 ## 運営側のセットアップ
@@ -110,9 +122,9 @@ window.TRAINER_SUPPORT = {
 
 この教材は**担当者がAPIキーを配る前提**ですが、公開サイトなので**担当者がいない人**も来ます。その人のために `docs/alone.md`（0円ルート）を用意し、環境構築ナビの冒頭で道を分けています。
 
-- Claude Code を使う5ステップには「一人で始めた人は飛ばしてよい」という案内が出ます
+- Claude Code を前提にしたステップには「一人で始めた人は飛ばしてよい」という案内が出ます
 - 0円ルートでは、ブラウザの無料 Claude に頼み、**返ってきたコードを自分で貼る**形に読み替えます
-- **9ステップすべて完走できます**（git・GitHub・公開・開発者ツールはAIと無関係のため）
+- **21ステップまで完走できます**（git・GitHub・公開・開発者ツール・計測はAIと無関係のため。16番のMCPだけは読むだけになります）
 
 自社の研修としてだけ使う場合も、このページは消さずに残しておくことをおすすめします。**受講者が自宅の個人PCで復習するとき**にそのまま使えるためです。
 
@@ -145,7 +157,7 @@ window.TRAINER_SUPPORT = {
 
 ```js
 window.TRAINER_COFFEE = {
-  url: 'https://github.com/sponsors/aq35',   // 設定済み
+  url: 'https://github.com/sponsors/kazuma-tech',   // 設定済み
   label: '☕ コーヒーを1杯おごる',
   note: '受け取ったぶんは、この教材の維持と改善に使います。'
 };
@@ -166,7 +178,7 @@ window.TRAINER_COFFEE = {
 | パス | 役割 |
 | --- | --- |
 | `docs/index.html` | docsify のエントリ（Markdown をサイト表示） |
-| `docs/setup.html` … `docs/ai-dlc.html` | 対話式ナビ12本（独立した静的HTML）。**受講者が進む回は、すべてこの形式** |
+| `docs/setup.html` … `docs/db.html` | 対話式ナビ22本（独立した静的HTML）。**受講者が進む回は、すべてこの形式** |
 | `docs/navi.js`, `docs/navi.css` | ナビ共通エンジン。ページ側は手順データのみ持つ。ヘルプの3段構え（初手チェック／症状検索／AI・人への相談）もここ |
 | `docs/config.js` | 運営側が編集する設定（サポート窓口・寄付の受け口） |
 | `docs/plan.js` | 逆算プランナー（開始日から週割りを出し、AIへの依頼文を生成） |
@@ -174,15 +186,19 @@ window.TRAINER_COFFEE = {
 | `docs/drill.html`, `docs/drill.js` | コマンド練習ドリル（設問は drill.js の Q 配列） |
 | `docs/credit.js` | 全ページ下部の出典表示（CC BY の条件を満たす1行）。最終更新日は Pages の Last-Modified から自動 |
 | `docs/media/` | 図版（SVG・OGP画像） |
+| `docs/changelog.md` | 改訂履歴。**直したことも、間違えていたことも書く** |
+| `docs/mentor.md` | 教える人へ（逆算できているか）。研修担当・メンター向け |
+| `docs/changelog.md` | 改訂履歴。**直したことも、間違えていたことも書く** |
+| `docs/mentor.md` | 教える人へ（逆算できているか） |
 
 新しいナビを増やす場合は、`navi.css` / `navi.js` / `config.js` を読み込み、`window.NAVI = { key, steps, common }` を定義した HTML を追加してください。
 
 ### キャッシュについて
 
-各HTMLは `config.js?v=8` のようにバージョンを付けて読み込んでいます。**`config.js` や `navi.js` を変更したら、全HTMLの `?v=` の数字を1つ上げてください。** 上げないと、受講者のブラウザが古いファイルを使い続け、連絡先を変えても反映されません。
+各HTMLは `config.js?v=15` のようにバージョンを付けて読み込んでいます。**`config.js` や `navi.js` を変更したら、全HTMLの `?v=` の数字を1つ上げてください。** 上げないと、受講者のブラウザが古いファイルを使い続け、連絡先を変えても反映されません。
 
 ```
-grep -rl '?v=8' docs/*.html | xargs sed -i '' 's/?v=8/?v=9/g'   # Mac
+grep -rl '?v=15' docs/*.html | xargs sed -i '' 's/?v=15/?v=16/g'   # Mac
 ```
 
 ## ライセンス
