@@ -94,6 +94,8 @@ steps:[
             'Permissions で、<b>Contents: Read-only</b> と <b>Pull requests: Read-only</b> と <b>Issues: Read and write</b> を選びます',
             '<b>Generate token</b> を押し、表示された文字列を<b>コピーします</b>']
   },
+  visual:'media/token-scope.svg',
+  visualAlt:'GitHubのトークンを最小の権限で作る。渡した範囲でしかAIは動けないという図',
   expect:'<code>github_pat_</code> で始まる長い文字列が表示されます。',
   note:'<b>この文字列は、二度と表示されません。</b>閉じる前にコピーしてください。無くしたら、作り直せば済みます。<br><b>そして——絶対に、どこかに貼り付けて保存しないでください。</b>チャット、メモ帳、ファイル、どれもだめです。次のステップですぐ使います。',
   ask:'トークンを作って、コピーできましたか？',

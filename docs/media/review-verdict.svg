@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="366" viewBox="0 0 720 366" role="img" aria-label="レビューの判定3種類の使い分け。止めるほどかどうかで選ぶ">
+  <rect width="720" height="366" fill="#ffffff"/>
+
+  <text x="360" y="26" font-family="sans-serif" font-size="13" font-weight="700" fill="#26456f" text-anchor="middle">選ぶ基準は1つだけ ——「これは、止めるほどか？」</text>
+
+  <rect x="24" y="42" width="216" height="160" rx="10" fill="#eef7f1" stroke="#a9d5bb" stroke-width="1.5"/>
+  <text x="132" y="68" font-family="sans-serif" font-size="13" font-weight="700" fill="#1f5c39" text-anchor="middle">Approve</text>
+  <text x="132" y="88" font-family="sans-serif" font-size="11" fill="#4a7a5f" text-anchor="middle">これで取り込んでよい</text>
+  <path d="M44 100 L220 100" stroke="#a9d5bb"/>
+  <text x="44" y="122" font-family="sans-serif" font-size="11" fill="#1f5c39">読んで、問題が無かった</text>
+  <text x="44" y="144" font-family="sans-serif" font-size="11" fill="#1f5c39">細かい好みの違いはある</text>
+  <text x="44" y="166" font-family="sans-serif" font-size="11" fill="#1f5c39">が、動作には影響しない</text>
+  <text x="132" y="192" font-family="sans-serif" font-size="10.5" font-weight="700" fill="#8892a0" text-anchor="middle">「読まずに Approve」は厳禁</text>
+
+  <rect x="252" y="42" width="216" height="160" rx="10" fill="#eef4ff" stroke="#9fb4d8" stroke-width="2"/>
+  <text x="360" y="68" font-family="sans-serif" font-size="13" font-weight="700" fill="#26456f" text-anchor="middle">Comment</text>
+  <text x="360" y="88" font-family="sans-serif" font-size="11" fill="#5a6f92" text-anchor="middle">意見だけ。可否は言わない</text>
+  <path d="M272 100 L448 100" stroke="#9fb4d8"/>
+  <text x="272" y="122" font-family="sans-serif" font-size="11" fill="#26456f">読みにくい／気になる</text>
+  <text x="272" y="144" font-family="sans-serif" font-size="11" fill="#26456f">聞きたいことがある</text>
+  <text x="272" y="166" font-family="sans-serif" font-size="11" fill="#26456f">自分の判断に自信がない</text>
+  <text x="360" y="192" font-family="sans-serif" font-size="11" font-weight="700" fill="#2f6fed" text-anchor="middle">迷ったら、これ</text>
+
+  <rect x="480" y="42" width="216" height="160" rx="10" fill="#fdf0ee" stroke="#e6b5ad" stroke-width="1.5"/>
+  <text x="588" y="68" font-family="sans-serif" font-size="13" font-weight="700" fill="#7a2f24" text-anchor="middle">Request changes</text>
+  <text x="588" y="88" font-family="sans-serif" font-size="11" fill="#a05a4c" text-anchor="middle">直してから、もう一度見せて</text>
+  <path d="M500 100 L676 100" stroke="#e6b5ad"/>
+  <text x="500" y="122" font-family="sans-serif" font-size="11" font-weight="700" fill="#7a2f24">秘密の情報が混ざっている</text>
+  <text x="500" y="144" font-family="sans-serif" font-size="11" fill="#7a2f24">動かない／壊れる</text>
+  <text x="500" y="166" font-family="sans-serif" font-size="11" fill="#7a2f24">データが消える危険がある</text>
+  <text x="588" y="192" font-family="sans-serif" font-size="10.5" font-weight="700" fill="#c0392b" text-anchor="middle">取り込んではいけないもの</text>
+
+  <path d="M24 222 L696 222" stroke="#c7cede" stroke-width="1"/>
+
+  <text x="24" y="248" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#26456f">今回は Request changes を選びます。理由は「秘密の情報が混ざっているから」です。</text>
+  <text x="24" y="274" font-family="sans-serif" font-size="12" fill="#26456f">コメントを書いただけでは、<tspan font-weight="700">相手に通知されません</tspan>。</text>
+  <text x="24" y="294" font-family="sans-serif" font-size="12" fill="#26456f">Review changes → 判定を選ぶ → Submit review。<tspan font-weight="700">ここまでで1セット</tspan>です。</text>
+  <text x="24" y="324" font-family="sans-serif" font-size="12" font-weight="700" fill="#c0392b">Request changes は、人を否定する意味ではありません。</text>
+  <text x="24" y="342" font-family="sans-serif" font-size="12" font-weight="700" fill="#c0392b">「このまま入れると事故る」という事実の伝達です。</text>
+  <text x="24" y="362" font-family="sans-serif" font-size="11.5" fill="#8892a0">指摘には必ず「なぜ」と「どうすればよいか」を添えてください。判定だけでは、相手は動けません。</text>
+</svg>

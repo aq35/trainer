@@ -142,6 +142,8 @@ steps:[
             '　<b>Request changes</b> … 直してから、もう一度見せてほしい',
             '今回は <b>Request changes</b> を選んで、<b>Submit review</b> を押します']
   },
+  visual:'media/review-verdict.svg',
+  visualAlt:'Approve・Comment・Request changes の使い分け。止めるほどかで選ぶ',
   expect:'コメントがまとめて投稿され、PRの状態が「Changes requested」になります。',
   note:'<b>なぜ Request changes なのか。</b>秘密の情報が混ざっているからです。<b>これは絶対に取り込んではいけない</b>種類の問題です。<br>逆に、気になる点が「読みにくい」だけなら <b>Comment</b> で十分です。<b>止めるほどか？</b>で選んでください。',
   ask:'レビューを送信できましたか？',

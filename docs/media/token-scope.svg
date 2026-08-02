@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="350" viewBox="0 0 720 350" role="img" aria-label="GitHubのトークンを最小の権限で作る。渡した範囲でしかAIは動けないという図">
+  <rect width="720" height="350" fill="#ffffff"/>
+
+  <text x="360" y="26" font-family="sans-serif" font-size="13" font-weight="700" fill="#26456f" text-anchor="middle">鍵は「家の合鍵」ではなく「1部屋だけの鍵」を渡します</text>
+
+  <rect x="24" y="42" width="330" height="52" rx="9" fill="#eef4ff" stroke="#9fb4d8" stroke-width="1.5"/>
+  <text x="44" y="64" font-family="sans-serif" font-size="12" font-weight="700" fill="#26456f">対象を絞る</text>
+  <text x="44" y="84" font-family="sans-serif" font-size="11" fill="#5a6f92">Only select repositories → <tspan font-family="monospace">trainer-practice</tspan> だけ</text>
+
+  <rect x="366" y="42" width="330" height="52" rx="9" fill="#eef4ff" stroke="#9fb4d8" stroke-width="1.5"/>
+  <text x="386" y="64" font-family="sans-serif" font-size="12" font-weight="700" fill="#26456f">期限を切る</text>
+  <text x="386" y="84" font-family="sans-serif" font-size="11" fill="#5a6f92">Expiration は短く。30日で十分です</text>
+
+  <text x="24" y="122" font-family="sans-serif" font-size="12" font-weight="700" fill="#8892a0">渡す権限（Permissions）</text>
+
+  <rect x="24" y="132" width="672" height="34" rx="6" fill="#eef7f1" stroke="#a9d5bb"/>
+  <text x="44" y="154" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#1f5c39">Contents: Read-only</text>
+  <text x="260" y="154" font-family="sans-serif" font-size="11" fill="#4a7a5f">コードを読める</text>
+  <text x="676" y="154" font-family="sans-serif" font-size="11" font-weight="700" fill="#c0392b" text-anchor="end">書き換えは、できない</text>
+
+  <rect x="24" y="172" width="672" height="34" rx="6" fill="#eef7f1" stroke="#a9d5bb"/>
+  <text x="44" y="194" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#1f5c39">Pull requests: Read-only</text>
+  <text x="260" y="194" font-family="sans-serif" font-size="11" fill="#4a7a5f">PRと差分を読める</text>
+  <text x="676" y="194" font-family="sans-serif" font-size="11" font-weight="700" fill="#c0392b" text-anchor="end">マージは、できない</text>
+
+  <rect x="24" y="212" width="672" height="34" rx="6" fill="#fdf7e8" stroke="#e2c98a"/>
+  <text x="44" y="234" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#7a5c1a">Issues: Read and write</text>
+  <text x="260" y="234" font-family="sans-serif" font-size="11" fill="#a8862f">Issueを作れる（今日ここを試します）</text>
+  <text x="676" y="234" font-family="sans-serif" font-size="11" font-weight="700" fill="#7a5c1a" text-anchor="end">唯一の書き込み</text>
+
+  <path d="M24 266 L696 266" stroke="#c7cede" stroke-width="1"/>
+
+  <rect x="24" y="278" width="330" height="26" rx="5" fill="#eef7f1" stroke="#a9d5bb"/>
+  <text x="189" y="296" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#1f5c39" text-anchor="middle">「PRを一覧にして」→ できる</text>
+
+  <rect x="366" y="278" width="330" height="26" rx="5" fill="#fdf0ee" stroke="#e6b5ad"/>
+  <text x="531" y="296" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#c0392b" text-anchor="middle">「READMEを書き換えて」→ 失敗する</text>
+
+  <text x="24" y="326" font-family="sans-serif" font-size="12" font-weight="700" fill="#26456f">AIが賢くなったのではなく、手が届く範囲が広がっただけ。<tspan fill="#c0392b">渡していないことは、できません。</tspan></text>
+  <text x="24" y="344" font-family="sans-serif" font-size="11.5" fill="#8892a0">迷ったら少なく。足りなければ、あとで作り直せます。多すぎるほうが、ずっと危険です。</text>
+</svg>
