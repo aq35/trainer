@@ -32,7 +32,9 @@ common:[
   { q:'言葉の意味が分からない',
     a:'<a href="index.html#/glossary" target="_blank" rel="noopener">用語集</a>を見てください。' },
   { when:'act', q:'15分やって、手がかりが無い',
-    a:'<b>それが普通です。</b>各ステップの「うまくいきません」にヒントを入れてあります。<b>ヒントを見るのは負けではありません。</b>見たあとに自分で確かめれば、練習になります。' }
+    a:'<b>それが普通です。</b>各ステップの「うまくいきません」にヒントを入れてあります。<b>ヒントを見るのは負けではありません。</b>見たあとに自分で確かめれば、練習になります。' },
+  { when:'act', q:'Live Server って何？　入れていない気がする',
+    a:'<b>VS Code の拡張機能です。</b>押すと、あなたのパソコンが一時的にサーバーになります。<b>HTMLをダブルクリックで開くと動かない</b>ので、これで開きます。<br><b>入れ方</b>: 左端の拡張機能アイコン（四角が4つ）→ 検索欄に <b>Live Server</b> → 作者が <b>Ritwick Dey</b> のものを Install。<br><b>使い方</b>: ファイルを<b>右クリック → Open with Live Server</b>。<a href="index.html#/glossary" target="_blank" rel="noopener">用語集にもう少し詳しく</a>あります。' },
 ],
 
 steps:[
@@ -62,7 +64,7 @@ steps:[
   title:'まず、自分の目で同じ状態を出します',
   why:'<b>再現できない不具合は、直したかどうかも確認できません。</b>直すより先に、必ずここを通ります。',
   todo:{
-    common:['練習リポジトリを Live Server で開きます',
+    common:['練習リポジトリの <code>public/index.html</code> を<b>右クリック → Open with Live Server</b> で開きます',
             '<b>画面に出ている12件を、上から1つずつ読みます</b>',
             '別のタブで <code>public/data/tasks.json</code> を開きます',
             '<b>画面の表示と、データの文字を1件ずつ突き合わせます</b>',
