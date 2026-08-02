@@ -182,3 +182,18 @@ details.tb .a{font-size:14px;margin-top:8px;padding-top:8px;border-top:1px solid
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:26px;background:var(--ink);color:var(--bg);
        padding:11px 20px;border-radius:99px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .25s}
 .toast.on{opacity:1}
+
+/* --- キーボードで操作している人に、いまどこにいるかを見せる --- */
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:4px}
+.act:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+
+/* --- 指で押す場所は、44px 以上を確保する --- */
+.foot{gap:8px}
+.link{min-height:44px;display:inline-flex;align-items:center;padding:0 4px}
+.hd a.home{min-height:44px;display:inline-flex;align-items:center;font-size:13px}
+.solved .link{min-height:44px}
+
+/* --- 小さすぎる文字の底上げ（12px → 13px） --- */
+.counter{font-size:13px}
+.hsec,.ghead{font-size:13px}
+.copy{font-size:13px}
