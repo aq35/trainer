@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="370" viewBox="0 0 720 370" role="img" aria-label="遅れそう・できない・間違えたの3場面で、言いにくいことを早く伝えるための型">
+  <rect width="720" height="370" fill="#ffffff"/>
+
+  <text x="360" y="26" font-family="sans-serif" font-size="13" font-weight="700" fill="#26456f" text-anchor="middle">言いにくいことほど、早く言うほど傷が浅い</text>
+
+  <text x="24" y="56" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#8892a0">場面</text>
+  <text x="150" y="56" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#c0392b">やりがち</text>
+  <text x="400" y="56" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#2f8f4e">こう言う</text>
+
+  <rect x="24" y="64" width="672" height="76" rx="9" fill="#f7f9fd" stroke="#c7cede" stroke-width="1.5"/>
+  <text x="40" y="88" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#26456f">遅れそう</text>
+  <text x="40" y="108" font-family="sans-serif" font-size="10.5" fill="#8892a0">いつ言うか</text>
+  <text x="40" y="128" font-family="sans-serif" font-size="11" font-weight="700" fill="#2f8f4e">気づいた日</text>
+  <text x="150" y="92" font-family="sans-serif" font-size="11" fill="#c0392b">締切の日に「間に合いません」</text>
+  <text x="150" y="112" font-family="sans-serif" font-size="10.5" fill="#a05a4c">もう誰も手を打てない</text>
+  <rect x="392" y="76" width="296" height="52" rx="6" fill="#eef7f1" stroke="#a9d5bb"/>
+  <text x="404" y="96" font-family="sans-serif" font-size="10.5" fill="#1f5c39">「〇〇が思ったより時間がかかっています。</text>
+  <text x="404" y="114" font-family="sans-serif" font-size="10.5" fill="#1f5c39">　いまの見込みだと〇日ずれそうです。どうしましょうか」</text>
+
+  <rect x="24" y="148" width="672" height="76" rx="9" fill="#f7f9fd" stroke="#c7cede" stroke-width="1.5"/>
+  <text x="40" y="172" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#26456f">できない</text>
+  <text x="40" y="192" font-family="sans-serif" font-size="10.5" fill="#8892a0">どう言うか</text>
+  <text x="40" y="212" font-family="sans-serif" font-size="11" font-weight="700" fill="#2f8f4e">できる範囲を出す</text>
+  <text x="150" y="176" font-family="sans-serif" font-size="11" fill="#c0392b">「できません」／黙って抱える</text>
+  <text x="150" y="196" font-family="sans-serif" font-size="10.5" fill="#a05a4c">相手は代案を作れない</text>
+  <rect x="392" y="160" width="296" height="52" rx="6" fill="#eef7f1" stroke="#a9d5bb"/>
+  <text x="404" y="180" font-family="sans-serif" font-size="10.5" fill="#1f5c39">「全部は難しそうですが、</text>
+  <text x="404" y="198" font-family="sans-serif" font-size="10.5" fill="#1f5c39">　〇〇までなら今週中にできます。優先順位を教えてください」</text>
+
+  <rect x="24" y="232" width="672" height="76" rx="9" fill="#fdf7e8" stroke="#e2c98a" stroke-width="2"/>
+  <text x="40" y="256" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#7a5c1a">間違えた</text>
+  <text x="40" y="276" font-family="sans-serif" font-size="10.5" fill="#a8862f">順番が命</text>
+  <text x="40" y="296" font-family="sans-serif" font-size="11" font-weight="700" fill="#c0392b">事実 → 影響 → 対応</text>
+  <text x="150" y="260" font-family="sans-serif" font-size="11" fill="#c0392b">隠す／言い訳から始める</text>
+  <text x="150" y="280" font-family="sans-serif" font-size="10.5" fill="#a05a4c">遅れるほど、被害が広がる</text>
+  <rect x="392" y="244" width="296" height="52" rx="6" fill="#eef7f1" stroke="#a9d5bb"/>
+  <text x="404" y="264" font-family="sans-serif" font-size="10.5" fill="#1f5c39">「〇〇を消してしまいました。影響は〇〇です。</text>
+  <text x="404" y="282" font-family="sans-serif" font-size="10.5" fill="#1f5c39">　〇〇で戻せると思うのですが、確認いただけますか」</text>
+
+  <path d="M24 326 L696 326" stroke="#c7cede" stroke-width="1"/>
+  <text x="24" y="348" font-family="sans-serif" font-size="12" font-weight="700" fill="#26456f">3つに共通するのは —— <tspan fill="#c0392b">評価を守ろうとしない</tspan>こと。<tspan font-weight="700">仕事が終わることを優先すると、結果として評価も守られます。</tspan></text>
+  <text x="24" y="366" font-family="sans-serif" font-size="11.5" fill="#8892a0">そして「どうしましょうか」「教えてください」で終える —— 相手に判断を渡すと、一人で抱えなくて済みます。</text>
+</svg>

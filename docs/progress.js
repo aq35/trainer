@@ -29,7 +29,7 @@
     { key: 'trainer-review-v1',  total: 8, label: 'レビューする側になる',       href: 'review.html',  icon: 'icon-github.svg' },
     { key: 'trainer-bug-v1',     total: 7, label: '曖昧な報告から不具合を追う', href: 'bug.html',     icon: 'icon-terminal.svg' },
     { key: 'trainer-onboard-v1', total: 7, label: '大きなコードに初日で入る',   href: 'onboard.html', icon: 'icon-vscode.svg' },
-    { key: 'trainer-ask-v1',     total: 7, label: '詰まったときに、人を頼る',   href: 'ask.html',     icon: 'icon-key.svg' },
+    { key: 'trainer-ask-v1',     total: 8, label: '詰まったときに、人を頼る',   href: 'ask.html',     icon: 'icon-key.svg' },
     { key: 'trainer-mcp-v1',     total: 8, label: 'AIに道具を持たせる（MCP × GitHub）', href: 'mcp.html', icon: 'icon-ai.svg',
       readBefore: { md: 'what-is-claude-service', label: 'Claudeを分解してみる — AIも、ただのサービスです', icon: 'icon-ai.svg' } },
     // ここから「動くものを、良くする」
