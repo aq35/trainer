@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="330" viewBox="0 0 720 330" role="img" aria-label="AIへの頼み方の3つのコツと、悪い例と良い例の比較">
+  <rect width="720" height="330" fill="#ffffff"/>
+
+  <text x="360" y="26" font-family="sans-serif" font-size="13" font-weight="700" fill="#26456f" text-anchor="middle">頼み方は、この3つだけ覚えてください</text>
+
+  <rect x="24" y="42" width="216" height="94" rx="10" fill="#eef4ff" stroke="#9fb4d8" stroke-width="1.5"/>
+  <text x="132" y="66" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#26456f" text-anchor="middle">① 何をしたいかを書く</text>
+  <text x="132" y="90" font-family="sans-serif" font-size="10.5" fill="#5a6f92" text-anchor="middle">「どう作るか」は、分からなければ</text>
+  <text x="132" y="106" font-family="sans-serif" font-size="10.5" fill="#5a6f92" text-anchor="middle">書かなくて構いません</text>
+  <text x="132" y="126" font-family="sans-serif" font-size="10.5" font-weight="700" fill="#2f6fed" text-anchor="middle">目的だけで通じます</text>
+
+  <rect x="252" y="42" width="216" height="94" rx="10" fill="#eef4ff" stroke="#9fb4d8" stroke-width="1.5"/>
+  <text x="360" y="66" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#26456f" text-anchor="middle">② 範囲を区切る</text>
+  <text x="360" y="90" font-family="sans-serif" font-size="10.5" fill="#5a6f92" text-anchor="middle">「hello.txt だけ」「1行だけ」</text>
+  <text x="360" y="106" font-family="sans-serif" font-size="10.5" fill="#5a6f92" text-anchor="middle">「テストは変えないで」</text>
+  <text x="360" y="126" font-family="sans-serif" font-size="10.5" font-weight="700" fill="#2f6fed" text-anchor="middle">はみ出しが減ります</text>
+
+  <rect x="480" y="42" width="216" height="94" rx="10" fill="#eef7f1" stroke="#a9d5bb" stroke-width="1.5"/>
+  <text x="588" y="66" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#1f5c39" text-anchor="middle">③ 聞き返してもらう</text>
+  <text x="588" y="90" font-family="sans-serif" font-size="10.5" fill="#4a7a5f" text-anchor="middle">「不明点があれば</text>
+  <text x="588" y="106" font-family="sans-serif" font-size="10.5" fill="#4a7a5f" text-anchor="middle">　先に質問してください」</text>
+  <text x="588" y="126" font-family="sans-serif" font-size="10.5" font-weight="700" fill="#2f8f4e" text-anchor="middle">勝手な思い込みが減ります</text>
+
+  <rect x="24" y="152" width="330" height="86" rx="10" fill="#fdf0ee" stroke="#e6b5ad" stroke-width="1.5"/>
+  <text x="44" y="174" font-family="sans-serif" font-size="12" font-weight="700" fill="#c0392b">こう頼むと、外れます</text>
+  <rect x="44" y="184" width="290" height="24" rx="4" fill="#ffffff" stroke="#e6b5ad"/>
+  <text x="54" y="201" font-family="sans-serif" font-size="10.5" fill="#7a2f24">「いい感じに直しておいて」</text>
+  <text x="44" y="228" font-family="sans-serif" font-size="10.5" fill="#a05a4c">目的も範囲も無い → どこまで触られるか分からない</text>
+
+  <rect x="366" y="152" width="330" height="86" rx="10" fill="#eef7f1" stroke="#a9d5bb" stroke-width="1.5"/>
+  <text x="386" y="174" font-family="sans-serif" font-size="12" font-weight="700" fill="#2f8f4e">こう頼むと、当たります</text>
+  <rect x="386" y="184" width="290" height="24" rx="4" fill="#ffffff" stroke="#a9d5bb"/>
+  <text x="396" y="201" font-family="sans-serif" font-size="10.5" fill="#1f5c39">「hello.txt に日付の行を1行足して。不明点は先に質問して」</text>
+  <text x="386" y="228" font-family="sans-serif" font-size="10.5" fill="#4a7a5f">①目的 ＋ ②範囲 ＋ ③聞き返し が、全部入っています</text>
+
+  <path d="M24 258 L696 258" stroke="#c7cede" stroke-width="1"/>
+  <text x="24" y="282" font-family="sans-serif" font-size="12" font-weight="700" fill="#26456f">「分からないことを聞く」のも、AIの正しい使い方です。コードを書かせるだけの道具ではありません。</text>
+  <text x="24" y="304" font-family="sans-serif" font-size="12" fill="#26456f">エラーが出たら、<tspan font-weight="700">そのまま貼って「どういう意味？」</tspan>と聞くのが最短です。要約しないでください。</text>
+  <text x="24" y="324" font-family="sans-serif" font-size="11.5" fill="#8892a0">そして、返ってきたものは必ず自分で読んでから承認する —— これはこの先ずっと変わりません。</text>
+</svg>
