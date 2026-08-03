@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>使い捨てをやめて、道具にする | エンジニア育成トレーナー</title>
-<link rel="stylesheet" href="navi.css?v=17">
+<link rel="stylesheet" href="navi.css?v=18">
 <script src="config.js?v=17"></script>
   <link rel="canonical" href="https://aq35.github.io/trainer/tools.html">
 </head>
@@ -34,7 +34,7 @@ common:[
   { when:'act', q:'なぜこんな小さいものを作るの？',
     a:'<b>小さいからです。</b>大きな道具は作る前に力尽きます。<b>「毎回書いている3行」を1行にする</b>——これが、道具作りのいちばん現実的な始め方です。' },
   { when:'act', q:'Live Server って何？　入れていない気がする',
-    a:'<b>VS Code の拡張機能です。</b>押すと、あなたのパソコンが一時的にサーバーになります。<b>HTMLをダブルクリックで開くと動かない</b>ので、これで開きます。<br><b>入れ方</b>: 左端の拡張機能アイコン（四角が4つ）→ 検索欄に <b>Live Server</b> → 作者が <b>Ritwick Dey</b> のものを Install。<br><b>使い方</b>: ファイルを<b>右クリック → Open with Live Server</b>。<a href="index.html#/glossary" target="_blank" rel="noopener">用語集にもう少し詳しく</a>あります。' },,
+    a:'<b>VS Code の拡張機能です。</b>押すと、あなたのパソコンが一時的にサーバーになります。<b>HTMLをダブルクリックで開くと動かない</b>ので、これで開きます。<br><b>入れ方</b>: 左端の拡張機能アイコン（四角が4つ）→ 検索欄に <b>Live Server</b> → 作者が <b>Ritwick Dey</b> のものを Install。<br><b>使い方</b>: ファイルを<b>右クリック → Open with Live Server</b>。<a href="index.html#/glossary" target="_blank" rel="noopener">用語集にもう少し詳しく</a>あります。' },
   { q:'もっと詳しい手順が見たい',
     a:'この回の題材は <a href="https://github.com/aq35/trainer-practice/blob/main/tickets/10-tools.md" target="_blank" rel="noopener">チケット #10 毎回 console.time を書くのをやめたい</a> です。<b>条件の表・AIへの頼み方の全文・つまずきどころ</b>が書いてあります。<b>手が止まったら、まずここを開いてください。</b>' },
 ],
@@ -72,9 +72,9 @@ steps:[
   },
   visual:'media/measure-spec.svg',
   visualAlt:'measure という道具が満たすべき5つの条件と、それぞれの理由をまとめた表',
+  visual2:'media/throwaway-vs-tool.svg',
+  visual2Alt:'毎回書いて消す使い捨てのコードと、一度作れば残る道具の、手間の増え方を比べた図',
   expect:'<b>5つの条件を、なぜそれが要るのかとセットで読めれば十分です。</b>書き写す必要はありません（次のステップの頼み文に、そのまま入っています）。',
-  visual:'media/throwaway-vs-tool.svg',
-  visualAlt:'毎回書いて消す使い捨てのコードと、一度作れば残る道具の、手間の増え方を比べた図',
   note:'<b>③と④が、いちばん大事です。</b><code>console.log</code> に出すだけの道具は<b>テストできません</b>。「配列に記録が入ったか」なら <code>assert</code> 1行です。<b>出しっぱなしにせず、取り出せる所に置く。</b>',
   ask:'5つの条件と、その理由を読みましたか？',
   tb:[
@@ -234,21 +234,25 @@ test('戻り値がそのまま返る', () => {
   title:'作ったことを、誰かに伝えます',
   why:'<b>ここが、この回のいちばん大事なステップです。</b>自分だけが速くなっても、チームは速くなりません。',
   todo:{
-    common:['作った道具のことを、<b>誰か1人に伝えてください</b>',
-            '　チームがあれば、チャットに<b>3行</b>で',
-            '　一人で学んでいるなら、<a href="https://github.com/aq35/trainer/discussions" target="_blank" rel="noopener">この教材の Discussions</a> に',
-            '書き方は、これで十分です',
+    common:['まず、<b>いま出したプルリクエストの説明に、下の3行を足します</b>（これは必ずできます）',
+            '　GitHub のPRの画面 → 説明の右上の「…」→ Edit → 追記して Save',
+            '書く内容は、これで十分です',
             '　<b>「毎回 console.time を書くのが面倒だったので、measure という道具を作りました。</b>',
-            '　<b>　包むだけで測れて、getMarks() で一覧できます。使い方はREADMEに書きました」</b>']
+            '　<b>　包むだけで測れて、getMarks() で一覧できます。使い方はREADMEに書きました」</b>',
+            'そのうえで、<b>読む相手がいるなら、同じ3行をそちらにも送ります</b>',
+            '　チームがあれば、チャットに。勉強仲間がいれば、その人に',
+            '　誰もいなければ、ここまでで<b>完了です</b>（PRの説明が、読む人への伝達です）']
   },
-  expect:'誰か1人に伝わっている状態になります。それだけです。',
+  expect:'PRの説明に、<b>道具の名前・使い方・READMEの場所</b>の3つが書かれています。',
   note:'<b>共有すると価値が下がる、は逆です。</b>抱えている人は<b>情報が古くなった瞬間に価値を失います</b>。<br>そして——<b>説明しようとすると、自分の理解が深まります。</b>',
-  ask:'誰か1人に、伝えられましたか？',
+  ask:'PRの説明に、3行を書けましたか？',
   tb:[
     { q:'こんな小さいもの、共有するほどでもない',
       a:'<b>小さいから共有するのです。</b>大きな話は伝わりませんが、「3行で測れます」は伝わります。<b>そして、伝わったものだけが広がります。</b>' },
     { q:'伝える相手がいない',
-      a:'<b>未来の自分に伝えてください。</b>READMEに書いたのが、まさにそれです。それでも足りなければ、<a href="https://github.com/aq35/trainer/discussions" target="_blank" rel="noopener">Discussions</a> に書いてください。<b>同じところで困る人が、必ずいます。</b>' }
+      a:'<b>それでこの画面は成立します。</b>PRの説明は、あとで差分を見る人が必ず読む場所です。<br>READMEと合わせて、<b>もう2か所に伝わっている</b>状態になっています。相手を探す必要はありません。' },
+    { q:'PRの説明を、あとから書き替えていいの？',
+      a:'<b>いいです。</b>むしろ現場では、レビュー中に分かったことを説明に足していくのが普通です。コードと違って、説明は<b>何度直しても記録が汚れません</b>。' }
   ]
 },
 {
@@ -263,7 +267,7 @@ test('戻り値がそのまま返る', () => {
 }
 ]};
 </script>
-<script src="navi.js?v=17"></script>
+<script src="navi.js?v=18"></script>
 <script src="credit.js?v=17"></script>
 </body>
 </html>

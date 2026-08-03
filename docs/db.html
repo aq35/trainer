@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>保存先を変えてみる（データベース） | エンジニア育成トレーナー</title>
-<link rel="stylesheet" href="navi.css?v=17">
+<link rel="stylesheet" href="navi.css?v=18">
 <script src="config.js?v=17"></script>
   <link rel="canonical" href="https://aq35.github.io/trainer/db.html">
 </head>
@@ -146,14 +146,15 @@ steps:[
     common:['<b>① データベースを作って、12件を入れる</b> → ここで<b>一度止めて、動かす</b>',
             '<b>② 中身を読み出せることを確認する</b>（1件だけ取れればOK）',
             '<b>③ 絞り込みをSQLでやってみる</b>（「終わっていないものだけ」）',
-            '<b>④ そのあとで、アプリから使うことを考える</b>',
-            '<b>各段階で、必ず動かしてください</b>']
+            '<b>この画面は、③まで動けば合格です。</b>各段階で、必ず動かしてください',
+            '　④ アプリから使うところは、<b>手を動かしません。</b>下の解説を読むだけです',
+            '　　（ブラウザから直接データベースは読めません。受け渡し役＝バックエンドが要ります）']
   },
   cmd:'-- ② 中身を読み出す（1件だけ）\nSELECT * FROM tasks LIMIT 1;\n\n-- ③ 終わっていないものだけ絞り込む\nSELECT id, title FROM tasks WHERE done = 0;\n\n-- おまけ: 件数を数える\nSELECT COUNT(*) FROM tasks;',
   cmdlabel:'②③で使うSQL（最後のセミコロンを忘れずに）',
-  expect:'ターミナルから、データベースの中身を読み書きできる状態になります。',
+  expect:'ターミナルから <code>SELECT</code> を打つと、<b>12件のうち1件</b>と、<b>終わっていないものだけ</b>が表示されます。',
   note:'<b>③のSQLで気づいてください。</b>「終わっていないものだけ取り出す」は <code>countRemaining</code> と同じです。<b>違うのは、誰が絞るか。</b>データが増えたとき、どちらが速いでしょう。',
-  ask:'ターミナルから、読み書きできましたか？',
+  ask:'③まで、ターミナルで結果が出ましたか？',
   tb:[
     { q:'sqlite3 コマンドが見つからない',
       a:'Mac には最初から入っています。Windows は<b>公式サイトの tools 版をダウンロードして展開</b>するか、<b>今日は Node.js から触る</b>方法に切り替えてください。AIに「Nodeだけで進めたい」と伝えれば手順を出してくれます。' },
@@ -233,7 +234,7 @@ steps:[
 }
 ]};
 </script>
-<script src="navi.js?v=17"></script>
+<script src="navi.js?v=18"></script>
 <script src="credit.js?v=17"></script>
 </body>
 </html>
