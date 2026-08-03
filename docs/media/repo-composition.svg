@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="350" viewBox="0 0 720 350" role="img" aria-label="この教材のリポジトリ1万6千行の内訳。実際のプログラムは1779行しかない">
+  <rect width="720" height="350" fill="#ffffff"/>
+
+  <text x="360" y="26" font-family="sans-serif" font-size="13" font-weight="700" fill="#26456f" text-anchor="middle">「1万6千行」の中身を、開けてみます</text>
+
+  <text x="24" y="56" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#8892a0">全 16,656 行 ／ 148 ファイル</text>
+
+  <rect x="24" y="66" width="672" height="30" rx="5" fill="#e8ecf3"/>
+  <rect x="24" y="66" width="259" height="30" rx="5" fill="#c7cede"/>
+  <rect x="283" y="66" width="189" height="30" fill="#d8dfe9"/>
+  <rect x="472" y="66" width="146" height="30" fill="#e2e7ef"/>
+  <rect x="618" y="66" width="72" height="30" fill="#2f6fed"/>
+  <rect x="690" y="66" width="6" height="30" rx="3" fill="#9fb4d8"/>
+  <text x="654" y="112" font-family="sans-serif" font-size="11" font-weight="700" fill="#2f6fed" text-anchor="middle">ここだけ</text>
+
+  <g font-family="sans-serif" font-size="11.5">
+    <rect x="24" y="128" width="672" height="26" rx="5" fill="#f7f9fd" stroke="#c7cede"/>
+    <text x="40" y="146" fill="#5b6472">HTML</text>
+    <text x="200" y="146" font-weight="700" fill="#26456f">6,424 行</text>
+    <text x="300" y="146" fill="#8892a0">24ファイル　中身のほとんどは、画面に出す文章データ</text>
+
+    <rect x="24" y="158" width="672" height="26" rx="5" fill="#f7f9fd" stroke="#c7cede"/>
+    <text x="40" y="176" fill="#5b6472">Markdown</text>
+    <text x="200" y="176" font-weight="700" fill="#26456f">4,686 行</text>
+    <text x="300" y="176" fill="#8892a0">27ファイル　読み物・用語集・改訂履歴。ぜんぶ文章</text>
+
+    <rect x="24" y="188" width="672" height="26" rx="5" fill="#f7f9fd" stroke="#c7cede"/>
+    <text x="40" y="206" fill="#5b6472">SVG</text>
+    <text x="200" y="206" font-weight="700" fill="#26456f">3,626 行</text>
+    <text x="300" y="206" fill="#8892a0">95ファイル　図。1枚あたり40行ほどの座標の羅列</text>
+
+    <rect x="24" y="218" width="672" height="26" rx="5" fill="#eef4ff" stroke="#2f6fed" stroke-width="2"/>
+    <text x="40" y="236" font-weight="700" fill="#2f6fed">JavaScript</text>
+    <text x="200" y="236" font-weight="700" fill="#2f6fed">1,779 行</text>
+    <text x="300" y="236" font-weight="700" fill="#26456f">6ファイル　←　実際に「動き」を書いているのは、ここだけ</text>
+
+    <rect x="24" y="248" width="672" height="26" rx="5" fill="#f7f9fd" stroke="#c7cede"/>
+    <text x="40" y="266" fill="#5b6472">CSS ほか</text>
+    <text x="200" y="266" font-weight="700" fill="#26456f">841 行</text>
+    <text x="300" y="266" fill="#8892a0">見た目の指定と、設定ファイル</text>
+  </g>
+
+  <path d="M24 290 L696 290" stroke="#c7cede" stroke-width="1"/>
+  <text x="24" y="312" font-family="sans-serif" font-size="12" font-weight="700" fill="#c0392b">これは、この教材が特別なのではありません。案件のコードも、同じような比率です。</text>
+  <text x="24" y="332" font-family="sans-serif" font-size="12" fill="#26456f">設定・文言・データ・テストが大半を占め、<tspan font-weight="700">「動き」を書いた部分は思ったより小さい</tspan>。</text>
+  <text x="24" y="348" font-family="sans-serif" font-size="11.5" fill="#8892a0">だから「全部読む」は無理でも、<tspan font-weight="700">「動いている場所を探し当てる」なら、今日できます。</tspan></text>
+</svg>
