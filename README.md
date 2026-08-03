@@ -195,10 +195,10 @@ window.TRAINER_COFFEE = {
 
 ### キャッシュについて
 
-各HTMLは `config.js?v=15` のようにバージョンを付けて読み込んでいます。**`config.js` や `navi.js` を変更したら、全HTMLの `?v=` の数字を1つ上げてください。** 上げないと、受講者のブラウザが古いファイルを使い続け、連絡先を変えても反映されません。
+各HTMLは `config.js?v=16` のようにバージョンを付けて読み込んでいます。**`config.js` や `navi.js` を変更したら、全HTMLの `?v=` の数字を1つ上げてください。** 上げないと、受講者のブラウザが古いファイルを使い続け、連絡先を変えても反映されません。
 
 ```
-grep -rl '?v=15' docs/*.html | xargs sed -i '' 's/?v=15/?v=16/g'   # Mac
+grep -rl '?v=16' docs/*.html | xargs sed -i '' 's/?v=16/?v=17/g'   # Mac
 ```
 
 ## ライセンス

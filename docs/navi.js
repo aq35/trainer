@@ -12,7 +12,9 @@
   if (st.i >= STEPS.length) st.i = 0;
 
   function save() { try { localStorage.setItem(CFG.key, JSON.stringify(st)); } catch (e) {} }
-  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+  // " も必ずエスケープすること。data-copy="..." や alt="..." の中で使うため、
+  // 抜けると『git commit -m "…"』のような値が属性の途中で切れてコピーが壊れる。
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
   function pick(o) { if (!o) return null; if (o.common) return o.common; return st.os === 'mac' ? o.mac : o.win; }
   function osName() { return st.os === 'mac' ? 'Mac' : 'Windows'; }
   function needsOs() { for (var i = 0; i < STEPS.length; i++) if (STEPS[i].kind === 'os') return true; return false; }
