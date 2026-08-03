@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="286" viewBox="0 0 720 286" role="img" aria-label="404のときConsoleにはJSONのエラーが出るが、本当の原因はファイルが無いことだと示す図">
+<rect width="720" height="286" fill="#ffffff"/>
+<text x="24" y="28" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#26456f">同じ事故を、2つの窓から見ています</text>
+<rect x="24" y="44" width="672" height="72" rx="10" fill="#f6f8fc" stroke="#c7cede" stroke-width="1.5"/>
+<text x="44" y="68" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#3d4652">起きたこと</text>
+<text x="150" y="68" font-family="sans-serif" font-size="12.5" fill="#3d4652">頼んだファイルが無い　→　サーバーは「無い」というHTMLのページを返す</text>
+<text x="150" y="94" font-family="sans-serif" font-size="12.5" fill="#3d4652">→　あなたのコードは、それを JSON として読もうとして失敗する</text>
+<rect x="24" y="132" width="330" height="112" rx="10" fill="#eef7f1" stroke="#a9d5bb" stroke-width="1.5"/>
+<text x="189" y="157" font-family="sans-serif" font-size="13" font-weight="700" fill="#1f5c39" text-anchor="middle">Network に出るもの</text>
+<rect x="44" y="170" width="290" height="26" rx="5" fill="#ffffff" stroke="#a9d5bb"/>
+<text x="54" y="188" font-family="monospace" font-size="12" fill="#1f5c39">tag.json      404</text>
+<text x="189" y="216" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#1f5c39" text-anchor="middle">これが原因です</text>
+<text x="189" y="236" font-family="sans-serif" font-size="12" fill="#3f7a5c" text-anchor="middle">直すのはURLか、サーバー側</text>
+<rect x="366" y="132" width="330" height="112" rx="10" fill="#fdf0ee" stroke="#e6b5ad" stroke-width="1.5"/>
+<text x="531" y="157" font-family="sans-serif" font-size="13" font-weight="700" fill="#c0392b" text-anchor="middle">Console に出るもの</text>
+<rect x="386" y="170" width="290" height="26" rx="5" fill="#ffffff" stroke="#e6b5ad"/>
+<text x="396" y="188" font-family="monospace" font-size="11.5" fill="#c0392b">SyntaxError: ... is not valid JSON</text>
+<text x="531" y="216" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#c0392b" text-anchor="middle">これは結果です</text>
+<text x="531" y="236" font-family="sans-serif" font-size="12" fill="#9c5a4e" text-anchor="middle">「JSONがおかしい」は、原因ではない</text>
+<rect x="24" y="240" width="672" height="0" fill="none"/>
+<text x="360" y="272" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#26456f" text-anchor="middle">順番は ① Network（何が返ってきたか）→ ② Console（それをどう扱って失敗したか）</text>
+</svg>

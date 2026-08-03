@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="288" viewBox="0 0 720 288" role="img" aria-label="やる・間違える・指摘される・直すの輪から、一人になると指摘されるが欠けるという図">
+<rect width="720" height="288" fill="#ffffff"/>
+<text x="24" y="28" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#26456f">成長は、この4つで回ります</text>
+<rect x="40" y="46" width="130" height="52" rx="9" fill="#eef3ff" stroke="#9fb4d8" stroke-width="1.5"/>
+<text x="105" y="78" font-family="sans-serif" font-size="13" fill="#26456f" text-anchor="middle">やる</text>
+<path d="M176 72 L206 72" stroke="#8892a0" stroke-width="2"/><path d="M206 66 L216 72 L206 78 Z" fill="#8892a0"/>
+<rect x="222" y="46" width="130" height="52" rx="9" fill="#eef3ff" stroke="#9fb4d8" stroke-width="1.5"/>
+<text x="287" y="78" font-family="sans-serif" font-size="13" fill="#26456f" text-anchor="middle">間違える</text>
+<path d="M358 72 L388 72" stroke="#8892a0" stroke-width="2"/><path d="M388 66 L398 72 L388 78 Z" fill="#8892a0"/>
+<rect x="404" y="46" width="130" height="52" rx="9" fill="#fdf0ee" stroke="#c0392b" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="469" y="70" font-family="sans-serif" font-size="13" font-weight="700" fill="#c0392b" text-anchor="middle">指摘される</text>
+<text x="469" y="90" font-family="sans-serif" font-size="12" font-weight="700" fill="#c0392b" text-anchor="middle">一人になると、消えます</text>
+<path d="M540 72 L570 72" stroke="#8892a0" stroke-width="2"/><path d="M570 66 L580 72 L570 78 Z" fill="#8892a0"/>
+<rect x="586" y="46" width="110" height="52" rx="9" fill="#eef3ff" stroke="#9fb4d8" stroke-width="1.5"/>
+<text x="641" y="78" font-family="sans-serif" font-size="13" fill="#26456f" text-anchor="middle">直す</text>
+<path d="M641 104 L641 120 L105 120 L105 104" fill="none" stroke="#8892a0" stroke-width="2"/>
+<path d="M99 104 L105 94 L111 104 Z" fill="#8892a0"/>
+<text x="24" y="156" font-family="sans-serif" font-size="13" fill="#3d4652">AIは指摘してくれますが、<tspan font-weight="700" fill="#c0392b">聞かれたことにしか答えません</tspan>。</text>
+<rect x="24" y="170" width="330" height="44" rx="9" fill="#f6f8fc" stroke="#c7cede" stroke-width="1.5"/>
+<text x="189" y="197" font-family="sans-serif" font-size="12.5" fill="#5b6472" text-anchor="middle">「これでいい？」→「いいと思います」</text>
+<text x="366" y="197" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#c0392b">気づいていないことは、聞かない限り出てきません</text>
+<rect x="24" y="228" width="330" height="48" rx="10" fill="#eef7f1" stroke="#a9d5bb" stroke-width="1.5"/>
+<text x="189" y="250" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#1f5c39" text-anchor="middle">① 先に条件を立てる</text>
+<text x="189" y="268" font-family="sans-serif" font-size="12" fill="#3f7a5c" text-anchor="middle">照らす相手が無ければ、ズレは見えません</text>
+<rect x="366" y="228" width="330" height="48" rx="10" fill="#eef7f1" stroke="#a9d5bb" stroke-width="1.5"/>
+<text x="531" y="250" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#1f5c39" text-anchor="middle">② 先週の自分をレビューする</text>
+<text x="531" y="268" font-family="sans-serif" font-size="12" fill="#3f7a5c" text-anchor="middle">時間を空ければ、他人のコードとして読めます</text>
+</svg>

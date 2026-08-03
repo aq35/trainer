@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>動くけど遅い、を直す | エンジニア育成トレーナー</title>
-<link rel="stylesheet" href="navi.css?v=24">
+<link rel="stylesheet" href="navi.css?v=25">
 <script src="config.js?v=17"></script>
   <link rel="canonical" href="https://aq35.github.io/trainer/perf.html">
 </head>
@@ -43,6 +43,8 @@ steps:[
 {
   icon:'icon-terminal.svg', phase:'1. 依頼を受ける', readonly:true,
   title:'「なんか重い」と言われました',
+  visual:'media/slow-is-bug.svg',
+  visualAlt:'動かない不具合はすぐ気づかれるが、遅い不具合は放置されある日限界が来る',
   why:'エラーは出ていません。動いています。<b>それでも、使えないと言われています。</b>',
   todo:{
     common:['企画の佐藤さんから、こう来ました',
@@ -237,6 +239,8 @@ steps:[
 {
   icon:'icon-key.svg', phase:'9. どこで止めるか', readonly:true,
   title:'速さは、追いすぎないでください',
+  visual:'media/when-to-stop.svg',
+  visualAlt:'測って困っていなければ何もしない。困っている所だけ直して足りたら止める判断の流れ',
   why:'<b>速くすることが目的ではありません。</b>困らなくなれば、そこで終わりです。',
   todo:{
     common:['<b>① まず測る。</b>遅くないなら、何もしない（これが一番多い）',
@@ -264,7 +268,7 @@ steps:[
 }
 ]};
 </script>
-<script src="navi.js?v=24"></script>
+<script src="navi.js?v=25"></script>
 <script src="credit.js?v=17"></script>
 </body>
 </html>

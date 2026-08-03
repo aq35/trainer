@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="252" viewBox="0 0 720 252" role="img" aria-label="3日黙っていた場合と15分で聞いた場合にかかる時間の比較">
+<rect width="720" height="252" fill="#ffffff"/>
+<text x="24" y="28" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#26456f">同じところで詰まった、2人</text>
+<text x="24" y="60" font-family="sans-serif" font-size="12.5" fill="#3d4652">黙っていた人</text>
+<rect x="150" y="44" width="500" height="30" rx="5" fill="#e6b5ad" stroke="#c0392b" stroke-width="1.5"/>
+<text x="400" y="64" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#7a2f24" text-anchor="middle">3日ぶんの時間が、そのまま消えます</text>
+<text x="24" y="112" font-family="sans-serif" font-size="12.5" fill="#3d4652">15分で聞いた人</text>
+<rect x="150" y="96" width="26" height="30" rx="5" fill="#a9d5bb" stroke="#2f8f4e" stroke-width="1.5"/>
+<text x="188" y="116" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#1f5c39">15分。多くの場合、相手は5分で答えを知っています</text>
+<text x="24" y="152" font-family="sans-serif" font-size="13" fill="#3d4652">差は<tspan font-weight="700" fill="#c0392b">実力ではありません</tspan>。聞いたかどうかだけです。</text>
+<rect x="24" y="170" width="672" height="62" rx="10" fill="#eef7f1" stroke="#a9d5bb" stroke-width="1.5"/>
+<text x="44" y="194" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#1f5c39">そして、聞いた人のほうが評価されます</text>
+<text x="44" y="217" font-family="sans-serif" font-size="12.5" fill="#1f5c39">相手が知りたいのは「あなたが優秀か」ではなく「この仕事が予定どおり終わるか」だからです。</text>
+</svg>

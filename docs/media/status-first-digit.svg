@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="272" viewBox="0 0 720 272" role="img" aria-label="ステータスコードは1桁目で、こちら側の問題か向こう側の問題かが決まる">
+<rect width="720" height="272" fill="#ffffff"/>
+<text x="24" y="28" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#26456f">覚えるのは、1桁目だけです</text>
+<rect x="24" y="42" width="160" height="66" rx="9" fill="#eef7f1" stroke="#a9d5bb" stroke-width="1.5"/>
+<text x="104" y="68" font-family="sans-serif" font-size="15" font-weight="700" fill="#1f5c39" text-anchor="middle">2xx</text>
+<text x="104" y="92" font-family="sans-serif" font-size="12.5" fill="#1f5c39" text-anchor="middle">うまくいった</text>
+<rect x="196" y="42" width="160" height="66" rx="9" fill="#f6f8fc" stroke="#c7cede" stroke-width="1.5"/>
+<text x="276" y="68" font-family="sans-serif" font-size="15" font-weight="700" fill="#3d4652" text-anchor="middle">3xx</text>
+<text x="276" y="92" font-family="sans-serif" font-size="12.5" fill="#3d4652" text-anchor="middle">場所が移った</text>
+<rect x="368" y="42" width="160" height="66" rx="9" fill="#fff6e5" stroke="#f0cf95" stroke-width="1.5"/>
+<text x="448" y="68" font-family="sans-serif" font-size="15" font-weight="700" fill="#8a5a12" text-anchor="middle">4xx</text>
+<text x="448" y="92" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#8a5a12" text-anchor="middle">こちら側</text>
+<rect x="540" y="42" width="156" height="66" rx="9" fill="#fdf0ee" stroke="#e6b5ad" stroke-width="1.5"/>
+<text x="618" y="68" font-family="sans-serif" font-size="15" font-weight="700" fill="#c0392b" text-anchor="middle">5xx</text>
+<text x="618" y="92" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#c0392b" text-anchor="middle">向こう側</text>
+<rect x="368" y="120" width="160" height="94" rx="9" fill="#fffbf2" stroke="#f0cf95" stroke-width="1.5"/>
+<text x="388" y="142" font-family="sans-serif" font-size="12.5" fill="#8a5a12">401　ログインして</text>
+<text x="388" y="164" font-family="sans-serif" font-size="12.5" fill="#8a5a12">403　権限がない</text>
+<text x="388" y="186" font-family="sans-serif" font-size="12.5" fill="#8a5a12">404　URLの誤り</text>
+<text x="448" y="206" font-family="sans-serif" font-size="12" font-weight="700" fill="#8a5a12" text-anchor="middle">まず自分の頼み方を疑う</text>
+<rect x="540" y="120" width="156" height="94" rx="9" fill="#fdf5f3" stroke="#e6b5ad" stroke-width="1.5"/>
+<text x="560" y="142" font-family="sans-serif" font-size="12.5" fill="#7a2f24">500　向こうが落ちた</text>
+<text x="618" y="172" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#c0392b" text-anchor="middle">あなたには直せません</text>
+<text x="618" y="196" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#c0392b" text-anchor="middle">粘らず、すぐ報告</text>
+<rect x="24" y="230" width="672" height="34" rx="9" fill="#eef3ff" stroke="#9fb4d8" stroke-width="1.5"/>
+<text x="360" y="252" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#26456f" text-anchor="middle">「4xx は自分、5xx は向こう」——これが言えれば十分です</text>
+</svg>

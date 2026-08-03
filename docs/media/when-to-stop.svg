@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="264" viewBox="0 0 720 264" role="img" aria-label="測って、困っていなければ何もしない。困っている所だけ直して、足りたら止めるという判断の流れ">
+<rect width="720" height="264" fill="#ffffff"/>
+<rect x="24" y="22" width="150" height="56" rx="9" fill="#eef3ff" stroke="#9fb4d8" stroke-width="1.5"/>
+<text x="99" y="55" font-family="sans-serif" font-size="13" font-weight="700" fill="#26456f" text-anchor="middle">まず、測る</text>
+<path d="M180 50 L206 50" stroke="#8892a0" stroke-width="2"/><path d="M206 44 L216 50 L206 56 Z" fill="#8892a0"/>
+<text x="300" y="42" font-family="sans-serif" font-size="13" fill="#3d4652" text-anchor="middle">困っていますか？</text>
+<path d="M300 52 L300 66" stroke="#8892a0" stroke-width="2"/>
+<path d="M228 88 L372 88" stroke="#8892a0" stroke-width="2"/>
+<path d="M228 88 L228 108" stroke="#8892a0" stroke-width="2"/><path d="M222 108 L228 118 L234 108 Z" fill="#8892a0"/>
+<path d="M372 88 L372 108" stroke="#8892a0" stroke-width="2"/><path d="M366 108 L372 118 L378 108 Z" fill="#8892a0"/>
+<text x="228" y="82" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#1f5c39" text-anchor="middle">いいえ</text>
+<text x="372" y="82" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#c0392b" text-anchor="middle">はい</text>
+<rect x="150" y="122" width="156" height="56" rx="9" fill="#eef7f1" stroke="#a9d5bb" stroke-width="1.5"/>
+<text x="228" y="147" font-family="sans-serif" font-size="13" font-weight="700" fill="#1f5c39" text-anchor="middle">何もしない</text>
+<text x="228" y="167" font-family="sans-serif" font-size="12" fill="#3f7a5c" text-anchor="middle">これが、いちばん多い</text>
+<rect x="294" y="122" width="156" height="56" rx="9" fill="#fdf0ee" stroke="#e6b5ad" stroke-width="1.5"/>
+<text x="372" y="147" font-family="sans-serif" font-size="13" font-weight="700" fill="#c0392b" text-anchor="middle">いちばん重い所だけ</text>
+<text x="372" y="167" font-family="sans-serif" font-size="12" fill="#9c5a4e" text-anchor="middle">1か所。全部やらない</text>
+<path d="M456 150 L482 150" stroke="#2f8f4e" stroke-width="2"/><path d="M482 144 L492 150 L482 156 Z" fill="#2f8f4e"/>
+<rect x="490" y="122" width="206" height="56" rx="9" fill="#eef7f1" stroke="#a9d5bb" stroke-width="1.5"/>
+<text x="593" y="147" font-family="sans-serif" font-size="13" font-weight="700" fill="#1f5c39" text-anchor="middle">足りたら、そこで止める</text>
+<text x="593" y="167" font-family="sans-serif" font-size="12" fill="#3f7a5c" text-anchor="middle">「もっと速く」に進まない</text>
+<rect x="24" y="196" width="672" height="52" rx="10" fill="#f6f8fc" stroke="#c7cede" stroke-width="1.5"/>
+<text x="44" y="220" font-family="sans-serif" font-size="12.5" fill="#3d4652">速さを追いすぎたコードは<tspan font-weight="700" fill="#c0392b">読みにくくなります</tspan>。読みにくいコードは、別の事故を生みます。</text>
+<text x="44" y="240" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#26456f">測ってから決める。この一言に、全部入っています。</text>
+</svg>

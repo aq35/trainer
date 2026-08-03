@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>使い捨てをやめて、道具にする | エンジニア育成トレーナー</title>
-<link rel="stylesheet" href="navi.css?v=24">
+<link rel="stylesheet" href="navi.css?v=25">
 <script src="config.js?v=17"></script>
   <link rel="canonical" href="https://aq35.github.io/trainer/tools.html">
 </head>
@@ -43,6 +43,8 @@ steps:[
 {
   icon:'icon-ai.svg', phase:'1. なぜ道具にするのか', readonly:true,
   title:'来週も同じことを頼みますか？',
+  visual:'media/throwaway-vs-tool.svg',
+  visualAlt:'毎回書いて消す使い捨てのコードと、一度作れば残る道具の、手間の増え方を比べた図',
   why:'<a href="index.html#/what-to-build" target="_blank" rel="noopener">AIに何を作ってもらうか</a>で読んだ話を、<b>今日、実際にやります。</b>',
   todo:{
     common:['前の回で使ったのは、<b>使い捨ての計測</b>でした',
@@ -74,8 +76,6 @@ steps:[
   },
   visual:'media/measure-spec.svg',
   visualAlt:'measure という道具が満たすべき5つの条件と、それぞれの理由をまとめた表',
-  visual2:'media/throwaway-vs-tool.svg',
-  visual2Alt:'毎回書いて消す使い捨てのコードと、一度作れば残る道具の、手間の増え方を比べた図',
   expect:'<b>満たしていない条件を2つ、自分で指させれば合格です。</b>（答えは下の「答え合わせ」にあります。<b>先に探してから開いてください</b>）',
   note:'<b>AIが返してきたコードの例です。</b>これを5つの条件と照らしてください。' +
        '<pre><code>const marks = [];\n\nexport function measure(label, fn) {\n' +
@@ -206,6 +206,8 @@ test('戻り値がそのまま返る', () => {
 {
   icon:'icon-terminal.svg', phase:'6. ログとの違いを知る', readonly:true,
   title:'撒く console.log と、残すログは別物です',
+  visual:'media/log-vs-log.svg',
+  visualAlt:'調べるために撒くconsole.logと、あとで読むために残すログの違い',
   why:'<b>ここで少しだけ話が変わります。</b>いま作った計測とよく似たもので、<b>ログ</b>があります。<b>作り方は似ていますが、考え方は逆</b>なので、混ぜないよう整理しておきます。',
   todo:{
     common:['<b>撒く <code>console.log</code></b> … 困ってから書く。その場で見たい値。<b>調べ終わったら消す</b>',
@@ -286,7 +288,7 @@ test('戻り値がそのまま返る', () => {
 }
 ]};
 </script>
-<script src="navi.js?v=24"></script>
+<script src="navi.js?v=25"></script>
 <script src="credit.js?v=17"></script>
 </body>
 </html>

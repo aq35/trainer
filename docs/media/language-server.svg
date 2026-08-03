@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="278" viewBox="0 0 720 278" role="img" aria-label="エディタと言語サーバがLSPという約束ごとでやり取りしている構造と、言語ごとの担当">
+<rect width="720" height="278" fill="#ffffff"/>
+<rect x="24" y="26" width="200" height="110" rx="10" fill="#eef3ff" stroke="#9fb4d8" stroke-width="1.5"/>
+<text x="124" y="52" font-family="sans-serif" font-size="13" font-weight="700" fill="#26456f" text-anchor="middle">VS Code（画面）</text>
+<text x="124" y="80" font-family="sans-serif" font-size="12.5" fill="#26456f" text-anchor="middle">表示するだけ</text>
+<text x="124" y="104" font-family="sans-serif" font-size="12" fill="#5a6f92" text-anchor="middle">賢いのは、こちらでは</text>
+<text x="124" y="122" font-family="sans-serif" font-size="12" fill="#5a6f92" text-anchor="middle">ありません</text>
+<path d="M232 66 L360 66" stroke="#2f6fed" stroke-width="2"/><path d="M360 60 L372 66 L360 72 Z" fill="#2f6fed"/>
+<text x="302" y="58" font-family="sans-serif" font-size="12" fill="#2f6fed" text-anchor="middle">この名前、どこ？</text>
+<path d="M372 100 L244 100" stroke="#2f8f4e" stroke-width="2"/><path d="M244 94 L232 100 L244 106 Z" fill="#2f8f4e"/>
+<text x="302" y="120" font-family="sans-serif" font-size="12" fill="#1f5c39" text-anchor="middle">3か所です</text>
+<text x="302" y="90" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#3d4652" text-anchor="middle">LSP という約束ごと</text>
+<rect x="380" y="26" width="200" height="110" rx="10" fill="#eef7f1" stroke="#a9d5bb" stroke-width="1.5"/>
+<text x="480" y="52" font-family="sans-serif" font-size="13" font-weight="700" fill="#1f5c39" text-anchor="middle">言語サーバ（裏）</text>
+<text x="480" y="80" font-family="sans-serif" font-size="12.5" fill="#1f5c39" text-anchor="middle">構文として解析する</text>
+<text x="480" y="104" font-family="sans-serif" font-size="12" fill="#3f7a5c" text-anchor="middle">定義・参照・型・構文エラー</text>
+<text x="480" y="122" font-family="sans-serif" font-size="12" font-weight="700" fill="#1f5c39" text-anchor="middle">ここが賢い</text>
+<rect x="24" y="156" width="672" height="76" rx="10" fill="#f6f8fc" stroke="#c7cede" stroke-width="1.5"/>
+<text x="44" y="180" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#3d4652">言語ごとに、担当する解析役が違います</text>
+<text x="44" y="204" font-family="sans-serif" font-size="12.5" fill="#3d4652">JavaScript / TypeScript … 最初から入っています　　　Go … gopls</text>
+<text x="44" y="224" font-family="sans-serif" font-size="12.5" fill="#3d4652">Python … Pylance / Pyright　　　Rust … rust-analyzer</text>
+<text x="360" y="258" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#26456f" text-anchor="middle">拡張機能を入れる ＝ その言語の解析役を、手元に増やすこと</text>
+</svg>

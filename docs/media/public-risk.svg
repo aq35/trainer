@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="268" viewBox="0 0 720 268" role="img" aria-label="鍵を公開リポジトリに上げると、消しても履歴に残る。やることは鍵の無効化ひとつ">
+<rect width="720" height="268" fill="#ffffff"/>
+<text x="24" y="28" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#c0392b">もし、鍵を1回だけ push してしまったら</text>
+<rect x="24" y="42" width="150" height="62" rx="9" fill="#f6f8fc" stroke="#c7cede" stroke-width="1.5"/>
+<text x="99" y="68" font-family="sans-serif" font-size="12.5" fill="#3d4652" text-anchor="middle">手元で commit</text>
+<text x="99" y="88" font-family="sans-serif" font-size="12" fill="#8892a0" text-anchor="middle">まだ誰も見ていない</text>
+<path d="M180 73 L206 73" stroke="#8892a0" stroke-width="2"/><path d="M206 67 L216 73 L206 79 Z" fill="#8892a0"/>
+<rect x="222" y="42" width="150" height="62" rx="9" fill="#fdf0ee" stroke="#e6b5ad" stroke-width="1.5"/>
+<text x="297" y="68" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#c0392b" text-anchor="middle">push した瞬間</text>
+<text x="297" y="88" font-family="sans-serif" font-size="12" fill="#9c5a4e" text-anchor="middle">世界中から読めます</text>
+<path d="M378 73 L404 73" stroke="#8892a0" stroke-width="2"/><path d="M404 67 L414 73 L404 79 Z" fill="#8892a0"/>
+<rect x="420" y="42" width="150" height="62" rx="9" fill="#fdf0ee" stroke="#e6b5ad" stroke-width="1.5"/>
+<text x="495" y="68" font-family="sans-serif" font-size="12.5" fill="#7a2f24" text-anchor="middle">あわてて消す</text>
+<text x="495" y="88" font-family="sans-serif" font-size="12" font-weight="700" fill="#c0392b" text-anchor="middle">履歴には残ります</text>
+<path d="M576 73 L602 73" stroke="#2f8f4e" stroke-width="2"/><path d="M602 67 L612 73 L602 79 Z" fill="#2f8f4e"/>
+<rect x="600" y="42" width="96" height="62" rx="9" fill="#eef7f1" stroke="#a9d5bb" stroke-width="1.5"/>
+<text x="648" y="68" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#1f5c39" text-anchor="middle">鍵を無効化</text>
+<text x="648" y="88" font-family="sans-serif" font-size="12" fill="#3f7a5c" text-anchor="middle">作り直すだけ</text>
+<text x="24" y="140" font-family="sans-serif" font-size="13" fill="#3d4652">消すことではなく、<tspan font-weight="700" fill="#1f5c39">鍵を使えなくすること</tspan>が対処です。消しても履歴からは取り出せます。</text>
+<rect x="24" y="158" width="672" height="88" rx="10" fill="#eef3ff" stroke="#9fb4d8" stroke-width="1.5"/>
+<text x="44" y="182" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#26456f">覚えるのは、この3つだけ</text>
+<text x="44" y="205" font-family="sans-serif" font-size="12.5" fill="#26456f">① 公開リポジトリに、鍵・パスワード・お客様の情報を置かない</text>
+<text x="44" y="225" font-family="sans-serif" font-size="12.5" fill="#26456f">② 迷ったら公開しない。先に相談する</text>
+<text x="44" y="240" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#26456f">③ 置いてしまったら、隠さずすぐ連絡する</text>
+</svg>
