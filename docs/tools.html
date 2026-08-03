@@ -34,7 +34,9 @@ common:[
   { when:'act', q:'なぜこんな小さいものを作るの？',
     a:'<b>小さいからです。</b>大きな道具は作る前に力尽きます。<b>「毎回書いている3行」を1行にする</b>——これが、道具作りのいちばん現実的な始め方です。' },
   { when:'act', q:'Live Server って何？　入れていない気がする',
-    a:'<b>VS Code の拡張機能です。</b>押すと、あなたのパソコンが一時的にサーバーになります。<b>HTMLをダブルクリックで開くと動かない</b>ので、これで開きます。<br><b>入れ方</b>: 左端の拡張機能アイコン（四角が4つ）→ 検索欄に <b>Live Server</b> → 作者が <b>Ritwick Dey</b> のものを Install。<br><b>使い方</b>: ファイルを<b>右クリック → Open with Live Server</b>。<a href="index.html#/glossary" target="_blank" rel="noopener">用語集にもう少し詳しく</a>あります。' },
+    a:'<b>VS Code の拡張機能です。</b>押すと、あなたのパソコンが一時的にサーバーになります。<b>HTMLをダブルクリックで開くと動かない</b>ので、これで開きます。<br><b>入れ方</b>: 左端の拡張機能アイコン（四角が4つ）→ 検索欄に <b>Live Server</b> → 作者が <b>Ritwick Dey</b> のものを Install。<br><b>使い方</b>: ファイルを<b>右クリック → Open with Live Server</b>。<a href="index.html#/glossary" target="_blank" rel="noopener">用語集にもう少し詳しく</a>あります。' },,
+  { q:'もっと詳しい手順が見たい',
+    a:'この回の題材は <a href="https://github.com/aq35/trainer-practice/blob/main/tickets/10-tools.md" target="_blank" rel="noopener">チケット #10 毎回 console.time を書くのをやめたい</a> です。<b>条件の表・AIへの頼み方の全文・つまずきどころ</b>が書いてあります。<b>手が止まったら、まずここを開いてください。</b>' },
 ],
 
 steps:[
@@ -58,25 +60,23 @@ steps:[
   ]
 },
 {
-  icon:'icon-key.svg', phase:'2. 何を作るか決める',
+  icon:'icon-key.svg', phase:'2. 何を作るか決める', readonly:true,
   title:'先に「使い方」から決めます',
   why:'<b>中身から作り始めないでください。</b>「どう呼ばれたいか」を先に決めると、作るものがはっきりします。',
   todo:{
-    common:['目指す書き味は、これです',
-            '　<code>const r = measure(\'findDuplicates\', () => findDuplicates(tasks));</code>',
+    common:['<b>この画面は読むだけです。</b>作るのは次のステップです',
+            '目指す書き味は、これ ——  <code>const r = measure(\'名前\', () => 重い処理());</code>',
             '<b>包むだけ。結果はそのまま返る。</b>だから、あとから入れても他が壊れません',
-            '満たしたい条件を、先に5つ決めます',
-            '　① <b>結果をそのまま返す</b>（入れてもコードの意味が変わらない）',
-            '　② <b>記録を配列に貯める</b>（あとで一覧できる）',
-            '　③ <b>記録を取り出せる</b>（<code>getMarks()</code>）',
-            '　④ <b>記録を消せる</b>（<code>clearMarks()</code>）',
-            '　⑤ <b>処理が失敗しても、記録は残る</b>']
+            '<b>満たすべき条件は5つ。</b>下の表のとおりです',
+            '<b>とくに ③ と ④ が大事です。</b>理由は下の解説に書きました']
   },
-  expect:'「何を作るか」が、5行で書き出せている状態になります。',
+  visual:'media/measure-spec.svg',
+  visualAlt:'measure という道具が満たすべき5つの条件と、それぞれの理由をまとめた表',
+  expect:'<b>5つの条件を、なぜそれが要るのかとセットで読めれば十分です。</b>書き写す必要はありません（次のステップの頼み文に、そのまま入っています）。',
   visual:'media/throwaway-vs-tool.svg',
   visualAlt:'毎回書いて消す使い捨てのコードと、一度作れば残る道具の、手間の増え方を比べた図',
   note:'<b>③と④が、いちばん大事です。</b><code>console.log</code> に出すだけの道具は<b>テストできません</b>。「配列に記録が入ったか」なら <code>assert</code> 1行です。<b>出しっぱなしにせず、取り出せる所に置く。</b>',
-  ask:'作るものを、条件として書き出せましたか？',
+  ask:'5つの条件と、その理由を読みましたか？',
   tb:[
     { q:'5つも条件が要るの？',
       a:'<b>多いと感じたなら、いい感覚です。</b>ただ、この5つは<b>あとから足せないもの</b>ばかりです。「取り出せる形にする」は、作り直さないと足せません。<b>あとから足せないものだけ、先に決める</b>——これが設計の勘所です。' },
@@ -91,16 +91,21 @@ steps:[
   title:'AIに作らせます。条件は自分で決めます',
   why:'<b>条件を自分で決めたので、AIに任せて大丈夫です。</b>返ってきたものが条件を満たすか、判断できるからです。',
   todo:{
-    common:['ブランチを作ります（下の1行目）',
-            '2つ目の枠をAIに送ります。<b>さっき決めた5つの条件が、そのまま入っています</b>',
-            '返ってきたコードを読み、<b>5つの条件を1つずつ確認します</b>',
-            '<code>public/logic.js</code> に入れて保存します']
+    common:['<a href="https://github.com/aq35/trainer-practice/blob/main/tickets/10-tools.md" target="_blank" rel="noopener">チケット #10</a> を開いておきます（条件の表と、頼み方の全文があります）',
+            '下の1行目で、ブランチを作ります',
+            '2つ目の枠をAIに送ります。<b>前の画面の5つの条件が、そのまま入っています</b>',
+            '<b>返ってきたコードを、5つの条件と1つずつ照らし合わせます</b>',
+            '　① <code>return fn()</code> の結果が、そのまま返っているか',
+            '　②③④ <code>measure</code> / <code>getMarks</code> / <code>clearMarks</code> の3つが <b>export</b> されているか',
+            '　⑤ <code>try</code> … <code>finally</code> になっているか（<b>ここが無いと⑤を満たしません</b>）',
+            '<b>①〜⑤のどれかが欠けていたら、その条件だけを伝えて直させます</b>',
+            '<code>public/logic.js</code> に入って保存されていることを確認します']
   },
   cmdMulti:{
     common:['git switch -c feat/10-measure',
             '@public/logic.js に、処理時間を測る道具を追加してください。使い方: const r = measure(\'名前\', () => 重い処理()); 条件: fn() の戻り値をそのまま返す / 測った結果は { label, ms } の形で配列に貯める / getMarks() で記録の配列を取り出せる / clearMarks() で記録を消せる / fn() が例外を投げても記録は残る / すべて export する']
   },
-  expect:'`measure` / `getMarks` / `clearMarks` の3つが `logic.js` に追加されます。',
+  expect:'<code>measure</code> / <code>getMarks</code> / <code>clearMarks</code> の3つが <code>logic.js</code> に追加され、<b>5つの条件を全部満たしています</b>。<br><b>まだ動作は確かめていません。</b>それは次のステップです。',
   note:'<b>条件を箇条書きで渡すと、AIの精度は跳ね上がります。</b>「いい感じの計測ツールを作って」と頼むより、はるかに確実です。<br>そして——<b>条件を書けるということは、あなたが分かっているということ</b>です。だから返ってきたものを判断できます。',
   ask:'5つの条件を満たすコードが入りましたか？',
   tb:[
@@ -119,14 +124,30 @@ steps:[
   title:'道具にも、テストを書きます',
   why:'<b>道具が壊れると、その道具を使った測定が全部おかしくなります。</b>だから、道具こそテストが要ります。',
   todo:{
-    common:['<code>test/ticket10-measure.test.js</code> を作ります',
-            '<b>最低3つ</b>、書いてください',
-            '　・<b>戻り値がそのまま返る</b>',
+    common:['<b>手本があります。</b><code>test/ticket2-overdue.test.js</code> を開いて、書き方を真似してください',
+            '<code>test/ticket10-measure.test.js</code> を作り、<b>1つ目は自分の手で</b>書きます',
+            '　まず <b>「戻り値がそのまま返る」</b> の1本だけ。下の2つ目の枠が、そのひな型です',
+            '残り2本は、下の3つ目の枠をAIに送って書かせます',
             '　・<b>記録が1件増える</b>（<code>clearMarks()</code> してから測る）',
             '　・<b>例外が出ても記録が残る</b>',
-            '<code>npm test</code> で緑になることを確認します']
+            '下の1行目（<code>npm test</code>）で、<b>全部 🟢 緑</b>になることを確認します',
+            '<b>最後に、テストが本当に見張っているか確かめます</b> —— <code>logic.js</code> の <code>measure</code> の <code>return</code> を消して <code>npm test</code>。<b>赤くなれば合格</b>です（確かめたら 2行目で元に戻します）']
   },
-  expect:'テストの数が増え、全部 🟢 緑になります。',
+  cmdMulti:{ common:[
+    'npm test',
+    'git restore public/logic.js',
+    `import assert from 'node:assert';
+import { test } from 'node:test';
+import { measure, getMarks, clearMarks } from '../public/logic.js';
+
+test('戻り値がそのまま返る', () => {
+  clearMarks();
+  const r = measure('test', () => 42);
+  assert.strictEqual(r, 42);
+});`,
+    'test/ticket10-measure.test.js に、あと2本テストを足してください。1つ目「clearMarks() のあと measure を1回呼ぶと、getMarks() の長さが1になる」。2つ目「fn が例外を投げても、getMarks() に記録が1件残る（例外自体は呼び出し元に伝わること）」。既存の書き方に合わせてください。実装（public/logic.js）は変更しないでください。'
+  ] },
+  expect:'テストが<b>3本ふえて</b>、全部 🟢 緑になります。そして<b>わざと壊すと赤くなります</b>。',
   note:'<b>②③④の設計が、ここで効いてきます。</b>貯めて・取り出せて・消せるようにしたから、テストが書けました。<b>テストしやすい形は、良い設計の副産物です。</b>',
   ask:'テストを書いて、緑になりましたか？',
   tb:[
@@ -141,11 +162,13 @@ steps:[
   title:'アプリに組み込んで、効果を確かめます',
   why:'<b>作っただけでは、道具ではありません。</b>使って初めて、価値が分かります。',
   todo:{
-    common:['<code>public/app.js</code> の <code>render()</code> の中を、<code>measure</code> で包みます',
-            '　<code>const dups = measure(\'findDuplicates\', () => findDuplicates(allTasks));</code>',
-            'Live Server で開き、ボタンを何度か押します',
-            'Console で下のコードを打ちます',
-            '<b>その画面で何が何ミリ秒かかったか</b>が、一覧で出ます']
+    common:['<code>public/app.js</code> を開き、<b><code>findDuplicates</code> で検索</b>します（<span class="k">Ctrl</span>+<span class="k">F</span>）',
+            '<code>render()</code> の中に、<b>この1行があります</b>',
+            '　<code>const dups = findDuplicates(allTasks);</code>　←　<b>これを</b>',
+            '　<code>const dups = measure(\'findDuplicates\', () => findDuplicates(allTasks));</code>　←　<b>こう書き換えます</b>',
+            '<b><code>measure</code> を import に足すのを忘れずに</b>（ファイル冒頭の <code>import { … } from \'./logic.js\'</code>）',
+            '<code>public/index.html</code> を <b>右クリック → Open with Live Server</b> で開き、検索欄に何か打ちます',
+            'Console で下のコードを打ちます']
   },
   cmd:'(await import("./logic.js")).getMarks()',
   cmdlabel:'Console で記録を一覧する',
@@ -164,7 +187,7 @@ steps:[
 {
   icon:'icon-terminal.svg', phase:'6. ログとの違いを知る', readonly:true,
   title:'撒く console.log と、残すログは別物です',
-  why:'計測と並んで、<b>「何が起きたか分からない」を防ぐ</b>のがログです。ただし、書き方の考え方が違います。',
+  why:'<b>ここで少しだけ話が変わります。</b>いま作った計測とよく似たもので、<b>ログ</b>があります。<b>作り方は似ていますが、考え方は逆</b>なので、混ぜないよう整理しておきます。',
   todo:{
     common:['<b>撒く <code>console.log</code></b> … 困ってから書く。その場で見たい値。<b>調べ終わったら消す</b>',
             '<b>残すログ</b> … <b>困る前に</b>書く。何が起きたか（いつ・何を・結果）。<b>消さない</b>',
