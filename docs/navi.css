@@ -61,6 +61,10 @@ h2{font-size:21px;margin:0 0 6px;line-height:1.5}
 ol.todo{padding-left:0;list-style:none;margin:0 0 4px;counter-reset:s}
 ol.todo>li{counter-increment:s;position:relative;padding:10px 0 10px 42px;border-top:1px solid var(--line)}
 ol.todo>li:first-child{border-top:0}
+/* 行頭が全角スペースの行＝前の手順のぶら下げ。番号も区切り線も出さない */
+ol.todo>li.sub{counter-increment:none;border-top:0;padding-top:0;padding-bottom:6px}
+ol.todo>li.sub::before{content:none}
+ol.todo>li:has(+li.sub){padding-bottom:4px}
 ol.todo>li::before{content:counter(s);position:absolute;left:0;top:11px;width:26px;height:26px;
   background:var(--blue);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;
   font-size:13px;font-weight:700}

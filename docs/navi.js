@@ -16,6 +16,8 @@
   // 抜けると『git commit -m "…"』のような値が属性の途中で切れてコピーが壊れる。
   function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
   function pick(o) { if (!o) return null; if (o.common) return o.common; return st.os === 'mac' ? o.mac : o.win; }
+  // 手順データの行頭に全角スペースがあれば「前の行のぶら下げ」とみなす（番号を振らない）
+  function isSubLine(line) { return /^[　 ]/.test(String(line).replace(/<[^>]*>/g, '')); }
   function osName() { return st.os === 'mac' ? 'Mac' : 'Windows'; }
   function needsOs() { for (var i = 0; i < STEPS.length; i++) if (STEPS[i].kind === 'os') return true; return false; }
 
@@ -237,7 +239,15 @@
     if (s.skip) h += '<div class="skip">' + s.skip + '</div>';
 
     var list = pick(s.todo);
-    if (list) { h += '<ol class="todo">'; for (var i = 0; i < list.length; i++) h += '<li>' + list[i] + '</li>'; h += '</ol>'; }
+    // 行頭が全角スペースの行は「前の手順のぶら下げ」。番号を振らない。
+    // （引用の続き・①②③の内訳・選択肢の列挙などが、独立した手順に見えてしまうため）
+    if (list) {
+      h += '<ol class="todo">';
+      for (var i = 0; i < list.length; i++) {
+        h += '<li' + (isSubLine(list[i]) ? ' class="sub"' : '') + '>' + list[i] + '</li>';
+      }
+      h += '</ol>';
+    }
 
     if (s.visual)  h += fig(s.visual, s.visualAlt);
     if (s.visual2) h += fig(s.visual2, s.visual2Alt);
@@ -376,7 +386,14 @@
       '',
       '【手順】'
     ];
-    if (todo) todo.forEach(function (t, i) { lines.push((i + 1) + '. ' + strip(t)); });
+    // 画面と同じく、ぶら下げ行には番号を振らない（AIに渡す文章でも手順数を狂わせないため）
+    if (todo) {
+      var no = 0;
+      todo.forEach(function (t) {
+        if (isSubLine(t)) lines.push('    ' + strip(t).replace(/^[　 ]+/, ''));
+        else lines.push((++no) + '. ' + strip(t));
+      });
+    }
     else lines.push('（画面の指示にしたがって操作中）');
     lines.push('');
     lines.push('【本来こうなるはず】');
