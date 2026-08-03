@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AIに道具を持たせる（MCP × GitHub） | エンジニア育成トレーナー</title>
-<link rel="stylesheet" href="navi.css?v=27">
+<link rel="stylesheet" href="navi.css?v=28">
 <script src="config.js?v=17"></script>
   <link rel="canonical" href="https://aq35.github.io/trainer/mcp.html">
 </head>
@@ -174,20 +174,35 @@ steps:[
             '下の1行目を送ります。<b>何も貼りません</b>',
             'AIが<b>自分で GitHub を見に行って</b>答えることを確かめます',
             '次に2行目を送って、<b>Issue を作らせてみます</b>',
-            'GitHub をブラウザで開いて、<b>実際に Issue ができていること</b>を確認します']
+            'GitHub をブラウザで開いて、<b>実際に Issue ができていること</b>を確認します',
+            '<b>最後に、渡していない権限を試します。</b>3行目を送る前に予想してください',
+            '　<b>① 書き換わる　　② 断られる・失敗する　　③ 確認を求められてから書き換わる</b>',
+            '　ヒント: 鍵を作るとき <b>Contents は Read-only</b> を選びました',
+            '　答えは下の「こうなれば成功です」にあります。<b>決めてから読んでください</b>']
   },
   cmdMulti:{
     common:['私の trainer-practice リポジトリで、開いているプルリクエストを一覧にしてください。',
-            'trainer-practice に「READMEに動かし方の動画を追加する」というIssueを作ってください。本文には、なぜ必要かを2行で書いてください。']
+            'trainer-practice に「READMEに動かし方の動画を追加する」というIssueを作ってください。本文には、なぜ必要かを2行で書いてください。',
+            'trainer-practice の README.md のいちばん下に「動作確認済み」という1行を追加して、main に直接コミットしてください。']
   },
-  expect:'1つ目は、<b>差分を貼っていないのに</b>PRの一覧が返ってきます。2つ目は、GitHub に<b>実際にIssueができます</b>。',
-  note:'<b>AIが賢くなったのではなく、手が届く範囲が広がっただけ</b>です。しかも<b>渡した鍵の範囲でしか動けません。</b>Contents は Read-only にしたので、「READMEを書き換えて」と頼んでも失敗します。',
-  ask:'貼らずに GitHub の話が通じましたか？',
+  expect:'1つ目は、<b>差分を貼っていないのに</b>PRの一覧が返ってきます。2つ目は、GitHub に<b>実際にIssueができます</b>。<br>' +
+         '3つ目の答えは <b>②</b> です。<b>権限が足りない、という趣旨のエラーが返ります</b>（文言は環境によって変わります。<code>Resource not accessible by personal access token</code> のような英語です）。',
+  note:'<b>AIが賢くなったのではなく、手が届く範囲が広がっただけ</b>です。<br>' +
+       '<b>そして、広がった範囲は、あなたが鍵で決めています。</b>Issue は作れて、README は書き換えられない——<b>その差は、AIの意思ではなく、あなたが選んだ権限です</b>。<br>' +
+       '<b>これが「最小の権限で渡す」の意味です。</b>言葉で覚えるより、いま見た1回のほうが確実です。',
+  ask:'3つ目は②でしたか？　渡していないことは、できないと確かめられましたか？',
   tb:[
     { q:'リポジトリが見つからないと言われる',
       a:'トークンで <b>Only select repositories</b> を選んだとき、<b>trainer-practice を選び忘れている</b>可能性があります。GitHub のトークン設定画面で、対象リポジトリを確認してください。' },
     { q:'Issue が作れないと言われる',
       a:'権限に <b>Issues: Read and write</b> が入っていません。トークンを作り直すか、既存のトークンの権限を編集してください。<b>これは正しく制限が効いている証拠</b>でもあります。' },
+    { q:'3つ目が成功して、README が書き換わってしまった',
+      a:'<b>いちばん大事なことが分かりました。鍵に <code>Contents: Read and write</code> を渡しています。</b><br>' +
+        'つまり<b>AIは、あなたのコードをいつでも直接書き換えられる状態</b>でした。練習リポジトリなので実害はありませんが、<b>案件で同じ設定にしていたら事故になります</b>。<br>' +
+        '<b>いま直してください。</b>GitHub のトークン設定画面 → 該当トークン → Permissions の <b>Contents を Read-only に</b>。書き換わった README は <code>git revert</code> か、GitHub の画面から元に戻せます。<br>' +
+        '<b>この失敗を、いま安全な場所でできたのは幸運です。</b>' },
+    { q:'エラーの英語が読めない',
+      a:'<b>読めなくて構いません。「できなかった」ことが確認できれば十分です。</b><br>よく出るのは <code>Resource not accessible by personal access token</code>（この鍵では触れません）や <code>403</code> です。<br>気になれば、そのままAIに貼って「これはどういう意味？」と聞いてください。<a href="ask.html" target="_blank" rel="noopener">相談文の型</a>でやったのと同じです。' },
     { q:'AIが古い情報を答えてくる',
       a:'MCP を使わずに、<b>学習した知識だけで答えている</b>可能性があります。「<b>MCPでGitHubを見て答えてください</b>」と明示してみてください。' },
     { q:'作ったIssueを消したい',
@@ -251,7 +266,7 @@ steps:[
 }
 ]};
 </script>
-<script src="navi.js?v=27"></script>
+<script src="navi.js?v=28"></script>
 <script src="credit.js?v=17"></script>
 </body>
 </html>
