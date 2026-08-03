@@ -11,7 +11,21 @@
   } catch (e) {}
   if (st.i >= STEPS.length) st.i = 0;
 
+  // #restart（または ?restart）付きで開かれたら、最初の画面から始める。
+  // 毎週まわす回（loop.html）は完了画面から自分自身へ戻るため、
+  // これが無いと完了画面に着き続けて、もう一周できない。
+  // ハッシュを使うのは、サーバーの都合でクエリが落ちることがあるため
+  // （クリーンURLへの301でクエリが消える構成が実在する）。
+  // 一度読んだらURLから消す（途中で再読み込みしても位置を失わないように）。
   function save() { try { localStorage.setItem(CFG.key, JSON.stringify(st)); } catch (e) {} }
+
+  if (location.hash.indexOf('restart') >= 0 || location.search.indexOf('restart') >= 0) {
+    st.i = 0;
+    save();                                             // 保存し直さないと、再読み込みで完了画面に戻ってしまう
+    try { localStorage.removeItem(CFG.key + ':t'); } catch (e) {}
+    try { history.replaceState(null, '', location.pathname); } catch (e) {}
+  }
+
   // " も必ずエスケープすること。data-copy="..." や alt="..." の中で使うため、
   // 抜けると『git commit -m "…"』のような値が属性の途中で切れてコピーが壊れる。
   function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }

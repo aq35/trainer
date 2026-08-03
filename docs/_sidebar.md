@@ -37,6 +37,7 @@
   - [22. 🗄️ 保存先を変えてみる（任意）](db.html ':ignore target=_blank')
 - 案件の準備
   - [🎓 案件に入る前の最終チェック](graduation.md)
+  - [🔁 一人で、回し続ける（毎週）](loop.html ':ignore target=_blank')
   - [🗓️ 案件まで1か月。何をする？](plan.md)
   - [🤝 案件に参画する](join.md)
 - いつでも
