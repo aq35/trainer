@@ -138,9 +138,12 @@ details.tb{background:var(--card);border:1px solid var(--red-b);border-radius:9p
 details.tb summary{cursor:pointer;font-weight:700;font-size:14px}
 details.tb .a{font-size:14px;margin-top:8px;padding-top:8px;border-top:1px solid var(--line)}
 /* 見本を貼るときの枠。狭い画面でも本文をはみ出させない（枠の中だけ横スクロール） */
-details.tb .a pre,.note pre{background:var(--code-bg);color:var(--code-fg);border-radius:7px;
-  padding:10px 12px;margin:8px 0;overflow-x:auto;-webkit-overflow-scrolling:touch}
-details.tb .a pre code,.note pre code{font-size:12.5px;line-height:1.65;white-space:pre;
+/* 見本や差分を貼るための枠。解説・成功条件・「うまくいきません」のどこに置いても、
+   本文をはみ出させない（枠の中だけ横スクロールさせる）。
+   場所ごとに書くと付け忘れるので、#view の中の pre をまとめて対象にする。 */
+#view pre{background:var(--code-bg);color:var(--code-fg);border-radius:7px;
+  padding:10px 12px;margin:8px 0;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+#view pre code{font-size:12.5px;line-height:1.65;white-space:pre;
   background:none;color:inherit;padding:0}
 /* 差分を見せるときの赤と緑。差分の回で覚えた色と、意味をそろえる */
 pre code .dl\+{display:block;color:#8ee39a;background:rgba(80,200,120,.14)}
