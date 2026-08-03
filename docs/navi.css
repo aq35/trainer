@@ -138,10 +138,10 @@ details.tb{background:var(--card);border:1px solid var(--red-b);border-radius:9p
 details.tb summary{cursor:pointer;font-weight:700;font-size:14px}
 details.tb .a{font-size:14px;margin-top:8px;padding-top:8px;border-top:1px solid var(--line)}
 /* 見本を貼るときの枠。狭い画面でも本文をはみ出させない（枠の中だけ横スクロール） */
-details.tb .a pre{background:var(--code-bg);color:var(--code-fg);border-radius:7px;
+details.tb .a pre,.note pre{background:var(--code-bg);color:var(--code-fg);border-radius:7px;
   padding:10px 12px;margin:8px 0;overflow-x:auto;-webkit-overflow-scrolling:touch}
-details.tb .a pre code{font-size:12.5px;line-height:1.65;white-space:pre;background:none;
-  color:inherit;padding:0}
+details.tb .a pre code,.note pre code{font-size:12.5px;line-height:1.65;white-space:pre;
+  background:none;color:inherit;padding:0}
 .hsec{font-size:12px;font-weight:700;color:var(--red);letter-spacing:.04em;
       margin:18px 0 8px;padding-bottom:5px;border-bottom:1px solid var(--red-b)}
 .hsec:first-of-type{margin-top:8px}

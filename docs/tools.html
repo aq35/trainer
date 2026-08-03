@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>使い捨てをやめて、道具にする | エンジニア育成トレーナー</title>
-<link rel="stylesheet" href="navi.css?v=19">
+<link rel="stylesheet" href="navi.css?v=20">
 <script src="config.js?v=17"></script>
   <link rel="canonical" href="https://aq35.github.io/trainer/tools.html">
 </head>
@@ -60,24 +60,43 @@ steps:[
   ]
 },
 {
-  icon:'icon-key.svg', phase:'2. 何を作るか決める', readonly:true,
+  icon:'icon-key.svg', phase:'2. 何を作るか決める',
   title:'先に「使い方」から決めます',
   why:'<b>中身から作り始めないでください。</b>「どう呼ばれたいか」を先に決めると、作るものがはっきりします。',
   todo:{
-    common:['<b>この画面は読むだけです。</b>作るのは次のステップです',
-            '目指す書き味は、これ ——  <code>const r = measure(\'名前\', () => 重い処理());</code>',
+    common:['目指す書き味は、これ ——  <code>const r = measure(\'名前\', () => 重い処理());</code>',
             '<b>包むだけ。結果はそのまま返る。</b>だから、あとから入れても他が壊れません',
             '<b>満たすべき条件は5つ。</b>下の表のとおりです',
-            '<b>とくに ③ と ④ が大事です。</b>理由は下の解説に書きました']
+            '<b>ここからが本題です。</b>下の解説に、<b>AIが返してきたコードの例</b>を1つ置きました',
+            '<b>5つの条件と1つずつ照らして、満たしていないものを2つ見つけてください</b>',
+            '　パッと見は動きそうに見えます。<b>見えるからこそ、通してしまいます</b>',
+            '　見つからなければ、下の「答え合わせ」を開いてください']
   },
   visual:'media/measure-spec.svg',
   visualAlt:'measure という道具が満たすべき5つの条件と、それぞれの理由をまとめた表',
   visual2:'media/throwaway-vs-tool.svg',
   visual2Alt:'毎回書いて消す使い捨てのコードと、一度作れば残る道具の、手間の増え方を比べた図',
-  expect:'<b>5つの条件を、なぜそれが要るのかとセットで読めれば十分です。</b>書き写す必要はありません（次のステップの頼み文に、そのまま入っています）。',
-  note:'<b>③と④が、いちばん大事です。</b><code>console.log</code> に出すだけの道具は<b>テストできません</b>。「配列に記録が入ったか」なら <code>assert</code> 1行です。<b>出しっぱなしにせず、取り出せる所に置く。</b>',
-  ask:'5つの条件と、その理由を読みましたか？',
+  expect:'<b>満たしていない条件を2つ、自分で指させれば合格です。</b>（答えは下の「答え合わせ」にあります。<b>先に探してから開いてください</b>）',
+  note:'<b>AIが返してきたコードの例です。</b>これを5つの条件と照らしてください。' +
+       '<pre><code>const marks = [];\n\nexport function measure(label, fn) {\n' +
+       '  const t0 = performance.now();\n  fn();\n' +
+       '  marks.push({ label, ms: performance.now() - t0 });\n}\n\n' +
+       'export function getMarks() { return marks; }\n' +
+       'export function clearMarks() { marks.length = 0; }</code></pre>' +
+       '<b>③と④は満たしています。</b><code>console.log</code> に出すだけの道具は<b>テストできません</b>が、これは配列に貯めて取り出せます。<b>残りの3つはどうでしょうか。</b>',
+  ask:'満たしていない条件を、2つ見つけられましたか？',
   tb:[
+    { q:'答え合わせ（先に自分で探してから開いてください）',
+      a:'<b>欠けているのは ① と ⑤ です。</b><br>' +
+        '<b>①「fn() の戻り値をそのまま返す」——</b> <code>fn();</code> と呼んだきりで、<b>結果を捨てています</b>。' +
+        '<code>return fn();</code> ではないので、<code>const r = measure(...)</code> の <code>r</code> は必ず <code>undefined</code> になります。' +
+        '<b>包むだけで壊れない、という前提がここで崩れます。</b><br>' +
+        '<b>⑤「例外が出ても記録は残る」——</b> <code>fn()</code> が途中で失敗すると、<code>marks.push</code> の行に<b>到達しません</b>。' +
+        '<code>try { return fn(); } finally { marks.push(...) }</code> の形にする必要があります。<br>' +
+        '<b>2つとも「動かしてみると、たいてい気づかない」種類の欠けです。</b>戻り値を使わない呼び方をしていれば①は表に出ませんし、' +
+        '⑤は<b>落ちたときにしか</b>表に出ません。<b>だから、条件と照らすしかないのです。</b>' },
+    { q:'見つけられなかった',
+      a:'<b>それが普通です。落ち込む必要はありません。</b>大事なのは「見つけられること」ではなく、<b>照らす相手（5つの条件）を先に持っていること</b>です。<br>条件が無ければ、そもそも探しようがありません。<b>次のステップでは、この5つを持った状態でAIに頼みます。</b>' },
     { q:'5つも条件が要るの？',
       a:'<b>多いと感じたなら、いい感覚です。</b>ただ、この5つは<b>あとから足せないもの</b>ばかりです。「取り出せる形にする」は、作り直さないと足せません。<b>あとから足せないものだけ、先に決める</b>——これが設計の勘所です。' },
     { q:'⑤（失敗しても記録が残る）は、なぜ必要？',
@@ -267,7 +286,7 @@ test('戻り値がそのまま返る', () => {
 }
 ]};
 </script>
-<script src="navi.js?v=19"></script>
+<script src="navi.js?v=20"></script>
 <script src="credit.js?v=17"></script>
 </body>
 </html>
