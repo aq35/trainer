@@ -142,6 +142,9 @@ details.tb .a pre,.note pre{background:var(--code-bg);color:var(--code-fg);borde
   padding:10px 12px;margin:8px 0;overflow-x:auto;-webkit-overflow-scrolling:touch}
 details.tb .a pre code,.note pre code{font-size:12.5px;line-height:1.65;white-space:pre;
   background:none;color:inherit;padding:0}
+/* 差分を見せるときの赤と緑。差分の回で覚えた色と、意味をそろえる */
+pre code .dl\+{display:block;color:#8ee39a;background:rgba(80,200,120,.14)}
+pre code .dl-{display:block;color:#ff9b9b;background:rgba(255,110,110,.14)}
 .hsec{font-size:12px;font-weight:700;color:var(--red);letter-spacing:.04em;
       margin:18px 0 8px;padding-bottom:5px;border-bottom:1px solid var(--red-b)}
 .hsec:first-of-type{margin-top:8px}
