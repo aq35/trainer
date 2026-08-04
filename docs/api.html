@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>APIと、問題の切り分け | エンジニア育成トレーナー</title>
-<link rel="stylesheet" href="navi.css?v=28">
+<link rel="stylesheet" href="navi.css?v=29">
 <script src="config.js?v=17"></script>
   <link rel="canonical" href="https://aq35.github.io/trainer/api.html">
 </head>
@@ -249,6 +249,12 @@ steps:[
   emoji:'🔀',
   title:'どっちのせいか、自分で決められるようになりました',
   lead:'Console は中、Network は境目。<br><b>この2つを組み合わせるだけで、原因の半分は絞れます。</b>',
+  criteria:[
+    '<b>フロント側かサーバー側か、どちらの問題かを言い切った</b>（「たぶん」ではなく、どちらかに決める）',
+    '<b>その根拠が Network の事実である</b>（ステータスコードと、返ってきた中身。<b>Console の1行目ではありません</b>）',
+    '<b>サーバー側だと判断したものは、相手に伝わる形で書けている</b>（URL・時刻・ステータス・返ってきたもの）'
+  ],
+  transfer:'<b>「動きません」と言われたときに最初にやることは、いつもこれです。</b>——Network を開いて、何が返ってきたかを見る。<b>Console はそのあと</b>。<br><b>次は、自分の題材で同じことをしてください。</b>やり方は <a href="loop.html" target="_blank" rel="noopener">一人で、回し続ける</a> にあります。',
   gained:'フロントとバックの境目が説明できる／ConsoleとNetworkの役割を分けて使える／4行の切り分け表で当たりを付けられる／Responseの中身を見にいける／404がSyntaxErrorに化ける罠を知っている／4xxと5xxで動き方を変えられる／サーバー担当に伝わる形で報告できる',
   note:'<b>「切り分けができる人」は、経験が浅くても頼られます。</b>直せるかどうかより、<b>誰の問題かを早く決められること</b>のほうが、チームの時間を節約するからです。<br><b>迷ったら、Network を先に。</b>',
   nextHref:'observe.html',
@@ -256,7 +262,7 @@ steps:[
 }
 ]};
 </script>
-<script src="navi.js?v=28"></script>
+<script src="navi.js?v=29"></script>
 <script src="credit.js?v=17"></script>
 </body>
 </html>

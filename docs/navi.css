@@ -138,6 +138,19 @@ details.tb{background:var(--card);border:1px solid var(--red-b);border-radius:9p
 details.tb summary{cursor:pointer;font-weight:700;font-size:14px}
 details.tb .a{font-size:14px;margin-top:8px;padding-top:8px;border-top:1px solid var(--line)}
 /* 見本を貼るときの枠。狭い画面でも本文をはみ出させない（枠の中だけ横スクロール） */
+/* 完了画面の達成条件。「できたつもり」を弾くための、自分でチェックする欄 */
+.crit{background:var(--card);border:2px solid var(--green);border-radius:11px;
+  padding:13px 16px;margin:16px 0}
+.crit>.t{font-size:13px;font-weight:700;color:var(--green);margin-bottom:8px}
+.crit ul{margin:0;padding:0;list-style:none}
+.crit li{position:relative;padding:5px 0 5px 28px;font-size:14px;line-height:1.75}
+.crit li+li{border-top:1px solid var(--line)}
+.crit li::before{content:'';position:absolute;left:2px;top:11px;width:14px;height:14px;
+  border:2px solid var(--green);border-radius:4px}
+.crit .tr{margin-top:11px;padding-top:10px;border-top:1px solid var(--line);
+  font-size:13.5px;line-height:1.8;color:var(--sub)}
+.crit .tr b{color:var(--fg)}
+
 /* 見本や差分を貼るための枠。解説・成功条件・「うまくいきません」のどこに置いても、
    本文をはみ出させない（枠の中だけ横スクロールさせる）。
    場所ごとに書くと付け忘れるので、#view の中の pre をまとめて対象にする。 */

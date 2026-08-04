@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>使い捨てをやめて、道具にする | エンジニア育成トレーナー</title>
-<link rel="stylesheet" href="navi.css?v=28">
+<link rel="stylesheet" href="navi.css?v=29">
 <script src="config.js?v=17"></script>
   <link rel="canonical" href="https://aq35.github.io/trainer/tools.html">
 </head>
@@ -281,6 +281,12 @@ test('戻り値がそのまま返る', () => {
   emoji:'🛠️',
   title:'使い捨てを、道具に変えられました',
   lead:'毎回書いていた3行が、1行になりました。<br><b>そして、あなた以外の人も使えるようになりました。</b>',
+  criteria:[
+    '<b>包むだけで使える形になっている</b>（<code>const r = measure(...)</code> の <code>r</code> に、元の戻り値がそのまま入る）',
+    '<b>道具にテストが3本あり、わざと壊すと赤くなる</b>（赤くならないテストは、見張っていません）',
+    '<b>使い方が README に書いてある</b>（自分以外が使えなければ、道具ではなく個人のメモです）'
+  ],
+  transfer:'<b>判断の基準は1つだけです。</b>「これ、来週も同じことを頼むだろうか？」——はい、なら道具にする価値があります。<br><b>次は、自分の題材で同じことをしてください。</b>やり方は <a href="loop.html" target="_blank" rel="noopener">一人で、回し続ける</a> にあります。',
   gained:'繰り返す作業を見つけられる／使い方から設計できる／テストしやすい形に作れる／道具にテストを書ける／撒くログと残すログを区別できる／使い方を書いて、人に渡せる',
   note:'<b>たった十数行の道具ですが、やったことは大きな道具と同じです。</b><br><b>繰り返しに気づく → 使い方を決める → 作る → テストする → 使う → 書く → 渡す。</b>この順番は、何度でも使えます。',
   nextHref:'chart.html',
@@ -288,7 +294,7 @@ test('戻り値がそのまま返る', () => {
 }
 ]};
 </script>
-<script src="navi.js?v=28"></script>
+<script src="navi.js?v=29"></script>
 <script src="credit.js?v=17"></script>
 </body>
 </html>

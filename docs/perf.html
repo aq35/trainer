@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>動くけど遅い、を直す | エンジニア育成トレーナー</title>
-<link rel="stylesheet" href="navi.css?v=28">
+<link rel="stylesheet" href="navi.css?v=29">
 <script src="config.js?v=17"></script>
   <link rel="canonical" href="https://aq35.github.io/trainer/perf.html">
 </head>
@@ -283,6 +283,12 @@ steps:[
   emoji:'⚡',
   title:'「動くけど遅い」を、直し切れました',
   lead:'測って、特定して、直して、また測る。<br><b>推測で直さなかった</b>——それが今日いちばんの成果です。',
+  criteria:[
+    '<b>直す前と、直したあとの数字を両方持っている</b>（片方だけでは、速くなった証拠になりません）',
+    '<b>なぜ遅かったのかを、自分の言葉で言える</b>（「二重ループで、件数の2乗で増えていた」）',
+    '<b>PRの説明に、その2つの数字が書いてある</b>（読む人は、自分では確かめられません）'
+  ],
+  transfer:'<b>この3つは、練習リポジトリでなくても同じです。</b>自分のアプリで遅い所を見つけたときも、<b>測る → 直す → もう一度測る → 数字で示す</b>。順番は変わりません。<br><b>次は、自分の題材で同じことをしてください。</b>やり方は <a href="loop.html" target="_blank" rel="noopener">一人で、回し続ける</a> にあります。',
   gained:'「動くけど遅い」を不具合として扱える／console.time と Performance タブで測れる／二重ループが件数の2乗で効くと分かる／測った数字を根拠にAIへ相談できる／改善を数字で証明できる／どこで止めるか判断できる',
   note:'<b>3行を毎回書くのが面倒だと感じませんでしたか。</b>次は、それを<b>道具に変えます</b>——<a href="index.html#/what-to-build" target="_blank" rel="noopener">AIに何を作ってもらうか</a>の実践編です。',
   nextHref:'tools.html',
@@ -290,7 +296,7 @@ steps:[
 }
 ]};
 </script>
-<script src="navi.js?v=28"></script>
+<script src="navi.js?v=29"></script>
 <script src="credit.js?v=17"></script>
 </body>
 </html>

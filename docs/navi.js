@@ -231,6 +231,11 @@
       v.innerHTML = '<div class="card">' +
         mascot('party', '<h2 style="margin:6px 0">' + s.title + '</h2><p class="why" style="margin:0">' + s.lead + '</p>') +
         (s.gained ? '<div class="expect"><div class="t">できるようになったこと</div><div class="m">' + s.gained + '</div></div>' : '') +
+        // 達成条件。手順をなぞれたかではなく、何が残っていれば合格かを言い切る。
+        // 練習リポジトリを離れても、自分の題材で同じことを確かめられる形にしておく。
+        (s.criteria ? '<div class="crit"><div class="t">この回の達成条件</div><ul>' +
+          s.criteria.map(function (c) { return '<li>' + c + '</li>'; }).join('') + '</ul>' +
+          (s.transfer ? '<div class="tr">' + s.transfer + '</div>' : '') + '</div>' : '') +
         (s.note ? '<div class="note">' + s.note + '</div>' : '') +
         // 手を動かした直後は、その道具の背景がいちばん頭に入る
         (s.readNext ? '<a class="readnext" href="index.html#/' + s.readNext.md + '" target="_blank" rel="noopener">' +

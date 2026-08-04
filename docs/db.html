@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>保存先を変えてみる（データベース） | エンジニア育成トレーナー</title>
-<link rel="stylesheet" href="navi.css?v=28">
+<link rel="stylesheet" href="navi.css?v=29">
 <script src="config.js?v=17"></script>
   <link rel="canonical" href="https://aq35.github.io/trainer/db.html">
 </head>
@@ -227,6 +227,12 @@ steps:[
   emoji:'🗄️',
   title:'データベースを、自分の手で動かせました',
   lead:'入れて、動かして、壊して、直した。<br><b>「まだ早い」と思っていたものが、今日ひとつ減りました。</b>',
+  criteria:[
+    '<b>データベースを作って、自分の手で読み書きした</b>（<code>SELECT</code> の結果を、目で見た）',
+    '<b>tags の持ち方を自分で選び、理由を1行で書いた</b>（正解は1つではありません。<b>理由があることが条件です</b>）',
+    '<b>データベースのファイルが、リポジトリに入っていない</b>（<code>.gitignore</code> に <code>*.db</code>）'
+  ],
+  transfer:'<b>2つ目だけは、AIに任せられません。</b>「何をしたいか」を知っているのは、あなただけだからです。<br><b>次は、自分の題材で同じことをしてください。</b>やり方は <a href="loop.html" target="_blank" rel="noopener">一人で、回し続ける</a> にあります。',
   gained:'ファイルとDBの向き不向きが言える／データの形を自分で決めて、理由を説明できる／小さく作って各段階で動かせる／壊してエラーを読める／トランザクションという言葉の意味が分かる／DBファイルをリポジトリに入れてはいけないと知っている',
   note:'<b>次に伸びるのは SQL です。</b>そして今日、あなたはすでに書いています——<b>「終わっていないものだけ取り出す」、あれがSQLです。</b><br><b>本を1冊読んでからにしないでください。手元に、動くデータベースがあるのですから。</b>',
   readNext:{ md:'graduation', label:'案件に入る前の最終チェック',
@@ -236,7 +242,7 @@ steps:[
 }
 ]};
 </script>
-<script src="navi.js?v=28"></script>
+<script src="navi.js?v=29"></script>
 <script src="credit.js?v=17"></script>
 </body>
 </html>

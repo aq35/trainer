@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>観測する力をつける | エンジニア育成トレーナー</title>
-<link rel="stylesheet" href="navi.css?v=28">
+<link rel="stylesheet" href="navi.css?v=29">
 <script src="config.js?v=17"></script>
   <link rel="canonical" href="https://aq35.github.io/trainer/observe.html">
 </head>
@@ -281,6 +281,12 @@ steps:[
   emoji:'🔬',
   title:'推測せずに、確定させられるようになりました',
   lead:'参照を機械に出させる。名前を解析して変える。履歴に聞く。壊れた地点を二分探索で確定させる。<br><b>どれも、勘を使っていません。</b>',
+  criteria:[
+    '<b>推測ではなく、道具が出した事実で犯人を確定した</b>（「たぶんこの変更」ではなく、コミットが1つに決まっている）',
+    '<b>その手順を、もう一度同じようにやれる</b>（まぐれでは、次に使えません）',
+    '<b>使った道具の名前を言える</b>（<code>git bisect</code> / <code>git log -S</code> / <code>git blame</code> / 参照の検索）'
+  ],
+  transfer:'<b>3つ目が、この回でいちばん大事です。</b>道具は<b>名前を知らないと、AIにも聞けません</b>。<br>困ったときに引けるよう、名前だけ置いておきます —— <code>git bisect</code>（いつ壊れたか）<b>／</b> <code>git log -S</code>（その文字列が現れた／消えたコミット）<b>／</b> <code>git blame</code>（この行を誰がいつ）<b>／</b> 参照の検索（<span class="k">Shift</span>+<span class="k">F12</span>）<b>／</b> 名前の変更（<span class="k">F2</span>）<b>／</b> 言語サーバ（LSP）。<br><b>使い方は覚えなくて構いません。名前をAIに渡せば、手順は出てきます。</b><br><b>次は、自分の題材で同じことをしてください。</b>やり方は <a href="loop.html" target="_blank" rel="noopener">一人で、回し続ける</a> にあります。',
   gained:'AIの推測と、道具の事実を使い分けられる／言語サーバが何をしているか説明できる／全文検索と参照の検索の違いが分かる／名前の変更を安全にできる／git blame と log -S で経緯をたどれる／git bisect で壊れた地点を確定できる／事実を渡してからAIに説明させられる／道具が終了コードやプロトコルの上に乗っていると分かる',
   note:'<b>持ち帰ってほしいのは、順番だけです。</b><br><b>① 機械で「どこか」を確定 → ② AIに「なぜか」を説明させる。</b><br><b>AIを使わない技術を持っている人ほど、AIをうまく使えます。</b>',
   nextHref:'db.html',
@@ -288,7 +294,7 @@ steps:[
 }
 ]};
 </script>
-<script src="navi.js?v=28"></script>
+<script src="navi.js?v=29"></script>
 <script src="credit.js?v=17"></script>
 </body>
 </html>
