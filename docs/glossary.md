@@ -186,6 +186,57 @@ GitHub にあるものを、**自分のパソコンにコピーしてくるこ�
 案件では、<b>作業を始める前に必ず <code>git pull</code></b> します。他の人が進めた分を先に取り込んでおかないと、あとでコンフリクトが増えるからです。
 </div>
 
+### git pull が止まった（Aborting / CONFLICT）
+
+**`git pull` は、よく止まります。ほとんどの場合、壊れていません。** 止まり方は3つだけです。
+
+<img class="ui-mock" src="media/pull-stopped.svg" alt="git pull が止まったとき、Aborting なら何も起きておらず安全、CONFLICT なら途中まで進んでいるという見分け方">
+
+| 最後の行 | 何が起きたか | やること |
+| --- | --- | --- |
+| `Aborting` | **何も起きていません。** 保存しただけの変更が邪魔しています | `git add .` → `git commit -m "作業中"` → もう一度 `git pull` |
+| `Need to specify how to reconcile divergent branches` | **設定していないだけ**です（最初の1回だけ） | `git config --global pull.rebase false` を1回 |
+| `CONFLICT` | **ここだけ、途中まで進んでいます。** 同じ行を2人が直しました | 記号の行を消して直す → `git add` → `git commit`。やめるなら `git merge --abort` |
+
+```
+error: Your local changes to the following files would be overwritten by merge:
+	public/logic.js
+Please commit your changes or stash them before you merge.
+Aborting
+```
+
+<div class="checkpoint">
+<strong>いちばん多い勘違いは、<code>Aborting</code> を見て「壊した」と思うことです。逆です。</strong><br>
+git が<b>「このままだとあなたの変更が消えるので、やめておきました」</b>と言っています。<b>あなたのファイルは1文字も変わっていません。</b><code>git status</code> で確かめられます。
+</div>
+
+<div class="note">
+<b><code>git stash</code> はどうか。</b>「commit したくない中途半端な状態」を一時的にどけられますが、<b>戻すとき（<code>git stash pop</code>）に結局コンフリクトすることがあります</b>。<b>慣れるまでは commit するほうが確実です。</b>「作業中」という名前の commit は、あとでいくらでも整理できます。
+</div>
+
+<div class="note">
+<b><code>unmerged files</code> と言われて何も進まないとき</b>は、<b>コンフリクトを直しきる前に次の操作をしています</b>。<code>git status</code> で <b>both modified</b> と出ているファイルを片付けるまで、git は他のことをさせてくれません。
+</div>
+
+### コンフリクトを小さくする（チーム開発）
+
+**コンフリクトの大きさは、腕前ではなく「取り込まずに持っていた日数」で決まります。**
+
+<img class="ui-mock" src="media/conflict-prevent.svg" alt="コンフリクトは長く持つほど大きくなる。こまめに取り込み、小さく出すと小さく済むという比較">
+
+- **① 作業を始める前に、必ず取り込む** — `git switch main` → `git pull` → それから枝を作る
+- **② 1つの枝で、1つのことだけ。長く持たない** — 2週間ためた枝は、2週間ぶんの衝突を連れてきます
+- **③ 同じファイルを触る人がいたら、先に一言** — **1分の相談が、1時間の解決を防ぎます**
+- **④ どちらを残すか迷ったら、書いた人に聞く** — **勝手に消さないでください**
+
+<div class="note">
+<b>④がいちばん大事です。</b>コンフリクトの解決は、技術ではなく<b>判断</b>です。どちらが正しいかは<b>書いた人にしか分かりません</b>。「どちらを残しますか」と1行聞くだけで済みます。
+</div>
+
+<div class="note">
+<b>一人でも起きます。</b>会社のPCと自宅のPC、というように<b>2か所で同じリポジトリを触ったとき</b>です。「チームがいないから関係ない」ではありません。
+</div>
+
 ### git switch（スイッチ）／ git merge（マージ）／ git restore（リストア）
 
 **コマンドは「どこに効くか」で覚えます。**

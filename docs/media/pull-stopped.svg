@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="356" viewBox="0 0 720 356" role="img" aria-label="git pull が止まったとき、Aborting なら何も起きておらず安全、CONFLICT なら途中まで進んでいるという見分け方">
+<rect width="720" height="356" fill="#ffffff"/>
+<text x="24" y="28" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#26456f">git pull が止まった。まず、どの止まり方かを見ます</text>
+
+<rect x="24" y="42" width="672" height="86" rx="10" fill="#eef7f1" stroke="#a9d5bb" stroke-width="1.5"/>
+<text x="44" y="66" font-family="sans-serif" font-size="13" font-weight="700" fill="#1f5c39">A　最後の行が Aborting ／ fatal　—— 何も起きていません。安全です</text>
+<rect x="44" y="76" width="360" height="40" rx="6" fill="#ffffff" stroke="#a9d5bb"/>
+<text x="54" y="92" font-family="monospace" font-size="11.5" fill="#1f5c39">error: Your local changes ... would be</text>
+<text x="54" y="108" font-family="monospace" font-size="11.5" fill="#1f5c39">overwritten by merge / Aborting</text>
+<text x="418" y="92" font-family="sans-serif" font-size="12.5" fill="#1f5c39">保存しただけの変更が邪魔をしています</text>
+<text x="418" y="112" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#1f5c39">→ 先に commit してから、もう一度 pull</text>
+
+<rect x="24" y="140" width="672" height="74" rx="10" fill="#fff6e5" stroke="#f0cf95" stroke-width="1.5"/>
+<text x="44" y="164" font-family="sans-serif" font-size="13" font-weight="700" fill="#8a5a12">B　divergent branches と出た　—— 最初の1回だけの設定漏れです</text>
+<rect x="44" y="174" width="360" height="26" rx="6" fill="#ffffff" stroke="#f0cf95"/>
+<text x="54" y="191" font-family="monospace" font-size="11.5" fill="#8a5a12">fatal: Need to specify how to</text>
+<text x="418" y="184" font-family="sans-serif" font-size="12.5" fill="#8a5a12">つなぎ方が決まっていないだけです</text>
+<text x="418" y="204" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#8a5a12">→ git config pull.rebase false　を1回</text>
+
+<rect x="24" y="226" width="672" height="86" rx="10" fill="#fdf0ee" stroke="#e6b5ad" stroke-width="1.5"/>
+<text x="44" y="250" font-family="sans-serif" font-size="13" font-weight="700" fill="#c0392b">C　CONFLICT と出た　—— ここだけ、途中まで進んでいます</text>
+<rect x="44" y="260" width="360" height="40" rx="6" fill="#ffffff" stroke="#e6b5ad"/>
+<text x="54" y="276" font-family="monospace" font-size="11.5" fill="#c0392b">CONFLICT (content): Merge conflict in</text>
+<text x="54" y="292" font-family="monospace" font-size="11.5" fill="#c0392b">Automatic merge failed; fix conflicts</text>
+<text x="418" y="276" font-family="sans-serif" font-size="12.5" fill="#7a2f24">同じ行を、2人が別々に直しました</text>
+<text x="418" y="296" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#c0392b">→ 直す。やめたければ git merge --abort</text>
+
+<rect x="24" y="324" width="672" height="24" rx="7" fill="#eef3ff" stroke="#9fb4d8" stroke-width="1.5"/>
+<text x="360" y="341" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#26456f" text-anchor="middle">A と B は、何も変わっていません。壊れたのではなく、止めてくれただけです</text>
+</svg>

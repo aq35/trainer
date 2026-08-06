@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ブランチと安全な進め方 | エンジニア育成トレーナー</title>
-<link rel="stylesheet" href="navi.css?v=29">
+<link rel="stylesheet" href="navi.css?v=30">
 <script src="config.js?v=17"></script>
   <link rel="canonical" href="https://aq35.github.io/trainer/branch.html">
 </head>
@@ -215,7 +215,76 @@ steps:[
   ]
 },
 {
-  icon:'icon-key.svg', phase:'6. 上げてはいけないもの',
+  icon:'icon-github.svg', phase:'6. チームで起きること', readonly:true,
+  title:'pull は、よく止まります。壊れたのではありません',
+  visual:'media/pull-stopped.svg',
+  visualAlt:'git pull が止まったとき、Aborting なら何も起きておらず安全、CONFLICT なら途中まで進んでいるという見分け方',
+  why:'いまのは<b>自分ひとりで起こした衝突</b>でした。チームに入ると、<b>他人の変更を取り込むとき</b>に同じことが起きます。<b>先に、止まり方の見分け方だけ持っておきます。</b>',
+  todo:{
+    common:['<code>git pull</code> は「<b>他の人の変更を、手元に取り込む</b>」コマンドです',
+            '<b>そして、よく止まります。止まり方は3つだけ</b>です',
+            '　<b>A</b> 最後の行が <code>Aborting</code> …… <b>何も起きていません。安全です</b>',
+            '　　保存しただけの変更が邪魔しています → <b>先に commit してから、もう一度 pull</b>',
+            '　<b>B</b> <code>divergent branches</code> …… <b>設定していないだけ</b>です（最初の1回だけ）',
+            '　　→ <code>git config pull.rebase false</code> を1回打てば、以後は出ません',
+            '　<b>C</b> <code>CONFLICT</code> …… <b>ここだけ、途中まで進んでいます</b>',
+            '　　→ さっき直したのと<b>同じ形</b>です。やめたければ <code>git merge --abort</code> で完全に元に戻ります']
+  },
+  cmdMulti:{
+    common:['git config --global pull.rebase false',
+            'git merge --abort']
+  },
+  cmdlabel:'1行目はBの対処（最初に1回だけ）、2行目はCをやめて元に戻すとき',
+  expect:'<b>「Aborting は安全」「CONFLICT だけが途中」</b>——この2つを区別できれば十分です。',
+  note:'<b>いちばん多い勘違いは、Aborting を見て「壊した」と思うことです。</b>逆です。<b>git が「このままだとあなたの変更が消えるので、やめておきました」と言っています。</b><br>' +
+       '<b>止めてくれた、と読んでください。</b>あなたのファイルは1文字も変わっていません。',
+  ask:'3つの止まり方の違い、つかめましたか？',
+  tb:[
+    { q:'A（Aborting）が出た。本当に何も消えていない？',
+      a:'<b>消えていません。</b><code>git status</code> を打つと、あなたの変更がそのまま残っているのが見えます。<br>' +
+        '<b>やることは1つ</b>: <code>git add .</code> → <code>git commit -m "作業中"</code> → もう一度 <code>git pull</code>。<br>' +
+        '<b>commit したくない中途半端な状態なら</b> <code>git stash</code> で一時的にどけられますが、<b>戻すとき（<code>git stash pop</code>）に結局コンフリクトすることがあります</b>。<b>初心者のうちは commit するほうが確実です。</b>' },
+    { q:'B の設定は、どれを選べばいい？',
+      a:'<b>迷ったら <code>false</code>（merge）</b>です。上の1行目がそれです。<br><b>履歴に「合流しました」という記録が1つ増える</b>だけで、失うものはありません。<code>true</code>（rebase）は履歴がきれいになりますが、<b>やり直しが難しくなる</b>ので、慣れてからで十分です。<br><b>チームで決まりがあれば、そちらに従ってください。</b>' },
+    { q:'C が出た。怖いので、なかったことにしたい',
+      a:'<b>できます。</b>上の2行目 <code>git merge --abort</code> を打つと、<b>pull する前の状態に完全に戻ります</b>（手元で確認済みです）。<br><b>落ち着いてから、もう一度 pull すれば同じ場所で止まります。</b>逃げても、何も失いません。' },
+    { q:'unmerged files と言われて、何をしても進めない',
+      a:'<b>Cを直しきる前に、次の操作をしています。</b>まず <code>git status</code> で <b>both modified</b> と出ているファイルを開き、記号の行を消して直してください。<br>直したら <code>git add ファイル名</code> → <code>git commit</code>。<b>それが終わるまで、gitは他のことをさせてくれません。</b>' }
+  ]
+},
+{
+  icon:'icon-key.svg', phase:'6. チームで起きること', readonly:true,
+  title:'コンフリクトの大きさは、日数で決まります',
+  visual:'media/conflict-prevent.svg',
+  visualAlt:'コンフリクトは長く持つほど大きくなる。こまめに取り込み、小さく出すと小さく済むという比較',
+  why:'<b>コンフリクトは、腕前の問題ではありません。</b>「どれだけ長く、取り込まずに持っていたか」で大きさが決まります。',
+  todo:{
+    common:['<b>① 作業を始める前に、必ず取り込む</b>',
+            '　<code>git switch main</code> → <code>git pull</code> → それから枝を作る',
+            '<b>② 1つの枝で、1つのことだけ</b>。長く持たない',
+            '　2週間ためた枝は、2週間ぶんの衝突を連れてきます',
+            '<b>③ 同じファイルを触る人がいたら、先に一言</b>',
+            '　<b>1分の相談が、1時間の解決を防ぎます</b>',
+            '<b>④ どちらを残すか迷ったら、書いた人に聞く</b>',
+            '　<b>勝手に消さないでください。</b>消した相手には、消えたことが分かりません']
+  },
+  expect:'<b>「毎日取り込む人は、小さい衝突がたまに1回」</b>——この形が目標だと分かれば十分です。',
+  note:'<b>④がいちばん大事です。</b>コンフリクトの解決は、<b>技術ではなく判断</b>です。どちらが正しいかは、<b>書いた人にしか分かりません</b>。<br>' +
+       '<b>「どちらを残しますか」と1行聞くだけ</b>で済みます。それは手間ではなく、<a href="ask.html" target="_blank" rel="noopener">仕事です</a>。',
+  ask:'コンフリクトを小さくする作法、つかめましたか？',
+  tb:[
+    { q:'毎日 pull すると、そのたびに衝突しそうで怖い',
+      a:'<b>逆です。</b>毎日取り込めば<b>1日ぶんの差</b>しかないので、ぶつかっても<b>直すのは1〜2行</b>です。<br><b>怖いのは、ためた側です。</b>2週間ぶんをまとめて取り込むと、どこを直せばいいのか分からなくなります。' },
+    { q:'自分の変更が消えてしまいそうで、pull を押せない',
+      a:'<b>commit してあれば、絶対に消えません。</b>それが commit の役目です。<br>万一おかしくなっても <code>git merge --abort</code> で戻れますし、commit した内容は <code>git log</code> にちゃんと残っています。<b>怖いと感じたら、まず commit。</b>' },
+    { q:'相手の変更を消してしまったかもしれない',
+      a:'<b>すぐ言ってください。隠さないのが正解です。</b>（<a href="ask.html" target="_blank" rel="noopener">遅れそう・間違えたを早く伝える</a>でやったとおりです）<br>そして<b>ほぼ確実に戻せます</b>。相手の commit は履歴に残っているので、<code>git log</code> から取り戻せます。<b>時間が経つほど面倒になるので、早いほど楽です。</b>' },
+    { q:'チームがいないので、実感が湧かない',
+      a:'<b>それで構いません。「そういうものがある」と知っていれば、初日に慌てません。</b><br>なお<b>一人でも起きます</b>——会社のPCと自宅のPC、というように<b>2か所で同じリポジトリを触ったとき</b>です。' }
+  ]
+},
+{
+  icon:'icon-key.svg', phase:'7. 上げてはいけないもの',
   title:'秘密の情報を、間違って上げない設定をします',
   why:'<b>ここは事故防止のために必ずやってください。</b>鍵やパスワードをGitHubに上げてしまう事故は、実際によく起きます。',
   todo:{
@@ -242,7 +311,7 @@ steps:[
   ]
 },
 {
-  icon:'icon-github.svg', phase:'7. 現場と同じ形にする',
+  icon:'icon-github.svg', phase:'8. 現場と同じ形にする',
   title:'ブランチを GitHub に上げて、プルリクエストを作ります',
   why:'実際の案件では、直接 main に反映せず「これを取り込んでいいですか」と出します。それがプルリクエスト（PR）です。',
   todo:{
@@ -279,7 +348,7 @@ steps:[
 }
 ]};
 </script>
-<script src="navi.js?v=29"></script>
+<script src="navi.js?v=30"></script>
 <script src="credit.js?v=17"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>詰まったときに、人を頼る | エンジニア育成トレーナー</title>
-<link rel="stylesheet" href="navi.css?v=29">
+<link rel="stylesheet" href="navi.css?v=30">
 <script src="config.js?v=17"></script>
   <link rel="canonical" href="https://aq35.github.io/trainer/ask.html">
 </head>
@@ -32,7 +32,9 @@ common:[
   { q:'言葉の意味が分からない',
     a:'<a href="index.html#/glossary" target="_blank" rel="noopener">用語集</a>を見てください。' },
   { when:'act', q:'こんなことを練習する意味があるの？',
-    a:'<b>あります。</b>技術は半年で追いつけますが、「詰まったときに黙る癖」は何年も残ります。そして<b>その癖のせいで契約が終わる人</b>を、現場は何人も見ています。' }
+    a:'<b>あります。</b>技術は半年で追いつけますが、「詰まったときに黙る癖」は何年も残ります。そして<b>その癖のせいで契約が終わる人</b>を、現場は何人も見ています。' },
+  { when:'cmd', q:'git pull が止まった（Aborting / CONFLICT と出た）',
+    a:'<b>壊れていません。3つのうちどれかです。</b><br><b>A</b> 最後が <code>Aborting</code> → <b>何も起きていません</b>。保存しただけの変更が邪魔しています。<code>git add .</code> → <code>git commit -m "作業中"</code> のあと、もう一度 <code>git pull</code>。<br><b>B</b> <code>divergent branches</code> → 設定していないだけです。<code>git config --global pull.rebase false</code> を<b>1回</b>打てば、以後出ません。<br><b>C</b> <code>CONFLICT</code> → 同じ行を2人が直しました。記号の行を消して直し、<code>git add</code> → <code>git commit</code>。やめたければ <code>git merge --abort</code> で<b>完全に元に戻ります</b>。<br>くわしくは <a href="branch.html" target="_blank" rel="noopener">ブランチと安全な進め方</a> の「pull は、よく止まります」にあります。' },
 ],
 
 steps:[
@@ -245,7 +247,7 @@ steps:[
 }
 ]};
 </script>
-<script src="navi.js?v=29"></script>
+<script src="navi.js?v=30"></script>
 <script src="credit.js?v=17"></script>
 </body>
 </html>

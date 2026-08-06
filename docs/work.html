@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>仕事の一周 | エンジニア育成トレーナー</title>
-<link rel="stylesheet" href="navi.css?v=29">
+<link rel="stylesheet" href="navi.css?v=30">
 <script src="config.js?v=17"></script>
   <link rel="canonical" href="https://aq35.github.io/trainer/work.html">
 </head>
@@ -34,7 +34,9 @@ common:[
   { when:'act', q:'コードが読めなくて手が止まる',
     a:'<b>全部読む必要はありません。</b>直す場所だけ分かれば十分です。チケットに「直す場所」が書いてあるので、そこだけ見てください。プロも、初めて見るコードを全部は読みません。' },
   { when:'act', q:'自分には難しすぎる気がする',
-    a:'ここが研修でいちばん重い場所です。<b>1つ目のチケットさえ通れば、あとは同じことの繰り返し</b>になります。15分粘って進まなければ、迷わず連絡してください。' }
+    a:'ここが研修でいちばん重い場所です。<b>1つ目のチケットさえ通れば、あとは同じことの繰り返し</b>になります。15分粘って進まなければ、迷わず連絡してください。' },
+  { when:'cmd', q:'git pull が止まった（Aborting / CONFLICT と出た）',
+    a:'<b>壊れていません。3つのうちどれかです。</b><br><b>A</b> 最後が <code>Aborting</code> → <b>何も起きていません</b>。保存しただけの変更が邪魔しています。<code>git add .</code> → <code>git commit -m "作業中"</code> のあと、もう一度 <code>git pull</code>。<br><b>B</b> <code>divergent branches</code> → 設定していないだけです。<code>git config --global pull.rebase false</code> を<b>1回</b>打てば、以後出ません。<br><b>C</b> <code>CONFLICT</code> → 同じ行を2人が直しました。記号の行を消して直し、<code>git add</code> → <code>git commit</code>。やめたければ <code>git merge --abort</code> で<b>完全に元に戻ります</b>。<br>くわしくは <a href="branch.html" target="_blank" rel="noopener">ブランチと安全な進め方</a> の「pull は、よく止まります」にあります。' },
 ],
 
 steps:[
@@ -312,8 +314,11 @@ steps:[
       a:'比較の向きを声に出して読んでください。「期限より今日が後なら、期限切れ」。いまのコードはそう読めますか？ もう1つ、<b>終わったタスク</b>はどうあるべきかもテストに書いてあります。' },
     { q:'1つだけテストが赤いまま',
       a:'「終わっているタスクは false」が残っていませんか。<code>done</code> のときは早めに <code>false</code> を返す行が要ります。' },
-    { q:'git pull で何か聞かれた',
-      a:'エディタが開いてメッセージを求められたら、そのまま閉じて構いません（Windows は <span class="k">Ctrl</span>+<span class="k">X</span>、Mac は <span class="k">:wq</span> と入力して Enter）。' }
+    { q:'git pull のあと、見慣れない画面から抜けられない',
+      a:'<b>合流の記録に付ける説明を書く画面（エディタ）が開いています。</b>そのままで構いません。<b>OSではなく、開いたエディタで抜け方が違います。</b><br>' +
+        '<b>画面のいちばん下に <code>^X Exit</code> と出ていたら</b>（nano）… <span class="k">Ctrl</span>+<span class="k">X</span> → <b>Y</b> → <span class="k">Enter</span><br>' +
+        '<b>何も出ていない・カーソルだけなら</b>（vim）… <span class="k">Esc</span> を押してから <code>:wq</code> と打って <span class="k">Enter</span><br>' +
+        '<b>どちらか分からなければ、まず <span class="k">Esc</span> → <code>:wq</code> → <span class="k">Enter</span></b> を試してください。それでだめなら <span class="k">Ctrl</span>+<span class="k">X</span> です。' }
   ]
 },
 {
@@ -487,7 +492,7 @@ steps:[
 }
 ]};
 </script>
-<script src="navi.js?v=29"></script>
+<script src="navi.js?v=30"></script>
 <script src="credit.js?v=17"></script>
 </body>
 </html>
