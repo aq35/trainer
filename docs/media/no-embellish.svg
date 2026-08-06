@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="300" viewBox="0 0 720 300" role="img" aria-label="盛った書き方と、事実・判断・結果で書いた確かめられる書き方の比較">
+<rect width="720" height="300" fill="#ffffff"/>
+<text x="24" y="28" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#26456f">分かれ目は「上手いかどうか」ではなく、<tspan fill="#1f5c39">相手が確かめられるかどうか</tspan>です</text>
+
+<rect x="24" y="44" width="330" height="124" rx="10" fill="#fdf0ee" stroke="#e6b5ad" stroke-width="1.5"/>
+<text x="189" y="68" font-family="sans-serif" font-size="13" font-weight="700" fill="#c0392b" text-anchor="middle">確かめられない書き方</text>
+<text x="44" y="94" font-family="sans-serif" font-size="12.5" fill="#7a2f24">「モダンな開発ができます」</text>
+<text x="44" y="118" font-family="sans-serif" font-size="12.5" fill="#7a2f24">「誰よりも頑張ります」</text>
+<text x="44" y="142" font-family="sans-serif" font-size="12.5" fill="#7a2f24">「一通り理解しています」</text>
+<text x="189" y="162" font-family="sans-serif" font-size="12" font-weight="700" fill="#c0392b" text-anchor="middle">嘘とは限りません。ただ、開けません</text>
+
+<rect x="366" y="44" width="330" height="124" rx="10" fill="#eef7f1" stroke="#a9d5bb" stroke-width="1.5"/>
+<text x="531" y="68" font-family="sans-serif" font-size="13" font-weight="700" fill="#1f5c39" text-anchor="middle">確かめられる書き方</text>
+<text x="386" y="94" font-family="sans-serif" font-size="12.5" fill="#1f5c39">一覧が重い不具合を直しました</text>
+<text x="386" y="118" font-family="sans-serif" font-size="12.5" fill="#1f5c39">原因は二重ループ（件数の2乗）</text>
+<text x="386" y="142" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#1f5c39">4.1秒 → 0.008秒　→ PR #12</text>
+<text x="531" y="162" font-family="sans-serif" font-size="12" font-weight="700" fill="#1f5c39" text-anchor="middle">リンクを開けば、その場で確認できます</text>
+
+<rect x="24" y="184" width="672" height="52" rx="10" fill="#eef3ff" stroke="#9fb4d8" stroke-width="1.5"/>
+<text x="360" y="207" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#26456f" text-anchor="middle">型は3つだけ　　事実（何をした） → 判断（なぜそうした） → 結果（どうなった）</text>
+<text x="360" y="227" font-family="sans-serif" font-size="12" fill="#5a6f92" text-anchor="middle">全部すでに、あなたのPRの説明に書いてあります。並べ替えるだけです</text>
+
+<rect x="24" y="248" width="672" height="42" rx="9" fill="#f6f8fc" stroke="#c7cede" stroke-width="1.5"/>
+<text x="360" y="274" font-family="sans-serif" font-size="13" font-weight="700" fill="#3d4652" text-anchor="middle">謙虚なままで構いません。事実を出すのは、自慢ではなく報告です</text>
+</svg>
