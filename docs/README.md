@@ -136,6 +136,12 @@
 - <img class="ti" width="26" height="26" src="media/icon-ai.svg" alt="">[🗓️ 案件まで1か月。何をする？](plan.md) — その弱いところと残り時間から、**学習計画をAIに作らせます**
 - <img class="ti" width="26" height="26" src="media/icon-github.svg" alt="">[🤝 案件に参画する](join.md) — **証拠の集め方・自己紹介の作り方・参画の相談・最初の2週間の動き方**
 
+<div class="note">
+そして、<b>終わりが無い回が2つ</b>あります。研修が終わったあとに使うものです。<br>
+🔁 <a href="loop.html ':ignore target=_blank'"><b>一人で、回し続ける</b></a> …… <b>1周＝1週間。</b>研修が終わると<b>間違いを指摘してくれる人がいなくなります</b>。その代わりを、自分で作る回です<br>
+📣 <a href="share.html ':ignore target=_blank'"><b>証拠を、人に届ける</b></a> …… <b>新しく作るものは、ほとんどありません。</b>すでにある記録を、人が開ける場所に並べ替えます
+</div>
+
 ## 進め方の約束
 
 - **急がなくて大丈夫**です。
