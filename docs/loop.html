@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>一人で、回し続ける（毎週） | エンジニア育成トレーナー</title>
-<link rel="stylesheet" href="navi.css?v=30">
+<link rel="stylesheet" href="navi.css?v=31">
 <script src="config.js?v=17"></script>
   <link rel="canonical" href="https://aq35.github.io/trainer/loop.html">
 </head>
@@ -125,6 +125,10 @@ steps:[
       a:'<b>その場合は使わないでください。</b>「私が書いた5つへの指摘だけください。新しい条件は書かないでください」と言い直します。<br>受け取ってしまうと、<b>あとで照らしても必ず一致します</b>（同じ人が書いたので当然です）。<b>検算になりません。</b>' },
     { q:'指摘が1つも無かった',
       a:'<b>それなら、そのまま進んで構いません。</b>ただし1つだけ試してください——「<b>この条件で、私とは別の人が作ったとして、私が想像しているものと違うものが出てくる可能性はありますか</b>」。<br>この聞き方だと、出てくることがあります。' },
+    { q:'更新（書き換え・削除）が入る回のとき',
+      a:'<b>条件を5つ書く前に、1つだけ先に聞いてください</b> —— <b>「この処理で、一番壊したくないものは何か？」</b><br>' +
+        'それが答えられたら、<b>それを守る条件を①に入れます。</b>例:「他の行の <code>done</code> は変わらない」「消えるのは選んだ1件だけ」<br>' +
+        '<b>仕様を完璧に書くより、これ1つのほうが速いです。</b>くわしくは <a href="review.html" target="_blank" rel="noopener">「変える処理は、範囲を必ず聞きます」</a>。' },
     { q:'30分を超えそう',
       a:'<b>Issueを2枚に割ってください。</b>割り方は「先にこれが動けば、次に進める」で切ります。<br><b>割れないと感じるときは、たいてい割れます。</b>「画面に出す」と「保存する」は、必ず別々にできます。' }
   ]
@@ -256,7 +260,7 @@ steps:[
 }
 ]};
 </script>
-<script src="navi.js?v=30"></script>
+<script src="navi.js?v=31"></script>
 <script src="credit.js?v=17"></script>
 </body>
 </html>

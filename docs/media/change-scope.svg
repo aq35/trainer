@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="330" viewBox="0 0 720 330" role="img" aria-label="更新する処理を読むときの3つの問い。変えるつもりの範囲と、実際に変わりうる範囲がずれる">
+<rect width="720" height="330" fill="#ffffff"/>
+<text x="24" y="28" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#26456f">更新する処理を読むときは、毎回この3つを聞きます</text>
+
+<rect x="24" y="42" width="216" height="96" rx="10" fill="#eef3ff" stroke="#9fb4d8" stroke-width="1.5"/>
+<text x="132" y="66" font-family="sans-serif" font-size="13" font-weight="700" fill="#26456f" text-anchor="middle">① 何を変更する？</text>
+<text x="132" y="92" font-family="sans-serif" font-size="12.5" fill="#26456f" text-anchor="middle">変えるつもりの範囲</text>
+<text x="132" y="116" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#26456f" text-anchor="middle">「1件だけ」</text>
+
+<rect x="252" y="42" width="216" height="96" rx="10" fill="#fff6e5" stroke="#f0cf95" stroke-width="1.5"/>
+<text x="360" y="66" font-family="sans-serif" font-size="13" font-weight="700" fill="#8a5a12" text-anchor="middle">② 何まで変わりうる？</text>
+<text x="360" y="92" font-family="sans-serif" font-size="12.5" fill="#8a5a12" text-anchor="middle">このコードが届く範囲</text>
+<text x="360" y="116" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#8a5a12" text-anchor="middle">「全件」かもしれない</text>
+
+<rect x="480" y="42" width="216" height="96" rx="10" fill="#fdf0ee" stroke="#e6b5ad" stroke-width="1.5"/>
+<text x="588" y="66" font-family="sans-serif" font-size="13" font-weight="700" fill="#c0392b" text-anchor="middle">③ 一番困る副作用は？</text>
+<text x="588" y="92" font-family="sans-serif" font-size="12.5" fill="#7a2f24" text-anchor="middle">起きたら戻せないこと</text>
+<text x="588" y="116" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#c0392b" text-anchor="middle">「他人のデータが消える」</text>
+
+<text x="360" y="166" font-family="sans-serif" font-size="13" font-weight="700" fill="#3d4652" text-anchor="middle">①と②がずれている所が、事故になります</text>
+<rect x="120" y="180" width="120" height="26" rx="5" fill="#9fb4d8" stroke="#2f6fed" stroke-width="1.5"/>
+<text x="180" y="198" font-family="sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">① つもり: 1件</text>
+<rect x="120" y="212" width="480" height="26" rx="5" fill="#e6b5ad" stroke="#c0392b" stroke-width="1.5"/>
+<text x="360" y="230" font-family="sans-serif" font-size="12" font-weight="700" fill="#7a2f24" text-anchor="middle">② 実際に届く範囲: 全件</text>
+<text x="112" y="198" font-family="sans-serif" font-size="12" fill="#5b6472" text-anchor="end">狭い</text>
+<text x="112" y="230" font-family="sans-serif" font-size="12" fill="#5b6472" text-anchor="end">広い</text>
+<rect x="608" y="180" width="88" height="58" rx="7" fill="#fdf0ee" stroke="#c0392b" stroke-width="1.5"/>
+<text x="652" y="204" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#c0392b" text-anchor="middle">この差が</text>
+<text x="652" y="224" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#c0392b" text-anchor="middle">事故です</text>
+
+<rect x="24" y="252" width="672" height="62" rx="10" fill="#eef7f1" stroke="#a9d5bb" stroke-width="1.5"/>
+<text x="44" y="276" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#1f5c39">守り方は3つ。どれも、書く前にやることです</text>
+<text x="44" y="300" font-family="sans-serif" font-size="12.5" fill="#1f5c39">① 実行前に<tspan font-weight="700">件数を数える</tspan>　② <tspan font-weight="700">本番に近いデータ</tspan>で試す　③ <tspan font-weight="700">戻せる形</tspan>にしてから実行する</text>
+</svg>

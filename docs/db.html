@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>保存先を変えてみる（データベース） | エンジニア育成トレーナー</title>
-<link rel="stylesheet" href="navi.css?v=30">
+<link rel="stylesheet" href="navi.css?v=31">
 <script src="config.js?v=17"></script>
   <link rel="canonical" href="https://aq35.github.io/trainer/db.html">
 </head>
@@ -179,14 +179,29 @@ steps:[
             '<b>① 同じ id を2回入れてみる</b> → エラーになるはず。<b>なぜエラーにしてくれるのか</b>考えます',
             '<b>② 存在しない列を指定してみる</b> → エラー。<b>打ち間違いを実行前に見つけてくれます</b>',
             '<b>③ データベースのファイルを消してみる</b> → 動かなくなります。<b>バックアップとは何かが分かります</b>',
-            '<b>④ 2件入れる途中で失敗させてみる</b> → <b>1件目はどうなりますか？</b>']
+            '<b>④ 2件入れる途中で失敗させてみる</b> → <b>1件目はどうなりますか？</b>',
+            '<b>⑤ いちばん怖いものを、最後に試します。</b>下の2つ目の枠です',
+            '　<code>UPDATE</code> から <code>WHERE</code> を<b>わざと消して</b>実行します',
+            '　<b>打つ前に予想してください。何件が書き換わるでしょうか</b>（1件？ 12件？）']
   },
+  cmdMulti:{
+    common:['-- 実行する前に、影響する件数を数えておく\nSELECT COUNT(*) FROM tasks WHERE id = 3;   -- 1 と出るはず\nSELECT COUNT(*) FROM tasks;                -- 12 と出る',
+            '-- ⑤ WHERE を消して実行してみる（そのあと必ず戻します）\nUPDATE tasks SET done = 1 WHERE id = 3;    -- changes: 1\nUPDATE tasks SET done = 1;                 -- changes: ?\n\n-- 戻す\nUPDATE tasks SET done = 0;']
+  },
+  cmdlabel:'1つ目は「先に数える」、2つ目が⑤の実験',
   visual:'media/transaction.svg',
   visualAlt:'途中で失敗したとき、トランザクションが無いと中途半端に残り、あると全部なかったことになる図',
-  expect:'4つとも、エラーか、予想と違う結果になります。<b>それが見たかったものです。</b>',
+  expect:'4つとも、エラーか、予想と違う結果になります。<b>それが見たかったものです。</b><br>⑤の答えは <b>12件（全部）</b> です。<code>changes: 12</code> と出ます。<b>「1件のつもり」が「全件」になる</b>——これが、現場でいちばん多い事故です。',
   note:'<b>①が、ファイルとの一番大きな違いです。</b>ファイルなら同じidが2件あっても<b>黙って入り、気づけません。</b>データベースは<b>止めてくれます。</b><br><b>④は「トランザクション」</b>——途中で失敗したら全部なかったことにする仕組みです。',
-  ask:'4つ試して、エラーを自分の目で見ましたか？',
+  ask:'5つ試して、⑤では 12件 が書き換わるのを見ましたか？',
   tb:[
+    { q:'⑤で、本当に全部書き換わってしまった',
+      a:'<b>それが見せたかったものです。</b>そして<b>いま、それが練習用のDBで起きたのは幸運です。</b><br>' +
+        '守り方は3つ、どれも<b>実行する前</b>にやります。<br>' +
+        '<b>① 先に件数を数える</b> …… 上の1つ目の枠です。同じ条件で <code>SELECT COUNT(*)</code>。<b>1件のはずが12件と出たら、そこで止まれます</b><br>' +
+        '<b>② 本番に近いデータで試す</b> …… 3件しか入っていない手元では気づけません<br>' +
+        '<b>③ 戻せる形にしてから実行する</b> …… <code>BEGIN</code> で囲めば <code>ROLLBACK</code> で戻せます（④で見たトランザクションです）<br>' +
+        '<a href="review.html" target="_blank" rel="noopener">レビューする側になる</a> の「変える処理は、範囲を必ず聞きます」と同じ話です。<b>あちらは読む側、こちらは書く側です。</b>' },
     { q:'壊すのが怖い',
       a:'<b>ここは壊していい場所です。</b>DBファイルを消せば、作り直せます。<b>案件で初めて壊すより、いま壊しておくほうが、ずっと安全です。</b>' },
     { q:'①でエラーにならなかった',
@@ -244,7 +259,7 @@ steps:[
 }
 ]};
 </script>
-<script src="navi.js?v=30"></script>
+<script src="navi.js?v=31"></script>
 <script src="credit.js?v=17"></script>
 </body>
 </html>

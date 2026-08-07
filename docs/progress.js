@@ -26,7 +26,7 @@
     { key: 'trainer-aidlc-v1', total: 12, label: 'AIと回す開発の一周', href: 'ai-dlc.html', icon: 'icon-ai.svg',
       read: { md: 'estimate', label: 'どれくらいで終わる？ 工数の見積もり方', icon: 'icon-terminal.svg' } },
     // ここから「案件に入る前の修行」。立場が変わるものばかり
-    { key: 'trainer-review-v1',  total: 8, label: 'レビューする側になる',       href: 'review.html',  icon: 'icon-github.svg' },
+    { key: 'trainer-review-v1',  total: 9, label: 'レビューする側になる',       href: 'review.html',  icon: 'icon-github.svg' },
     { key: 'trainer-bug-v1',     total: 7, label: '曖昧な報告から不具合を追う', href: 'bug.html',     icon: 'icon-terminal.svg' },
     { key: 'trainer-onboard-v1', total: 7, label: '大きなコードに初日で入る',   href: 'onboard.html', icon: 'icon-vscode.svg' },
     { key: 'trainer-ask-v1',     total: 8, label: '詰まったときに、人を頼る',   href: 'ask.html',     icon: 'icon-key.svg' },
