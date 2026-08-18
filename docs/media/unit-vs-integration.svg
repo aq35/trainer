@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="290" viewBox="0 0 720 290" role="img" aria-label="部品が2つとも正しくても、つなぎ目の食い違いで落ちる。単体テストはつなぎ目を見ていない">
+<rect width="720" height="290" fill="#ffffff"/>
+<text x="24" y="28" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#26456f">部品は2つとも正しい。それでも動きませんでした</text>
+
+<rect x="40" y="48" width="220" height="86" rx="10" fill="#eef7f1" stroke="#a9d5bb" stroke-width="1.5"/>
+<text x="150" y="72" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#1f5c39" text-anchor="middle">logic.js</text>
+<rect x="58" y="84" width="184" height="24" rx="5" fill="#ffffff" stroke="#a9d5bb"/>
+<text x="66" y="101" font-family="monospace" font-size="11.5" fill="#1f5c39">TAGS_URL = 'data/tag.json'</text>
+<text x="150" y="126" font-family="sans-serif" font-size="12" font-weight="700" fill="#1f5c39" text-anchor="middle">単体テスト 🟢 緑</text>
+
+<rect x="460" y="48" width="220" height="86" rx="10" fill="#eef7f1" stroke="#a9d5bb" stroke-width="1.5"/>
+<text x="570" y="72" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#1f5c39" text-anchor="middle">app.js</text>
+<rect x="478" y="84" width="184" height="24" rx="5" fill="#ffffff" stroke="#a9d5bb"/>
+<text x="486" y="101" font-family="monospace" font-size="11.5" fill="#1f5c39">fetch(TAGS_URL)</text>
+<text x="570" y="126" font-family="sans-serif" font-size="12" font-weight="700" fill="#1f5c39" text-anchor="middle">単体テスト 🟢 緑</text>
+
+<path d="M266 91 L454 91" stroke="#c0392b" stroke-width="2" stroke-dasharray="6 5"/>
+<circle cx="360" cy="91" r="17" fill="#fdf0ee" stroke="#c0392b" stroke-width="2"/>
+<text x="360" y="97" font-family="sans-serif" font-size="15" font-weight="700" fill="#c0392b" text-anchor="middle">✕</text>
+<text x="360" y="130" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#c0392b" text-anchor="middle">つなぎ目</text>
+
+<rect x="240" y="150" width="240" height="46" rx="8" fill="#fdf0ee" stroke="#e6b5ad" stroke-width="1.5"/>
+<text x="360" y="169" font-family="sans-serif" font-size="12.5" fill="#7a2f24" text-anchor="middle">実際にあるファイルは</text>
+<text x="360" y="188" font-family="monospace" font-size="12.5" font-weight="700" fill="#c0392b" text-anchor="middle">data/tags.json　→ 404</text>
+
+<rect x="24" y="210" width="672" height="30" rx="8" fill="#f6f8fc" stroke="#c7cede" stroke-width="1.5"/>
+<text x="360" y="230" font-family="sans-serif" font-size="12.5" fill="#3d4652" text-anchor="middle">どちらの部品を単体で調べても、この不具合は出てきません</text>
+<rect x="24" y="246" width="672" height="34" rx="9" fill="#eef3ff" stroke="#9fb4d8" stroke-width="1.5"/>
+<text x="360" y="268" font-family="sans-serif" font-size="13" font-weight="700" fill="#26456f" text-anchor="middle">結合テストが見るのは、つながっているかだけ。中身が合っているかは見ません</text>
+</svg>

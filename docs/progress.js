@@ -38,7 +38,8 @@
     { key: 'trainer-chart-v1', total: 8, label: '数字を、目に見えるようにする',   href: 'chart.html', icon: 'icon-vscode.svg' },
     { key: 'trainer-api-v1',   total: 8, label: 'APIと、問題の切り分け',         href: 'api.html',   icon: 'icon-github.svg' },
     { key: 'trainer-observe-v1', total: 9, label: '観測する力をつける（推測しない道具）', href: 'observe.html', icon: 'icon-terminal.svg' },
-    { key: 'trainer-db-v1',    total: 7, label: '保存先を変えてみる（任意）',     href: 'db.html',    icon: 'icon-folder.svg' }
+    { key: 'trainer-db-v1',    total: 7, label: '保存先を変えてみる（任意）',     href: 'db.html',    icon: 'icon-folder.svg' },
+    { key: 'trainer-test-v1', total: 6, label: 'テストは4段。何を守り、何を守らないか', href: 'test.html', icon: 'icon-terminal.svg' }
   ];
 
   // 全ステップのあとに続く「案件の準備」。手順ではなく、使う道具と入口

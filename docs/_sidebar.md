@@ -35,6 +35,7 @@
   - [20. 🔀 APIと、問題の切り分け](api.html ':ignore target=_blank')
   - [21. 🔬 観測する力をつける](observe.html ':ignore target=_blank')
   - [22. 🗄️ 保存先を変えてみる（任意）](db.html ':ignore target=_blank')
+  - [23. 🧪 テストは4段。何を守り、何を守らないか](test.html ':ignore target=_blank')
 - 案件の準備
   - [🎓 案件に入る前の最終チェック](graduation.md)
   - [🔁 一人で、回し続ける（毎週）](loop.html ':ignore target=_blank')
