@@ -42,5 +42,5 @@
 
 <rect x="24" y="250" width="672" height="46" rx="9" fill="#eef7f1" stroke="#a9d5bb" stroke-width="1.5"/>
 <text x="40" y="270" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#1f5c39">軸を変えると、見つかる抜けが変わります。表の質は、書き方ではなく<tspan fill="#c0392b">軸の選び方</tspan>で決まります。</text>
-<text x="40" y="288" font-family="sans-serif" font-size="12" fill="#3f7a5c">だから軸は、<tspan font-weight="700">自分の案を持ってAIと一緒に考えます</tspan>。そして<tspan font-weight="700">どれを使うかは、自分で選びます</tspan>。</text>
+<text x="40" y="288" font-family="sans-serif" font-size="12" fill="#3f7a5c">だから、<tspan font-weight="700">まず自分で選びます。</tspan>ゼロから考える必要はありません。<tspan font-weight="700">AIに聞くのは、選んだあとです。</tspan></text>
 </svg>
