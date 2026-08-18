@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="310" viewBox="0 0 720 310" role="img" aria-label="同じ機能でも、表の軸を変えると見つかる抜けが変わることを示した図">
+<rect width="720" height="310" fill="#ffffff"/>
+<text x="24" y="26" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#26456f">同じ機能・同じ人が作った表。<tspan fill="#c0392b">違うのは「軸」だけです</tspan></text>
+
+<rect x="24" y="40" width="320" height="196" rx="10" fill="#f8fafd" stroke="#c7cede" stroke-width="1.5"/>
+<text x="40" y="62" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#3d4652">軸に<tspan fill="#26456f">「入力の種類」</tspan>を選んだ表</text>
+
+<rect x="40" y="74" width="130" height="24" rx="5" fill="#eef3ff" stroke="#9fb4d8"/>
+<text x="105" y="90" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#26456f" text-anchor="middle">入力</text>
+<rect x="176" y="74" width="152" height="24" rx="5" fill="#eef3ff" stroke="#9fb4d8"/>
+<text x="252" y="90" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#26456f" text-anchor="middle">何件出る？</text>
+
+<text x="46" y="120" font-family="sans-serif" font-size="12" fill="#3d4652">一致する語</text>
+<text x="182" y="120" font-family="sans-serif" font-size="12" fill="#3f7a5c">3件</text>
+<text x="46" y="142" font-family="sans-serif" font-size="12" fill="#3d4652">一致しない語</text>
+<text x="182" y="142" font-family="sans-serif" font-size="12" fill="#3f7a5c">0件</text>
+<text x="46" y="164" font-family="sans-serif" font-size="12" fill="#3d4652">大文字・小文字違い</text>
+<text x="182" y="164" font-family="sans-serif" font-size="12" fill="#3f7a5c">3件</text>
+<rect x="40" y="172" width="288" height="26" rx="5" fill="#fdf0ee" stroke="#e6b5ad"/>
+<text x="46" y="190" font-family="sans-serif" font-size="12" font-weight="700" fill="#7a2f24">空の入力</text>
+<text x="182" y="190" font-family="sans-serif" font-size="12" font-weight="700" fill="#c0392b">？ 決まっていない</text>
+<text x="40" y="220" font-family="sans-serif" font-size="12" fill="#5a6f92">この軸だと、<tspan font-weight="700" fill="#c0392b">入力の抜け</tspan>が見つかります</text>
+
+<rect x="376" y="40" width="320" height="196" rx="10" fill="#f8fafd" stroke="#c7cede" stroke-width="1.5"/>
+<text x="392" y="62" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#3d4652">軸に<tspan fill="#26456f">「データの状態」</tspan>を選んだ表</text>
+
+<rect x="392" y="74" width="130" height="24" rx="5" fill="#eef3ff" stroke="#9fb4d8"/>
+<text x="457" y="90" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#26456f" text-anchor="middle">登録されている数</text>
+<rect x="528" y="74" width="152" height="24" rx="5" fill="#eef3ff" stroke="#9fb4d8"/>
+<text x="604" y="90" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#26456f" text-anchor="middle">どう見える？</text>
+
+<text x="398" y="120" font-family="sans-serif" font-size="12" fill="#3d4652">1件だけ</text>
+<text x="534" y="120" font-family="sans-serif" font-size="12" fill="#3f7a5c">ふつうに出る</text>
+<text x="398" y="142" font-family="sans-serif" font-size="12" fill="#3d4652">ふつう（10件）</text>
+<text x="534" y="142" font-family="sans-serif" font-size="12" fill="#3f7a5c">ふつうに出る</text>
+<text x="398" y="164" font-family="sans-serif" font-size="12" fill="#3d4652">大量（1万件）</text>
+<text x="534" y="164" font-family="sans-serif" font-size="12" fill="#3f7a5c">遅いが出る</text>
+<rect x="392" y="172" width="288" height="26" rx="5" fill="#fdf0ee" stroke="#e6b5ad"/>
+<text x="398" y="190" font-family="sans-serif" font-size="12" font-weight="700" fill="#7a2f24">まだ0件（初日）</text>
+<text x="534" y="190" font-family="sans-serif" font-size="12" font-weight="700" fill="#c0392b">？ 真っ白？</text>
+<text x="392" y="220" font-family="sans-serif" font-size="12" fill="#5a6f92">この軸だと、<tspan font-weight="700" fill="#c0392b">状態の抜け</tspan>が見つかります</text>
+
+<rect x="24" y="250" width="672" height="46" rx="9" fill="#eef7f1" stroke="#a9d5bb" stroke-width="1.5"/>
+<text x="40" y="270" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#1f5c39">軸を変えると、見つかる抜けが変わります。表の質は、書き方ではなく<tspan fill="#c0392b">軸の選び方</tspan>で決まります。</text>
+<text x="40" y="288" font-family="sans-serif" font-size="12" fill="#3f7a5c">だから軸は、<tspan font-weight="700">自分の案を持ってAIと一緒に考えます</tspan>。そして<tspan font-weight="700">どれを使うかは、自分で選びます</tspan>。</text>
+</svg>
