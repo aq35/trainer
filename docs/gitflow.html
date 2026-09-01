@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>チームのブランチ運用（Git-Flow） | エンジニア育成トレーナー</title>
-<link rel="stylesheet" href="navi.css?v=31">
+<link rel="stylesheet" href="navi.css?v=32">
 <script src="config.js?v=17"></script>
   <link rel="canonical" href="https://aq35.github.io/trainer/gitflow.html">
 </head>
@@ -110,6 +110,16 @@ steps:[
             '　<code>main</code> …… 出せるもの　／　<code>develop</code> …… 次に出すもの',
             '<b>いまは同じ中身です。</b>ここから枝分かれしていきます']
   },
+  pre:[
+    ['cd ~/Desktop','ターミナルがいる場所を、デスクトップに移します（<code>cd</code> ＝ change directory ＝ 場所を変える）'],
+    ['mkdir gitflow-practice','そこに新しいフォルダを1つ作ります（<code>mkdir</code> ＝ make directory）'],
+    ['cd gitflow-practice','作ったフォルダの中に入ります'],
+    ['git init -b main','<b>このフォルダを、git の管理下に置きます。</b>同時に、最初の枝の名前を <code>main</code> にします（<code>-b</code> ＝ branch）'],
+    ['echo v1 > app.txt','<code>app.txt</code> というファイルを作り、中に「v1」と書きます'],
+    ['git add . &amp;&amp; git commit -m "最初のコミット"','いまの中身を<b>記録に取ります</b>。<code>add</code> が「これを記録する」の指定、<code>commit</code> が記録の実行です'],
+    ['git switch -c develop','<code>develop</code> という枝を<b>作って、そこへ移ります</b>（<code>-c</code> ＝ create ＝ 作る）'],
+    ['git branch','<b>いま存在する枝の一覧</b>を出します']
+  ],
   cmdMulti:{
     win:['cd ~/Desktop',
          'mkdir gitflow-practice',
@@ -133,6 +143,9 @@ steps:[
          '<pre><code>* develop\n  main</code></pre>',
   note:'<b>この <code>app.txt</code> が、これから「サービス」の役をします。</b>中身は何でも構いません。<br>' +
        '<b>大事なのはファイルの中身ではなく、どのブランチに、いつ入るか</b>です。',
+  after:'<b>git の管理下にあるフォルダが、1つできました。</b>そして枝が2本あります。<br>' +
+        'ただし<b>いまは中身がまったく同じ</b>です。枝は「どのコミットを指しているか」の目印なので、同じところを指していれば中身も同じになります。<br>' +
+        'そして<b>あなたはいま <code>develop</code> にいます</b>（<code>*</code> が付いている方）。この先の作業は、ここから始めます。',
   ask:'main と develop の2本が出ましたか？',
   tb:[
     { q:'git init で「-b は使えない」と言われた',
@@ -156,6 +169,12 @@ steps:[
             '　ブランチは <code>.git/refs/heads/</code> にある、<b>40文字が1行書いてあるだけのファイル</b>です',
             '<b>3本の中身を見比べます</b>（4行目）。同じでしょうか、違うでしょうか']
   },
+  pre:[
+    ['git branch banana','<code>banana</code> という名前の枝を作ります。<b>移りません</b>（<code>-c</code> が無いので、作るだけです）'],
+    ['git branch release/1.0.0','同じように、<code>/</code> を含む名前で1本作ります'],
+    ['ls .git/refs/heads','<b>枝の実体が置いてある場所</b>の中身を一覧します（<code>ls</code> ＝ list）'],
+    ['git rev-parse main develop banana','3本の枝が<b>それぞれどのコミットを指しているか</b>を表示します']
+  ],
   cmdMulti:{
     common:['git branch banana',
             'git branch release/1.0.0',
@@ -170,6 +189,10 @@ steps:[
   note:'<b>ブランチは、コピーでもフォルダでもありません。</b>「どのコミットを指しているか」を書いた<b>ただの目印</b>です。<br>' +
        '<b>だから、いくら作っても重くなりません。</b>そして <code>develop</code> という名前に、git 側の意味は<b>1つもありません</b>。<br>' +
        '<b>意味をつけたのは、人です。</b>——名前を見ただけで<b>「出せるものか、作りかけか」</b>が分かるように。',
+  after:'<b>3本とも、同じ40文字が出ました。</b>この40文字は<b>コミット1つを指す番号</b>です。<br>' +
+        'つまり<b>3本とも、同じ1つのコミットを指しているだけ</b>で、中身のコピーはどこにもありません。<br>' +
+        'だから枝は<b>いくら作っても一瞬で終わり、容量も増えません</b>。「枝を作る」は、目印を1つ置くだけの作業です。<br>' +
+        'そして <code>develop</code> という名前に、<b>git 側の意味は1つもありません</b>。——意味は、このあと人が決めます。',
   ask:'3本とも同じ40文字だと、自分の目で確かめましたか？',
   tb:[
     { q:'ls .git/refs/heads が動かない（Windows）',
@@ -219,6 +242,15 @@ steps:[
             '　<code>--no-ff</code> を付けています。<b>「ここで1機能が入った」という印を履歴に残す</b>ためです',
             '終わったブランチは消します（6行目）。<b>記録は履歴に残るので、消して構いません</b>']
   },
+  pre:[
+    ['git switch -c feature/search develop','<b>いちばん最後に「起点」を書きます。</b><code>develop</code> を起点に <code>feature/search</code> を作って、そこへ移ります'],
+    ['echo 検索機能 >> app.txt','<code>app.txt</code> の<b>末尾に1行足します</b>（<code>&gt;&gt;</code> は追記。<code>&gt;</code> だと上書きになるので注意）'],
+    ['git commit -am "検索機能を追加"','変更を記録します（<code>-a</code> ＝ 既にあるファイルの変更を自動で add、<code>-m</code> ＝ メッセージ）'],
+    ['git switch develop','<code>develop</code> に戻ります（<code>-c</code> が無いので、作らずに移るだけ）'],
+    ['git merge --no-ff feature/search -m "Merge feature/search"','<code>feature/search</code> の内容を、<b>いまいる <code>develop</code> に取り込みます</b>。<code>--no-ff</code> は「一直線にせず、合流の印を残す」'],
+    ['git branch -d feature/search','用済みの枝を消します（<code>-d</code> ＝ delete。<b>合流済みのものしか消せません</b>）'],
+    ['git log --oneline --graph','履歴を<b>枝の形つき</b>で表示します']
+  ],
   cmdMulti:{
     common:['git switch -c feature/search develop',
             'echo 検索機能 >> app.txt',
@@ -234,6 +266,9 @@ steps:[
          'この<b>ふくらみ</b>が「1機能が入った」という印です。<b>先頭の英数字（コミットの番号）は、人それぞれ違います。</b>',
   note:'<b><code>--no-ff</code> を付けない場合</b>、履歴は一直線になり、どこからどこまでが1つの機能だったかが分からなくなります。<br>' +
        '<b>あとで「この機能だけ取り消したい」と言われたときに効きます。</b>ふくらみ1つを取り消せば済むからです。',
+  after:'<b><code>develop</code> が、<code>feature/search</code> で作ったものを含んだ状態になりました。</b><br>' +
+        '履歴に<b>ふくらみ</b>ができています。これが <code>--no-ff</code> の効果で、<b>どこからどこまでが1つの機能だったか</b>が形として残ります。<br>' +
+        'そして <code>feature/search</code> という<b>名前は消えましたが、コミットは1つも消えていません</b>。外したのは名札だけです。',
   ask:'枝が分かれて合流した形が、履歴に出ましたか？',
   tb:[
     { q:'ブランチ名の <code>feature/</code> は必要？',
@@ -255,6 +290,12 @@ steps:[
             '確認して、直します（2〜3行目）',
             '<b>切ったあとも、develop は止まりません。</b>次の機能の作業はそのまま進みます']
   },
+  pre:[
+    ['git switch -c release/1.0.0 develop','<code>develop</code> を起点に <code>release/1.0.0</code> を作って移ります。<b>この瞬間が「凍結」です</b>'],
+    ['echo 誤字を直した >> app.txt','出す前の細かい直しを、1つ入れます'],
+    ['git commit -am "リリース前の微修正"','それを記録します'],
+    ['git branch','枝の一覧を出して、<b>いま自分がどこにいるか</b>を確かめます']
+  ],
   cmdMulti:{
     common:['git switch -c release/1.0.0 develop',
             'echo 誤字を直した >> app.txt',
@@ -267,6 +308,9 @@ steps:[
   note:'<b>これが release ブランチの本当の価値です。</b><br>' +
        '「出す準備」と「次の開発」を<b>同時に進められる</b>ようになります。凍結が無いと、確認の間じゅう全員が手を止めることになります。<br>' +
        '<b>だから、ここに新機能を足すと意味が消えます。</b>足した瞬間、確認をやり直しになるからです。',
+  after:'<b>枝が3本になり、あなたはいま <code>release/1.0.0</code> にいます。</b><br>' +
+        'ここが大事なところです ——<b><code>develop</code> は止まっていません。</b>いま他の人が <code>develop</code> で次の機能を作り続けても、<b>それはこの <code>release/1.0.0</code> には入ってきません</b>。<br>' +
+        '<b>「出す準備」と「次の開発」が、同時に進められる状態</b>になりました。これが凍結の値打ちです。',
   ask:'release ブランチを立てられましたか？',
   tb:[
     { q:'「出す準備の修正」と「新機能」の線引きが分からない',
@@ -286,6 +330,15 @@ steps:[
             '　<b>release で直した誤字を、develop 側にも反映するため</b>です。忘れがちです',
             'release ブランチを消して（6行目）、タグを確認します（7行目）']
   },
+  pre:[
+    ['git switch main','<code>main</code> に移ります'],
+    ['git merge --no-ff release/1.0.0 -m "Release 1.0.0"','凍結したものを <code>main</code> に取り込みます。<b>ここではじめて、お客さんに出る形</b>になります'],
+    ['git tag -a v1.0.0 -m "1.0.0 リリース"','<b>いまの <code>main</code> の位置に、名札を打ちます</b>（<code>-a</code> ＝ メモ付きのタグ）'],
+    ['git switch develop','<code>develop</code> に移ります'],
+    ['git merge --no-ff release/1.0.0 -m "Merge release/1.0.0 back"','<b>同じものを <code>develop</code> にも入れます。</b>release で直した誤字を、こちらにも反映するためです'],
+    ['git branch -d release/1.0.0','凍結の枝は役目を終えたので消します'],
+    ['git tag -n1','タグの一覧を、メモ1行付きで表示します']
+  ],
   cmdMulti:{
     common:['git switch main',
             'git merge --no-ff release/1.0.0 -m "Release 1.0.0"',
@@ -302,6 +355,9 @@ steps:[
   note:'<b>タグは、あとで自分を助けます。</b><br>' +
        '障害のとき、上司から聞かれるのはいつも同じです ——<b>「いま本番に出ているのは、どれ？」</b><br>' +
        'タグがあれば <code>git tag</code> の1行で答えられます。無ければ、履歴を1つずつ遡ることになります。',
+  after:'<b><code>main</code> が更新され、そこに <code>v1.0.0</code> という名札が付きました。</b>「この時点のものを出した」という記録です。<br>' +
+        'そして<b><code>develop</code> にも、同じものを入れました。</b>これを飛ばすと、release で直した誤字が <code>develop</code> 側に残ったままになります。<br>' +
+        '<b>戻し先が2つある</b> —— この形は、このあとの hotfix でもう一度出てきます。<b>そちらでは、忘れると事故になります。</b>',
   ask:'v1.0.0 のタグが出ましたか？',
   tb:[
     { q:'タグとブランチは何が違うの？',
@@ -325,6 +381,12 @@ steps:[
             '<b>戻ります</b>（4行目）。<b>この操作で何も壊れません</b>',
             '　（<code>HEAD is now at ...</code> と出ます。<b>異常ではありません</b>）']
   },
+  pre:[
+    ['cat app.txt','ファイルの中身を表示します（<code>cat</code> は「中身を出す」道具だと思ってください）'],
+    ['git switch --detach v1.0.0','<b>タグが指している時点に移ります。</b><code>--detach</code> は「どの枝にも乗らず、その1点だけを見る」という意味です'],
+    ['cat app.txt','<b>その時点の</b>中身を表示します'],
+    ['git switch develop','元の場所（<code>develop</code>）に戻ります']
+  ],
   cmdMulti:{
     common:['cat app.txt',
             'git switch --detach v1.0.0',
@@ -338,6 +400,9 @@ steps:[
   note:'<b>「先週の金曜のバージョンに戻して」</b>——これは実際によくある依頼です。<br>' +
        'タグがあれば、その一言に<b>1コマンドで応えられます</b>。無ければ、日付から推測して履歴を探すことになります。<br>' +
        '<b>障害対応の最中に、それをやる時間はありません。</b>',
+  after:'<b>1コマンドで、過去のある1点に行って、帰ってきました。</b><br>' +
+        'いま中身に差が出ないのは、<b><code>v1.0.0</code> 以降にまだ何も足していない</b>からです。<b>次の hotfix のあとに同じことをすると、はっきり差が出ます。</b><br>' +
+        '大事なのは中身の差ではなく、<b>「その時点を、名前で呼び出せた」こと</b>です。タグが無ければ、40文字の番号を履歴から探すことになります。',
   ask:'タグの時点に移動して、戻ってこられましたか？',
   tb:[
     { q:'HEAD is now at ... と出た。これは何？',
@@ -361,6 +426,18 @@ steps:[
             '直して（2〜3行目）、<code>main</code> に戻してタグを打ちます（4〜6行目）',
             '<b>そして develop にも戻します</b>（7〜8行目）。<b>ここが、いちばん忘れられます</b>']
   },
+  pre:[
+    ['git switch -c hotfix/1.0.1 main','<b>起点が <code>main</code> です。</b><code>develop</code> ではありません —— <b>本番と同じ中身から直さないと、そのまま出せない</b>からです'],
+    ['echo 緊急修正 >> app.txt','修正を1行入れます'],
+    ['git commit -am "ログインできない不具合を修正"','記録します'],
+    ['git switch main','<code>main</code> に移ります'],
+    ['git merge --no-ff hotfix/1.0.1 -m "Hotfix 1.0.1"','修正を <code>main</code> に取り込みます'],
+    ['git tag -a v1.0.1 -m "1.0.1 緊急リリース"','新しい名札を打ちます。<b>不具合の修正なので、3つ目の数字だけ上がります</b>'],
+    ['git switch develop','<code>develop</code> に移ります'],
+    ['git merge --no-ff hotfix/1.0.1 -m "Merge hotfix/1.0.1 back"','<b>ここが本番です。</b>同じ修正を <code>develop</code> にも入れます'],
+    ['git branch -d hotfix/1.0.1','枝を消します'],
+    ['git tag -n1','タグの一覧を表示します']
+  ],
   cmdMulti:{
     common:['git switch -c hotfix/1.0.1 main',
             'echo 緊急修正 >> app.txt',
@@ -379,6 +456,9 @@ steps:[
          '<b>不具合の修正なので、3つ目の数字だけが上がりました。</b>',
   note:'<b>hotfix だけが、main から生えます。</b>理由は1つ —— <b>本番と同じ中身から直さないと、直したものをそのまま出せない</b>からです。<br>' +
        'develop から直すと、まだ出していない機能が一緒に付いてきます。<b>緊急のときに、それを一つずつ外す時間はありません。</b>',
+  after:'<b>タグが2つになりました</b> —— <code>v1.0.0</code> と <code>v1.0.1</code>。<b>3つ目の数字だけが上がっている</b>のは、機能を足したのではなく<b>不具合を直したから</b>です。<br>' +
+        'そして修正は、<b><code>main</code> と <code>develop</code> の両方</b>に入りました。<br>' +
+        '<b>この2回目のマージが、この回でいちばん忘れられる操作です。</b>忘れるとどうなるかを、次の画面で実際に起こします。',
   ask:'タグが v1.0.0 と v1.0.1 の2つになりましたか？',
   tb:[
     { q:'develop に戻すのを忘れたら、どうなるの？',
@@ -401,6 +481,19 @@ steps:[
             '　③ 次のリリースで、develop を main に入れる',
             '<b>③ で何が起きるでしょうか。</b>予想してから実行してください']
   },
+  pre:[
+    ['cd ~/Desktop && mkdir gf2 && cd gf2 && git init -b main','<b>別の使い捨てフォルダ</b>を作り、git の管理下に置きます（さっきのフォルダとは分けます）'],
+    ['printf \'...age > 18...\' > logic.js','<code>logic.js</code> を作ります。中身は <code>age &gt; 18</code> ——<b>18歳ちょうどが弾かれる不具合</b>です'],
+    ['git add . && git commit -m "初版" && git switch -c develop','記録して、<code>develop</code> を作ります'],
+    ['git switch -c hotfix main','<b><code>main</code> から</b> hotfix を切ります（本番が壊れた、という想定）'],
+    ['printf \'...age >= 18...\' > logic.js','<code>&gt;</code> で<b>上書き</b>して、<code>&gt;=</code> に直します'],
+    ['git commit -am "18歳ちょうどが使えない不具合を修正"','その修正を記録します'],
+    ['git switch main && git merge --no-ff hotfix -m "Hotfix"','<code>main</code> にだけ入れます。<b>develop には入れません —— ここがわざと作る「抜け」です</b>'],
+    ['git switch develop','<code>develop</code> に移ります。<b>ここには修正が入っていません</b>'],
+    ['printf \'...age > 18 && !banned...\' > logic.js','<code>develop</code> 側で、別の担当者が<b>古い <code>&gt;</code> のまま</b>別の条件を足します'],
+    ['git commit -am "利用停止ユーザーを弾く"','その追加を記録します'],
+    ['git switch main && git merge --no-ff develop -m "Release 1.1.0"','<b>次のリリースとして、<code>develop</code> を <code>main</code> に入れます。</b>ここで何が起きるでしょうか']
+  ],
   cmdMulti:{
     common:['cd ~/Desktop && mkdir gf2 && cd gf2 && git init -b main',
             'printf \'function canUse(age) {\\n  return age > 18;\\n}\\n\' > logic.js',
@@ -422,6 +515,11 @@ steps:[
   note:'<b>これがデグレ（直したものが元に戻る事故）です。</b>いちばん怖いのは、<b>誰も嘘をついていない</b>ことです。<br>' +
        'hotfix を書いた人も、機能を足した人も、コンフリクトを解いた人も、それぞれ正しく仕事をしています。<b>手順が1つ抜けただけ</b>です。<br>' +
        '<b>だから手順で守ります。</b>「hotfix は、main と develop の両方に戻す」——これを人の記憶ではなく、決まりにします。',
+  after:'<b>コンフリクトが起きました。</b>git は「同じ行が、両側で別々に変わっている」ことに気づき、<b>自動では決められない</b>と言っています。<br>' +
+        'ここが分かれ道です。<code>&gt;=</code> は<b>直した結果</b>、<code>&gt; ... &amp;&amp; !banned</code> は<b>新しい機能</b>で、<b>どちらも正しい変更</b>です。<br>' +
+        '<b>片方を選ぶと、もう片方が消えます。</b>「新しい方が正しいだろう」で develop 側を選ぶと、<b>直した不具合がそのまま復活します</b>。<br>' +
+        '正しい直し方は <code>age &gt;= 18 &amp;&amp; !banned</code> ——<b>両方を合わせること</b>です。<br>' +
+        '<b>そして本当の正解は、この状況を作らないこと</b>でした。——hotfix を、<code>develop</code> にも戻しておけば起きません。',
   ask:'コンフリクトを自分の目で見て、原因が「戻し忘れ」だと分かりましたか？',
   tb:[
     { q:'コンフリクトのまま止まってしまった',
@@ -611,7 +709,7 @@ steps:[
 }
 ]};
 </script>
-<script src="navi.js?v=31"></script>
+<script src="navi.js?v=32"></script>
 <script src="credit.js?v=17"></script>
 </body>
 </html>

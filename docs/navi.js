@@ -271,11 +271,23 @@
     if (s.visual)  h += fig(s.visual, s.visualAlt);
     if (s.visual2) h += fig(s.visual2, s.visual2Alt);
 
+    // 打つ前の説明。1行ずつ「これは何をするコマンドか」を先に読ませる。
+    // 意味の分からないものを貼らせない、が目的。
+    if (s.pre) {
+      h += '<div class="pre"><div class="t">打つ前に —— この行は、何をしますか</div><dl>';
+      for (var p = 0; p < s.pre.length; p++) {
+        h += '<dt>' + s.pre[p][0] + '</dt><dd>' + s.pre[p][1] + '</dd>';
+      }
+      h += '</dl></div>';
+    }
+
     if (s.cmd) h += '<p style="font-size:14px;margin:16px 0 0"><b>' + (s.cmdlabel || '') + '</b></p>' + cmdBox(s.cmd);
     var multi = pick(s.cmdMulti);
     if (multi) for (var j = 0; j < multi.length; j++) h += cmdBox(multi[j]);
 
     if (s.expect) h += '<div class="expect"><div class="t">こうなれば成功です</div><div class="m">' + s.expect + '</div></div>';
+    // 打ったあとの説明。画面に出た結果が「何を意味するのか」を言葉にする。
+    if (s.after) h += '<div class="after"><div class="t">いま、何が起きたのか</div><div class="m">' + s.after + '</div></div>';
     if (s.note)   h += '<div class="note">' + s.note + '</div>';
     h += stuckBanner();
 
