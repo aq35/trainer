@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>チームのブランチ運用（Git-Flow） | エンジニア育成トレーナー</title>
+<link rel="stylesheet" href="navi.css?v=31">
+<script src="config.js?v=17"></script>
+  <link rel="canonical" href="https://aq35.github.io/trainer/gitflow.html">
+</head>
+<body>
+
+<header>
+  <div class="hd">
+    <h1>チームのブランチ運用</h1>
+    <div class="spacer"></div>
+    <a class="home" href="index.html">目次へ</a>
+    <div class="counter" id="counter"></div>
+  </div>
+  <div class="bar"><i id="bar"></i></div>
+</header>
+
+<div class="wrap"><div id="view"></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+window.NAVI = {
+key:'trainer-gitflow-v1',
+greeting:'ここまでは、ブランチを<b>自分のために</b>使ってきました。<br>' +
+         'チームに入ると、ブランチは<b>「どれが出せるもので、どれが作りかけか」を全員に伝える道具</b>になります。<br>' +
+         '今日はその代表的な決め方、<b>Git-Flow</b> を、使い捨てのフォルダで1周します。<b>誰のリポジトリも汚しません。</b>',
+
+common:[
+  { q:'言葉の意味が分からない',
+    a:'<a href="index.html#/glossary" target="_blank" rel="noopener">用語集</a>を見てください。' },
+  { when:'cmd', q:'そもそもブランチが分からない',
+    a:'<a href="branch.html" target="_blank" rel="noopener">ブランチと安全な進め方</a>に戻ってください。<b>この回は、その続きです。</b>' },
+  { when:'cmd', q:'いま自分がどこにいるか分からなくなった',
+    a:'<code>git branch</code> を打つと、いるブランチに <code>*</code> が付きます。<br>枝の形を見るなら <code>git log --oneline --graph --all</code> です。<b>迷ったら、この2つ。</b>' },
+  { when:'cmd', q:'コマンドを打ち間違えた／やり直したい',
+    a:'<b>この回は使い捨てのフォルダです。壊して構いません。</b><br>作り直すなら、フォルダごと消して2番目の画面からやり直してください。<b>失うものはありません。</b>' }
+],
+
+steps:[
+{
+  icon:'icon-git.svg', phase:'1. 思想', readonly:true,
+  title:'ルールは5つに見えて、言っていることは1つです',
+  visual:'media/gitflow-idea.svg',
+  visualAlt:'Git-Flowの思想。出せるものと作りかけを混ぜない。合流の向きは一方通行',
+  why:'ブランチの名前を覚えても使えません。<b>なぜその名前が要るのか</b>が分かれば、名前は後からついてきます。',
+  todo:{
+    common:['Git-Flow が言っているのは<b>「出せるもの」と「作りかけ」を混ぜない</b>、これだけです',
+            '　<code>main</code> …… <b>いまお客さんが使っているもの</b>。そのまま出せる状態を保つ',
+            '　<code>develop</code> …… <b>次に出すもの置き場</b>。動くが、まだ出さない',
+            'そして<b>合流の向きが決まっています</b>（一方通行）',
+            '　<code>feature → develop → release → main</code>',
+            'この向きがあるから、<b>「いまどこに何が入っているか」を全員が言えます</b>']
+  },
+  expect:'<b>2本に分ける理由が「混ぜないため」だと分かれば十分</b>です。名前はこのあと手を動かして覚えます。',
+  note:'<b>なぜ、そこまでして分けるのか。</b><br>' +
+       '<b>main は、いつ「出して」と言われるか分からない</b>からです。作りかけが1行でも混ざっていると、その瞬間に出せません。<br>' +
+       '<b>「出せる状態を、いつでも保っておく」</b> —— これがチーム開発の一番の土台です。',
+  ask:'main と develop を分ける理由が、自分の言葉で言えそうですか？',
+  tb:[
+    { q:'一人の開発でも、develop は要る？',
+      a:'<b>要りません。</b>一人なら <code>main</code> ＋ 短いブランチで十分です。<br>develop が効くのは<b>「出す人」と「作る人」が別々にいるとき</b>。誰かが出す判断をしている間も、別の人が作り続けられるようにする仕組みです。' },
+    { q:'うちの現場は Git-Flow じゃないと思う',
+      a:'<b>その可能性は高いです。そして、それで構いません。</b>いま主流はもっと簡単な形（<code>main</code> 1本＋短命ブランチ）です。<br>それでも学ぶ価値があるのは、<b>Git-Flow が「なぜ分けるのか」を一番はっきり見せてくれる</b>からです。最後の画面で、やめる判断の話もします。' }
+  ]
+},
+{
+  icon:'icon-terminal.svg', phase:'2. 土台を作る',
+  title:'使い捨てのフォルダで、main と develop を作ります',
+  why:'<b>本物のリポジトリでは練習しません。</b>壊して覚えるために、捨てて構わない場所を作ります。',
+  todo:{
+    common:['ターミナルを開いて、下の枠を<b>まとめて</b>コピーして実行します',
+            '　（<b>デスクトップ</b>に <code>gitflow-practice</code> というフォルダができます）',
+            '最後の <code>git branch</code> で、<b>2本</b>出れば成功です',
+            '　<code>main</code> …… 出せるもの　／　<code>develop</code> …… 次に出すもの',
+            '<b>いまは同じ中身です。</b>ここから枝分かれしていきます']
+  },
+  cmdMulti:{
+    win:['cd ~/Desktop',
+         'mkdir gitflow-practice',
+         'cd gitflow-practice',
+         'git init -b main',
+         'echo v1 > app.txt',
+         'git add . && git commit -m "最初のコミット"',
+         'git switch -c develop',
+         'git branch'],
+    mac:['cd ~/Desktop',
+         'mkdir gitflow-practice',
+         'cd gitflow-practice',
+         'git init -b main',
+         'echo v1 > app.txt',
+         'git add . && git commit -m "最初のコミット"',
+         'git switch -c develop',
+         'git branch']
+  },
+  cmdlabel:'1行ずつでも、まとめてでも構いません',
+  expect:'<b><code>develop</code> と <code>main</code> の2本が出れば成功</b>です。いまいる方に <code>*</code> が付きます。' +
+         '<pre><code>* develop\n  main</code></pre>',
+  note:'<b>この <code>app.txt</code> が、これから「サービス」の役をします。</b>中身は何でも構いません。<br>' +
+       '<b>大事なのはファイルの中身ではなく、どのブランチに、いつ入るか</b>です。',
+  ask:'main と develop の2本が出ましたか？',
+  tb:[
+    { q:'git init で「-b は使えない」と言われた',
+      a:'<b>git が古いです。</b>代わりに <code>git init</code> だけ打ち、最初のコミットのあとに <code>git branch -M main</code> を実行してください。<br>それで同じ状態になります。' },
+    { q:'echo v1 > app.txt でファイルができない',
+      a:'<b>PowerShell だと文字コードが変わることがありますが、この回では問題になりません。</b><br>気になるなら、VS Code で <code>app.txt</code> を作って「v1」と書いて保存するだけでも同じです。' },
+    { q:'デスクトップ以外に作りたい',
+      a:'<b>どこでも構いません。</b>1行目の <code>cd ~/Desktop</code> を、好きな場所に変えてください。<br>あとで消すので、分かりやすい場所を選んでください。' }
+  ]
+},
+{
+  icon:'icon-git.svg', phase:'3. feature',
+  title:'機能を1つ作って、develop に合流させます',
+  why:'<b>作りかけは、develop に直接書きません。</b>1機能につき1本、専用のブランチを立てます。',
+  todo:{
+    common:['<code>develop</code> から <code>feature/search</code> を切ります（下の1行目）',
+            'そこで作業してコミットします（2〜3行目）',
+            '<code>develop</code> に戻って合流させます（4〜5行目）',
+            '　<code>--no-ff</code> を付けています。<b>「ここで1機能が入った」という印を履歴に残す</b>ためです',
+            '終わったブランチは消します（6行目）。<b>記録は履歴に残るので、消して構いません</b>']
+  },
+  cmdMulti:{
+    common:['git switch -c feature/search develop',
+            'echo 検索機能 >> app.txt',
+            'git commit -am "検索機能を追加"',
+            'git switch develop',
+            'git merge --no-ff feature/search -m "Merge feature/search"',
+            'git branch -d feature/search',
+            'git log --oneline --graph']
+  },
+  cmdlabel:'1機能＝1ブランチ。作って、戻して、消す',
+  expect:'<b>枝が分かれて合流した形が出れば成功</b>です。' +
+         '<pre><code>*   8af8372 Merge feature/search\n|\\\n| * 42fb57f 検索機能を追加\n|/\n* e643710 最初のコミット</code></pre>' +
+         'この<b>ふくらみ</b>が「1機能が入った」という印です。<b>先頭の英数字（コミットの番号）は、人それぞれ違います。</b>',
+  note:'<b><code>--no-ff</code> を付けない場合</b>、履歴は一直線になり、どこからどこまでが1つの機能だったかが分からなくなります。<br>' +
+       '<b>あとで「この機能だけ取り消したい」と言われたときに効きます。</b>ふくらみ1つを取り消せば済むからです。',
+  ask:'枝が分かれて合流した形が、履歴に出ましたか？',
+  tb:[
+    { q:'ブランチ名の <code>feature/</code> は必要？',
+      a:'<b>git の機能ではなく、ただの名前の付け方</b>です。<code>/</code> を入れると、ツール上でフォルダのようにまとまって見えます。<br><b>チームで揃っていることのほうが大事</b>です。参画したら、既存のブランチ名を真似してください。' },
+    { q:'merge のとき、エディタが開いて止まった',
+      a:'<b>コミットメッセージの入力待ちです。</b>壊れていません。<br><b>nano</b>（下に <code>^X Exit</code> と出る）なら <kbd>Ctrl</kbd>+<kbd>X</kbd> → <kbd>Y</kbd> → <kbd>Enter</kbd>。<br><b>vim</b>（何も出ない）なら <code>:wq</code> と打って <kbd>Enter</kbd>。' },
+    { q:'branch -d で「マージされていない」と怒られた',
+      a:'<b>合流に失敗しています。</b>消す前に <code>git branch --merged</code> を打って、消したいブランチが一覧に出るか確かめてください。<br>出ないなら、1つ前の merge が終わっていません。<b>-D（大文字）で強制的に消さないでください。</b>作業が消えます。' }
+  ]
+},
+{
+  icon:'icon-git.svg', phase:'4. release',
+  title:'出す直前に「凍結」します',
+  why:'<b>release ブランチは、機能を追加する場所ではありません。</b>——<b>追加を止める</b>ための場所です。',
+  todo:{
+    common:['<code>develop</code> から <code>release/1.0.0</code> を切ります（1行目）',
+            '<b>この瞬間から、この中に新しい機能は入れません。</b>入れていいのは<b>出す準備の修正だけ</b>',
+            '　誤字・表示崩れ・設定値。「動きを変えない直し」だけです',
+            '確認して、直します（2〜3行目）',
+            '<b>切ったあとも、develop は止まりません。</b>次の機能の作業はそのまま進みます']
+  },
+  cmdMulti:{
+    common:['git switch -c release/1.0.0 develop',
+            'echo 誤字を直した >> app.txt',
+            'git commit -am "リリース前の微修正"',
+            'git branch']
+  },
+  cmdlabel:'凍結ブランチを立てる',
+  expect:'<b><code>release/1.0.0</code> ができ、いまそこにいれば成功</b>です。' +
+         '<pre><code>  develop\n  main\n* release/1.0.0</code></pre>',
+  note:'<b>これが release ブランチの本当の価値です。</b><br>' +
+       '「出す準備」と「次の開発」を<b>同時に進められる</b>ようになります。凍結が無いと、確認の間じゅう全員が手を止めることになります。<br>' +
+       '<b>だから、ここに新機能を足すと意味が消えます。</b>足した瞬間、確認をやり直しになるからです。',
+  ask:'release ブランチを立てられましたか？',
+  tb:[
+    { q:'「出す準備の修正」と「新機能」の線引きが分からない',
+      a:'<b>1つだけ聞いてください ——「これを入れたら、確認をやり直しますか」</b><br><b>やり直す</b>なら新機能です。次のリリースに回します。<br><b>やり直さない</b>（誤字・色・文言）なら、release の中で直して構いません。' },
+    { q:'1.0.0 という数字はどう決めるの？',
+      a:'<b>3つの数字に意味があります</b>（セマンティックバージョニング）。<br><b>1</b>.0.0 …… <b>使い方が変わる</b>（前のままでは動かなくなる）<br>1.<b>0</b>.0 …… <b>機能が増えた</b>（前のままでも動く）<br>1.0.<b>0</b> …… <b>不具合を直した</b><br>次の画面で、この番号をタグにします。' }
+  ]
+},
+{
+  icon:'icon-github.svg', phase:'5. main とタグ',
+  title:'main に出して、タグを打ちます',
+  why:'<b>出したら、必ず名札を付けます。</b>付けないと、あとで「どれを出したか」が分からなくなります。',
+  todo:{
+    common:['<code>main</code> に合流させます（1〜2行目）。<b>ここではじめて、お客さんに出る形になります</b>',
+            '<b>タグを打ちます</b>（3行目）。<code>-a</code> は「メモ付きのタグ」という意味です',
+            '<b>そして develop にも戻します</b>（4〜5行目）',
+            '　<b>release で直した誤字を、develop 側にも反映するため</b>です。忘れがちです',
+            'release ブランチを消して（6行目）、タグを確認します（7行目）']
+  },
+  cmdMulti:{
+    common:['git switch main',
+            'git merge --no-ff release/1.0.0 -m "Release 1.0.0"',
+            'git tag -a v1.0.0 -m "1.0.0 リリース"',
+            'git switch develop',
+            'git merge --no-ff release/1.0.0 -m "Merge release/1.0.0 back"',
+            'git branch -d release/1.0.0',
+            'git tag -n1']
+  },
+  cmdlabel:'main へ → タグ → develop へも戻す → 片付ける',
+  expect:'<b>タグが1つ出れば成功</b>です。' +
+         '<pre><code>v1.0.0          1.0.0 リリース</code></pre>' +
+         '<b>release を、main と develop の<u>両方</u>に戻したこと</b>を覚えておいてください。次の画面で、これを忘れるとどうなるかを見ます。',
+  note:'<b>タグは、あとで自分を助けます。</b><br>' +
+       '障害のとき、上司から聞かれるのはいつも同じです ——<b>「いま本番に出ているのは、どれ？」</b><br>' +
+       'タグがあれば <code>git tag</code> の1行で答えられます。無ければ、履歴を1つずつ遡ることになります。',
+  ask:'v1.0.0 のタグが出ましたか？',
+  tb:[
+    { q:'タグとブランチは何が違うの？',
+      a:'<b>ブランチは進みます。タグは動きません。</b><br><code>main</code> は新しいコミットが入るたびに先へ進みますが、<code>v1.0.0</code> は<b>打った場所に永久に残ります</b>。<br>次の画面で、実際にそこへ戻ってみます。' },
+    { q:'-a を付けないタグもあるの？',
+      a:'<b>あります</b>（<code>git tag v1.0.0</code>）。ただし<b>誰がいつ打ったかが残りません</b>。<br><b>リリースには <code>-a</code> を使ってください。</b>あとで「これ、いつ出したもの？」に答えられます。' },
+    { q:'develop への戻しを飛ばしてもよさそうに見える',
+      a:'<b>いま飛ばすと、次の画面の実験が成立しません。</b>そして現場では、これが事故になります。<br>理由は、<b>まさに次の画面で自分の目で見ます。</b>' }
+  ]
+},
+{
+  icon:'icon-key.svg', phase:'6. タグの意味',
+  title:'タグを打った時点のコードに、戻ってみます',
+  visual:'media/tag-vs-branch.svg',
+  visualAlt:'ブランチは進むがタグは動かない。タグはそのときのコードに戻るための名札',
+  why:'タグの価値は、打ったときではなく<b>「戻して」と言われたとき</b>に分かります。',
+  todo:{
+    common:['まず <code>develop</code> の <code>app.txt</code> を見ます（1行目）。<b>3行</b>あるはずです',
+            '<b>タグの時点に移動します</b>（2行目）。<code>--detach</code> は「見るだけ」という意味です',
+            'もう一度 <code>app.txt</code> を見ます（3行目）',
+            '<b>戻ります</b>（4行目）。<b>この操作で何も壊れません</b>',
+            '　（<code>HEAD is now at ...</code> と出ます。<b>異常ではありません</b>）']
+  },
+  cmdMulti:{
+    common:['cat app.txt',
+            'git switch --detach v1.0.0',
+            'cat app.txt',
+            'git switch develop']
+  },
+  cmdlabel:'タグの時点を見て、戻ってくる',
+  expect:'<b>2回目の <code>cat</code> で、中身が変わっていれば成功</b>です。' +
+         '<pre><code>v1.0.0 の時点   → v1 / 検索機能 / 誤字を直した\nいまの develop  → 同じ3行（まだ差がありません）</code></pre>' +
+         '<b>いまは差が出ません。</b>この先で新しいコミットを足すと、差がはっきりします。<b>1コマンドで過去に行けたこと</b>が、この画面の成果です。',
+  note:'<b>「先週の金曜のバージョンに戻して」</b>——これは実際によくある依頼です。<br>' +
+       'タグがあれば、その一言に<b>1コマンドで応えられます</b>。無ければ、日付から推測して履歴を探すことになります。<br>' +
+       '<b>障害対応の最中に、それをやる時間はありません。</b>',
+  ask:'タグの時点に移動して、戻ってこられましたか？',
+  tb:[
+    { q:'HEAD is now at ... と出た。これは何？',
+      a:'<b>壊れていません。「どのブランチにも乗っていない状態」（detached HEAD）になった、という意味</b>です。<br>過去を<b>見るため</b>の状態なので、ここで編集やコミットはしないでください。<code>git switch develop</code> で、いつでも戻れます。' },
+    { q:'cat が使えない（Windows）',
+      a:'<b>PowerShell でも <code>cat</code> は使えます</b>（<code>Get-Content</code> の別名）。<br>それでも駄目なら、VS Code で <code>app.txt</code> を開いて見てください。<b>やっていることは同じです。</b>' },
+    { q:'過去のコードを見るだけなら、他の方法は？',
+      a:'<b>移動しなくても見られます。</b><code>git show v1.0.0:app.txt</code> で、そのときのファイルの中身だけが出ます。<br><b>移動より安全なので、実務ではこちらもよく使います。</b>' }
+  ]
+},
+{
+  icon:'icon-git.svg', phase:'7. hotfix',
+  title:'本番が壊れました。main から直接、切ります',
+  visual:'media/hotfix-two-way.svg',
+  visualAlt:'hotfixはmainから切り、mainとdevelopの両方に戻す。develop側を忘れると不具合が復活する',
+  why:'<b>ここだけが例外です。</b>develop を通さず、main から直接ブランチを切ります。',
+  todo:{
+    common:['お客さんから連絡が来ました。<b>「ログインできません」</b>。いますぐ直します',
+            '<b>develop は使えません。</b>作りかけが入っているので、そのまま出せないからです',
+            'だから <code>main</code> から切ります（1行目）。<b>本番と同じ中身から始めるため</b>です',
+            '直して（2〜3行目）、<code>main</code> に戻してタグを打ちます（4〜6行目）',
+            '<b>そして develop にも戻します</b>（7〜8行目）。<b>ここが、いちばん忘れられます</b>']
+  },
+  cmdMulti:{
+    common:['git switch -c hotfix/1.0.1 main',
+            'echo 緊急修正 >> app.txt',
+            'git commit -am "ログインできない不具合を修正"',
+            'git switch main',
+            'git merge --no-ff hotfix/1.0.1 -m "Hotfix 1.0.1"',
+            'git tag -a v1.0.1 -m "1.0.1 緊急リリース"',
+            'git switch develop',
+            'git merge --no-ff hotfix/1.0.1 -m "Merge hotfix/1.0.1 back"',
+            'git branch -d hotfix/1.0.1',
+            'git tag -n1']
+  },
+  cmdlabel:'main から切って、main と develop の両方へ戻す',
+  expect:'<b>タグが2つ並べば成功</b>です。' +
+         '<pre><code>v1.0.0          1.0.0 リリース\nv1.0.1          1.0.1 緊急リリース</code></pre>' +
+         '<b>不具合の修正なので、3つ目の数字だけが上がりました。</b>',
+  note:'<b>hotfix だけが、main から生えます。</b>理由は1つ —— <b>本番と同じ中身から直さないと、直したものをそのまま出せない</b>からです。<br>' +
+       'develop から直すと、まだ出していない機能が一緒に付いてきます。<b>緊急のときに、それを一つずつ外す時間はありません。</b>',
+  ask:'タグが v1.0.0 と v1.0.1 の2つになりましたか？',
+  tb:[
+    { q:'develop に戻すのを忘れたら、どうなるの？',
+      a:'<b>次の画面で、実際に起こします。</b>ここでは飛ばして構いません。' },
+    { q:'hotfix も release ブランチを通すべき？',
+      a:'<b>通しません。それが hotfix の意味です。</b>「確認の期間を置く」のが release、「置かずに出す」のが hotfix。<br>だから <b>hotfix は変更を極限まで小さく</b>します。1行で済むなら1行だけ。<b>ついでの修正を混ぜないでください。</b>' },
+    { q:'現場で、この判断は自分がするの？',
+      a:'<b>最初はしません。必ず先に聞いてください。</b>——<b>「これは hotfix ですか、次のリリースに回しますか」</b><br>この一言が言えるだけで、<b>手順を分かっている人</b>として扱われます。判断そのものは、先輩の仕事です。' }
+  ]
+},
+{
+  icon:'icon-key.svg', phase:'8. 事故を、自分で起こす',
+  title:'develop に戻し忘れると、何が起きるでしょうか',
+  why:'<b>ルールは、破ったときに何が起きるかを見ないと身につきません。</b>安全な場所で、一度起こしてみます。',
+  todo:{
+    common:['<b>別のフォルダ</b>を作って、わざと「戻し忘れ」を再現します（下の枠をまとめて実行）',
+            'やっていることは3つです',
+            '　① 本番の不具合を <code>main</code> で直す（<code>&gt;</code> を <code>&gt;=</code> に）。<b>develop には戻さない</b>',
+            '　② その間に、別の担当者が <code>develop</code> で<b>同じ行</b>をさわる（古い <code>&gt;</code> のまま）',
+            '　③ 次のリリースで、develop を main に入れる',
+            '<b>③ で何が起きるでしょうか。</b>予想してから実行してください']
+  },
+  cmdMulti:{
+    common:['cd ~/Desktop && mkdir gf2 && cd gf2 && git init -b main',
+            'printf \'function canUse(age) {\\n  return age > 18;\\n}\\n\' > logic.js',
+            'git add . && git commit -m "初版" && git switch -c develop',
+            'git switch -c hotfix main',
+            'printf \'function canUse(age) {\\n  return age >= 18;\\n}\\n\' > logic.js',
+            'git commit -am "18歳ちょうどが使えない不具合を修正"',
+            'git switch main && git merge --no-ff hotfix -m "Hotfix"',
+            'git switch develop',
+            'printf \'function canUse(age) {\\n  return age > 18 && !banned;\\n}\\n\' > logic.js',
+            'git commit -am "利用停止ユーザーを弾く"',
+            'git switch main && git merge --no-ff develop -m "Release 1.1.0"']
+  },
+  cmdlabel:'戻し忘れを、わざと再現する',
+  expect:'<b>コンフリクトが起きます。</b>そして中身がこうなります。' +
+         '<pre><code>function canUse(age) {\n&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD\n  return age &gt;= 18;          ← 直したもの（main 側）\n=======\n  return age &gt; 18 &amp;&amp; !banned;  ← 新しい機能（develop 側）\n&gt;&gt;&gt;&gt;&gt;&gt;&gt; develop\n}</code></pre>' +
+         '<b>ここで「新しい方が正しいだろう」と develop 側を選ぶと、<u>直した不具合がそのまま復活します</u>。</b>' +
+         '<b>正解は、両方を合わせた <code>age &gt;= 18 &amp;&amp; !banned</code> です。</b>',
+  note:'<b>これがデグレ（直したものが元に戻る事故）です。</b>いちばん怖いのは、<b>誰も嘘をついていない</b>ことです。<br>' +
+       'hotfix を書いた人も、機能を足した人も、コンフリクトを解いた人も、それぞれ正しく仕事をしています。<b>手順が1つ抜けただけ</b>です。<br>' +
+       '<b>だから手順で守ります。</b>「hotfix は、main と develop の両方に戻す」——これを人の記憶ではなく、決まりにします。',
+  ask:'コンフリクトを自分の目で見て、原因が「戻し忘れ」だと分かりましたか？',
+  tb:[
+    { q:'コンフリクトのまま止まってしまった',
+      a:'<b>それで構いません。この画面の目的は、直すことではなく見ることです。</b><br>やめるなら <code>git merge --abort</code>。フォルダごと消しても構いません（<b>使い捨てです</b>）。' },
+    { q:'printf の行が長くて、うまく貼れない',
+      a:'<b>この画面は、読むだけでも成立します。</b>上の「こうなれば成功です」に、実際の結果を載せてあります。<br>手を動かすなら、VS Code で <code>logic.js</code> を作り、中身を書き換えながら同じ順番でコミットしても同じです。' },
+    { q:'どうすれば、この事故を防げますか',
+      a:'<b>3つあります。人の注意力に頼らない順に。</b><br>① <b>hotfix を閉じる手順を、チェックリストにする</b>（main / develop / タグ の3つ）<br>② <b>develop に自動テストを置く</b>。直した不具合のテストが残っていれば、復活した瞬間に赤くなります<br>③ <b>コンフリクトを解いた人が、必ず「両方の意図」を確認する</b>。片方を選ぶのではなく、合わせられないかを先に考える' }
+  ]
+},
+{
+  icon:'icon-ai.svg', phase:'9. 判断',
+  title:'このバグ修正、どこに入れますか',
+  visual:'media/bugfix-where.svg',
+  visualAlt:'バグ修正をどのブランチに入れるかの判断表。急ぎかどうかで3つに分かれる',
+  why:'<b>現場で実際に迷うのは、ここです。</b>「バグを直しました。どこに入れますか」に答えられるようにします。',
+  todo:{
+    common:['<b>次の3つは、それぞれどこから切って、どこへ戻しますか。</b>紙かメモ帳に書いてください',
+            '　<b>A</b> 決済が失敗する。お客さんから問い合わせが来ている',
+            '　<b>B</b> 明日リリースの画面で、ボタンの文言が間違っている（release を切ったあと）',
+            '　<b>C</b> 検索結果の並び順が変。急ぎではないと言われた',
+            '<b>3つとも書いてから</b>、上の図と下の答えを見てください']
+  },
+  expect:'<b>A → hotfix</b>（<code>main</code> から切り、<b>main と develop の両方</b>へ。タグも打つ）<br>' +
+         '<b>B → release ブランチの中で直す</b>（閉じるときに、main と develop の両方へ入ります）<br>' +
+         '<b>C → develop から切る</b>（<code>develop</code> にだけ戻す。main には触らない）<br>' +
+         '<b>3つとも合っていなくて構いません。</b>——<b>判断の軸が1つだと分かれば十分</b>です。',
+  note:'<b>迷ったときに聞くのは、いつも同じ1つです。</b><br>' +
+       '<b>「これは、いますぐ出さないといけませんか」</b><br>' +
+       'はい → hotfix ／ 出す直前のものに含める → release ／ いいえ → develop。<b>ブランチの名前ではなく、急ぎ具合で決まります。</b>',
+  ask:'3つの行き先を、自分で書いてから答え合わせしましたか？',
+  tb:[
+    { q:'B が難しい。release に入れていいの？',
+      a:'<b>入れていいものと、いけないものの線引きが必要です。</b>4番目の画面で使った質問がそのまま効きます ——<b>「これを入れたら、確認をやり直しますか」</b><br>文言の直しなら、やり直しません。だから release の中で直します。' },
+    { q:'A なのか C なのか、自分では判断できない',
+      a:'<b>判断しなくて構いません。聞いてください。</b><br>ただし、<b>丸投げにしない聞き方</b>があります ——「決済が失敗する件、<b>問い合わせが来ているので hotfix かと思いました</b>が、いかがですか」。<br><b>自分の見立てを添えると、返事が速くなります。</b>' },
+    { q:'現場によって答えが違いそう',
+      a:'<b>違います。</b>とくに B は、チームによって「release で直す」「develop で直して取り込む」に分かれます。<br><b>だから初日に聞いてください</b> ——「<b>緊急の修正と、リリース直前の修正は、どのブランチで直していますか</b>」。<b>この質問ができる新人は、かなり珍しいです。</b>' }
+  ]
+},
+{
+  icon:'icon-key.svg', phase:'10. 境界', readonly:true,
+  title:'やっていいこと、原則やってはいけないこと',
+  visual:'media/gitflow-rules.svg',
+  visualAlt:'Git-Flowでやっていいことと、原則やってはいけないこと',
+  why:'ここまでの手順を、<b>1枚に畳みます。</b>覚えるのは数ではなく、<b>どれも同じ理由から出ている</b>ということです。',
+  todo:{
+    common:['<b>やってはいけない側は、すべて同じ1つの理由から出ています</b>',
+            '　<b>「出せるもの」と「作りかけ」が混ざる</b>、あるいは<b>混ざったことに気づけなくなる</b>',
+            '<code>main</code> に直接コミット → 誰も確認していないものが本番に載る',
+            '<code>release</code> に新機能 → 凍結の意味が消え、いつまでも出せない',
+            'hotfix の戻し忘れ → <b>前の画面で見たとおり</b>、直した不具合が復活する',
+            '長生きする feature → コンフリクトの大きさは、<b>日数で決まります</b>']
+  },
+  expect:'<b>「原則」と書いてある意味が分かれば十分</b>です。——<b>破っていい場面もありますが、破ったと分かっていて破る</b>のと、知らずに破るのは別物です。',
+  note:'<b>新人が最初に怒られるのは、たいてい main への直接コミットです。</b><br>' +
+       '<b>防ぎ方があります。</b>GitHub の <b>Settings → Branches</b> で <code>main</code> を保護すると、直接 push できなくなります。<br>' +
+       '<b>ルールを人の記憶に置かず、仕組みに置く。</b>これはテストの回と同じ考え方です。',
+  ask:'「やってはいけない」の理由が、全部つながって見えましたか？',
+  tb:[
+    { q:'ブランチを消すのが、もったいなく感じる',
+      a:'<b>消しても、作業は1行も消えません。</b>合流した時点で、コミットは履歴に入っています。<br>消えるのは<b>名札だけ</b>です。名札が残り続けると、一覧が数十本になって<b>いま生きている作業が見えなくなります</b>。' },
+    { q:'main を保護すると、自分も push できなくなるのでは？',
+      a:'<b>そのとおりで、それが目的です。</b>プルリクエストを経由してだけ入るようになります。<br>個人の練習リポジトリでは不要ですが、<b>チームでは、ほぼ必ず設定されています</b>。「push できません」と出たら故障ではなく、<b>設計どおり</b>です。' },
+    { q:'原則を破っていい場面って、たとえば？',
+      a:'<b>本番が落ちていて、1分でも早く戻したいとき</b>などです。手順を飛ばす判断が正しいこともあります。<br>ただし<b>それは、判断できる人がやること</b>です。そして必ず、<b>あとから履歴を整える</b>作業がついてきます。<b>タダでは飛ばせません。</b>' }
+  ]
+},
+{
+  icon:'icon-ai.svg', phase:'11. 限界', readonly:true,
+  title:'大きな作り直しが始まったら、Git-Flow は壊れます',
+  visual:'media/long-branch.svg',
+  visualAlt:'大きな改修が並走したときにGit-Flowが壊れる理由と、3つの現実解',
+  why:'<b>Git-Flow は万能ではありません。</b>いちばん壊れるのが、この場面です。',
+  todo:{
+    common:['<b>「画面を全部作り直す」</b>ような話が来たとします。3か月かかります',
+            '素直にやると <code>feature/renewal</code> を1本立てて、3か月そこで作業することになります',
+            '　その間も <code>develop</code> は進み続けます。<b>合流しないまま、離れていきます</b>',
+            '　最後に合流しようとすると、<b>数百のコンフリクト</b>が一度に出ます。誰も判断できません',
+            '<b>現実的な手は3つです。</b>上の図の順に検討します',
+            '　① <b>分けない</b>（スイッチで隠す）　② <b>週に一度は取り込む</b>　③ <b>Git-Flow をやめる</b>']
+  },
+  expect:'<b>「長く分けるほど、合流が高くつく」</b>と分かれば十分です。<b>Git-Flow でも、この法則からは逃げられません。</b>',
+  note:'<b>①のスイッチ（フィーチャーフラグ）が、いま一番よく使われます。</b>新しい画面も develop に入れてしまい、<code>if (新しい画面を使う)</code> で隠します。<br>' +
+       '<b>合流を「最後の1回の大事故」から「毎日の小さな作業」に変える</b>——これが発想の中身です。<br>' +
+       '<b>そして③も、恥ではありません。</b>いま主流は <code>main</code> 1本＋短命ブランチ（GitHub Flow）です。<b>Git-Flow は、リリース日が決まっている製品のための形</b>です。',
+  ask:'長いブランチが、なぜ危ないのか分かりましたか？',
+  tb:[
+    { q:'スイッチで隠すと、未完成のコードが本番に入りませんか',
+      a:'<b>入ります。そこが怖いところであり、狙いでもあります。</b><br>入っていても<b>オフなら誰にも見えません</b>。そして<b>毎日合流しているので、大事故が起きません</b>。<br>代わりに必要なのは、<b>スイッチを消す作業を忘れないこと</b>です。放置すると、条件分岐だらけになります。' },
+    { q:'どの形を使うかは、誰が決めるの？',
+      a:'<b>あなたが決める場面は、当分ありません。</b>参画したら、そこの形に合わせます。<br>ただし<b>初日に聞いておくと、動きが変わります</b> ——「<b>ブランチはどう運用していますか。main に直接入れることはありますか</b>」。' },
+    { q:'GitHub Flow との違いを、ひとことで言うと？',
+      a:'<b>Git-Flow は「リリース日がある」前提、GitHub Flow は「できたら出す」前提</b>です。<br>スマホアプリのように<b>審査があって出す日が決まる</b>ものは Git-Flow 寄り、Webサービスのように<b>1日に何度も出せる</b>ものは GitHub Flow 寄りになります。<b>優劣ではなく、出し方の違いです。</b>' }
+  ]
+},
+{
+  kind:'fin',
+  emoji:'🌊',
+  title:'「どのブランチに入れますか」に、答えられるようになりました',
+  lead:'ブランチの名前を覚えたのではありません。<br>' +
+       '<b>チームが何を守ろうとしているのかが、見えるようになりました。</b>',
+  gained:'main と develop を分ける理由が言える／feature を切って戻して消せる／release の「凍結」の意味が言える／タグを打って、その時点に戻れる／hotfix を main と develop の両方に戻せる／戻し忘れの事故を自分で再現した／バグ修正の行き先を急ぎ具合で判断できる／長いブランチが危ない理由が言える',
+  criteria:[
+    '<b>「なぜ main と develop を分けるのか」に、自分の言葉で答えられる</b>（混ぜないため）',
+    '<b>バグ修正を渡されたとき、「これは、いますぐ出すものですか」と聞ける</b>',
+    '<b>hotfix を閉じるとき、戻し先が2つ（main と develop）あることを忘れない</b>',
+    '<b>「うちはどう運用していますか」を、参画初日に聞ける</b>',
+  ],
+  transfer:'<b>この回で作ったフォルダは、もう消して構いません。</b>（デスクトップの <code>gitflow-practice</code> と <code>gf2</code>）<br>' +
+    '<b>持ち帰るのは手順ではなく、質問です。</b>参画したら初日にこう聞いてください ——<b>「ブランチはどう運用していますか。main に直接入れることはありますか」</b>。<br>' +
+    '<b>自分の題材でやるなら</b>、<a href="loop.html" target="_blank" rel="noopener">毎週まわす回</a>で <code>main</code> を保護し、必ずプルリクエスト経由にするところから始めてください。',
+  note:'<b>覚えることは、結局これだけです。</b><br>' +
+       '<b>「出せるもの」と「作りかけ」を混ぜない。</b>ブランチの名前は、そのための道具にすぎません。<br>' +
+       '現場の形が違っても、聞くことは同じです ——<b>「これは、いますぐ出すものですか」</b>。',
+  nextHref:'index.html#/graduation',
+  nextLabel:'最終チェックへ'
+}
+]};
+</script>
+<script src="navi.js?v=31"></script>
+<script src="credit.js?v=17"></script>
+</body>
+</html>

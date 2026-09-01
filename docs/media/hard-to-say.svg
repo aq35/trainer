@@ -15,7 +15,7 @@
   <text x="150" y="112" font-family="sans-serif" font-size="10.5" fill="#a05a4c">もう誰も手を打てない</text>
   <rect x="392" y="76" width="296" height="52" rx="6" fill="#eef7f1" stroke="#a9d5bb"/>
   <text x="404" y="96" font-family="sans-serif" font-size="10.5" fill="#1f5c39">「〇〇が思ったより時間がかかっています。</text>
-  <text x="404" y="114" font-family="sans-serif" font-size="10.5" fill="#1f5c39">　いまの見込みだと〇日ずれそうです。どうしましょうか」</text>
+  <text x="404" y="114" font-family="sans-serif" font-size="10.5" fill="#1f5c39">　いまの見込みだと〇日ずれそうです。どうしますか」</text>
 
   <rect x="24" y="148" width="672" height="76" rx="9" fill="#f7f9fd" stroke="#c7cede" stroke-width="1.5"/>
   <text x="40" y="172" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#26456f">できない</text>
@@ -25,7 +25,7 @@
   <text x="150" y="196" font-family="sans-serif" font-size="10.5" fill="#a05a4c">相手は代案を作れない</text>
   <rect x="392" y="160" width="296" height="52" rx="6" fill="#eef7f1" stroke="#a9d5bb"/>
   <text x="404" y="180" font-family="sans-serif" font-size="10.5" fill="#1f5c39">「全部は難しそうですが、</text>
-  <text x="404" y="198" font-family="sans-serif" font-size="10.5" fill="#1f5c39">　〇〇までなら今週中にできます。優先順位を教えてください」</text>
+  <text x="404" y="198" font-family="sans-serif" font-size="10.5" fill="#1f5c39">　〇〇までなら今週中に。優先順位を教えてください」</text>
 
   <rect x="24" y="232" width="672" height="76" rx="9" fill="#fdf7e8" stroke="#e2c98a" stroke-width="2"/>
   <text x="40" y="256" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#7a5c1a">間違えた</text>

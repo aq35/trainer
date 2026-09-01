@@ -30,7 +30,7 @@
   <rect x="366" y="152" width="330" height="86" rx="10" fill="#eef7f1" stroke="#a9d5bb" stroke-width="1.5"/>
   <text x="386" y="174" font-family="sans-serif" font-size="12" font-weight="700" fill="#2f8f4e">こう頼むと、当たります</text>
   <rect x="386" y="184" width="290" height="24" rx="4" fill="#ffffff" stroke="#a9d5bb"/>
-  <text x="396" y="201" font-family="sans-serif" font-size="10.5" fill="#1f5c39">「hello.txt に日付の行を1行足して。不明点は先に質問して」</text>
+  <text x="396" y="201" font-family="sans-serif" font-size="10.5" fill="#1f5c39">「hello.txt に日付を1行足して。不明点は先に質問して」</text>
   <text x="386" y="228" font-family="sans-serif" font-size="10.5" fill="#4a7a5f">①目的 ＋ ②範囲 ＋ ③聞き返し が、全部入っています</text>
 
   <path d="M24 258 L696 258" stroke="#c7cede" stroke-width="1"/>
