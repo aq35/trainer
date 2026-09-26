@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="330" viewBox="0 0 720 330" role="img" aria-label="Git-Flowの思想。出せるものと作りかけを混ぜない。合流の向きは一方通行">
+<rect width="720" height="330" fill="#ffffff"/>
+<text x="24" y="28" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#26456f">Git-Flow がずっと言っていることは、<tspan fill="#c0392b">たった1つ</tspan>です</text>
+
+<rect x="24" y="42" width="672" height="40" rx="10" fill="#fdf0ee" stroke="#e6b5ad" stroke-width="1.5"/>
+<text x="360" y="68" font-family="sans-serif" font-size="15" font-weight="700" fill="#c0392b" text-anchor="middle">「いつでも出せるもの」と「作りかけ」を、絶対に混ぜない</text>
+
+<rect x="24" y="98" width="672" height="66" rx="10" fill="#eef7f1" stroke="#a9d5bb" stroke-width="1.5"/>
+<text x="40" y="120" font-family="monospace" font-size="13" font-weight="700" fill="#1f5c39">main</text>
+<text x="110" y="120" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#1f5c39">いま、お客さんが使っているもの</text>
+<text x="40" y="142" font-family="sans-serif" font-size="12" fill="#3f7a5c">ここにあるものは<tspan font-weight="700">「そのまま出せる」</tspan>。作りかけは1行も入れない</text>
+<text x="40" y="158" font-family="sans-serif" font-size="12" fill="#3f7a5c">だから <tspan font-weight="700">main への直接コミットは禁止</tspan>。必ず、確認を通ったものだけが入る</text>
+
+<rect x="24" y="176" width="672" height="66" rx="10" fill="#eef3ff" stroke="#9fb4d8" stroke-width="1.5"/>
+<text x="40" y="198" font-family="monospace" font-size="13" font-weight="700" fill="#26456f">develop</text>
+<text x="110" y="198" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#26456f">次に出すもの置き場</text>
+<text x="40" y="220" font-family="sans-serif" font-size="12" fill="#5a6f92">できあがった機能が集まる場所。<tspan font-weight="700">動くけれど、まだ出さない</tspan></text>
+<text x="40" y="236" font-family="sans-serif" font-size="12" fill="#5a6f92">お客さんには<tspan font-weight="700">ここから直接は出しません</tspan>。出すのは main からだけ</text>
+
+<rect x="24" y="254" width="672" height="60" rx="10" fill="#f8fafd" stroke="#c7cede" stroke-width="1.5"/>
+<text x="40" y="276" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#3d4652">そして、合流の向きが決まっています（一方通行）</text>
+<text x="40" y="300" font-family="monospace" font-size="12.5" font-weight="700" fill="#26456f">feature → develop → release → main<tspan font-family="sans-serif" font-weight="400" fill="#5a6f92">（＋ 緊急時だけ main → hotfix → main と develop）</tspan></text>
+</svg>

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="340" viewBox="0 0 720 340" role="img" aria-label="2件入れる途中で失敗したとき、トランザクションが無いと中途半端に残り、あると全部なかったことになるという図">
+  <rect width="720" height="340" fill="#ffffff"/>
+
+  <text x="360" y="26" font-family="sans-serif" font-size="13" font-weight="700" fill="#26456f" text-anchor="middle">2件入れる。1件目は成功、2件目で失敗したら？</text>
+
+  <rect x="24" y="42" width="330" height="192" rx="10" fill="#fdf0ee" stroke="#e6b5ad" stroke-width="1.5"/>
+  <text x="189" y="66" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#7a2f24" text-anchor="middle">まとめずに、1件ずつ入れると</text>
+
+  <rect x="44" y="80" width="290" height="28" rx="5" fill="#ffffff" stroke="#a9d5bb"/>
+  <text x="56" y="99" font-family="sans-serif" font-size="11" fill="#1f5c39">1件目 … <tspan font-weight="700">成功。もう入っています</tspan></text>
+  <text x="322" y="99" font-family="sans-serif" font-size="12" fill="#2f8f4e" text-anchor="end">✓</text>
+
+  <rect x="44" y="114" width="290" height="28" rx="5" fill="#ffffff" stroke="#e6b5ad"/>
+  <text x="56" y="133" font-family="sans-serif" font-size="11" fill="#7a2f24">2件目 … <tspan font-weight="700">失敗（idが重複、など）</tspan></text>
+  <text x="322" y="133" font-family="sans-serif" font-size="12" fill="#c0392b" text-anchor="end">✗</text>
+
+  <path d="M189 148 L189 162" stroke="#c0392b" stroke-width="2"/>
+  <path d="M183 154 L189 164 L195 154 Z" fill="#c0392b"/>
+
+  <rect x="44" y="168" width="290" height="48" rx="6" fill="#f7dfda" stroke="#e6b5ad"/>
+  <text x="189" y="188" font-family="sans-serif" font-size="12" font-weight="700" fill="#c0392b" text-anchor="middle">中途半端な状態が残る</text>
+  <text x="189" y="207" font-family="sans-serif" font-size="10.5" fill="#7a2f24" text-anchor="middle">1件目だけ入っている。誰も、そうと気づかない</text>
+
+  <rect x="366" y="42" width="330" height="192" rx="10" fill="#eef7f1" stroke="#a9d5bb" stroke-width="1.5"/>
+  <text x="531" y="66" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#1f5c39" text-anchor="middle">トランザクションで、まとめて入れると</text>
+
+  <rect x="386" y="78" width="290" height="70" rx="6" fill="#ffffff" stroke="#a9d5bb" stroke-dasharray="4 3"/>
+  <text x="396" y="96" font-family="monospace" font-size="10" fill="#4a7a5f">BEGIN</text>
+  <rect x="404" y="102" width="258" height="18" rx="4" fill="#eef7f1"/>
+  <text x="414" y="115" font-family="sans-serif" font-size="10.5" fill="#1f5c39">1件目 … 成功（ただし、まだ確定していない）</text>
+  <rect x="404" y="124" width="258" height="18" rx="4" fill="#fdf0ee"/>
+  <text x="414" y="137" font-family="sans-serif" font-size="10.5" fill="#7a2f24">2件目 … 失敗</text>
+
+  <path d="M531 154 L531 162" stroke="#2f8f4e" stroke-width="2"/>
+  <path d="M525 154 L531 164 L537 154 Z" fill="#2f8f4e"/>
+
+  <rect x="386" y="168" width="290" height="48" rx="6" fill="#d6e6dc" stroke="#a9d5bb"/>
+  <text x="531" y="188" font-family="sans-serif" font-size="12" font-weight="700" fill="#1f5c39" text-anchor="middle">全部、なかったことになる</text>
+  <text x="531" y="207" font-family="sans-serif" font-size="10.5" fill="#1f5c39" text-anchor="middle">1件目も取り消される。始める前の状態に戻る</text>
+
+  <path d="M24 252 L696 252" stroke="#c7cede" stroke-width="1"/>
+
+  <text x="24" y="276" font-family="sans-serif" font-size="12" font-weight="700" fill="#26456f">「全部やるか、1つもやらないか」——この2択しか許さない仕組みが、トランザクションです。</text>
+  <text x="24" y="300" font-family="sans-serif" font-size="12" fill="#26456f">怖いのはエラーではなく、<tspan font-weight="700">エラーが出たあとに残る、中途半端なデータ</tspan>のほうです。誰も気づけません。</text>
+  <text x="24" y="324" font-family="sans-serif" font-size="11.5" fill="#8892a0">ファイル1つで持っていたときは、この仕組みがありませんでした。これが、データベースを使う大きな理由の1つです。</text>
+</svg>

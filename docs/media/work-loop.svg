@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="330" viewBox="0 0 720 330" role="img" aria-label="他人のコードを直す一周。チケットを読む、ブランチを切る、直す、PRを出す、自動チェック、AIレビュー、取り込む">
+  <rect width="720" height="330" fill="#ffffff"/>
+  <text x="360" y="26" font-family="sans-serif" font-size="14" font-weight="700" fill="#5b6472" text-anchor="middle">案件の1日は、だいたいこの一周でできています</text>
+
+  <g>
+    <rect x="24" y="48" width="126" height="76" rx="10" fill="#fff8e9" stroke="#f0d9a8" stroke-width="1.5"/>
+    <text x="87" y="74" font-family="sans-serif" font-size="20" text-anchor="middle">📋</text>
+    <text x="87" y="96" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#8a6412" text-anchor="middle">チケットを読む</text>
+    <text x="87" y="113" font-family="sans-serif" font-size="10.5" fill="#5b6472" text-anchor="middle">曖昧なら質問する</text>
+  </g>
+  <path d="M154 86 L172 86" stroke="#9aa3b2" stroke-width="2"/><path d="M166 81 L174 86 L166 91 Z" fill="#9aa3b2"/>
+
+  <g>
+    <rect x="178" y="48" width="126" height="76" rx="10" fill="#eefaf1" stroke="#b7e3c6" stroke-width="1.5"/>
+    <text x="241" y="74" font-family="sans-serif" font-size="20" text-anchor="middle">🌿</text>
+    <text x="241" y="96" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#2b7d52" text-anchor="middle">ブランチを切る</text>
+    <text x="241" y="113" font-family="sans-serif" font-size="10.5" fill="#5b6472" text-anchor="middle">fix/3-tags</text>
+  </g>
+  <path d="M308 86 L326 86" stroke="#9aa3b2" stroke-width="2"/><path d="M320 81 L328 86 L320 91 Z" fill="#9aa3b2"/>
+
+  <g>
+    <rect x="332" y="48" width="126" height="76" rx="10" fill="#eef3ff" stroke="#c9dbff" stroke-width="1.5"/>
+    <text x="395" y="74" font-family="sans-serif" font-size="20" text-anchor="middle">🔧</text>
+    <text x="395" y="96" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#2f6fed" text-anchor="middle">直す</text>
+    <text x="395" y="113" font-family="sans-serif" font-size="10.5" fill="#5b6472" text-anchor="middle">自分の目で確かめる</text>
+  </g>
+  <path d="M462 86 L480 86" stroke="#9aa3b2" stroke-width="2"/><path d="M474 81 L482 86 L474 91 Z" fill="#9aa3b2"/>
+
+  <g>
+    <rect x="486" y="48" width="126" height="76" rx="10" fill="#f6f2ff" stroke="#ddd0f5" stroke-width="1.5"/>
+    <text x="549" y="74" font-family="sans-serif" font-size="20" text-anchor="middle">📤</text>
+    <text x="549" y="96" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#7c3aed" text-anchor="middle">PRを出す</text>
+    <text x="549" y="113" font-family="sans-serif" font-size="10.5" fill="#5b6472" text-anchor="middle">説明を書く</text>
+  </g>
+
+  <path d="M612 124 L636 124 L636 168 L360 168" fill="none" stroke="#9aa3b2" stroke-width="2"/>
+  <path d="M366 163 L358 168 L366 173 Z" fill="#9aa3b2"/>
+
+  <g>
+    <rect x="120" y="190" width="180" height="82" rx="10" fill="#f7f9fc" stroke="#c8cfdb" stroke-width="1.5"/>
+    <text x="210" y="216" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#2b3440" text-anchor="middle">🤖 自動チェック</text>
+    <text x="210" y="236" font-family="sans-serif" font-size="11" fill="#5b6472" text-anchor="middle">テストが緑か・作法が守れているか</text>
+    <text x="210" y="255" font-family="sans-serif" font-size="11" fill="#be3455" text-anchor="middle">赤ければ、直してもう一度</text>
+  </g>
+
+  <g>
+    <rect x="330" y="190" width="180" height="82" rx="10" fill="#f6f2ff" stroke="#ddd0f5" stroke-width="1.5"/>
+    <text x="420" y="216" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#7c3aed" text-anchor="middle">🔍 AIにレビューさせる</text>
+    <text x="420" y="236" font-family="sans-serif" font-size="11" fill="#5b6472" text-anchor="middle">指摘だけさせる</text>
+    <text x="420" y="255" font-family="sans-serif" font-size="11" fill="#7c3aed" text-anchor="middle">直すのは自分</text>
+  </g>
+
+  <g>
+    <rect x="540" y="190" width="156" height="82" rx="10" fill="#eefaf1" stroke="#b7e3c6" stroke-width="1.5"/>
+    <text x="618" y="216" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#2b7d52" text-anchor="middle">✅ 取り込む</text>
+    <text x="618" y="236" font-family="sans-serif" font-size="11" fill="#5b6472" text-anchor="middle">本線に合流</text>
+    <text x="618" y="255" font-family="sans-serif" font-size="11" fill="#5b6472" text-anchor="middle">次のチケットへ</text>
+  </g>
+
+  <path d="M300 231 L326 231" stroke="#9aa3b2" stroke-width="2"/><path d="M320 226 L328 231 L320 236 Z" fill="#9aa3b2"/>
+  <path d="M510 231 L536 231" stroke="#9aa3b2" stroke-width="2"/><path d="M530 226 L538 231 L530 236 Z" fill="#9aa3b2"/>
+
+  <text x="360" y="304" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#2f6fed" text-anchor="middle">ゼロから作る場面は、ここに1つもありません</text>
+  <text x="360" y="322" font-family="sans-serif" font-size="11.5" fill="#6b7482" text-anchor="middle">現場の仕事の大半は「すでにあるものを、読んで、直す」です</text>
+</svg>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="300" viewBox="0 0 720 300" role="img" aria-label="ブラウザのコンソールに出るエラーの読み方">
+  <rect width="720" height="300" fill="#ffffff"/>
+  <text x="360" y="26" font-family="sans-serif" font-size="14" font-weight="700" fill="#5b6472" text-anchor="middle">エラーは「怒られている」のではなく、場所を教えてくれています</text>
+
+  <rect x="30" y="44" width="660" height="140" rx="8" fill="#22262f"/>
+  <rect x="30" y="44" width="660" height="26" rx="8" fill="#333945"/><rect x="30" y="60" width="660" height="10" fill="#333945"/>
+  <text x="50" y="62" font-family="sans-serif" font-size="11.5" fill="#c8cfdb">Console</text>
+  <circle cx="52" cy="96" r="7" fill="#ff5f57"/>
+  <text x="46" y="100" font-family="sans-serif" font-size="10" font-weight="700" fill="#ffffff">!</text>
+  <g font-family="monospace" font-size="13">
+    <text x="70" y="100" fill="#ff8f8f">Uncaught ReferenceError: mesage is not defined</text>
+    <text x="70" y="130" fill="#9aa3b2">    at showText (index.html:14:5)</text>
+  </g>
+
+  <path d="M300 108 L300 148" stroke="#e8853a" stroke-width="2"/>
+  <text x="300" y="168" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#e8853a" text-anchor="middle">何が問題か</text>
+
+  <rect x="60" y="204" width="290" height="72" rx="9" fill="#fff8e9" stroke="#f0d9a8" stroke-width="1.5"/>
+  <text x="205" y="226" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#8a6412" text-anchor="middle">「mesage なんて知らないよ」</text>
+  <text x="205" y="248" font-family="sans-serif" font-size="12" fill="#8a6412" text-anchor="middle">＝ 打ち間違い（message のはず）</text>
+  <text x="205" y="266" font-family="sans-serif" font-size="11.5" fill="#8a6412" text-anchor="middle">英語が読めなくても、名前を見れば気づけます</text>
+
+  <rect x="380" y="204" width="290" height="72" rx="9" fill="#eef3ff" stroke="#c9dbff" stroke-width="1.5"/>
+  <text x="525" y="226" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#2f6fed" text-anchor="middle">index.html の 14行目</text>
+  <text x="525" y="248" font-family="sans-serif" font-size="12" fill="#2f6fed" text-anchor="middle">＝ そこを見に行けばいい</text>
+  <text x="525" y="266" font-family="sans-serif" font-size="11.5" fill="#5b6472" text-anchor="middle">ファイル名と数字が「現場の住所」です</text>
+</svg>

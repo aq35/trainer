@@ -18,7 +18,7 @@
 | 「うまくいきません」の項目 | **647**（1画面あたり平均2.7個） |
 | 読み物 | **24本** |
 | 練習用の題材 | 別リポジトリ [trainer-practice](https://github.com/aq35/trainer-practice) にチケット**14件**と専用ブランチ |
-| ビルド | **GitHub Actions で1回**（`npm run build`。受講者の手元では何もビルドしません） |
+| ビルド | **GitHub Actions が main への push のたびに1回**（出力は `docs/`。受講者の手元では何もビルドしません） |
 | 外部依存 | **公開ページは0本**（CDN を使いません）。ビルドに使うのは **esbuild だけ** |
 | 保存先 | **localStorage だけ**。サーバーに何も送りません |
 
@@ -229,15 +229,18 @@ export const coffee = {
 
 ### 4. GitHub Pages
 
-`Settings > Pages > Build and deployment > Source` を **`GitHub Actions`** に設定します。
-あとは `main` に push するたびに [`.github/workflows/pages.yml`](.github/workflows/pages.yml) がテストとビルドを走らせ、`_site/` を公開します。**プルリクエストでは、ビルドとテストだけ**を走らせます（壊れた教材を main に入れる前に止めるため）。
+`Settings > Pages > Build and deployment > Source` は `Deploy from a branch`、Branch は `main`、フォルダは `/docs` のままです。
+
+**`docs/` はビルドの出力です。手で直さないでください**（次のビルドで消えます）。直すのは `content/` と `site/` です。
+`main` に push すると、[`.github/workflows/pages.yml`](.github/workflows/pages.yml) がテストとビルドを走らせ、`docs/` が変わっていれば**自動でコミット**します。数分後に公開サイトに反映されます。**プルリクエストでは、テストとビルドだけ**を走らせます（壊れた教材を main に入れる前に止めるため）。
 
 ローカル確認（Node.js 22 以上）:
 
 ```bash
 npm install
-npm run dev      # http://localhost:8000/ 。保存するたびに作り直します
-npm test         # 変換・ビルドのテスト（Playwright があれば、ブラウザでの操作も確かめます）
+npm run dev          # http://localhost:8000/ 。保存するたびに作り直します
+npm test             # 変換・ビルドのテスト（Playwright があれば、ブラウザでの操作も確かめます）
+npm run build:docs   # 公開用の docs/ を手元で作る（ふだんは Actions がやるので不要）
 ```
 
 ## 構成
@@ -254,6 +257,7 @@ npm test         # 変換・ビルドのテスト（Playwright があれば、�
 | `content/plan.js` | 逆算プランナーの選択肢と、AIに渡す前提 |
 | `content/config.js` | 運営側が編集する設定（サポート窓口・寄付の受け口） |
 | `public/media/` | 図版（SVG・OGP画像）。**ビルドせずにそのまま公開**される |
+| `docs/` | **ビルドの出力**（GitHub Pages が配信する）。Actions が作り直すので、手で直さない |
 | `site/` | 画面の部品（`.sunao`）。`navi/`（1画面1操作のナビ）・`doc/`（読み物と目次）・`drill/`（コマンド練習）・`ui/`（共通）・`styles/` |
 | `sunao/` | 画面を書くための小さなフレームワーク。[aq35/lab-kaihatu-mock](https://github.com/aq35/lab-kaihatu-mock) からの**コピー**（[直すときは取り込み元で](sunao/README.md)） |
 | `tools/build.mjs` | `content/` を読んで `_site/` に書き出す。**知らないタグ・危ない URL・壊れたリンク先があれば、ここで止まる** |

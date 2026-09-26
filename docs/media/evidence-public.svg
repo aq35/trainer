@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="308" viewBox="0 0 720 308" role="img" aria-label="研修で残った公開の記録と、社内の点数の違い。公開の記録は第三者が中身を確かめられる">
+<rect width="720" height="308" fill="#ffffff"/>
+<text x="24" y="28" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#26456f">研修を終えた時点で、あなたの手元に残っているもの</text>
+<rect x="24" y="42" width="672" height="122" rx="10" fill="#eef7f1" stroke="#a9d5bb" stroke-width="1.5"/>
+<text x="44" y="66" font-family="sans-serif" font-size="12.5" fill="#1f5c39">他人のコードを直した記録　　<tspan font-weight="700">プルリクエスト 6件以上</tspan>（どれも理由が書いてある）</text>
+<text x="44" y="90" font-family="sans-serif" font-size="12.5" fill="#1f5c39">判断の記録　　　　　　　　　<tspan font-weight="700">Issue ・ PRの説明 ・ LOG.md</tspan></text>
+<text x="44" y="114" font-family="sans-serif" font-size="12.5" fill="#1f5c39">機械が出した判定　　　　　　<tspan font-weight="700">自動チェックのコメント</tspan>（テストの数・作法）</text>
+<text x="44" y="138" font-family="sans-serif" font-size="12.5" fill="#1f5c39">数字　　　　　　　　　　　　<tspan font-weight="700">4.1秒 → 0.008秒</tspan> のような、自分で測った値</text>
+<text x="360" y="184" font-family="sans-serif" font-size="13" font-weight="700" fill="#3d4652" text-anchor="middle">これは「点数」より強い記録です。理由は2つ</text>
+<rect x="24" y="198" width="330" height="94" rx="10" fill="#f6f8fc" stroke="#c7cede" stroke-width="1.5"/>
+<text x="189" y="222" font-family="sans-serif" font-size="13" font-weight="700" fill="#3d4652" text-anchor="middle">点数（どこかのDBの中）</text>
+<text x="189" y="248" font-family="sans-serif" font-size="12.5" fill="#5b6472" text-anchor="middle">「その組織がそう言っている」だけ</text>
+<text x="189" y="272" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#c0392b" text-anchor="middle">組織を出ると、無価値になります</text>
+<rect x="366" y="198" width="330" height="94" rx="10" fill="#eef7f1" stroke="#a9d5bb" stroke-width="1.5"/>
+<text x="531" y="222" font-family="sans-serif" font-size="13" font-weight="700" fill="#1f5c39" text-anchor="middle">公開の記録（GitHub の中）</text>
+<text x="531" y="248" font-family="sans-serif" font-size="12.5" fill="#1f5c39" text-anchor="middle">誰でも中身を開いて確かめられる</text>
+<text x="531" y="272" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#1f5c39" text-anchor="middle">どこへ行っても、そのまま使えます</text>
+</svg>

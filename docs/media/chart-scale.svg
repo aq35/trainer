@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="290" viewBox="0 0 720 290" role="img" aria-label="棒の高さは値を最大値で割った割合で決まるという、グラフのスケールの説明">
+<rect width="720" height="290" fill="#ffffff"/>
+<text x="24" y="28" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#26456f">棒グラフの正体は、高さの違う長方形を横に並べたものです</text>
+<rect x="24" y="44" width="672" height="34" rx="8" fill="#eef3ff" stroke="#9fb4d8" stroke-width="1.5"/>
+<text x="360" y="66" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#26456f" text-anchor="middle">棒の高さ ＝（その値 ÷ いちばん大きい値）× グラフの高さ</text>
+<path d="M120 268 L660 268" stroke="#8892a0" stroke-width="1.5"/>
+<path d="M120 100 L120 268" stroke="#8892a0" stroke-width="1.5"/>
+<text x="112" y="106" font-family="sans-serif" font-size="12" fill="#8892a0" text-anchor="end">200px</text>
+<text x="112" y="272" font-family="sans-serif" font-size="12" fill="#8892a0" text-anchor="end">0</text>
+<rect x="170" y="102" width="90" height="166" fill="#c7cede" stroke="#8892a0" stroke-width="1.5"/>
+<text x="215" y="94" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#3d4652" text-anchor="middle">335.7ms</text>
+<text x="215" y="286" font-family="sans-serif" font-size="12" fill="#5b6472" text-anchor="middle">直す前</text>
+<text x="270" y="180" font-family="sans-serif" font-size="12" fill="#5b6472">200 ×（335.7 ÷ 335.7）＝ 200px</text>
+<rect x="380" y="228" width="90" height="40" fill="#9fb4d8" stroke="#2f6fed" stroke-width="1.5"/>
+<text x="425" y="220" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#26456f" text-anchor="middle">79.7ms</text>
+<text x="425" y="286" font-family="sans-serif" font-size="12" fill="#5b6472" text-anchor="middle">途中</text>
+<text x="480" y="248" font-family="sans-serif" font-size="12" fill="#5b6472">200 ×（79.7 ÷ 335.7）＝ 約47px</text>
+<rect x="560" y="266" width="90" height="2" fill="#2f8f4e" stroke="#1f5c39"/>
+<text x="605" y="258" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#1f5c39" text-anchor="middle">1.0ms</text>
+<text x="605" y="286" font-family="sans-serif" font-size="12" fill="#5b6472" text-anchor="middle">直したあと</text>
+<text x="24" y="128" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#1f5c39">いちばん右の棒に注目</text>
+<text x="24" y="148" font-family="sans-serif" font-size="12" fill="#3f7a5c">約0.6px。ほとんど</text>
+<text x="24" y="166" font-family="sans-serif" font-size="12" fill="#3f7a5c">消えています。</text>
+<text x="24" y="192" font-family="sans-serif" font-size="12" fill="#5b6472">「300倍速い」と</text>
+<text x="24" y="210" font-family="sans-serif" font-size="12" fill="#5b6472">言われるより、</text>
+<text x="24" y="228" font-family="sans-serif" font-size="12" font-weight="700" fill="#26456f">消えた棒のほうが</text>
+<text x="24" y="246" font-family="sans-serif" font-size="12" font-weight="700" fill="#26456f">伝わります。</text>
+</svg>

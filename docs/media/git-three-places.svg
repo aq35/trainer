@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 340" role="img" aria-label="作業場所・ステージ・履歴の3つの場所と、addとcommitの役割">
+  <rect width="720" height="340" fill="#ffffff"/>
+
+  <text x="360" y="26" font-family="sans-serif" font-size="14" font-weight="700" fill="#5b6472" text-anchor="middle">git には「3つの場所」しかありません</text>
+
+  <!-- 1 working -->
+  <rect x="20" y="50" width="190" height="170" rx="10" fill="#f7f8fa" stroke="#c7cede" stroke-width="1.5"/>
+  <text x="115" y="76" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#3d4652" text-anchor="middle">1. 作業場所</text>
+  <text x="115" y="95" font-family="sans-serif" font-size="11" fill="#8892a0" text-anchor="middle">いま編集しているフォルダ</text>
+  <g>
+    <rect x="48" y="112" width="30" height="38" rx="3" fill="#ffffff" stroke="#a8b2c1" stroke-width="1.5"/>
+    <rect x="98" y="112" width="30" height="38" rx="3" fill="#ffffff" stroke="#a8b2c1" stroke-width="1.5"/>
+    <rect x="148" y="112" width="30" height="38" rx="3" fill="#ffffff" stroke="#a8b2c1" stroke-width="1.5"/>
+  </g>
+  <text x="115" y="176" font-family="sans-serif" font-size="11.5" fill="#5b6472" text-anchor="middle">3つのファイルを直した</text>
+  <text x="115" y="198" font-family="sans-serif" font-size="11.5" fill="#5b6472" text-anchor="middle">でも、まだ何も記録されていない</text>
+
+  <!-- arrow add -->
+  <path d="M218 135 L258 135" stroke="#e8853a" stroke-width="3" marker-end="url(#ar1)"/>
+  <text x="238" y="120" font-family="monospace" font-size="13" font-weight="700" fill="#e8853a" text-anchor="middle">add</text>
+  <text x="238" y="160" font-family="sans-serif" font-size="10.5" fill="#8892a0" text-anchor="middle">選ぶ</text>
+
+  <!-- 2 stage -->
+  <rect x="266" y="50" width="190" height="170" rx="10" fill="#fff8e9" stroke="#f0d9a8" stroke-width="1.5"/>
+  <text x="361" y="76" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#8a6412" text-anchor="middle">2. ステージ</text>
+  <text x="361" y="95" font-family="sans-serif" font-size="11" fill="#a5843a" text-anchor="middle">記録したいものを並べる台</text>
+  <g>
+    <rect x="318" y="112" width="30" height="38" rx="3" fill="#ffffff" stroke="#e8a53a" stroke-width="2"/>
+    <rect x="373" y="112" width="30" height="38" rx="3" fill="#ffffff" stroke="#e8a53a" stroke-width="2"/>
+  </g>
+  <text x="361" y="176" font-family="sans-serif" font-size="11.5" fill="#8a6412" text-anchor="middle">今回記録する2つだけを選んだ</text>
+  <text x="361" y="198" font-family="sans-serif" font-size="11.5" fill="#8a6412" text-anchor="middle">（残り1つは次回でいい）</text>
+
+  <!-- arrow commit -->
+  <path d="M464 135 L504 135" stroke="#3aa76d" stroke-width="3" marker-end="url(#ar2)"/>
+  <text x="484" y="120" font-family="monospace" font-size="13" font-weight="700" fill="#3aa76d" text-anchor="middle">commit</text>
+  <text x="484" y="160" font-family="sans-serif" font-size="10.5" fill="#8892a0" text-anchor="middle">残す</text>
+
+  <!-- 3 history -->
+  <rect x="512" y="50" width="188" height="170" rx="10" fill="#f1faf4" stroke="#b7e3c6" stroke-width="1.5"/>
+  <text x="606" y="76" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#2b7d52" text-anchor="middle">3. 履歴</text>
+  <text x="606" y="95" font-family="sans-serif" font-size="11" fill="#5aa47c" text-anchor="middle">消えない記録（セーブ済み）</text>
+  <line x1="542" y1="131" x2="670" y2="131" stroke="#3aa76d" stroke-width="2.5"/>
+  <circle cx="552" cy="131" r="7" fill="#ffffff" stroke="#3aa76d" stroke-width="2.5"/>
+  <circle cx="606" cy="131" r="7" fill="#ffffff" stroke="#3aa76d" stroke-width="2.5"/>
+  <circle cx="660" cy="131" r="8" fill="#3aa76d"/>
+  <text x="606" y="176" font-family="sans-serif" font-size="11.5" fill="#2b7d52" text-anchor="middle">セーブポイントが1つ増えた</text>
+  <text x="606" y="198" font-family="sans-serif" font-size="11.5" fill="#2b7d52" text-anchor="middle">ここにはいつでも戻れる</text>
+
+  <!-- metaphor -->
+  <rect x="90" y="250" width="540" height="66" rx="10" fill="#eef3ff" stroke="#c9dbff" stroke-width="1.5"/>
+  <text x="360" y="276" font-family="sans-serif" font-size="13" font-weight="700" fill="#2f6fed" text-anchor="middle">集合写真にたとえると</text>
+  <text x="360" y="299" font-family="sans-serif" font-size="12.5" fill="#3d4652" text-anchor="middle">add =「写る人を選んで並べる」　commit =「シャッターを切る」</text>
+
+  <defs>
+    <marker id="ar1" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#e8853a"/>
+    </marker>
+    <marker id="ar2" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#3aa76d"/>
+    </marker>
+  </defs>
+</svg>

@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 320" role="img" aria-label="同じフォルダをGUIの画面とターミナルで見比べた図">
+  <rect width="720" height="320" fill="#ffffff"/>
+
+  <text x="160" y="24" font-family="sans-serif" font-size="14" font-weight="600" fill="#5b6472" text-anchor="middle">いつも見ている画面</text>
+  <text x="560" y="24" font-family="sans-serif" font-size="14" font-weight="600" fill="#5b6472" text-anchor="middle">ターミナル</text>
+
+  <!-- GUI window -->
+  <rect x="20" y="40" width="280" height="230" rx="8" fill="#ffffff" stroke="#c7cede" stroke-width="1.5"/>
+  <rect x="20" y="40" width="280" height="30" rx="8" fill="#eef1f6"/>
+  <rect x="20" y="62" width="280" height="8" fill="#eef1f6"/>
+  <circle cx="38" cy="55" r="5" fill="#ff5f57"/>
+  <circle cx="54" cy="55" r="5" fill="#febc2e"/>
+  <circle cx="70" cy="55" r="5" fill="#28c840"/>
+  <text x="160" y="60" font-family="sans-serif" font-size="12" fill="#5b6472" text-anchor="middle">practice</text>
+
+  <g>
+    <rect x="45" y="90" width="44" height="34" rx="4" fill="#8fb4f5"/>
+    <rect x="45" y="86" width="20" height="8" rx="3" fill="#8fb4f5"/>
+    <text x="67" y="140" font-family="sans-serif" font-size="11" fill="#3d4652" text-anchor="middle">memo</text>
+  </g>
+  <g>
+    <rect x="135" y="90" width="44" height="34" rx="4" fill="#8fb4f5"/>
+    <rect x="135" y="86" width="20" height="8" rx="3" fill="#8fb4f5"/>
+    <text x="157" y="140" font-family="sans-serif" font-size="11" fill="#3d4652" text-anchor="middle">work</text>
+  </g>
+  <g>
+    <rect x="228" y="86" width="34" height="42" rx="3" fill="#ffffff" stroke="#a8b2c1" stroke-width="1.5"/>
+    <line x1="236" y1="98" x2="254" y2="98" stroke="#a8b2c1" stroke-width="1.5"/>
+    <line x1="236" y1="107" x2="254" y2="107" stroke="#a8b2c1" stroke-width="1.5"/>
+    <line x1="236" y1="116" x2="248" y2="116" stroke="#a8b2c1" stroke-width="1.5"/>
+    <text x="245" y="140" font-family="sans-serif" font-size="11" fill="#3d4652" text-anchor="middle">hello.txt</text>
+  </g>
+
+  <text x="160" y="185" font-family="sans-serif" font-size="12" fill="#8892a0" text-anchor="middle">アイコンを</text>
+  <text x="160" y="203" font-family="sans-serif" font-size="12" fill="#8892a0" text-anchor="middle">目で見て、クリックする</text>
+
+  <!-- equals -->
+  <text x="360" y="150" font-family="sans-serif" font-size="34" font-weight="700" fill="#2f6fed" text-anchor="middle">=</text>
+  <text x="360" y="180" font-family="sans-serif" font-size="11" fill="#8892a0" text-anchor="middle">同じ中身</text>
+
+  <!-- terminal window -->
+  <rect x="420" y="40" width="280" height="230" rx="8" fill="#22262f" stroke="#22262f" stroke-width="1.5"/>
+  <rect x="420" y="40" width="280" height="30" rx="8" fill="#333945"/>
+  <rect x="420" y="62" width="280" height="8" fill="#333945"/>
+  <circle cx="438" cy="55" r="5" fill="#ff5f57"/>
+  <circle cx="454" cy="55" r="5" fill="#febc2e"/>
+  <circle cx="470" cy="55" r="5" fill="#28c840"/>
+  <text x="560" y="60" font-family="sans-serif" font-size="12" fill="#c8cfdb" text-anchor="middle">practice</text>
+
+  <g font-family="monospace" font-size="13">
+    <text x="440" y="95" fill="#8fe08f">&gt; dir</text>
+    <text x="440" y="120" fill="#e6eaf2">memo</text>
+    <text x="440" y="142" fill="#e6eaf2">work</text>
+    <text x="440" y="164" fill="#e6eaf2">hello.txt</text>
+    <text x="440" y="190" fill="#8fe08f">&gt;</text>
+  </g>
+  <rect x="456" y="179" width="8" height="14" fill="#8fe08f"/>
+
+  <text x="560" y="225" font-family="sans-serif" font-size="12" fill="#8892a0" text-anchor="middle">名前を</text>
+  <text x="560" y="243" font-family="sans-serif" font-size="12" fill="#8892a0" text-anchor="middle">文字で打って伝える</text>
+
+  <text x="360" y="300" font-family="sans-serif" font-size="13" fill="#3d4652" text-anchor="middle">見え方が違うだけで、どちらも同じフォルダを見ています</text>
+</svg>

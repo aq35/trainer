@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400" role="img" aria-label="フォルダの階層と、cdコマンドで移動するイメージ">
+  <rect width="720" height="400" fill="#ffffff"/>
+
+  <text x="360" y="28" font-family="sans-serif" font-size="14" font-weight="600" fill="#5b6472" text-anchor="middle">フォルダは入れ子になっていて、自分は常にどれか1つの中にいます</text>
+
+  <!-- tree lines -->
+  <g stroke="#c7cede" stroke-width="2" fill="none">
+    <path d="M110 78 L110 150 L170 150"/>
+    <path d="M110 150 L110 230 L170 230"/>
+    <path d="M230 258 L230 320 L290 320"/>
+    <path d="M230 320 L230 360 L290 360"/>
+  </g>
+
+  <!-- level 1 -->
+  <g>
+    <rect x="70" y="52" width="150" height="34" rx="6" fill="#eef1f6" stroke="#c7cede" stroke-width="1.5"/>
+    <text x="145" y="74" font-family="monospace" font-size="14" fill="#3d4652" text-anchor="middle">Users</text>
+  </g>
+
+  <!-- level 2 -->
+  <g>
+    <rect x="170" y="133" width="150" height="34" rx="6" fill="#eef1f6" stroke="#c7cede" stroke-width="1.5"/>
+    <text x="245" y="155" font-family="monospace" font-size="14" fill="#3d4652" text-anchor="middle">taro</text>
+  </g>
+
+  <!-- current: Desktop -->
+  <g>
+    <rect x="170" y="213" width="150" height="34" rx="6" fill="#2f6fed" stroke="#2f6fed" stroke-width="1.5"/>
+    <text x="245" y="235" font-family="monospace" font-size="14" fill="#ffffff" text-anchor="middle">Desktop</text>
+  </g>
+  <g>
+    <path d="M355 230 L330 230" stroke="#2f6fed" stroke-width="2"/>
+    <circle cx="358" cy="230" r="5" fill="#2f6fed"/>
+    <text x="372" y="228" font-family="sans-serif" font-size="14" font-weight="700" fill="#2f6fed">いま ここ</text>
+    <text x="372" y="248" font-family="sans-serif" font-size="12" fill="#5b6472">打ったコマンドはこの場所に対して働きます</text>
+  </g>
+
+  <!-- level 3 -->
+  <g>
+    <rect x="290" y="303" width="150" height="34" rx="6" fill="#eef1f6" stroke="#c7cede" stroke-width="1.5"/>
+    <text x="365" y="325" font-family="monospace" font-size="14" fill="#3d4652" text-anchor="middle">practice</text>
+  </g>
+  <g>
+    <rect x="290" y="343" width="150" height="34" rx="6" fill="#eef1f6" stroke="#c7cede" stroke-width="1.5"/>
+    <text x="365" y="365" font-family="monospace" font-size="14" fill="#3d4652" text-anchor="middle">photos</text>
+  </g>
+
+  <!-- move down arrow -->
+  <path d="M470 320 L530 320" stroke="#3aa76d" stroke-width="2.5" marker-end="url(#a2)"/>
+  <text x="560" y="316" font-family="monospace" font-size="14" fill="#3aa76d">cd practice</text>
+  <text x="560" y="336" font-family="sans-serif" font-size="12" fill="#5b6472">1つ下に入る</text>
+
+  <!-- move up arrow -->
+  <path d="M470 150 L530 150" stroke="#e8853a" stroke-width="2.5" marker-end="url(#a1)"/>
+  <text x="560" y="146" font-family="monospace" font-size="14" fill="#e8853a">cd ..</text>
+  <text x="560" y="166" font-family="sans-serif" font-size="12" fill="#5b6472">1つ上に戻る</text>
+
+  <defs>
+    <marker id="a1" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#e8853a"/>
+    </marker>
+    <marker id="a2" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#3aa76d"/>
+    </marker>
+  </defs>
+</svg>

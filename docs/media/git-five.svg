@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="340" viewBox="0 0 720 340" role="img" aria-label="git で覚えるのは5つのコマンドだけ。それぞれが3つの場所のどこに効くかを示した表">
+  <rect width="720" height="340" fill="#ffffff"/>
+
+  <text x="360" y="26" font-family="sans-serif" font-size="13" font-weight="700" fill="#26456f" text-anchor="middle">git で覚えるのは、この5つだけです</text>
+
+  <rect x="24" y="42" width="672" height="40" rx="8" fill="#f7f9fd" stroke="#c7cede"/>
+  <text x="44" y="60" font-family="monospace" font-size="12.5" font-weight="700" fill="#26456f">git status</text>
+  <text x="230" y="60" font-family="sans-serif" font-size="12" fill="#26456f">いま、どうなってる？</text>
+  <text x="44" y="76" font-family="sans-serif" font-size="10.5" fill="#8892a0">迷ったら、まずこれ。打っても何も壊れません</text>
+  <text x="676" y="68" font-family="sans-serif" font-size="11" font-weight="700" fill="#2f8f4e" text-anchor="end">何度打ってもいい</text>
+
+  <rect x="24" y="90" width="672" height="40" rx="8" fill="#eef4ff" stroke="#9fb4d8"/>
+  <text x="44" y="108" font-family="monospace" font-size="12.5" font-weight="700" fill="#26456f">git add ファイル名</text>
+  <text x="230" y="108" font-family="sans-serif" font-size="12" fill="#26456f">記録するものを、選ぶ</text>
+  <text x="44" y="124" font-family="sans-serif" font-size="10.5" fill="#5a6f92">作業中のファイル　→　ステージ</text>
+
+  <rect x="24" y="138" width="672" height="40" rx="8" fill="#eef7f1" stroke="#a9d5bb"/>
+  <text x="44" y="156" font-family="monospace" font-size="12.5" font-weight="700" fill="#1f5c39">git commit -m "説明"</text>
+  <text x="230" y="156" font-family="sans-serif" font-size="12" fill="#1f5c39">記録する（セーブ）</text>
+  <text x="44" y="172" font-family="sans-serif" font-size="10.5" fill="#4a7a5f">ステージ　→　履歴。ここまで来れば、もう消えません</text>
+
+  <rect x="24" y="186" width="672" height="40" rx="8" fill="#f7f9fd" stroke="#c7cede"/>
+  <text x="44" y="204" font-family="monospace" font-size="12.5" font-weight="700" fill="#26456f">git log --oneline</text>
+  <text x="230" y="204" font-family="sans-serif" font-size="12" fill="#26456f">これまでの記録を見る</text>
+  <text x="44" y="220" font-family="sans-serif" font-size="10.5" fill="#8892a0">1行ずつ並びます。抜けるときは <tspan font-family="monospace">q</tspan></text>
+
+  <rect x="24" y="234" width="672" height="40" rx="8" fill="#fdf7e8" stroke="#e2c98a" stroke-width="2"/>
+  <text x="44" y="252" font-family="monospace" font-size="12.5" font-weight="700" fill="#7a5c1a">git restore ファイル名</text>
+  <text x="230" y="252" font-family="sans-serif" font-size="12" fill="#7a5c1a">直前の記録に戻す</text>
+  <text x="44" y="268" font-family="sans-serif" font-size="10.5" fill="#a8862f">書きかけを捨てて、やり直す。<tspan font-weight="700">これがあるから、安心して壊せます</tspan></text>
+
+  <path d="M24 290 L696 290" stroke="#c7cede" stroke-width="1"/>
+  <text x="24" y="312" font-family="sans-serif" font-size="12" fill="#26456f">この5つで、研修の最後までいけます。<tspan font-weight="700">同じことは VS Code のボタンでもできます</tspan>（結果は同じ）。</text>
+  <text x="24" y="332" font-family="sans-serif" font-size="11.5" fill="#8892a0">ソース管理の画面を開く＝status　／　ファイル横の「＋」＝add　／　メッセージを書いて「コミット」＝commit</text>
+</svg>

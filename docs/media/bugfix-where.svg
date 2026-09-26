@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="278" viewBox="0 0 720 278" role="img" aria-label="バグ修正をどのブランチに入れるかの判断表。急ぎかどうかで3つに分かれる">
+<rect width="720" height="278" fill="#ffffff"/>
+<text x="24" y="28" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#26456f">バグ修正は、<tspan fill="#c0392b">急ぎ具合で行き先が変わります</tspan></text>
+
+<rect x="24" y="40" width="228" height="28" rx="6" fill="#f6f8fc" stroke="#c7cede"/>
+<text x="138" y="59" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#3d4652" text-anchor="middle">いま、どういう状態か</text>
+<rect x="258" y="40" width="190" height="28" rx="6" fill="#f6f8fc" stroke="#c7cede"/>
+<text x="353" y="59" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#3d4652" text-anchor="middle">どこから切る</text>
+<rect x="454" y="40" width="242" height="28" rx="6" fill="#f6f8fc" stroke="#c7cede"/>
+<text x="575" y="59" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#3d4652" text-anchor="middle">どこへ戻す</text>
+
+<rect x="24" y="74" width="228" height="58" rx="8" fill="#fdf0ee" stroke="#e6b5ad" stroke-width="1.5"/>
+<text x="38" y="96" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#c0392b">① 本番が壊れている</text>
+<text x="38" y="118" font-family="sans-serif" font-size="11.5" fill="#9c5a4e">お客さんがいま困っている</text>
+<rect x="258" y="74" width="190" height="58" rx="8" fill="#ffffff" stroke="#e6b5ad" stroke-width="1.5"/>
+<text x="353" y="102" font-family="monospace" font-size="12.5" font-weight="700" fill="#c0392b" text-anchor="middle">main</text>
+<text x="353" y="120" font-family="sans-serif" font-size="11" fill="#9c5a4e" text-anchor="middle">hotfix/ を作る</text>
+<rect x="454" y="74" width="242" height="58" rx="8" fill="#ffffff" stroke="#e6b5ad" stroke-width="1.5"/>
+<text x="575" y="98" font-family="monospace" font-size="12.5" font-weight="700" fill="#c0392b" text-anchor="middle">main と develop の両方</text>
+<text x="575" y="120" font-family="sans-serif" font-size="11" fill="#9c5a4e" text-anchor="middle">main にはタグも打つ</text>
+
+<rect x="24" y="138" width="228" height="58" rx="8" fill="#fff9ec" stroke="#e5c98a" stroke-width="1.5"/>
+<text x="38" y="160" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#8a6d1f">② 出す直前に見つけた</text>
+<text x="38" y="182" font-family="sans-serif" font-size="11.5" fill="#8a6d1f">release を切ったあと</text>
+<rect x="258" y="138" width="190" height="58" rx="8" fill="#ffffff" stroke="#e5c98a" stroke-width="1.5"/>
+<text x="353" y="166" font-family="monospace" font-size="12.5" font-weight="700" fill="#8a6d1f" text-anchor="middle">release/</text>
+<text x="353" y="184" font-family="sans-serif" font-size="11" fill="#8a6d1f" text-anchor="middle">その中で直す</text>
+<rect x="454" y="138" width="242" height="58" rx="8" fill="#ffffff" stroke="#e5c98a" stroke-width="1.5"/>
+<text x="575" y="162" font-family="monospace" font-size="12.5" font-weight="700" fill="#8a6d1f" text-anchor="middle">main と develop の両方</text>
+<text x="575" y="184" font-family="sans-serif" font-size="11" fill="#8a6d1f" text-anchor="middle">release を閉じるときに</text>
+
+<rect x="24" y="202" width="228" height="52" rx="8" fill="#eef7f1" stroke="#a9d5bb" stroke-width="1.5"/>
+<text x="38" y="224" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#1f5c39">③ 急がない</text>
+<text x="38" y="244" font-family="sans-serif" font-size="11.5" fill="#3f7a5c">次のリリースで直せばよい</text>
+<rect x="258" y="202" width="190" height="52" rx="8" fill="#ffffff" stroke="#a9d5bb" stroke-width="1.5"/>
+<text x="353" y="226" font-family="monospace" font-size="12.5" font-weight="700" fill="#1f5c39" text-anchor="middle">develop</text>
+<text x="353" y="244" font-family="sans-serif" font-size="11" fill="#3f7a5c" text-anchor="middle">ふつうの作業と同じ</text>
+<rect x="454" y="202" width="242" height="52" rx="8" fill="#ffffff" stroke="#a9d5bb" stroke-width="1.5"/>
+<text x="575" y="226" font-family="monospace" font-size="12.5" font-weight="700" fill="#1f5c39" text-anchor="middle">develop だけ</text>
+<text x="575" y="244" font-family="sans-serif" font-size="11" fill="#3f7a5c" text-anchor="middle">main には触らない</text>
+
+<text x="24" y="272" font-family="sans-serif" font-size="12" fill="#5a6f92">迷ったら聞くのは1つ —— <tspan font-weight="700" fill="#c0392b">「これは、いますぐ出さないといけませんか」</tspan></text>
+</svg>

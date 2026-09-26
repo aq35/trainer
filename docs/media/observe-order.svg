@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="300" viewBox="0 0 720 300" role="img" aria-label="先に道具で事実を確定させ、そのあとAIに意味を説明させるという順番の図">
+  <rect width="720" height="300" fill="#ffffff"/>
+
+  <text x="180" y="26" font-family="sans-serif" font-size="13" font-weight="700" fill="#c0392b" text-anchor="middle">やりがちな順番</text>
+  <rect x="24" y="40" width="312" height="96" rx="10" fill="#fdf0ee" stroke="#e6b5ad" stroke-width="1.5"/>
+  <text x="44" y="66" font-family="sans-serif" font-size="12.5" fill="#7a2f24">① AIに「どこが悪い？」と聞く</text>
+  <text x="44" y="90" font-family="sans-serif" font-size="12.5" fill="#7a2f24">② それらしい答えが返る（<tspan font-weight="700">推測</tspan>）</text>
+  <text x="44" y="114" font-family="sans-serif" font-size="12.5" fill="#7a2f24">③ 直してみる → 直らない</text>
+  <text x="180" y="164" font-family="sans-serif" font-size="12" font-weight="700" fill="#c0392b" text-anchor="middle">外れても、外れたと気づけない</text>
+  <text x="180" y="186" font-family="sans-serif" font-size="11.5" fill="#8892a0" text-anchor="middle">もっともらしい間違いに、時間を使う</text>
+
+  <text x="540" y="26" font-family="sans-serif" font-size="13" font-weight="700" fill="#2f8f4e" text-anchor="middle">正しい順番</text>
+  <rect x="384" y="40" width="312" height="96" rx="10" fill="#eef7f1" stroke="#a9d5bb" stroke-width="1.5"/>
+  <text x="404" y="66" font-family="sans-serif" font-size="12.5" fill="#1f5c39">① <tspan font-weight="700">道具</tspan>で「どこか」を確定させる</text>
+  <text x="418" y="88" font-family="monospace" font-size="10.5" fill="#1f5c39">参照を検索 / git bisect / 計測</text>
+  <text x="404" y="114" font-family="sans-serif" font-size="12.5" fill="#1f5c39">② <tspan font-weight="700">AI</tspan>に「なぜか」を説明させる</text>
+  <text x="540" y="164" font-family="sans-serif" font-size="12" font-weight="700" fill="#2f8f4e" text-anchor="middle">誰がやっても、同じ答えに着く</text>
+  <text x="540" y="186" font-family="sans-serif" font-size="11.5" fill="#8892a0" text-anchor="middle">説明が間違っていれば、自分で気づける</text>
+
+  <path d="M24 214 L696 214" stroke="#c7cede" stroke-width="1"/>
+
+  <rect x="24" y="232" width="200" height="48" rx="8" fill="#eef4ff" stroke="#9fb4d8"/>
+  <text x="124" y="252" font-family="sans-serif" font-size="12" font-weight="700" fill="#26456f" text-anchor="middle">機械 ＝ 事実</text>
+  <text x="124" y="270" font-family="sans-serif" font-size="11" fill="#26456f" text-anchor="middle">正確・再現できる・そっけない</text>
+
+  <path d="M232 256 L280 256" stroke="#2f6fed" stroke-width="2"/>
+  <path d="M272 250 L282 256 L272 262 Z" fill="#2f6fed"/>
+
+  <rect x="290" y="232" width="200" height="48" rx="8" fill="#f4eefc" stroke="#c4aee6"/>
+  <text x="390" y="252" font-family="sans-serif" font-size="12" font-weight="700" fill="#4a2f77" text-anchor="middle">AI ＝ 翻訳と説明</text>
+  <text x="390" y="270" font-family="sans-serif" font-size="11" fill="#4a2f77" text-anchor="middle">分かりやすい・速い・推測もする</text>
+
+  <path d="M498 256 L540 256" stroke="#2f8f4e" stroke-width="2"/>
+  <path d="M532 250 L542 256 L532 262 Z" fill="#2f8f4e"/>
+
+  <rect x="550" y="232" width="146" height="48" rx="8" fill="#eef7f1" stroke="#a9d5bb"/>
+  <text x="623" y="252" font-family="sans-serif" font-size="12" font-weight="700" fill="#1f5c39" text-anchor="middle">あなたが判断する</text>
+  <text x="623" y="270" font-family="sans-serif" font-size="11" fill="#1f5c39" text-anchor="middle">最後に決めるのは人</text>
+</svg>

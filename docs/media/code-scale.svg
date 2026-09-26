@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="290" viewBox="0 0 720 290" role="img" aria-label="練習リポジトリから大きな案件までの行数の差と、人が読み切れる限界">
+<rect width="720" height="290" fill="#ffffff"/>
+<text x="24" y="28" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#26456f">コードの量は、けた違いに増えます</text>
+<rect x="150" y="46" width="30" height="34" rx="4" fill="#a9d5bb" stroke="#2f8f4e" stroke-width="1.5"/>
+<text x="24" y="68" font-family="sans-serif" font-size="12.5" fill="#3d4652">練習リポジトリ</text>
+<text x="192" y="68" font-family="sans-serif" font-size="12.5" fill="#1f5c39">約300行　—　1時間あれば全部読めます</text>
+<rect x="150" y="92" width="70" height="34" rx="4" fill="#9fb4d8" stroke="#2f6fed" stroke-width="1.5"/>
+<text x="24" y="114" font-family="sans-serif" font-size="12.5" fill="#3d4652">この教材</text>
+<text x="232" y="114" font-family="sans-serif" font-size="12.5" fill="#26456f">1万数千行　—　1日がかりです</text>
+<path d="M24 140 L696 140" stroke="#c0392b" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="696" y="134" font-family="sans-serif" font-size="12" font-weight="700" fill="#c0392b" text-anchor="end">ここから上は、読み切れません</text>
+<rect x="150" y="152" width="230" height="34" rx="4" fill="#e6b5ad" stroke="#c0392b" stroke-width="1.5"/>
+<text x="24" y="174" font-family="sans-serif" font-size="12.5" fill="#3d4652">小さめの案件</text>
+<text x="392" y="174" font-family="sans-serif" font-size="12.5" fill="#7a2f24">数万〜十数万行　—　無理です</text>
+<rect x="150" y="198" width="480" height="34" rx="4" fill="#e6b5ad" stroke="#c0392b" stroke-width="1.5"/>
+<text x="24" y="220" font-family="sans-serif" font-size="12.5" fill="#3d4652">大きな案件</text>
+<text x="642" y="220" font-family="sans-serif" font-size="12.5" fill="#7a2f24">数十万行以上</text>
+<text x="390" y="220" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#7a2f24" text-anchor="middle">全体を知っている人は、社内に一人もいません</text>
+<rect x="24" y="246" width="672" height="34" rx="9" fill="#eef3ff" stroke="#9fb4d8" stroke-width="1.5"/>
+<text x="360" y="268" font-family="sans-serif" font-size="13" font-weight="700" fill="#26456f" text-anchor="middle">だからプロは「全部読む」をしません。探して、そこだけ読みます</text>
+</svg>

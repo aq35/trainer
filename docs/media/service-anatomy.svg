@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="380" viewBox="0 0 720 380" role="img" aria-label="サービスは画面・判断する部分・保管庫の3層でできているという図">
+  <rect width="720" height="380" fill="#ffffff"/>
+  <text x="360" y="26" font-family="sans-serif" font-size="14" font-weight="700" fill="#5b6472" text-anchor="middle">サービスを分解すると、だいたい3つに分かれます</text>
+
+  <rect x="40" y="46" width="640" height="86" rx="10" fill="#eef3ff" stroke="#c9dbff" stroke-width="1.5"/>
+  <text x="66" y="72" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#2f6fed">① 目に見える画面</text>
+  <text x="66" y="94" font-family="sans-serif" font-size="12" fill="#5b6472">ボタン・文字・レイアウト。あなたがブラウザで見ていた部分。</text>
+  <text x="66" y="116" font-family="sans-serif" font-size="12" font-weight="700" fill="#2f6fed">GitHubでいうと: リポジトリ一覧、Pull requestの画面</text>
+  <rect x="556" y="62" width="106" height="54" rx="7" fill="#ffffff" stroke="#c9dbff"/>
+  <rect x="566" y="72" width="86" height="8" rx="4" fill="#c9dbff"/>
+  <rect x="566" y="86" width="60" height="8" rx="4" fill="#dfe7fa"/>
+  <rect x="566" y="100" width="44" height="8" rx="4" fill="#dfe7fa"/>
+
+  <path d="M360 132 L360 158" stroke="#8892a0" stroke-width="2.5" marker-end="url(#s1)"/>
+  <path d="M330 158 L330 132" stroke="#8892a0" stroke-width="2.5" marker-end="url(#s1)"/>
+  <text x="418" y="150" font-family="sans-serif" font-size="11" fill="#8892a0">やり取りしている</text>
+
+  <rect x="40" y="164" width="640" height="86" rx="10" fill="#fff8e9" stroke="#f0d9a8" stroke-width="1.5"/>
+  <text x="66" y="190" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#8a6412">② 見えない、判断する部分</text>
+  <text x="66" y="212" font-family="sans-serif" font-size="12" fill="#5b6472">「この人は本人か」「これを見せていいか」を決めている。</text>
+  <text x="66" y="234" font-family="sans-serif" font-size="12" font-weight="700" fill="#8a6412">GitHubでいうと: ログイン判定、privateなら他人に見せない判断</text>
+  <circle cx="609" cy="207" r="26" fill="#ffffff" stroke="#f0d9a8" stroke-width="1.5"/>
+  <path d="M600 207 l6 7 12 -14" stroke="#e8a53a" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <path d="M360 250 L360 276" stroke="#8892a0" stroke-width="2.5" marker-end="url(#s1)"/>
+  <path d="M330 276 L330 250" stroke="#8892a0" stroke-width="2.5" marker-end="url(#s1)"/>
+
+  <rect x="40" y="282" width="640" height="86" rx="10" fill="#f1faf4" stroke="#b7e3c6" stroke-width="1.5"/>
+  <text x="66" y="308" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#2b7d52">③ 保管庫</text>
+  <text x="66" y="330" font-family="sans-serif" font-size="12" fill="#5b6472">消えては困るものを、ためておく場所。</text>
+  <text x="66" y="352" font-family="sans-serif" font-size="12" font-weight="700" fill="#2b7d52">GitHubでいうと: あなたが push したファイルと、その履歴</text>
+  <g>
+    <ellipse cx="609" cy="308" rx="30" ry="9" fill="#ffffff" stroke="#b7e3c6" stroke-width="1.5"/>
+    <path d="M579 308 v26 a30 9 0 0 0 60 0 v-26" fill="#ffffff" stroke="#b7e3c6" stroke-width="1.5"/>
+    <ellipse cx="609" cy="322" rx="30" ry="9" fill="none" stroke="#dcefe3"/>
+  </g>
+
+  <defs><marker id="s1" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#8892a0"/></marker></defs>
+</svg>

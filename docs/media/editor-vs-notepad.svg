@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="330" viewBox="0 0 720 330" role="img" aria-label="同じコードをメモ帳とVS Codeで開いた比較">
+  <rect width="720" height="330" fill="#ffffff"/>
+  <text x="180" y="24" font-family="sans-serif" font-size="13" font-weight="700" fill="#8892a0" text-anchor="middle">メモ帳で開くと</text>
+  <text x="540" y="24" font-family="sans-serif" font-size="13" font-weight="700" fill="#2f6fed" text-anchor="middle">VS Code で開くと</text>
+
+  <rect x="24" y="38" width="312" height="200" rx="8" fill="#ffffff" stroke="#c7cede" stroke-width="1.5"/>
+  <g font-family="monospace" font-size="12.5" fill="#3d4652">
+    <text x="42" y="66">&lt;body&gt;</text>
+    <text x="42" y="88">  &lt;h1&gt;はじめてのページ&lt;/h1&gt;</text>
+    <text x="42" y="110">  &lt;button onclick="go()"&gt;押す&lt;/button&gt;</text>
+    <text x="42" y="132">  &lt;script&gt;</text>
+    <text x="42" y="154">    function go() {</text>
+    <text x="42" y="176">      alert("こんにちは")</text>
+    <text x="42" y="198">    }</text>
+    <text x="42" y="220">  &lt;/script&gt;</text>
+  </g>
+  <text x="180" y="258" font-family="sans-serif" font-size="12" fill="#8892a0" text-anchor="middle">全部おなじ色。どこが何だか分からない</text>
+
+  <rect x="384" y="38" width="312" height="200" rx="8" fill="#1f2430" stroke="#1f2430"/>
+  <g font-family="monospace" font-size="12.5">
+    <text x="398" y="66" fill="#7dd3fc">&lt;body&gt;</text>
+    <text x="398" y="88" fill="#7dd3fc">  &lt;h1&gt;<tspan fill="#e6eaf2">はじめてのページ</tspan>&lt;/h1&gt;</text>
+    <text x="398" y="110" fill="#7dd3fc">  &lt;button <tspan fill="#c4b5fd">onclick</tspan>=<tspan fill="#a7f3a0">"go()"</tspan>&gt;</text>
+    <text x="398" y="132" fill="#7dd3fc">  &lt;script&gt;</text>
+    <text x="398" y="154" fill="#f0abfc">    function <tspan fill="#fde68a">go</tspan><tspan fill="#e6eaf2">() {</tspan></text>
+    <text x="398" y="176" fill="#fde68a">      alert<tspan fill="#e6eaf2">(</tspan><tspan fill="#a7f3a0">"こんにちは"</tspan><tspan fill="#e6eaf2">)</tspan></text>
+    <text x="398" y="198" fill="#e6eaf2">    }</text>
+    <text x="398" y="220" fill="#7dd3fc">  &lt;/script&gt;</text>
+  </g>
+  <text x="540" y="258" font-family="sans-serif" font-size="12" fill="#2f6fed" text-anchor="middle">役割ごとに色が違う。目で構造が追える</text>
+
+  <rect x="90" y="282" width="540" height="34" rx="9" fill="#fff8e9" stroke="#f0d9a8" stroke-width="1.5"/>
+  <text x="360" y="304" font-family="sans-serif" font-size="12.5" fill="#8a6412" text-anchor="middle">中身はまったく同じ文字。<tspan font-weight="700">見せ方が違うだけ</tspan>です。</text>
+</svg>

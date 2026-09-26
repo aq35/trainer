@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="300" viewBox="0 0 720 300" role="img" aria-label="手元のファイルは自分しか見られないが、公開すると誰でもURLで見られる">
+  <rect width="720" height="300" fill="#ffffff"/>
+  <text x="180" y="26" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#8892a0" text-anchor="middle">いまの状態</text>
+  <text x="540" y="26" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#2b7d52" text-anchor="middle">公開したあと</text>
+
+  <rect x="24" y="42" width="312" height="196" rx="10" fill="#f7f8fa" stroke="#c7cede" stroke-width="1.5"/>
+  <rect x="120" y="70" width="120" height="84" rx="8" fill="#ffffff" stroke="#a8b2c1" stroke-width="1.5"/>
+  <rect x="132" y="86" width="96" height="8" rx="4" fill="#dbe2ec"/>
+  <rect x="132" y="102" width="70" height="8" rx="4" fill="#dbe2ec"/>
+  <rect x="150" y="122" width="60" height="18" rx="5" fill="#8fb4f5"/>
+  <text x="180" y="176" font-family="monospace" font-size="10.5" fill="#8892a0" text-anchor="middle">file:///Users/…/index.html</text>
+  <text x="180" y="204" font-family="sans-serif" font-size="12" fill="#5b6472" text-anchor="middle">見られるのは<tspan font-weight="700">自分だけ</tspan></text>
+  <text x="180" y="222" font-family="sans-serif" font-size="11.5" fill="#8892a0" text-anchor="middle">送ろうとしてもファイルを渡すしかない</text>
+
+  <path d="M346 140 L386 140" stroke="#3aa76d" stroke-width="3" marker-end="url(#pu)"/>
+  <text x="366" y="130" font-family="sans-serif" font-size="11" fill="#3aa76d" text-anchor="middle">公開</text>
+
+  <rect x="396" y="42" width="300" height="196" rx="10" fill="#f1faf4" stroke="#b7e3c6" stroke-width="1.5"/>
+  <rect x="470" y="62" width="152" height="26" rx="13" fill="#ffffff" stroke="#b7e3c6" stroke-width="1.5"/>
+  <text x="546" y="79" font-family="monospace" font-size="10" fill="#2b7d52" text-anchor="middle">https://…github.io/my-page/</text>
+
+  <g>
+    <rect x="424" y="112" width="60" height="44" rx="5" fill="#ffffff" stroke="#a8b2c1" stroke-width="1.5"/>
+    <text x="454" y="172" font-family="sans-serif" font-size="10.5" fill="#5b6472" text-anchor="middle">自分のPC</text>
+  </g>
+  <g>
+    <rect x="516" y="108" width="30" height="52" rx="5" fill="#ffffff" stroke="#a8b2c1" stroke-width="1.5"/>
+    <text x="531" y="172" font-family="sans-serif" font-size="10.5" fill="#5b6472" text-anchor="middle">スマホ</text>
+  </g>
+  <g>
+    <circle cx="612" cy="126" r="12" fill="#ffffff" stroke="#a8b2c1" stroke-width="1.5"/>
+    <path d="M596 156 a16 14 0 0 1 32 0" fill="#ffffff" stroke="#a8b2c1" stroke-width="1.5"/>
+    <text x="612" y="172" font-family="sans-serif" font-size="10.5" fill="#5b6472" text-anchor="middle">友人・家族</text>
+  </g>
+  <g stroke="#3aa76d" stroke-width="1.8" stroke-dasharray="4 3">
+    <path d="M454 108 L520 92"/><path d="M531 104 L540 92"/><path d="M612 110 L570 92"/>
+  </g>
+  <text x="546" y="204" font-family="sans-serif" font-size="12" fill="#2b7d52" text-anchor="middle"><tspan font-weight="700">URLを知っている人なら誰でも</tspan>見られる</text>
+  <text x="546" y="222" font-family="sans-serif" font-size="11.5" fill="#8892a0" text-anchor="middle">これが「サービスを公開する」ということ</text>
+
+  <rect x="90" y="256" width="540" height="32" rx="9" fill="#fdf1f0" stroke="#f0c2bd" stroke-width="1.5"/>
+  <text x="360" y="277" font-family="sans-serif" font-size="12.5" fill="#c0392b" text-anchor="middle">裏返すと、<tspan font-weight="700">見られて困るものは絶対に置けない</tspan>ということでもあります。</text>
+
+  <defs><marker id="pu" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#3aa76d"/></marker></defs>
+</svg>

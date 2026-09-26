@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="300" viewBox="0 0 720 300" role="img" aria-label="ブランチは作業用の分かれ道であることを示した図">
+  <rect width="720" height="300" fill="#ffffff"/>
+  <text x="360" y="28" font-family="sans-serif" font-size="14" font-weight="700" fill="#5b6472" text-anchor="middle">ブランチ＝「本線を汚さずに試すための、分かれ道」</text>
+
+  <line x1="70" y1="120" x2="650" y2="120" stroke="#3aa76d" stroke-width="3"/>
+  <text x="70" y="104" font-family="monospace" font-size="13" font-weight="700" fill="#2b7d52">main（本線）</text>
+  <g fill="#ffffff" stroke="#3aa76d" stroke-width="3">
+    <circle cx="120" cy="120" r="9"/><circle cx="230" cy="120" r="9"/><circle cx="560" cy="120" r="9"/>
+  </g>
+  <circle cx="650" cy="120" r="10" fill="#3aa76d"/>
+
+  <path d="M230 120 C 290 120 290 210 350 210" stroke="#2f6fed" stroke-width="3" fill="none"/>
+  <line x1="350" y1="210" x2="500" y2="210" stroke="#2f6fed" stroke-width="3"/>
+  <path d="M500 210 C 545 210 520 120 560 120" stroke="#2f6fed" stroke-width="3" fill="none"/>
+  <text x="352" y="240" font-family="monospace" font-size="13" font-weight="700" fill="#2f6fed">作業用ブランチ</text>
+  <g fill="#ffffff" stroke="#2f6fed" stroke-width="3">
+    <circle cx="390" cy="210" r="9"/><circle cx="460" cy="210" r="9"/>
+  </g>
+
+  <text x="248" y="152" font-family="sans-serif" font-size="12" fill="#8892a0">ここで枝分かれ</text>
+  <text x="556" y="152" font-family="sans-serif" font-size="12" fill="#8892a0">できたら本線に合流</text>
+
+  <rect x="120" y="262" width="480" height="26" rx="8" fill="#eef3ff" stroke="#c9dbff"/>
+  <text x="360" y="280" font-family="sans-serif" font-size="12.5" fill="#2f6fed" text-anchor="middle">研修中はブランチを1本しか使いません。名前は main です。</text>
+</svg>

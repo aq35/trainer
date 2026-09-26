@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="330" viewBox="0 0 720 330" role="img" aria-label="コンフリクトの見た目と、どこを消せばよいかの図">
+  <rect width="720" height="330" fill="#ffffff"/>
+  <text x="360" y="26" font-family="sans-serif" font-size="14" font-weight="700" fill="#5b6472" text-anchor="middle">同じ行を2か所で直すと、git は「どっちにする？」と聞いてきます</text>
+
+  <!-- 分岐の図 -->
+  <circle cx="80" cy="70" r="8" fill="#9aa3b2"/>
+  <text x="80" y="96" font-family="sans-serif" font-size="11" fill="#6b7482" text-anchor="middle">元の行</text>
+  <path d="M88 66 L188 48" stroke="#2f6fed" stroke-width="2.5"/>
+  <path d="M88 74 L188 96" stroke="#e8853a" stroke-width="2.5"/>
+  <circle cx="196" cy="46" r="8" fill="#2f6fed"/>
+  <text x="216" y="42" font-family="sans-serif" font-size="11.5" fill="#2f6fed">本線（main）で直した</text>
+  <circle cx="196" cy="98" r="8" fill="#e8853a"/>
+  <text x="216" y="103" font-family="sans-serif" font-size="11.5" fill="#e8853a">枝（fix-title）で直した</text>
+  <text x="360" y="74" font-family="sans-serif" font-size="13" font-weight="700" fill="#be3455">→ 同じ行だと、gitには決められない</text>
+
+  <!-- エディタ表示 -->
+  <rect x="30" y="122" width="400" height="176" rx="8" fill="#1e2229"/>
+  <rect x="30" y="122" width="400" height="24" rx="8" fill="#2b303a"/><rect x="30" y="138" width="400" height="8" fill="#2b303a"/>
+  <text x="46" y="139" font-family="sans-serif" font-size="11" fill="#c8cfdb">index.html</text>
+  <g font-family="monospace" font-size="12">
+    <text x="46" y="170" fill="#8fb8ff">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</text>
+    <text x="46" y="192" fill="#dfe5ef">  &lt;h1&gt;本線で直しました&lt;/h1&gt;</text>
+    <text x="46" y="214" fill="#ffb454">=======</text>
+    <text x="46" y="236" fill="#dfe5ef">  &lt;h1&gt;枝で直しました&lt;/h1&gt;</text>
+    <text x="46" y="258" fill="#8fb8ff">&gt;&gt;&gt;&gt;&gt;&gt;&gt; fix-title</text>
+  </g>
+  <text x="46" y="286" font-family="sans-serif" font-size="11" fill="#9aa3b2">この5行が、そのままファイルに書き込まれます</text>
+
+  <!-- 説明 -->
+  <rect x="452" y="122" width="238" height="82" rx="9" fill="#eef3ff" stroke="#c9dbff" stroke-width="1.5"/>
+  <text x="470" y="146" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#2f6fed">上が「今いる側」</text>
+  <text x="470" y="166" font-family="sans-serif" font-size="11.5" fill="#5b6472">HEAD ＝ 自分が今立っている枝</text>
+  <text x="470" y="188" font-family="sans-serif" font-size="11.5" fill="#5b6472">下が「取り込もうとした側」</text>
+
+  <rect x="452" y="216" width="238" height="82" rx="9" fill="#eefaf1" stroke="#b7e3c6" stroke-width="1.5"/>
+  <text x="470" y="240" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#2b7d52">やることは1つだけ</text>
+  <text x="470" y="260" font-family="sans-serif" font-size="11.5" fill="#2b7d52">残したい行を選び、</text>
+  <text x="470" y="278" font-family="sans-serif" font-size="11.5" fill="#2b7d52">記号の3行を消して保存する</text>
+
+  <text x="360" y="320" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#2b7d52" text-anchor="middle">壊れてはいません。どちらを残すか、人が決めるだけです</text>
+</svg>

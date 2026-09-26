@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="320" viewBox="0 0 720 320" role="img" aria-label="大きな改修が並走したときにGit-Flowが壊れる理由と、3つの現実解">
+<rect width="720" height="320" fill="#ffffff"/>
+<text x="24" y="28" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#26456f">大きな作り直しが始まると、<tspan fill="#c0392b">Git-Flow はここで壊れます</tspan></text>
+
+<text x="66" y="60" font-family="monospace" font-size="11.5" font-weight="700" fill="#26456f" text-anchor="end">develop</text>
+<path d="M76 56 L680 56" stroke="#9fb4d8" stroke-width="3"/>
+<circle cx="160" cy="56" r="6" fill="#ffffff" stroke="#9fb4d8" stroke-width="2"/>
+<circle cx="280" cy="56" r="6" fill="#ffffff" stroke="#9fb4d8" stroke-width="2"/>
+<circle cx="400" cy="56" r="6" fill="#ffffff" stroke="#9fb4d8" stroke-width="2"/>
+<circle cx="520" cy="56" r="6" fill="#ffffff" stroke="#9fb4d8" stroke-width="2"/>
+<circle cx="640" cy="56" r="6" fill="#ffffff" stroke="#9fb4d8" stroke-width="2"/>
+<text x="400" y="42" font-family="sans-serif" font-size="11" fill="#5a6f92" text-anchor="middle">みんなの作業は、こちらで進み続ける</text>
+
+<path d="M160 64 L160 106 L640 106" fill="none" stroke="#c0392b" stroke-width="2.5"/>
+<circle cx="300" cy="106" r="6" fill="#ffffff" stroke="#c0392b" stroke-width="2"/>
+<circle cx="470" cy="106" r="6" fill="#ffffff" stroke="#c0392b" stroke-width="2"/>
+<text x="66" y="110" font-family="monospace" font-size="11.5" font-weight="700" fill="#c0392b" text-anchor="end">大改修</text>
+<text x="400" y="128" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#c0392b" text-anchor="middle">3か月、一度も合流しない</text>
+
+<rect x="24" y="142" width="672" height="34" rx="8" fill="#fdf0ee" stroke="#e6b5ad" stroke-width="1.5"/>
+<text x="360" y="164" font-family="sans-serif" font-size="12.5" fill="#7a2f24" text-anchor="middle">最後に合流しようとすると、<tspan font-weight="700" fill="#c0392b">数百のコンフリクトが一度に出ます</tspan>。誰も判断できません</text>
+
+<text x="24" y="200" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#26456f">現実的な手は3つ。<tspan fill="#c0392b">上から順に検討します</tspan></text>
+
+<rect x="24" y="210" width="672" height="32" rx="8" fill="#eef7f1" stroke="#a9d5bb" stroke-width="1.5"/>
+<text x="40" y="231" font-family="sans-serif" font-size="12" fill="#1f5c39"><tspan font-weight="700">① 分けない。</tspan>新しい方も develop に入れ、<tspan font-weight="700">スイッチで隠す</tspan>（オンにするまで誰にも見えない）</text>
+
+<rect x="24" y="248" width="672" height="32" rx="8" fill="#eef3ff" stroke="#9fb4d8" stroke-width="1.5"/>
+<text x="40" y="269" font-family="sans-serif" font-size="12" fill="#26456f"><tspan font-weight="700">② 分けるが、週に一度は必ず develop を取り込む。</tspan>合流の痛みを、毎週の小さな痛みに割る</text>
+
+<rect x="24" y="286" width="672" height="32" rx="8" fill="#f8fafd" stroke="#c7cede" stroke-width="1.5"/>
+<text x="40" y="307" font-family="sans-serif" font-size="12" fill="#3d4652"><tspan font-weight="700">③ Git-Flow をやめる。</tspan>main 1本＋短命ブランチ＋リリース用ブランチ（GitHub Flow など）に切り替える</text>
+</svg>

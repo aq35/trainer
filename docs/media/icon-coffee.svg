@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" role="img" aria-label="コーヒーカップ">
+  <path d="M11 18 h22 v11 a11 11 0 0 1 -11 11 a11 11 0 0 1 -11 -11 z" fill="#fff" stroke="#5b6472" stroke-width="2.4" stroke-linejoin="round"/>
+  <path d="M33 21 h4 a5 5 0 0 1 0 10 h-4" fill="none" stroke="#5b6472" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M11 24 h22" stroke="#c9a227" stroke-width="3" stroke-linecap="round"/>
+  <path d="M17 12 c0 -3 3 -3 3 -6" fill="none" stroke="#c9a227" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M24 12 c0 -3 3 -3 3 -6" fill="none" stroke="#c9a227" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M8 43 h32" stroke="#5b6472" stroke-width="2.4" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="350" viewBox="0 0 720 350" role="img" aria-label="開発フローで出てくる専門用語の、やさしい言い換え一覧">
+<rect width="720" height="350" fill="#ffffff"/>
+<text x="24" y="26" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#26456f">ここで出てくる言葉を、ふつうの日本語に置き換えます</text>
+
+<rect x="24" y="38" width="230" height="26" rx="6" fill="#f6f8fc" stroke="#c7cede"/>
+<text x="139" y="56" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#3d4652" text-anchor="middle">言葉</text>
+<rect x="260" y="38" width="436" height="26" rx="6" fill="#f6f8fc" stroke="#c7cede"/>
+<text x="478" y="56" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#3d4652" text-anchor="middle">やさしく言うと</text>
+
+<text x="38" y="88" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#26456f">トランクベース</text>
+<text x="38" y="105" font-family="sans-serif" font-size="10.5" fill="#8892a0">trunk-based</text>
+<text x="274" y="88" font-family="sans-serif" font-size="12" fill="#3d4652"><tspan font-weight="700">幹（みき）1本でやる</tspan>という考え方。枝は作るが、すぐ幹に戻す</text>
+<text x="274" y="106" font-family="sans-serif" font-size="11.5" fill="#5a6f92">trunk は「木の幹」。枝を長く伸ばさないので、合流で揉めない</text>
+
+<text x="38" y="136" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#26456f">継続的デリバリ</text>
+<text x="38" y="153" font-family="sans-serif" font-size="10.5" fill="#8892a0">continuous delivery / CD</text>
+<text x="274" y="136" font-family="sans-serif" font-size="12" fill="#3d4652"><tspan font-weight="700">いつでも出せる状態を、常に保っておくこと</tspan></text>
+<text x="274" y="154" font-family="sans-serif" font-size="11.5" fill="#5a6f92">「出す日」を特別な日にしない。毎日出せるなら毎日出す</text>
+
+<text x="38" y="184" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#26456f">LTS</text>
+<text x="38" y="201" font-family="sans-serif" font-size="10.5" fill="#8892a0">long-term support</text>
+<text x="274" y="184" font-family="sans-serif" font-size="12" fill="#3d4652"><tspan font-weight="700">「何年も面倒を見ます」と約束したバージョン</tspan></text>
+<text x="274" y="202" font-family="sans-serif" font-size="11.5" fill="#5a6f92">会社のシステムは、これを選んで何年も使い続けます</text>
+
+<text x="38" y="232" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#26456f">コードフリーズ</text>
+<text x="38" y="249" font-family="sans-serif" font-size="10.5" fill="#8892a0">code freeze</text>
+<text x="274" y="232" font-family="sans-serif" font-size="12" fill="#3d4652"><tspan font-weight="700">新しい機能を入れるのを、やめる日</tspan></text>
+<text x="274" y="250" font-family="sans-serif" font-size="11.5" fill="#5a6f92">ここから先は確認と修正だけ。<tspan font-weight="700">release ブランチの「凍結」と同じ意味</tspan></text>
+
+<text x="38" y="280" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#26456f">チェリーピック</text>
+<text x="38" y="297" font-family="sans-serif" font-size="10.5" fill="#8892a0">git cherry-pick</text>
+<text x="274" y="280" font-family="sans-serif" font-size="12" fill="#3d4652">他の枝から、<tspan font-weight="700">コミットを1つだけ摘んで持ってくる</tspan></text>
+<text x="274" y="298" font-family="sans-serif" font-size="11.5" fill="#5a6f92">枝ごと合流させると余計なものが付いてくる、というときに使います</text>
+
+<text x="38" y="328" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#26456f">スカッシュ</text>
+<text x="38" y="344" font-family="sans-serif" font-size="10.5" fill="#8892a0">squash</text>
+<text x="274" y="328" font-family="sans-serif" font-size="12" fill="#3d4652"><tspan font-weight="700">たくさんのコミットを、1つに潰してから入れる</tspan></text>
+<text x="274" y="346" font-family="sans-serif" font-size="11.5" fill="#5a6f92">「途中経過」を履歴に残さず、結果だけ残すやり方</text>
+</svg>

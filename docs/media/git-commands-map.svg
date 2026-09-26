@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="340" viewBox="0 0 720 340" role="img" aria-label="git のよく使うコマンドが、どの場所に効くのかを整理した地図">
+  <rect width="720" height="340" fill="#ffffff"/>
+
+  <text x="360" y="26" font-family="sans-serif" font-size="13" font-weight="700" fill="#26456f" text-anchor="middle">コマンドは「どこに効くか」で覚えます</text>
+
+  <rect x="24" y="46" width="190" height="88" rx="10" fill="#fdf7e8" stroke="#e2c98a" stroke-width="1.5"/>
+  <text x="119" y="70" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#7a5c1a" text-anchor="middle">① 作業中のファイル</text>
+  <text x="119" y="92" font-family="sans-serif" font-size="11" fill="#a8862f" text-anchor="middle">いま書き換えているもの</text>
+  <text x="119" y="114" font-family="sans-serif" font-size="10.5" fill="#a8862f" text-anchor="middle">まだ、どこにも記録されていない</text>
+
+  <path d="M220 90 L256 90" stroke="#9fb4d8" stroke-width="2"/><path d="M250 85 L259 90 L250 95 Z" fill="#9fb4d8"/>
+  <text x="238" y="82" font-family="monospace" font-size="9.5" fill="#5a6f92" text-anchor="middle">add</text>
+
+  <rect x="264" y="46" width="190" height="88" rx="10" fill="#eef4ff" stroke="#9fb4d8" stroke-width="1.5"/>
+  <text x="359" y="70" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#26456f" text-anchor="middle">② ステージ</text>
+  <text x="359" y="92" font-family="sans-serif" font-size="11" fill="#5a6f92" text-anchor="middle">次の記録に入れるもの置き場</text>
+  <text x="359" y="114" font-family="sans-serif" font-size="10.5" fill="#5a6f92" text-anchor="middle">「これとこれを記録する」の選別</text>
+
+  <path d="M460 90 L496 90" stroke="#a9d5bb" stroke-width="2"/><path d="M490 85 L499 90 L490 95 Z" fill="#a9d5bb"/>
+  <text x="478" y="82" font-family="monospace" font-size="9.5" fill="#4a7a5f" text-anchor="middle">commit</text>
+
+  <rect x="504" y="46" width="192" height="88" rx="10" fill="#eef7f1" stroke="#a9d5bb" stroke-width="1.5"/>
+  <text x="600" y="70" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#1f5c39" text-anchor="middle">③ 履歴</text>
+  <text x="600" y="92" font-family="sans-serif" font-size="11" fill="#4a7a5f" text-anchor="middle">確定したセーブポイント</text>
+  <text x="600" y="114" font-family="sans-serif" font-size="10.5" fill="#4a7a5f" text-anchor="middle">ここまで来れば、もう消えません</text>
+
+  <path d="M119 142 L119 162 L359 162" stroke="#c0392b" stroke-width="2" fill="none" stroke-dasharray="5 3"/>
+  <path d="M600 142 L600 162 L367 162" stroke="#c0392b" stroke-width="2" fill="none" stroke-dasharray="5 3"/>
+  <path d="M128 137 L119 128 L110 137 Z" fill="#c0392b"/>
+  <text x="359" y="180" font-family="sans-serif" font-size="11" font-weight="700" fill="#c0392b" text-anchor="middle"><tspan font-family="monospace">git restore</tspan> ＝ ③の状態に戻す（①の変更を捨てる）</text>
+
+  <path d="M24 200 L696 200" stroke="#c7cede" stroke-width="1"/>
+
+  <text x="24" y="224" font-family="sans-serif" font-size="12" font-weight="700" fill="#26456f">ブランチを行き来する・合流させる</text>
+
+  <rect x="24" y="234" width="672" height="26" rx="5" fill="#f7f9fd" stroke="#c7cede"/>
+  <text x="40" y="252" font-family="monospace" font-size="11" font-weight="700" fill="#26456f">git switch -c 名前</text>
+  <text x="230" y="252" font-family="sans-serif" font-size="11" fill="#5a6f92">新しいブランチを<tspan font-weight="700">作って、移る</tspan>（<tspan font-family="monospace">-c</tspan> は create の c）</text>
+
+  <rect x="24" y="264" width="672" height="26" rx="5" fill="#f7f9fd" stroke="#c7cede"/>
+  <text x="40" y="282" font-family="monospace" font-size="11" font-weight="700" fill="#26456f">git switch 名前</text>
+  <text x="230" y="282" font-family="sans-serif" font-size="11" fill="#5a6f92">すでにあるブランチに<tspan font-weight="700">移る</tspan>だけ（<tspan font-family="monospace">-c</tspan> を付けない）</text>
+
+  <rect x="24" y="294" width="672" height="26" rx="5" fill="#eef7f1" stroke="#a9d5bb"/>
+  <text x="40" y="312" font-family="monospace" font-size="11" font-weight="700" fill="#1f5c39">git merge 名前</text>
+  <text x="230" y="312" font-family="sans-serif" font-size="11" fill="#5a6f92"><tspan font-weight="700">いま居るブランチに</tspan>、指定したブランチを合流させる</text>
+
+  <text x="24" y="334" font-family="sans-serif" font-size="11" font-weight="700" fill="#c0392b">merge でいちばん多い失敗 —— 取り込みたい側に移動していない。先に <tspan font-family="monospace">git switch main</tspan> です。</text>
+</svg>

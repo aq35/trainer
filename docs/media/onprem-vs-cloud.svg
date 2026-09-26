@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="320" viewBox="0 0 720 320" role="img" aria-label="オンプレミスは物理サーバを自分で持つ世界。クラウドは必要なぶんだけ借りて、コマンドやコードで作る世界">
+  <rect width="720" height="320" fill="#ffffff"/>
+  <text x="180" y="26" font-family="sans-serif" font-size="13" font-weight="700" fill="#8892a0" text-anchor="middle">オンプレミス（自前で持つ）</text>
+  <text x="540" y="26" font-family="sans-serif" font-size="13" font-weight="700" fill="#2f6fed" text-anchor="middle">クラウド（必要なぶんだけ借りる）</text>
+
+  <rect x="24" y="40" width="312" height="176" rx="10" fill="#f4f6fa" stroke="#c7cede" stroke-width="1.5"/>
+  <g fill="#ffffff" stroke="#8892a0" stroke-width="1.2">
+    <rect x="120" y="60" width="120" height="22" rx="3"/>
+    <rect x="120" y="88" width="120" height="22" rx="3"/>
+    <rect x="120" y="116" width="120" height="22" rx="3"/>
+    <rect x="120" y="144" width="120" height="22" rx="3"/>
+  </g>
+  <g fill="#8892a0">
+    <circle cx="132" cy="71" r="3"/><circle cx="132" cy="99" r="3"/><circle cx="132" cy="127" r="3"/><circle cx="132" cy="155" r="3"/>
+  </g>
+  <text x="180" y="188" font-family="sans-serif" font-size="11.5" fill="#8892a0" text-anchor="middle">買う → 運ぶ → ラックに載せる → 配線</text>
+  <text x="180" y="206" font-family="sans-serif" font-size="11.5" fill="#8892a0" text-anchor="middle">増やすのに数週間。減らせない</text>
+  <text x="180" y="246" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#c0392b" text-anchor="middle">その現場にいないと、触れません</text>
+  <text x="180" y="268" font-family="sans-serif" font-size="11.5" fill="#8892a0" text-anchor="middle">個人で練習するのは、ほぼ無理</text>
+
+  <rect x="384" y="40" width="312" height="176" rx="10" fill="#eef4ff" stroke="#9fb4d8" stroke-width="1.5"/>
+  <rect x="404" y="58" width="272" height="34" rx="6" fill="#1f2430"/>
+  <text x="416" y="80" font-family="monospace" font-size="11.5" fill="#a7f3a0">$ サーバーを1台つくる</text>
+  <path d="M540 98 L540 116" stroke="#2f6fed" stroke-width="2"/>
+  <path d="M534 110 L540 118 L546 110 Z" fill="#2f6fed"/>
+  <g fill="#ffffff" stroke="#2f6fed" stroke-width="1.2">
+    <rect x="424" y="124" width="72" height="26" rx="4"/>
+    <rect x="504" y="124" width="72" height="26" rx="4"/>
+    <rect x="584" y="124" width="72" height="26" rx="4"/>
+  </g>
+  <g font-family="sans-serif" font-size="10" fill="#26456f" text-anchor="middle">
+    <text x="460" y="141">計算する場所</text>
+    <text x="540" y="141">置いておく場所</text>
+    <text x="620" y="141">ネットワーク</text>
+  </g>
+  <text x="540" y="176" font-family="sans-serif" font-size="11.5" fill="#26456f" text-anchor="middle">数分でできる。消せば、その時点で止まる</text>
+  <text x="540" y="196" font-family="sans-serif" font-size="11.5" fill="#26456f" text-anchor="middle">構成はコードで書ける → git で管理できる</text>
+  <text x="540" y="246" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#2f8f4e" text-anchor="middle">今日、あなたのパソコンから触れます</text>
+  <text x="540" y="268" font-family="sans-serif" font-size="11.5" fill="#8892a0" text-anchor="middle">だから、未経験の入り口はこちら側にあります</text>
+
+  <path d="M24 288 L696 288" stroke="#c7cede" stroke-width="1"/>
+  <text x="360" y="310" font-family="sans-serif" font-size="12" fill="#8892a0" text-anchor="middle">やっている仕事は同じ。違うのは「物を持つか、借りるか」だけです</text>
+</svg>

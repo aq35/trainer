@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="330" viewBox="0 0 720 330" role="img" aria-label="Claudeを画面・判断・保管の3つに分解した図。GitHubと同じ形をしている">
+  <rect width="720" height="330" fill="#ffffff"/>
+  <text x="24" y="28" font-family="sans-serif" font-size="13" font-weight="700" fill="#8892a0">あなたのパソコン</text>
+  <text x="470" y="28" font-family="sans-serif" font-size="13" font-weight="700" fill="#2f6fed">インターネットの向こう側（Anthropic）</text>
+
+  <rect x="24" y="40" width="270" height="230" rx="10" fill="#f7f9fc" stroke="#c7cede" stroke-width="1.5"/>
+  <text x="40" y="66" font-family="sans-serif" font-size="12" font-weight="700" fill="#3d4652">① 画面（話しかける口）</text>
+  <rect x="40" y="76" width="238" height="30" rx="6" fill="#ffffff" stroke="#c7cede"/>
+  <text x="52" y="96" font-family="sans-serif" font-size="11.5" fill="#3d4652">ブラウザの claude.ai</text>
+  <rect x="40" y="112" width="238" height="30" rx="6" fill="#ffffff" stroke="#c7cede"/>
+  <text x="52" y="132" font-family="sans-serif" font-size="11.5" fill="#3d4652">VS Code の Claude Code 拡張</text>
+  <rect x="40" y="148" width="238" height="30" rx="6" fill="#ffffff" stroke="#c7cede"/>
+  <text x="52" y="168" font-family="monospace" font-size="11.5" fill="#3d4652">claude コマンド</text>
+
+  <text x="40" y="206" font-family="sans-serif" font-size="12" font-weight="700" fill="#3d4652">③ 保管（手元のぶん）</text>
+  <rect x="40" y="216" width="238" height="38" rx="6" fill="#ffffff" stroke="#c7cede"/>
+  <text x="52" y="232" font-family="monospace" font-size="11" fill="#3d4652">~/.claude/settings.json</text>
+  <text x="52" y="248" font-family="monospace" font-size="11" fill="#3d4652">CLAUDE.md</text>
+
+  <rect x="426" y="40" width="270" height="230" rx="10" fill="#eef4ff" stroke="#9fb4d8" stroke-width="1.5"/>
+  <text x="442" y="66" font-family="sans-serif" font-size="12" font-weight="700" fill="#26456f">② 判断（考えるところ）</text>
+  <rect x="442" y="76" width="238" height="66" rx="6" fill="#2f6fed"/>
+  <text x="561" y="104" font-family="sans-serif" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">モデル本体</text>
+  <text x="561" y="126" font-family="sans-serif" font-size="11" fill="#d6e4ff" text-anchor="middle">文章を読んで、次に何を書くか決める</text>
+
+  <text x="442" y="176" font-family="sans-serif" font-size="12" font-weight="700" fill="#26456f">③ 保管（向こう側のぶん）</text>
+  <rect x="442" y="186" width="238" height="30" rx="6" fill="#ffffff" stroke="#9fb4d8"/>
+  <text x="454" y="206" font-family="sans-serif" font-size="11.5" fill="#26456f">会話の履歴</text>
+  <text x="442" y="244" font-family="sans-serif" font-size="11.5" fill="#8892a0">使った量・上限も、ここで数えられている</text>
+
+  <path d="M300 128 L420 128" stroke="#2f6fed" stroke-width="2"/>
+  <path d="M412 122 L422 128 L412 134 Z" fill="#2f6fed"/>
+  <path d="M420 168 L300 168" stroke="#8892a0" stroke-width="2"/>
+  <path d="M308 162 L298 168 L308 174 Z" fill="#8892a0"/>
+  <text x="360" y="118" font-family="sans-serif" font-size="11" font-weight="700" fill="#2f6fed" text-anchor="middle">送る</text>
+  <text x="360" y="188" font-family="sans-serif" font-size="11" fill="#8892a0" text-anchor="middle">返ってくる</text>
+  <rect x="322" y="196" width="76" height="20" rx="4" fill="#2f6fed"/>
+  <text x="360" y="210" font-family="sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">API</text>
+
+  <text x="360" y="298" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#3d4652" text-anchor="middle">あなたのパソコンでAIが動いているわけではありません</text>
+  <text x="360" y="318" font-family="sans-serif" font-size="11.5" fill="#8892a0" text-anchor="middle">待ち時間・料金・上限・「貼ってはいけないもの」は、すべてこの形から出てきます</text>
+</svg>

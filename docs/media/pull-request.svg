@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="350" viewBox="0 0 720 350" role="img" aria-label="プルリクエストは、ブランチの変更を本線に取り込む前に見てもらうための申請だという図">
+  <rect width="720" height="350" fill="#ffffff"/>
+
+  <text x="360" y="26" font-family="sans-serif" font-size="13" font-weight="700" fill="#26456f" text-anchor="middle">「この変更、本線に入れていいですか？」という申請です</text>
+
+  <text x="24" y="58" font-family="sans-serif" font-size="11" font-weight="700" fill="#8892a0">main（本線）</text>
+  <path d="M110 74 L696 74" stroke="#a9d5bb" stroke-width="3"/>
+  <circle cx="150" cy="74" r="7" fill="#a9d5bb"/>
+  <circle cx="210" cy="74" r="7" fill="#a9d5bb"/>
+  <circle cx="620" cy="74" r="9" fill="#2f8f4e"/>
+  <text x="620" y="58" font-family="sans-serif" font-size="10.5" font-weight="700" fill="#2f8f4e" text-anchor="middle">取り込まれた</text>
+
+  <path d="M210 74 C 250 74, 250 132, 290 132" stroke="#9fb4d8" stroke-width="3" fill="none"/>
+  <text x="24" y="136" font-family="sans-serif" font-size="11" font-weight="700" fill="#8892a0">作業ブランチ</text>
+  <path d="M290 132 L520 132" stroke="#9fb4d8" stroke-width="3"/>
+  <circle cx="330" cy="132" r="7" fill="#9fb4d8"/>
+  <circle cx="390" cy="132" r="7" fill="#9fb4d8"/>
+  <circle cx="450" cy="132" r="7" fill="#9fb4d8"/>
+  <path d="M520 132 C 560 132, 580 74, 620 74" stroke="#2f8f4e" stroke-width="3" fill="none"/>
+  <text x="390" y="154" font-family="sans-serif" font-size="10.5" fill="#5a6f92" text-anchor="middle">ここで作業。main は無傷のまま</text>
+
+  <rect x="500" y="96" width="82" height="22" rx="11" fill="#f4eefc" stroke="#c4aee6"/>
+  <text x="541" y="111" font-family="sans-serif" font-size="10.5" font-weight="700" fill="#4a2f77" text-anchor="middle">PR を出す</text>
+
+  <path d="M24 178 L696 178" stroke="#c7cede" stroke-width="1"/>
+
+  <text x="24" y="202" font-family="sans-serif" font-size="12" font-weight="700" fill="#26456f">PR を出すと、ここで止まります。止まっている間に3つ起きます</text>
+
+  <rect x="24" y="212" width="216" height="74" rx="9" fill="#eef7f1" stroke="#a9d5bb" stroke-width="1.5"/>
+  <text x="132" y="234" font-family="sans-serif" font-size="12" font-weight="700" fill="#1f5c39" text-anchor="middle">① 機械が調べる</text>
+  <text x="132" y="254" font-family="sans-serif" font-size="10.5" fill="#4a7a5f" text-anchor="middle">テスト・作法の自動チェック</text>
+  <text x="132" y="274" font-family="sans-serif" font-size="10.5" fill="#4a7a5f" text-anchor="middle">人は操作しません</text>
+
+  <rect x="252" y="212" width="216" height="74" rx="9" fill="#f4eefc" stroke="#c4aee6" stroke-width="1.5"/>
+  <text x="360" y="234" font-family="sans-serif" font-size="12" font-weight="700" fill="#4a2f77" text-anchor="middle">② 人が読む</text>
+  <text x="360" y="254" font-family="sans-serif" font-size="10.5" fill="#6b4f96" text-anchor="middle">差分を見て、指摘やコメント</text>
+  <text x="360" y="274" font-family="sans-serif" font-size="10.5" fill="#6b4f96" text-anchor="middle">＝レビュー</text>
+
+  <rect x="480" y="212" width="216" height="74" rx="9" fill="#eef4ff" stroke="#9fb4d8" stroke-width="1.5"/>
+  <text x="588" y="234" font-family="sans-serif" font-size="12" font-weight="700" fill="#26456f" text-anchor="middle">③ あなたが直す</text>
+  <text x="588" y="254" font-family="sans-serif" font-size="10.5" fill="#5a6f92" text-anchor="middle">同じブランチに push すれば</text>
+  <text x="588" y="274" font-family="sans-serif" font-size="10.5" fill="#5a6f92" text-anchor="middle">PR は自動で更新されます</text>
+
+  <text x="24" y="312" font-family="sans-serif" font-size="12" font-weight="700" fill="#c0392b">PR は「完成品の提出」ではありません。途中でも出してよく、出してから直すのが普通です。</text>
+  <text x="24" y="334" font-family="sans-serif" font-size="12" fill="#26456f">説明欄には <tspan font-weight="700">「何を」より「なぜ」</tspan> を書いてください。差分を見れば「何を」は分かります。</text>
+</svg>

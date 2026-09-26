@@ -1,0 +1,277 @@
+/* 全ページ共通: 色の約束（明るい／暗い）と、教材の文章の中で使う小さな部品。
+   教材の文章は ui/Inline.sunao が描くので、その中の class（.k / .fd / pre）はここに置く。 */
+:root {
+  --blue: #2f6fed; --blue-l: #eef3ff; --blue-b: #c9dbff;
+  --green: #2b7d52; --green-l: #eefaf1; --green-b: #b7e3c6;
+  --red: #c0392b; --red-l: #fdf1f0; --red-b: #f0c2bd;
+  --amber: #8a6412; --amber-l: #fff8e9; --amber-b: #f0d9a8;
+  --ink: #2f3542; --sub: #6b7482; --line: #dfe4ee; --bg: #f4f6fa;
+  --card: #ffffff; --soft: #f1f3f8; --soft-b: #dde2ec; --rail: #e7ebf3;
+  --code-bg: #22262f; --code-fg: #e6eaf2; --code-btn: #3a4150; --code-btn-h: #4a5364;
+  --inline-code-bg: #eef1f6; --inline-code-fg: #c7254e;
+  --purple: #7c3aed; --purple-l: #f6f2ff; --purple-b: #ddd0f5;
+  --pink: #be3455; --pink-l: #fff5f7; --pink-b: #f6cdd8;
+  --tan-l: #faf7f0; --tan-b: #e0d6c2; --gold: #c9a227; --gold-h: #ab8a1c;
+  --on-accent: #fff;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --blue: #6f9dff; --blue-l: #1b2437; --blue-b: #31456b;
+    --green: #7fd6a3; --green-l: #16271e; --green-b: #2c5340;
+    --red: #ff9c90; --red-l: #2c1c1a; --red-b: #5c3630;
+    --amber: #e8c07a; --amber-l: #2a2318; --amber-b: #57462a;
+    --ink: #e6e9ef; --sub: #9aa3b2; --line: #333a48; --bg: #14171d;
+    --card: #1b1f27; --soft: #232833; --soft-b: #333a48; --rail: #2a303c;
+    --code-bg: #0f1218; --code-fg: #dfe5ef; --code-btn: #333a48; --code-btn-h: #414a5c;
+    --inline-code-bg: #232833; --inline-code-fg: #e6c07b;
+    --purple: #c4a8ff; --purple-l: #231d33; --purple-b: #4a3a6b;
+    --pink: #ff9db4; --pink-l: #2c1b22; --pink-b: #5c3040;
+    --tan-l: #221e18; --tan-b: #4a4030;
+    /* 明るい青地に白字だと読みにくいので、暗い文字にする */
+    --on-accent: #10141c;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
+  line-height: 1.75; font-feature-settings: "palt";
+}
+a { color: var(--blue); }
+
+/* キーの見た目（Ctrl など） */
+.k { display: inline-block; background: var(--soft); border: 1px solid var(--soft-b); border-bottom-width: 2px; border-radius: 5px; padding: 0 7px; font-size: 13px; font-weight: 600; margin: 0 2px; }
+kbd { font-family: inherit; }
+.fd { font-size: 13px; color: var(--sub); }
+
+/* 見本や差分を貼るための枠。どこに置いても本文をはみ出させない（枠の中だけ横スクロール） */
+pre { background: var(--code-bg); color: var(--code-fg); border-radius: 7px; padding: 10px 12px; margin: 8px 0; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+pre code { font-size: 12.5px; line-height: 1.65; white-space: pre; background: none; color: inherit; padding: 0; }
+/* 差分を見せるときの赤と緑。差分の回で覚えた色と、意味をそろえる */
+pre code .dl\+ { display: block; color: #8ee39a; background: rgba(80, 200, 120, .14); }
+pre code .dl- { display: block; color: #ff9b9b; background: rgba(255, 110, 110, .14); }
+
+/* キーボードで操作している人に、いまどこにいるかを見せる */
+:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; border-radius: 4px; }
+
+noscript { display: block; max-width: 760px; margin: 40px auto; padding: 16px; background: var(--amber-l); border: 1px solid var(--amber-b); border-radius: 10px; }
+
+/* ナビ（1画面1操作）とコマンド練習の画面。教材の文章が入る場所なので、scoped にせずここに置く。 */
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 16px 80px; }
+
+header.nh, .navi header { background: var(--card); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 10; }
+.hd { max-width: 760px; margin: 0 auto; padding: 12px 16px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.hd h1 { font-size: 15px; margin: 0; font-weight: 700; }
+.hd .spacer { flex: 1; }
+.hd a.home { font-size: 13px; color: var(--sub); text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
+.hd a.home:hover { color: var(--ink); text-decoration: underline; }
+.counter { font-size: 13px; color: var(--sub); white-space: nowrap; }
+.bar { height: 6px; background: var(--rail); border-radius: 99px; overflow: hidden; max-width: 760px; margin: 0 auto; }
+.bar > i { display: block; height: 100%; background: var(--blue); width: 0; transition: width .35s ease; }
+
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 22px; margin-top: 22px; box-shadow: 0 1px 2px rgba(20, 30, 60, .04); }
+.phase { display: inline-block; background: var(--blue-l); color: var(--blue); border: 1px solid var(--blue-b); border-radius: 99px; padding: 2px 12px; font-size: 12px; font-weight: 700; margin-bottom: 12px; }
+.card h2 { font-size: 21px; margin: 0 0 6px; line-height: 1.5; }
+.card h2.fin { margin: 6px 0; }
+
+/* ステップの見出しアイコン */
+.head { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px; }
+.head .ico { width: 46px; height: 46px; flex: none; margin-top: 2px; }
+@media (max-width: 520px) { .head .ico { width: 38px; height: 38px; } }
+.why { color: var(--sub); font-size: 14px; margin: 0 0 18px; }
+
+ol.todo { padding-left: 0; list-style: none; margin: 0 0 4px; counter-reset: s; }
+ol.todo > li { counter-increment: s; position: relative; padding: 10px 0 10px 42px; border-top: 1px solid var(--line); }
+ol.todo > li:first-child { border-top: 0; }
+/* 行頭が全角スペースの行＝前の手順のぶら下げ。番号も区切り線も出さない */
+ol.todo > li.sub { counter-increment: none; border-top: 0; padding-top: 0; padding-bottom: 6px; }
+ol.todo > li.sub::before { content: none; }
+ol.todo > li:has(+ li.sub) { padding-bottom: 4px; }
+ol.todo > li::before { content: counter(s); position: absolute; left: 0; top: 11px; width: 26px; height: 26px; background: var(--blue); color: var(--on-accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; }
+
+.cmdlabel { font-size: 14px; margin: 16px 0 0; }
+
+.expect { background: var(--green-l); border: 1px solid var(--green-b); border-left: 5px solid var(--green); border-radius: 10px; padding: 13px 15px; margin: 16px 0; }
+.expect .t { font-size: 13px; font-weight: 700; color: var(--green); margin-bottom: 4px; }
+.expect .m { font-size: 14px; }
+
+/* 打つ前の、1行ずつの説明。意味が分からないものを貼らせないために置く */
+.pre { background: var(--soft); border: 1px solid var(--soft-b); border-radius: 10px; padding: 13px 15px; margin: 16px 0; }
+.pre > .t { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+.pre dl { margin: 0; }
+.pre dt { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12.5px; background: var(--code-bg); color: var(--code-fg); border-radius: 6px; padding: 6px 9px; margin: 0; overflow-x: auto; white-space: pre; }
+.pre dl > div + div dt { margin-top: 10px; }
+.pre dd { margin: 6px 0 0 2px; font-size: 13.5px; line-height: 1.75; }
+
+/* 打ったあとの説明。出てきた結果が何を意味するのかを言葉にする */
+.after { background: var(--blue-l); border: 1px solid var(--blue-b); border-left: 5px solid var(--blue); border-radius: 10px; padding: 13px 15px; margin: 16px 0; }
+.after > .t { font-size: 13px; font-weight: 700; color: var(--blue); margin-bottom: 4px; }
+.after .m { font-size: 14px; line-height: 1.85; }
+
+.card .note { background: var(--amber-l); border: 1px solid var(--amber-b); border-left: 5px solid var(--amber); border-radius: 10px; padding: 12px 15px; margin: 16px 0; font-size: 14px; }
+
+/* 「この人は飛ばしてよい」という案内。手順そのものより先に見せる */
+.skip { background: var(--blue-l); border: 1px solid var(--blue); border-radius: 10px; padding: 11px 14px; margin: 14px 0 0; font-size: 13.5px; }
+.skip a { color: var(--blue); font-weight: 700; }
+
+/* 完了画面から読み物へ誘う。任意なので、次へのボタンより控えめに見せる */
+.readnext { display: flex; gap: 12px; align-items: flex-start; text-decoration: none; color: inherit; background: var(--soft); border: 1px dashed var(--line); border-radius: 10px; padding: 13px 15px; margin: 16px 0; font-size: 14px; }
+.readnext:hover { border-color: var(--blue); border-style: solid; }
+.readnext .rc { font-size: 18px; line-height: 1.2; }
+.readnext .rs { display: block; font-size: 12.5px; color: var(--sub); margin-top: 3px; }
+
+.stuck { background: var(--amber-l); border: 1px solid var(--amber-b); border-radius: 10px; padding: 12px 15px; margin: 16px 0; font-size: 14px; }
+
+.ask { margin-top: 22px; padding-top: 18px; border-top: 2px dashed var(--line); }
+.ask > p { margin: 0 0 12px; font-weight: 700; font-size: 16px; }
+.btns { display: flex; gap: 10px; flex-wrap: wrap; }
+button.act, a.act { font: inherit; font-weight: 700; border-radius: 10px; padding: 13px 20px; cursor: pointer; border: 1px solid transparent; display: inline-block; }
+a.act { text-decoration: none; text-align: center; }
+.act:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+.ok { background: var(--blue); color: var(--on-accent); flex: 1; min-width: 190px; font-size: 16px; }
+.ok:hover { filter: brightness(.93); }
+.ng { background: var(--card); color: var(--red); border-color: var(--red-b); }
+.ng:hover { background: var(--red-l); }
+
+/* 完了画面の達成条件。「できたつもり」を弾くための、自分でチェックする欄 */
+.crit { background: var(--card); border: 2px solid var(--green); border-radius: 11px; padding: 13px 16px; margin: 16px 0; }
+.crit > .t { font-size: 13px; font-weight: 700; color: var(--green); margin-bottom: 8px; }
+.crit ul { margin: 0; padding: 0; list-style: none; }
+.crit li { position: relative; padding: 5px 0 5px 28px; font-size: 14px; line-height: 1.75; }
+.crit li + li { border-top: 1px solid var(--line); }
+.crit li::before { content: ''; position: absolute; left: 2px; top: 11px; width: 14px; height: 14px; border: 2px solid var(--green); border-radius: 4px; }
+.crit .tr { margin-top: 11px; padding-top: 10px; border-top: 1px solid var(--line); font-size: 13.5px; line-height: 1.8; color: var(--sub); }
+.crit .tr b { color: var(--ink); }
+
+/* 「うまくいきません」 */
+.help { margin-top: 18px; background: var(--red-l); border: 1px solid var(--red-b); border-radius: 12px; padding: 16px; }
+details.tb { background: var(--card); border: 1px solid var(--red-b); border-radius: 9px; padding: 10px 13px; margin-bottom: 8px; }
+details.tb summary { cursor: pointer; font-weight: 700; font-size: 14px; }
+details.tb .a { font-size: 14px; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line); }
+details.tb.shot { margin-top: 10px; }
+.hsec { font-size: 13px; font-weight: 700; color: var(--red); letter-spacing: .04em; margin: 18px 0 8px; padding-bottom: 5px; border-bottom: 1px solid var(--red-b); }
+.help > .hsec:first-of-type { margin-top: 8px; }
+.firstaid { display: grid; gap: 8px; margin-bottom: 4px; }
+.fa { display: flex; gap: 11px; align-items: flex-start; background: var(--card); border: 1px solid var(--red-b); border-radius: 9px; padding: 10px 13px; font-size: 14px; }
+.fn { flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--red); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; margin-top: 2px; }
+.hsearch { width: 100%; font: inherit; font-size: 14px; padding: 11px 13px; margin-bottom: 10px; border: 2px solid var(--red-b); border-radius: 9px; background: var(--card); color: var(--ink); }
+.hsearch:focus { outline: none; border-color: var(--red); }
+.ghead { font-size: 13px; font-weight: 700; color: var(--sub); margin: 12px 0 6px; }
+.nohit { font-size: 13.5px; color: var(--sub); background: var(--card); border: 1px dashed var(--red-b); border-radius: 9px; padding: 12px 13px; }
+.esc { margin-top: 6px; background: var(--card); border: 1px dashed var(--red-b); border-radius: 9px; padding: 12px 13px; font-size: 13.5px; }
+.escstep { display: flex; gap: 11px; align-items: flex-start; padding: 10px 0; }
+.escstep + .escstep { border-top: 1px solid var(--line); }
+.escstep .act { border-width: 2px; padding: 11px 18px; font-size: 14.5px; }
+.escstep .ok { flex: none; min-width: 0; }
+.escbtn { margin-top: 10px; }
+.en { flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--ink); color: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 12.5px; font-weight: 700; margin-top: 2px; }
+.solved { text-align: center; margin-top: 14px; }
+.solved .link { color: var(--green); font-weight: 700; font-size: 14px; }
+
+/* 指で押す場所は、44px 以上を確保する */
+.foot { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; gap: 8px; }
+.link { background: none; border: 0; color: var(--sub); font: inherit; font-size: 13px; cursor: pointer; text-decoration: underline; min-height: 44px; display: inline-flex; align-items: center; padding: 0 4px; }
+.link:hover { color: var(--ink); }
+
+.oschoice { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 8px; }
+.oschoice button { font: inherit; background: var(--card); color: var(--ink); border: 2px solid var(--line); border-radius: 12px; padding: 26px 10px; cursor: pointer; font-weight: 700; font-size: 17px; }
+.oschoice button:hover { border-color: var(--blue); background: var(--blue-l); color: var(--blue); }
+@media (max-width: 520px) { .oschoice { grid-template-columns: 1fr; } }
+
+.card code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .92em; }
+
+/* 読み物（index.html）。左に目次、右に本文。docsify の見た目（vue テーマ）に寄せてある。
+   本文は doc/Block.sunao と ui/Inline.sunao が描くので、本文の中の class はここに置く。 */
+.read { --sbw: 300px; min-height: 100vh; }
+.read .sidebar { position: fixed; top: 0; bottom: 0; left: 0; width: var(--sbw); overflow-y: auto; background: var(--card); border-right: 1px solid var(--line); z-index: 20; transition: transform .25s ease; }
+.read .content { margin-left: var(--sbw); padding: 0 0 40px; }
+.read .shade { display: none; }
+.navtoggle { display: none; position: fixed; left: 12px; bottom: 16px; z-index: 30; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: var(--card); box-shadow: 0 2px 8px rgba(0, 0, 0, .12); cursor: pointer; padding: 13px 11px; }
+.navtoggle span { display: block; height: 2px; background: var(--ink); margin: 3px 0; border-radius: 2px; }
+@media (max-width: 768px) {
+  .read .sidebar { transform: translateX(calc(-1 * var(--sbw))); }
+  .read.open .sidebar { transform: none; }
+  .read.open .shade { display: block; position: fixed; inset: 0; background: rgba(0, 0, 0, .3); z-index: 15; }
+  .read .content { margin-left: 0; }
+  .navtoggle { display: block; }
+}
+
+.doc { max-width: 860px; margin: 0 auto; padding: 30px 16px 0; font-size: 15px; line-height: 1.8; color: var(--ink); }
+.doc .state { padding: 40px 0; color: var(--sub); }
+.doc h1, .doc h2, .doc h3, .doc h4, .doc h5, .doc h6 { color: var(--ink); line-height: 1.5; scroll-margin-top: 16px; }
+.doc h1 { font-size: 1.9em; margin: 0 0 1rem; }
+.doc h2 { font-size: 1.55em; margin: 2.2rem 0 .8rem; padding-bottom: .3em; border-bottom: 1px solid var(--line); }
+.doc h3 { font-size: 1.25em; margin: 1.8rem 0 .6rem; }
+.doc h4 { font-size: 1.05em; margin: 1.4rem 0 .5rem; }
+.doc h1 a.anchor, .doc h2 a.anchor, .doc h3 a.anchor, .doc h4 a.anchor, .doc h5 a.anchor, .doc h6 a.anchor { color: inherit; text-decoration: none; }
+.doc a.anchor:hover { text-decoration: underline; }
+.doc p, .doc ul, .doc ol { margin: 1em 0; }
+.doc ul, .doc ol { padding-left: 1.5em; }
+.doc li + li { margin-top: .2em; }
+.doc strong, .doc b { color: var(--ink); }
+.doc hr { border: 0; border-top: 1px solid var(--line); margin: 2em 0; }
+.doc blockquote { border-left: 4px solid var(--blue); margin: 1.2em 0; padding: .2em 0 .2em 1em; color: var(--sub); }
+.doc blockquote p { margin: .5em 0; }
+.doc code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .9em; background: var(--inline-code-bg); color: var(--inline-code-fg); border-radius: 4px; padding: 2px 5px; }
+.doc pre code { background: none; color: inherit; padding: 0; font-size: 13px; }
+.doc .tablewrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 1em 0; }
+.doc table { border-collapse: collapse; width: 100%; font-size: 14px; }
+.doc th, .doc td { border: 1px solid var(--line); padding: 7px 12px; text-align: left; vertical-align: top; }
+.doc th { background: var(--soft); font-weight: 700; }
+.doc tr:nth-child(2n) td { background: var(--bg); }
+.doc details { background: var(--soft); border: 1px solid var(--line); border-radius: 8px; padding: .6em 1em; margin: 1em 0; }
+.doc details summary { cursor: pointer; font-weight: 600; color: var(--blue); }
+.doc img { max-width: 100%; height: auto; }
+
+/* 図。狭い画面では縮めず、枠の中だけ横スクロール（図の文字は半分が 12px 未満なので、縮めると読めない） */
+.doc .ui-mock { display: block; max-width: 100%; margin: 1em 0; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+@media (max-width: 700px) {
+  .doc p:has(> img:not(.ti)), .doc div:has(> img.ui-mock) { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .doc img.ui-mock { min-width: 720px; max-width: none; }
+}
+@media (prefers-color-scheme: dark) { .doc .ui-mock { padding: 6px; } }
+/* 表・段落・箇条書きなど、どこに置いても同じ大きさのツールアイコン */
+.doc img.ti { width: 26px; height: 26px; vertical-align: -7px; margin-right: 6px; display: inline; }
+
+/* 目次ページの案内役 */
+.doc .hero { display: flex; align-items: center; gap: 18px; background: var(--blue-l); border: 1px solid var(--blue-b); border-radius: 14px; padding: 18px 20px; margin: 1.4em 0; }
+.doc .hero img { width: 88px; height: 88px; flex: none; }
+.doc .hero p { margin: 0; font-size: 15px; }
+@media (max-width: 520px) { .doc .hero { flex-direction: column; text-align: center; } }
+
+.doc .note { background: var(--amber-l); border: 1px solid var(--amber-b); border-left: 5px solid #e8a53a; border-radius: 8px; padding: .9em 1.1em; margin: 1.5em 0; }
+.doc .checkpoint { background: var(--green-l); border: 1px solid var(--green-b); border-left: 5px solid #3aa76d; border-radius: 8px; padding: .9em 1.1em; margin: 1.5em 0; }
+.doc .checkpoint strong { color: var(--green); }
+.doc .note > p:first-child, .doc .checkpoint > p:first-child { margin-top: 0; }
+.doc .note > p:last-child, .doc .checkpoint > p:last-child { margin-bottom: 0; }
+
+/* 寄り道コラム */
+.doc .column { background: var(--purple-l); border: 1px solid var(--purple-b); border-left: 5px solid #8b5cf6; border-radius: 10px; padding: 1em 1.2em; margin: 1.6em 0; }
+.doc .column .ct { font-size: 12px; font-weight: 700; color: var(--purple); letter-spacing: .04em; margin-bottom: .35em; }
+.doc .column p:last-child { margin-bottom: 0; }
+/* 豆知識 */
+.doc .trivia { background: var(--pink-l); border: 1px solid var(--pink-b); border-radius: 10px; padding: 1em 1.2em; margin: 1.6em 0; }
+.doc .trivia .ct { font-size: 12px; font-weight: 700; color: var(--pink); margin-bottom: .35em; }
+/* 質問と答え */
+.doc .qa { margin: 1.4em 0; }
+.doc .qa .q { font-weight: 700; font-size: 15.5px; padding-left: 1.9em; position: relative; margin-bottom: .4em; }
+.doc .qa .q::before, .doc .qa .a::before { position: absolute; left: 0; top: 0; width: 1.5em; height: 1.5em; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; }
+.doc .qa .q::before { content: "Q"; background: var(--blue); color: var(--on-accent); }
+.doc .qa .a { padding-left: 1.9em; position: relative; }
+.doc .qa .a::before { content: "A"; background: var(--rail); color: var(--sub); }
+/* 冒頭のリード文 */
+.doc .lead { font-size: 16px; line-height: 1.9; color: var(--sub); border-left: 3px solid var(--blue-b); padding-left: 1em; margin: 1.2em 0 1.8em; }
+
+/* 大段階カード・所要時間 */
+.doc .step-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: .75em; margin: 1.5em 0; }
+.doc .step-card { border: 1px solid var(--line); background: var(--soft); border-radius: 10px; padding: 1em .8em; text-align: center; }
+.doc .time { display: inline-block; background: var(--blue-l); color: var(--blue); border: 1px solid var(--blue-b); border-radius: 999px; padding: .15em .8em; font-size: .78em; font-weight: 700; vertical-align: middle; margin-left: .5em; }
+
+/* 進捗の報告・参画の相談・できていない項目のコピー（widgets の3つで共通） */
+.doc .mapreport { background: var(--blue-l); border: 1px solid var(--blue-b); border-radius: 10px; padding: 14px 16px; margin-top: 12px; font-size: 14px; }
+.doc .mapreport .mrsub { font-size: 13px; color: var(--sub); display: block; margin-top: 3px; }
+.doc .mapreport .mrbtn { display: inline-block; margin-top: 12px; background: var(--blue); color: var(--on-accent); font-weight: 700; text-decoration: none; border-radius: 9px; padding: 11px 20px; border: 0; font-size: 15px; font-family: inherit; cursor: pointer; }
+.doc .mapreport .mrbtn:hover { filter: brightness(.93); }
+
+/* チェックリストの箇条書きは、点を出さない */
+.doc ul:has(> .task-list-item) { padding-left: .4em; }

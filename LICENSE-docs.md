@@ -41,7 +41,7 @@
    - `support`（サポート窓口・参加申請の宛先）
    - `coffee.url` — **空文字にすれば、寄付の案内は消えます**（他人の受け口が残らないよう、必ず確認してください）
 3. 相談・進捗用の**非公開リポジトリ**を別に用意する（[README](README.md) に手順があります）
-4. `Settings > Pages` の Source で `GitHub Actions` を選んで公開する（push するとビルドされます）
+4. `Settings > Pages` で `main` / `docs` を選んで公開する（push すると Actions がビルドして `docs/` を更新します）
 
 <div></div>
 

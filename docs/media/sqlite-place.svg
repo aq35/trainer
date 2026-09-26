@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="252" viewBox="0 0 720 252" role="img" aria-label="サーバーを立てるデータベースと、ファイル1つで済むSQLiteの違い">
+<rect width="720" height="252" fill="#ffffff"/>
+<rect x="24" y="20" width="330" height="150" rx="10" fill="#f6f8fc" stroke="#c7cede" stroke-width="1.5"/>
+<text x="189" y="45" font-family="sans-serif" font-size="13" font-weight="700" fill="#3d4652" text-anchor="middle">よくあるデータベース</text>
+<text x="189" y="65" font-family="sans-serif" font-size="12" fill="#8892a0" text-anchor="middle">MySQL / PostgreSQL など</text>
+<rect x="60" y="80" width="110" height="46" rx="8" fill="#ffffff" stroke="#8892a0" stroke-width="1.5"/>
+<text x="115" y="108" font-family="sans-serif" font-size="12.5" fill="#3d4652" text-anchor="middle">あなたのアプリ</text>
+<path d="M178 103 L206 103" stroke="#8892a0" stroke-width="2"/><path d="M206 97 L216 103 L206 109 Z" fill="#8892a0"/>
+<rect x="216" y="80" width="110" height="46" rx="8" fill="#ffffff" stroke="#c0392b" stroke-width="1.5"/>
+<text x="271" y="100" font-family="sans-serif" font-size="12.5" fill="#c0392b" text-anchor="middle">常に動いている</text>
+<text x="271" y="118" font-family="sans-serif" font-size="12.5" fill="#c0392b" text-anchor="middle">プログラム</text>
+<text x="189" y="150" font-family="sans-serif" font-size="12" fill="#5b6472" text-anchor="middle">入れる・起動する・止める手間がかかります</text>
+<rect x="366" y="20" width="330" height="150" rx="10" fill="#eef7f1" stroke="#a9d5bb" stroke-width="1.5"/>
+<text x="531" y="45" font-family="sans-serif" font-size="13" font-weight="700" fill="#1f5c39" text-anchor="middle">SQLite（今日つかうもの）</text>
+<text x="531" y="65" font-family="sans-serif" font-size="12" fill="#3f7a5c" text-anchor="middle">Node.js に最初から入っています（Node 22 以上）</text>
+<rect x="402" y="80" width="110" height="46" rx="8" fill="#ffffff" stroke="#2f8f4e" stroke-width="1.5"/>
+<text x="457" y="108" font-family="sans-serif" font-size="12.5" fill="#1f5c39" text-anchor="middle">あなたのアプリ</text>
+<path d="M520 103 L548 103" stroke="#2f8f4e" stroke-width="2"/><path d="M548 97 L558 103 L548 109 Z" fill="#2f8f4e"/>
+<rect x="558" y="80" width="110" height="46" rx="8" fill="#ffffff" stroke="#2f8f4e" stroke-width="1.5"/>
+<text x="613" y="108" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#1f5c39" text-anchor="middle">ファイル1つ</text>
+<text x="531" y="150" font-family="sans-serif" font-size="12" fill="#1f5c39" text-anchor="middle">要らなくなったら、そのファイルを消すだけ</text>
+<rect x="24" y="186" width="672" height="48" rx="10" fill="#eef3ff" stroke="#9fb4d8" stroke-width="1.5"/>
+<text x="360" y="207" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#26456f" text-anchor="middle">小さいけれど、書けるのは本物の SQL です</text>
+<text x="360" y="227" font-family="sans-serif" font-size="12" fill="#5a6f92" text-anchor="middle">練習用のおもちゃではありません。スマホのアプリの中でも実際に使われています</text>
+</svg>

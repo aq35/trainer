@@ -1,7 +1,9 @@
-# 教材を sunao でビルドし、GitHub Pages に公開する。
-# プルリクエストではビルドとテストだけ（壊れた教材が main に入る前に止める）。
-# 公開には、リポジトリの Settings → Pages → Source を「GitHub Actions」にしておく必要がある。
-name: build and publish
+# 教材を sunao でビルドし、公開用の docs/ を作り直す。
+# GitHub Pages は「main ブランチの docs/ をそのまま配信する」設定のまま使う。
+#   - プルリクエスト: テストとビルドだけ（壊れた教材が main に入る前に止める）
+#   - main への push: docs/ を作り直し、変わっていればコミットする
+#     （このコミットは GITHUB_TOKEN で作るので、このワークフローをもう一度起こさない）
+name: build
 
 on:
   push:
@@ -9,16 +11,15 @@ on:
   pull_request:
   workflow_dispatch:
 
-permissions:
-  contents: read
-
 concurrency:
-  group: pages-${{ github.ref }}
-  cancel-in-progress: true
+  group: build-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -27,22 +28,16 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm test
-      - run: npm run build
-      - uses: actions/upload-pages-artifact@v3
-        if: github.event_name != 'pull_request'
-        with:
-          path: _site
-
-  deploy:
-    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      - run: npm run build:docs
+      - name: docs/ が変わっていればコミットする（main のときだけ）
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        run: |
+          git add -A docs
+          if git diff --cached --quiet; then
+            echo "docs/ は最新です"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "docs: ビルド結果を更新（${GITHUB_SHA::7}）"
+          git push

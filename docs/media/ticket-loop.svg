@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="330" viewBox="0 0 720 330" role="img" aria-label="1件のチケットを、ブランチを切る・直す・PRを出す・自動チェック・レビュー・取り込むの6手順で回し、それをチケットの数だけ繰り返す図">
+  <rect width="720" height="330" fill="#ffffff"/>
+
+  <text x="360" y="26" font-family="sans-serif" font-size="13" font-weight="700" fill="#26456f" text-anchor="middle">チケット1件の流れ ——  これを、チケットの数だけ繰り返します</text>
+
+  <rect x="20" y="44" width="102" height="66" rx="9" fill="#eef4ff" stroke="#9fb4d8" stroke-width="1.5"/>
+  <text x="71" y="70" font-family="sans-serif" font-size="12" font-weight="700" fill="#26456f" text-anchor="middle">① 切る</text>
+  <text x="71" y="90" font-family="monospace" font-size="9" fill="#5a6f92" text-anchor="middle">git switch -c</text>
+  <text x="71" y="103" font-family="sans-serif" font-size="10" fill="#5a6f92" text-anchor="middle">main は触らない</text>
+
+  <path d="M126 77 L146 77" stroke="#9fb4d8" stroke-width="2"/><path d="M140 72 L149 77 L140 82 Z" fill="#9fb4d8"/>
+
+  <rect x="152" y="44" width="102" height="66" rx="9" fill="#eef4ff" stroke="#9fb4d8" stroke-width="1.5"/>
+  <text x="203" y="70" font-family="sans-serif" font-size="12" font-weight="700" fill="#26456f" text-anchor="middle">② 直す</text>
+  <text x="203" y="90" font-family="sans-serif" font-size="10" fill="#5a6f92" text-anchor="middle">再現 → 原因 → 修正</text>
+  <text x="203" y="103" font-family="sans-serif" font-size="10" fill="#5a6f92" text-anchor="middle">差分を自分で読む</text>
+
+  <path d="M258 77 L278 77" stroke="#9fb4d8" stroke-width="2"/><path d="M272 72 L281 77 L272 82 Z" fill="#9fb4d8"/>
+
+  <rect x="284" y="44" width="102" height="66" rx="9" fill="#eef4ff" stroke="#9fb4d8" stroke-width="1.5"/>
+  <text x="335" y="70" font-family="sans-serif" font-size="12" font-weight="700" fill="#26456f" text-anchor="middle">③ 出す</text>
+  <text x="335" y="90" font-family="sans-serif" font-size="10" fill="#5a6f92" text-anchor="middle">プルリクエスト</text>
+  <text x="335" y="103" font-family="sans-serif" font-size="10" fill="#5a6f92" text-anchor="middle">「なぜ」を説明に書く</text>
+
+  <path d="M390 77 L410 77" stroke="#9fb4d8" stroke-width="2"/><path d="M404 72 L413 77 L404 82 Z" fill="#9fb4d8"/>
+
+  <rect x="416" y="44" width="102" height="66" rx="9" fill="#eef7f1" stroke="#a9d5bb" stroke-width="1.5"/>
+  <text x="467" y="70" font-family="sans-serif" font-size="12" font-weight="700" fill="#1f5c39" text-anchor="middle">④ 自動チェック</text>
+  <text x="467" y="90" font-family="sans-serif" font-size="10" fill="#4a7a5f" text-anchor="middle">人は操作しません</text>
+  <text x="467" y="103" font-family="sans-serif" font-size="10" fill="#4a7a5f" text-anchor="middle">機械が毎回、同じ判定</text>
+
+  <path d="M522 77 L542 77" stroke="#a9d5bb" stroke-width="2"/><path d="M536 72 L545 77 L536 82 Z" fill="#a9d5bb"/>
+
+  <rect x="548" y="44" width="102" height="66" rx="9" fill="#f4eefc" stroke="#c4aee6" stroke-width="1.5"/>
+  <text x="599" y="70" font-family="sans-serif" font-size="12" font-weight="700" fill="#4a2f77" text-anchor="middle">⑤ レビュー</text>
+  <text x="599" y="90" font-family="sans-serif" font-size="10" fill="#6b4f96" text-anchor="middle">AI／人に見てもらう</text>
+  <text x="599" y="103" font-family="sans-serif" font-size="10" fill="#6b4f96" text-anchor="middle">指摘に返事をする</text>
+
+  <path d="M654 77 L680 77 L680 150 L360 150" stroke="#2f8f4e" stroke-width="2" fill="none"/>
+  <path d="M368 144 L358 150 L368 156 Z" fill="#2f8f4e"/>
+  <text x="516" y="168" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#2f8f4e" text-anchor="middle">⑥ main に取り込む</text>
+
+  <path d="M300 150 L8 150 L8 77 L14 77" stroke="#8892a0" stroke-width="2" fill="none" stroke-dasharray="5 4"/>
+  <path d="M11 72 L20 77 L11 82 Z" fill="#8892a0"/>
+  <text x="170" y="168" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#8892a0" text-anchor="middle">次のチケットへ（また ① から）</text>
+
+  <path d="M20 194 L700 194" stroke="#c7cede" stroke-width="1"/>
+
+  <text x="20" y="220" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#26456f">この回で回すチケット（全14件のうち6件）</text>
+  <text x="20" y="244" font-family="sans-serif" font-size="11.5" fill="#26456f">#3 タグの色が出ない（404の調査）　　　　　#2 エラーが出ない不具合の切り分け</text>
+  <text x="20" y="266" font-family="sans-serif" font-size="11.5" fill="#26456f">#1 あいまいな依頼を、質問して形にする　　#4 他人の変更とぶつかる（コンフリクト）</text>
+  <text x="20" y="288" font-family="sans-serif" font-size="11.5" fill="#26456f">#5 テストを書き足す　　　　　　　　　　　#6 読みにくいコードを整理する</text>
+  <text x="20" y="314" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#c0392b">残り8件は、あとの回（12・13・17〜22）で使います。ゼロから作る場面は1つもありません。</text>
+</svg>

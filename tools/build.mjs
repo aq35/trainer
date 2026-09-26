@@ -1,6 +1,7 @@
 // サイトを _site/ に書き出す。GitHub Actions（.github/workflows/pages.yml）がこれを動かして公開する。
 //
-//   node tools/build.mjs            … 1回だけビルド
+//   node tools/build.mjs            … 1回だけビルド（_site/ に書き出す）
+//   node tools/build.mjs --out docs … 公開用の docs/ に書き出す
 //   node tools/build.mjs --watch    … 保存するたびにビルドし直し、http://localhost:8000/ で見せる
 //
 // やること:
@@ -161,7 +162,7 @@ export async function buildSite({ quiet = false, out = join(ROOT, '_site') } = {
     body: `<script>window.TRAINER_SITE = ${inlineJson(siteData)};</script>\n<script src="${js.doc}"></script>`,
   }));
 
-  if (!quiet) console.log(`✓ _site/ に書き出しました（ナビ ${navis.length} 本・読み物 ${Object.keys(pages).length} 本・${Date.now() - t0}ms）`);
+  if (!quiet) console.log(`✓ ${OUT.slice(ROOT.length + 1)}/ に書き出しました（ナビ ${navis.length} 本・読み物 ${Object.keys(pages).length} 本・${Date.now() - t0}ms）`);
   return { navis: navis.length, pages: Object.keys(pages).length };
 }
 
@@ -188,7 +189,10 @@ function parseSidebar(md, pages) {
 
 // ---- --watch: 保存したら作り直して、ブラウザで見られるようにする ----
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  await buildSite();
+  // --out docs で、GitHub Pages が配信する docs/ に書き出す（Actions が main への push のたびにこれを動かす）
+  const at = process.argv.indexOf('--out');
+  if (at > 0) OUT = resolve(ROOT, process.argv[at + 1]);
+  await buildSite({ out: OUT });
   if (process.argv.includes('--watch')) {
     const port = Number(process.env.PORT || 8000);
     const TYPES = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.svg': 'image/svg+xml', '.png': 'image/png', '.json': 'application/json' };

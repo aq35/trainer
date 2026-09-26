@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="300" viewBox="0 0 720 300" role="img" aria-label="同じ指摘の、きつい書き方と伝わる書き方の比較">
+  <rect width="720" height="300" fill="#ffffff"/>
+  <text x="180" y="26" font-family="sans-serif" font-size="13" font-weight="700" fill="#c0392b" text-anchor="middle">こう書かれると</text>
+  <text x="540" y="26" font-family="sans-serif" font-size="13" font-weight="700" fill="#2f8f4e" text-anchor="middle">こう書かれると</text>
+
+  <rect x="24" y="40" width="312" height="180" rx="10" fill="#fdf0ee" stroke="#e6b5ad" stroke-width="1.5"/>
+  <g font-family="sans-serif" font-size="13" fill="#7a2f24">
+    <text x="44" y="72">「ここ、間違ってます」</text>
+    <text x="44" y="104">「意味不明」</text>
+    <text x="44" y="136">「消してください」</text>
+    <text x="44" y="168">「ダメです」</text>
+  </g>
+  <text x="180" y="244" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#c0392b" text-anchor="middle">→ 直せるが、次から小さい変更しか出さなくなる</text>
+  <text x="180" y="266" font-family="sans-serif" font-size="11.5" fill="#8892a0" text-anchor="middle">正しくても、萎縮させたらチームの損</text>
+
+  <rect x="384" y="40" width="312" height="180" rx="10" fill="#eef7f1" stroke="#a9d5bb" stroke-width="1.5"/>
+  <g font-family="sans-serif" font-size="12.5" fill="#1f5c39">
+    <text x="404" y="66">「ここ、&gt; ではなく &lt; では</text>
+    <text x="404" y="84">　ないでしょうか？」</text>
+    <text x="404" y="112">「a が何を指しているか読み</text>
+    <text x="404" y="130">　取れませんでした」</text>
+    <text x="404" y="158">「調査用に入れたもので</text>
+    <text x="404" y="176">　しょうか？」</text>
+    <text x="404" y="204">「この関数名、分かりやすいです」</text>
+  </g>
+  <text x="540" y="244" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#2f8f4e" text-anchor="middle">→ 直せるうえ、次も出してくれる</text>
+  <text x="540" y="266" font-family="sans-serif" font-size="11.5" fill="#8892a0" text-anchor="middle">人ではなくコードに / 理由を1つ / 断定しすぎない</text>
+</svg>

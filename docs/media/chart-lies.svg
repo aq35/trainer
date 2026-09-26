@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="350" viewBox="0 0 720 350" role="img" aria-label="グラフが嘘をつく3つのパターンと、その避け方">
+  <rect width="720" height="350" fill="#ffffff"/>
+
+  <text x="360" y="26" font-family="sans-serif" font-size="13" font-weight="700" fill="#26456f" text-anchor="middle">数字を1つも変えずに、グラフは嘘をつけます</text>
+
+  <rect x="24" y="42" width="216" height="176" rx="10" fill="#fdf0ee" stroke="#e6b5ad" stroke-width="1.5"/>
+  <text x="132" y="64" font-family="sans-serif" font-size="12" font-weight="700" fill="#c0392b" text-anchor="middle">① 下を切る</text>
+  <rect x="60" y="76" width="30" height="46" fill="#e6b5ad"/>
+  <rect x="110" y="100" width="30" height="22" fill="#e6b5ad"/>
+  <rect x="160" y="112" width="30" height="10" fill="#e6b5ad"/>
+  <path d="M52 122 L200 122" stroke="#8892a0"/>
+  <text x="132" y="138" font-family="sans-serif" font-size="10" fill="#8892a0" text-anchor="middle">100ms 〜 340ms だけ描くと</text>
+  <text x="132" y="154" font-family="sans-serif" font-size="11" font-weight="700" fill="#c0392b" text-anchor="middle">差が何倍にも見える</text>
+  <path d="M44 166 L220 166" stroke="#e6b5ad" stroke-dasharray="3 3"/>
+  <text x="132" y="186" font-family="sans-serif" font-size="11" font-weight="700" fill="#2f8f4e" text-anchor="middle">→ 必ず 0 から始める</text>
+  <text x="132" y="206" font-family="sans-serif" font-size="10" fill="#4a7a5f" text-anchor="middle">棒グラフの鉄則です</text>
+
+  <rect x="252" y="42" width="216" height="176" rx="10" fill="#fdf0ee" stroke="#e6b5ad" stroke-width="1.5"/>
+  <text x="360" y="64" font-family="sans-serif" font-size="12" font-weight="700" fill="#c0392b" text-anchor="middle">② 目盛りも数字も無い</text>
+  <rect x="288" y="80" width="30" height="42" fill="#e6b5ad"/>
+  <rect x="338" y="94" width="30" height="28" fill="#e6b5ad"/>
+  <rect x="388" y="108" width="30" height="14" fill="#e6b5ad"/>
+  <path d="M280 122 L428 122" stroke="#8892a0"/>
+  <text x="360" y="140" font-family="sans-serif" font-size="10" fill="#8892a0" text-anchor="middle">「速くなった」ことしか分からない</text>
+  <text x="360" y="156" font-family="sans-serif" font-size="11" font-weight="700" fill="#c0392b" text-anchor="middle">印象だけが伝わる</text>
+  <path d="M272 166 L448 166" stroke="#e6b5ad" stroke-dasharray="3 3"/>
+  <text x="360" y="186" font-family="sans-serif" font-size="11" font-weight="700" fill="#2f8f4e" text-anchor="middle">→ 目盛りと数値を入れる</text>
+  <text x="360" y="206" font-family="sans-serif" font-size="10" fill="#4a7a5f" text-anchor="middle">読む人が自分で確かめられる</text>
+
+  <rect x="480" y="42" width="216" height="176" rx="10" fill="#fdf0ee" stroke="#e6b5ad" stroke-width="1.5"/>
+  <text x="588" y="64" font-family="sans-serif" font-size="12" font-weight="700" fill="#c0392b" text-anchor="middle">③ 3D・装飾に凝る</text>
+  <path d="M516 122 L546 122 L556 112 L526 112 Z" fill="#d9a79c"/>
+  <rect x="516" y="80" width="30" height="42" fill="#e6b5ad"/>
+  <path d="M546 80 L556 70 L556 112 L546 122 Z" fill="#c99184"/>
+  <rect x="596" y="100" width="30" height="22" fill="#e6b5ad"/>
+  <path d="M626 100 L636 90 L636 112 L626 122 Z" fill="#c99184"/>
+  <path d="M508 122 L656 122" stroke="#8892a0"/>
+  <text x="588" y="140" font-family="sans-serif" font-size="10" fill="#8892a0" text-anchor="middle">奥行きが付くと</text>
+  <text x="588" y="156" font-family="sans-serif" font-size="11" font-weight="700" fill="#c0392b" text-anchor="middle">手前の棒が大きく見える</text>
+  <path d="M500 166 L676 166" stroke="#e6b5ad" stroke-dasharray="3 3"/>
+  <text x="588" y="186" font-family="sans-serif" font-size="11" font-weight="700" fill="#2f8f4e" text-anchor="middle">→ 平面のまま作る</text>
+  <text x="588" y="206" font-family="sans-serif" font-size="10" fill="#4a7a5f" text-anchor="middle">装飾は、正確さを削ります</text>
+
+  <path d="M24 240 L696 240" stroke="#c7cede" stroke-width="1"/>
+  <text x="24" y="264" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#26456f">グラフは、説得の道具ではありません。<tspan fill="#2f8f4e">判断の材料</tspan>です。</text>
+  <text x="24" y="290" font-family="sans-serif" font-size="12" fill="#26456f">出す前に、自分のグラフをこの3つで点検してください。<tspan font-weight="700">悪気がなくても、①は簡単に起きます。</tspan></text>
+  <text x="24" y="316" font-family="sans-serif" font-size="12" font-weight="700" fill="#c0392b">そしてこれは、あなたが騙されないための知識でもあります。</text>
+  <text x="24" y="338" font-family="sans-serif" font-size="11.5" fill="#8892a0">ニュースや広告のグラフを、少し疑って見られるようになります。</text>
+</svg>

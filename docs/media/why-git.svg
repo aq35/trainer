@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 330" role="img" aria-label="ファイル名で履歴を管理する場合とgitで管理する場合の比較">
+  <rect width="720" height="330" fill="#ffffff"/>
+
+  <text x="175" y="26" font-family="sans-serif" font-size="14" font-weight="700" fill="#c0392b" text-anchor="middle">git を使わないと</text>
+  <text x="530" y="26" font-family="sans-serif" font-size="14" font-weight="700" fill="#2b7d52" text-anchor="middle">git を使うと</text>
+
+  <!-- messy -->
+  <rect x="20" y="42" width="310" height="230" rx="8" fill="#fdf1f0" stroke="#f0c2bd" stroke-width="1.5"/>
+  <g font-family="sans-serif" font-size="12" fill="#3d4652">
+    <rect x="40" y="60" width="270" height="26" rx="4" fill="#ffffff" stroke="#e6d0cd"/>
+    <text x="52" y="78">企画書.txt</text>
+    <rect x="40" y="92" width="270" height="26" rx="4" fill="#ffffff" stroke="#e6d0cd"/>
+    <text x="52" y="110">企画書_修正.txt</text>
+    <rect x="40" y="124" width="270" height="26" rx="4" fill="#ffffff" stroke="#e6d0cd"/>
+    <text x="52" y="142">企画書_修正_最新.txt</text>
+    <rect x="40" y="156" width="270" height="26" rx="4" fill="#ffffff" stroke="#e6d0cd"/>
+    <text x="52" y="174">企画書_修正_最新_v2.txt</text>
+    <rect x="40" y="188" width="270" height="26" rx="4" fill="#ffffff" stroke="#e6d0cd"/>
+    <text x="52" y="206">企画書_本当に最新.txt</text>
+  </g>
+  <text x="175" y="248" font-family="sans-serif" font-size="12.5" fill="#c0392b" text-anchor="middle">どれが最新？ 何を変えた？</text>
+  <text x="175" y="266" font-family="sans-serif" font-size="12.5" fill="#c0392b" text-anchor="middle">戻したいのに戻せない</text>
+
+  <!-- clean -->
+  <rect x="380" y="42" width="320" height="230" rx="8" fill="#f1faf4" stroke="#b7e3c6" stroke-width="1.5"/>
+  <text x="540" y="66" font-family="monospace" font-size="12.5" fill="#5b6472" text-anchor="middle">企画書.txt （ファイルは1つだけ）</text>
+
+  <line x1="430" y1="150" x2="660" y2="150" stroke="#3aa76d" stroke-width="2.5"/>
+  <g>
+    <circle cx="440" cy="150" r="9" fill="#ffffff" stroke="#3aa76d" stroke-width="2.5"/>
+    <text x="440" y="182" font-family="sans-serif" font-size="10.5" fill="#5b6472" text-anchor="middle">最初に書いた</text>
+  </g>
+  <g>
+    <circle cx="513" cy="150" r="9" fill="#ffffff" stroke="#3aa76d" stroke-width="2.5"/>
+    <text x="513" y="182" font-family="sans-serif" font-size="10.5" fill="#5b6472" text-anchor="middle">価格を直した</text>
+  </g>
+  <g>
+    <circle cx="586" cy="150" r="9" fill="#ffffff" stroke="#3aa76d" stroke-width="2.5"/>
+    <text x="586" y="182" font-family="sans-serif" font-size="10.5" fill="#5b6472" text-anchor="middle">図を足した</text>
+  </g>
+  <g>
+    <circle cx="659" cy="150" r="10" fill="#3aa76d"/>
+    <text x="659" y="182" font-family="sans-serif" font-size="10.5" font-weight="700" fill="#2b7d52" text-anchor="middle">いま</text>
+  </g>
+
+  <path d="M655 122 Q 560 92 448 122" stroke="#2f6fed" stroke-width="2" fill="none" marker-end="url(#back)"/>
+  <text x="550" y="88" font-family="sans-serif" font-size="12" font-weight="600" fill="#2f6fed" text-anchor="middle">どこにでも戻れる</text>
+
+  <text x="540" y="248" font-family="sans-serif" font-size="12.5" fill="#2b7d52" text-anchor="middle">いつ・誰が・何を変えたか、全部残る</text>
+  <text x="540" y="266" font-family="sans-serif" font-size="12.5" fill="#2b7d52" text-anchor="middle">だから安心して壊せる</text>
+
+  <text x="360" y="308" font-family="sans-serif" font-size="13.5" font-weight="600" fill="#3d4652" text-anchor="middle">git は「ゲームのセーブポイント」です。好きなところで保存し、好きなところに戻れます。</text>
+
+  <defs>
+    <marker id="back" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#2f6fed"/>
+    </marker>
+  </defs>
+</svg>

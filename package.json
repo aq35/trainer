@@ -5,6 +5,7 @@
   "description": "エンジニア育成トレーナー。教材（content/）を sunao（site/）で描き、_site/ に静的サイトとして書き出す。",
   "scripts": {
     "build": "node tools/build.mjs",
+    "build:docs": "node tools/build.mjs --out docs",
     "dev": "node tools/build.mjs --watch",
     "test": "node --test tests/*.test.mjs",
     "check:cmd": "node tools/check-cmd-explain.mjs"

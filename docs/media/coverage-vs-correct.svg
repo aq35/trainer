@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="286" viewBox="0 0 720 286" role="img" aria-label="カバレッジは通った行の割合であって、正しさではないことを示す図">
+<rect width="720" height="286" fill="#ffffff"/>
+<text x="24" y="28" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#26456f">カバレッジは「通った」の記録です。「正しい」の記録ではありません</text>
+
+<rect x="24" y="42" width="330" height="128" rx="10" fill="#f6f8fc" stroke="#c7cede" stroke-width="1.5"/>
+<text x="189" y="66" font-family="sans-serif" font-size="13" font-weight="700" fill="#3d4652" text-anchor="middle">バグを直す前</text>
+<text x="44" y="94" font-family="sans-serif" font-size="12.5" fill="#3d4652">カバレッジ　line 54.79 ／ funcs 25.00</text>
+<text x="44" y="120" font-family="sans-serif" font-size="12.5" fill="#c0392b">テスト　　　<tspan font-weight="700">6 通過 ／ 8 失敗</tspan></text>
+<text x="189" y="150" font-family="sans-serif" font-size="12" fill="#8892a0" text-anchor="middle">動いていない機能がある状態</text>
+
+<rect x="366" y="42" width="330" height="128" rx="10" fill="#eef7f1" stroke="#a9d5bb" stroke-width="1.5"/>
+<text x="531" y="66" font-family="sans-serif" font-size="13" font-weight="700" fill="#1f5c39" text-anchor="middle">バグを1つ直したあと</text>
+<text x="386" y="94" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#c0392b">カバレッジ　line 54.79 ／ funcs 25.00</text>
+<text x="386" y="120" font-family="sans-serif" font-size="12.5" fill="#1f5c39">テスト　　　<tspan font-weight="700">8 通過 ／ 6 失敗</tspan></text>
+<text x="531" y="150" font-family="sans-serif" font-size="12" fill="#1f5c39" text-anchor="middle">直ったのに、カバレッジは1ミリも動かない</text>
+
+<path d="M360 106 L366 106" stroke="#8892a0" stroke-width="2"/>
+<rect x="24" y="186" width="672" height="46" rx="10" fill="#fdf0ee" stroke="#e6b5ad" stroke-width="1.5"/>
+<text x="360" y="215" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#c0392b" text-anchor="middle">カバレッジが見ているのは「通った行」だけ。中身が合っているかは見ていません</text>
+<rect x="24" y="242" width="672" height="34" rx="9" fill="#eef3ff" stroke="#9fb4d8" stroke-width="1.5"/>
+<text x="360" y="264" font-family="sans-serif" font-size="13" font-weight="700" fill="#26456f" text-anchor="middle">使い道は「上げる」ことではなく、<tspan fill="#c0392b">通っていない所を見つける</tspan>ことです</text>
+</svg>

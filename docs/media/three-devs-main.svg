@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="320" viewBox="0 0 720 320" role="img" aria-label="3人が同じmainに直接入れると起きる3つの困りごと">
+<rect width="720" height="320" fill="#ffffff"/>
+<text x="24" y="28" font-family="sans-serif" font-size="13.5" font-weight="700" fill="#26456f">3人が、同じ <tspan font-family="monospace">main</tspan> に<tspan fill="#c0392b">直接</tspan>入れたとします</text>
+
+<rect x="40" y="42" width="120" height="30" rx="7" fill="#eef3ff" stroke="#9fb4d8"/>
+<text x="100" y="62" font-family="sans-serif" font-size="12" fill="#26456f" text-anchor="middle">Aさん 完成した</text>
+<rect x="180" y="42" width="150" height="30" rx="7" fill="#fff9ec" stroke="#e5c98a"/>
+<text x="255" y="62" font-family="sans-serif" font-size="12" fill="#8a6d1f" text-anchor="middle">Bさん まだ作りかけ</text>
+<rect x="350" y="42" width="150" height="30" rx="7" fill="#fdf0ee" stroke="#e6b5ad"/>
+<text x="425" y="62" font-family="sans-serif" font-size="12" fill="#7a2f24" text-anchor="middle">Cさん 実験してみた</text>
+
+<path d="M100 76 L100 96" stroke="#9fb4d8" stroke-width="2"/><path d="M94 90 L100 98 L106 90" fill="none" stroke="#9fb4d8" stroke-width="2"/>
+<path d="M255 76 L255 96" stroke="#e5c98a" stroke-width="2"/><path d="M249 90 L255 98 L261 90" fill="none" stroke="#e5c98a" stroke-width="2"/>
+<path d="M425 76 L425 96" stroke="#e6b5ad" stroke-width="2"/><path d="M419 90 L425 98 L431 90" fill="none" stroke="#e6b5ad" stroke-width="2"/>
+
+<rect x="24" y="102" width="672" height="34" rx="8" fill="#f6f8fc" stroke="#c7cede" stroke-width="1.5"/>
+<text x="40" y="124" font-family="monospace" font-size="13" font-weight="700" fill="#3d4652">main</text>
+<text x="100" y="124" font-family="sans-serif" font-size="12" fill="#5a6f92">…… 3人分が、1列に混ざった状態</text>
+<text x="600" y="124" font-family="sans-serif" font-size="12" font-weight="700" fill="#c0392b" text-anchor="middle">そこへ「明日出して」</text>
+
+<rect x="24" y="148" width="672" height="40" rx="9" fill="#fdf0ee" stroke="#e6b5ad" stroke-width="1.5"/>
+<text x="40" y="173" font-family="sans-serif" font-size="12.5" fill="#7a2f24">① <tspan font-weight="700">「いまの main、出せるの？」に、誰も答えられません</tspan> —— 作りかけが入っているかもしれない</text>
+
+<rect x="24" y="196" width="672" height="40" rx="9" fill="#fdf0ee" stroke="#e6b5ad" stroke-width="1.5"/>
+<text x="40" y="221" font-family="sans-serif" font-size="12.5" fill="#7a2f24">② <tspan font-weight="700">頼んでいないものが、一緒に出ます</tspan> —— C さんの実験も、そのまま乗ってしまう</text>
+
+<rect x="24" y="244" width="672" height="40" rx="9" fill="#fdf0ee" stroke="#e6b5ad" stroke-width="1.5"/>
+<text x="40" y="269" font-family="sans-serif" font-size="12.5" fill="#7a2f24">③ <tspan font-weight="700">戻したくても、どこまで戻せばいいか分かりません</tspan> —— B さんの分だけ抜く、ができない</text>
+
+<rect x="24" y="292" width="672" height="24" rx="7" fill="#eef3ff" stroke="#9fb4d8"/>
+<text x="360" y="309" font-family="sans-serif" font-size="12.5" fill="#26456f" text-anchor="middle"><tspan font-weight="700" fill="#c0392b">混ざったあとで分けるのは、ほぼ不可能です。</tspan>だから「入れる前に分ける」しかありません</text>
+</svg>
