@@ -1,6 +1,6 @@
 <!--
   目次ページの「全体地図」（本文の <div id="map"></div> に入る）。
-  各ナビの進み具合を localStorage から読み、読み物（☕）は手を動かした回の前後に挟む。
+  各ナビの進み具合を localStorage から読み、読み物（📖）は手を動かした回の前後に挟む。
 -->
 <template>
   <div>
@@ -36,7 +36,7 @@ export default {
     const rows = [];
     const reading = (r) => {
       const d = !!rdone[r.md];
-      rows.push({ cls: 'mapitem reading' + (d ? ' done' : ''), href: '#/' + r.md, badge: r.badge || '☕', icon: r.icon, label: r.label, txt: d ? r.done || '読んだ' : r.undone || '読み物・任意', bar: false });
+      rows.push({ cls: 'mapitem reading' + (d ? ' done' : ''), href: '#/' + r.md, badge: r.badge || '📖', icon: r.icon, label: r.label, txt: d ? r.done || '読んだ' : r.undone || '読み物・任意', bar: false });
     };
     steps.forEach((s, i) => {
       // 手を動かす前に、正体だけ知っておきたい人向け

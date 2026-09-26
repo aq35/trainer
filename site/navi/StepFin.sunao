@@ -27,7 +27,7 @@
     </div>
     <!-- 手を動かした直後は、その道具の背景がいちばん頭に入る -->
     <a v-if="s.readNext" class="readnext" :href="'index.html#/' + s.readNext.md" target="_blank" rel="noopener">
-      <span class="rc">☕</span>
+      <span class="rc">📖</span>
       <span>
         <b>ひと休みに読む: <Rich :nodes="s.readNext.label" /></b>
         <span class="rs"><Rich :nodes="s.readNext.sub" />（読むだけ・3分。飛ばしても先に進めます）</span>

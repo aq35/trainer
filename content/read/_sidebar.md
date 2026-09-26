@@ -2,7 +2,7 @@
   - [トップ（進み具合）](/)
   - [第1回 道具をそろえる](01-tools.html ':ignore target=_blank')
   - [第2回 フォークして手元に持ってくる](02-fork.html ':ignore target=_blank')
-  - [　☕ なぜ Git が生まれたのか](why-git.md)
+  - [　📖 なぜ Git が生まれたのか](why-git.md)
   - [第3回 最初のコミット](03-first-commit.html ':ignore target=_blank')
 - いつでも
   - [🔎 Git を調べるコツ](git-research.md)
