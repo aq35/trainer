@@ -5,7 +5,7 @@
 -->
 <template>
   <div class="sb">
-    <a class="appname" href="#/">エンジニア育成トレーナー</a>
+    <a class="appname" href="#/">Git トレーナー</a>
     <div class="search">
       <input type="search" placeholder="検索" aria-label="読み物を検索" @focus="loadSearch" @input="query.set($event.target.value)" />
     </div>

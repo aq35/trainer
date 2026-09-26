@@ -6,7 +6,7 @@
 -->
 <template>
   <footer class="sitecredit">
-    この教材は<b>無料</b>で公開されています — <a href="https://aq35.github.io/trainer/">aq35.github.io/trainer</a>
+    出典: <b>Git トレーナー</b> — <a href="https://aq35.github.io/trainer/">aq35.github.io/trainer</a>
     <span class="cl2">{{ updated }}<a href="https://github.com/aq35/trainer">ソース</a>　・　<a href="https://github.com/aq35/trainer/blob/main/LICENSE-docs.md">MIT / CC BY 4.0</a></span>
   </footer>
 </template>

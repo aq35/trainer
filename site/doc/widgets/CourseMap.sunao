@@ -41,13 +41,15 @@ export default {
     steps.forEach((s, i) => {
       // 手を動かす前に、正体だけ知っておきたい人向け
       if (s.readBefore) reading(s.readBefore);
+      // まだ書いていない回は、リンクにしない
+      if (s.soon) { rows.push({ cls: 'mapitem soon', href: null, badge: String(i + 1), icon: s.icon, label: s.label, txt: '準備中', bar: false }); return; }
       const st = stateOf(s);
       rows.push({ cls: 'mapitem' + (st.pct >= 100 ? ' done' : st.pct > 0 ? ' now' : ''), href: s.href, badge: st.pct >= 100 ? '✓' : String(i + 1), icon: s.icon, label: s.label, txt: st.txt, bar: true, pct: st.pct });
       // 手を動かしたあとに、その道具の話を読む。飛ばしても先に進める。
       if (s.read) reading(s.read);
     });
     tail.forEach(reading);
-    const allDone = steps.every((s) => stateOf(s).pct >= 100);
+    const allDone = steps.every((s) => !s.soon && stateOf(s).pct >= 100);
     const copyReport = () => copy(reportText().text, 'コピーしました。担当者に送ってください');
     return { rows, allDone, url: reportUrl(), contact: contactLine(), copyReport };
   },
@@ -73,6 +75,8 @@ export default {
 .mapitem.reading .l { font-weight: 500; font-size: 14px; }
 .mapitem.reading.done { background: var(--green-l); border-color: var(--green-b); }
 .mapitem.reading.done .s { color: var(--green); }
+.mapitem.soon { opacity: .6; cursor: default; }
+.mapitem.soon:hover { border-color: var(--line); }
 .mapall { background: var(--green-l); border: 1px solid var(--green-b); border-radius: 10px; padding: 12px 14px; font-size: 14px; color: var(--green); margin-top: 10px; }
 @media (max-width: 520px) { .mapitem { grid-template-columns: 26px 22px 1fr; } .s { grid-column: 3; } }
 </style>

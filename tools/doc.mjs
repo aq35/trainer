@@ -5,7 +5,7 @@ import { mdToHtml, escHtml } from './md.mjs';
 import { parseHtml, textOf } from './html.mjs';
 
 // 本文に <div id="…"></div> と書いておくと、そこに部品が入る
-export const WIDGETS = new Set(['map', 'coffee', 'weakcopy', 'joinbtn', 'planner']);
+export const WIDGETS = new Set(['map']);
 
 // docsify と同じ見出し id（外から #/glossary?id=… でリンクされているので、形を変えない）
 const RE_PUNCT = /[ -⁯⸀-⹿\\'!"#$%&()*+,./:;<=>?@[\]^`{|}~]/g;

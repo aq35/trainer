@@ -121,3 +121,11 @@ details.tb.shot { margin-top: 10px; }
 @media (max-width: 520px) { .oschoice { grid-template-columns: 1fr; } }
 
 .card code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .92em; }
+
+/* 完了画面の「AI で深める」 */
+.deepen { background: var(--purple-l); border: 1px solid var(--purple-b); border-left: 5px solid #8b5cf6; border-radius: 10px; padding: 13px 15px; margin: 16px 0; }
+.deepen > .t { font-size: 13px; font-weight: 700; color: var(--purple); margin-bottom: 4px; }
+.deepen .m, .deepen .dl { font-size: 14px; margin: 4px 0; }
+/* 実行記録から描いた図の「描き方」 */
+.gen .gensrc { font-size: 13px; margin: -6px 0 16px; }
+.gen .gensrc summary { cursor: pointer; color: var(--sub); }

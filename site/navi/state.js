@@ -100,8 +100,11 @@ export function aiPrompt() {
     for (const t of todo) lines.push(t.sub ? '    ' + t.text : ++no + '. ' + t.text);
   } else lines.push('（画面の指示にしたがって操作中）');
   lines.push('', '【本来こうなるはず】', s.expectText || s.askText, '', '【実際に起きたこと】',
-    '（ここに書いてください。エラーが出ていれば、そのまま貼り付けてください）', '',
-    '【環境】' + (page.needsOs ? osName() : 'Windows または Mac') + ' / VS Code');
+    '（ここに書いてください。エラーが出ていれば、全文をそのまま貼り付けてください）', '',
+    '【いまの状態】（ターミナルで git status を打ち、出てきたものを全部貼ってください。フォルダの外にいるときは、そう書いてください）',
+    '（ここに貼る）', '',
+    '【環境】' + (page.needsOs ? osName() : 'Windows または Mac') + ' / VS Code', '',
+    '消えてしまう変更がある操作を勧めるときは、先にそう言ってください。');
   copy(lines.join('\n'), 'コピーしました。Claude Code に貼って、〈実際に起きたこと〉だけ書き足してください。');
 }
 

@@ -3,7 +3,7 @@
 
   <rect x="40" y="30" width="640" height="80" rx="8" fill="#22262f"/>
   <g font-family="monospace" font-size="18">
-    <text x="70" y="78" fill="#7fb2ff">C:\Users\taro</text>
+    <text x="52" y="78" fill="#7fb2ff">PS C:\Users\taro</text>
     <text x="230" y="78" fill="#8fe08f">&gt;</text>
     <rect x="252" y="63" width="10" height="20" fill="#8fe08f"/>
   </g>
@@ -26,5 +26,5 @@
   <text x="580" y="172" font-family="sans-serif" font-size="14" font-weight="600" fill="#3aa76d" text-anchor="middle">カーソル</text>
   <text x="580" y="192" font-family="sans-serif" font-size="12" fill="#5b6472" text-anchor="middle">文字が入る位置</text>
 
-  <text x="360" y="232" font-family="sans-serif" font-size="13" fill="#3d4652" text-anchor="middle">Mac では「C:\Users\taro&gt;」のかわりに「taro %」のような表示になります</text>
+  <text x="360" y="232" font-family="sans-serif" font-size="13" fill="#3d4652" text-anchor="middle">Windows は PowerShell の表示の例。Mac では「taro@MacBook ~ %」のように、最後の記号が % になります</text>
 </svg>

@@ -17,17 +17,23 @@ concurrency:
 
 jobs:
   build:
+    # フォーク（受講者の練習場所）では動かさない。本家でだけ、ビルドと公開をする
+    if: github.repository == 'aq35/trainer'
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # 出力の記録（tools/record.mjs）は、この教材の過去のコミットから始めるため
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
       - run: npm ci
       - run: npm test
+      # 教材に載せた出力を、いまの Git で打ち直して比べる。版が違って表示が変わっていたら警告を出す
+      - run: node tools/record.mjs --check
       - run: npm run build:docs
       - name: docs/ が変わっていればコミットする（main のときだけ）
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'

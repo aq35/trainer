@@ -23,7 +23,7 @@ for (const file of fs.readdirSync(dir).filter(f => f.endsWith('.js')).sort()) {
   if (!nav || !nav.steps) continue;
   let n = 0, ok = 0;
   nav.steps.forEach((s, i) => {
-    if (!(s.cmd || s.cmdMulti)) return;
+    if (!(s.cmd || s.cmdMulti) || s.textBox) return; // textBox は貼り付ける文章（コマンドではない）
     n++;
     const lines = ((s.cmdMulti && (s.cmdMulti.common || s.cmdMulti.win || s.cmdMulti.mac)) || []).length
       + (s.cmd ? 1 : 0);

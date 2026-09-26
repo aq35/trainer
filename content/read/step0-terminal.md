@@ -3,10 +3,10 @@
 対象: パソコンは使えるが、「黒い画面」を開いたことがない人。
 
 <div class="note">
-これは<b>本編が始まる前の、準備運動</b>のページです。黒い画面を触ったことがある人は、飛ばして<a href="setup.html" target="_blank" rel="noopener">環境構築ナビ</a>から始めて構いません。
+これは<b>本編が始まる前の、準備運動</b>のページです。黒い画面を触ったことがある人は、飛ばして<a href="01-tools.html" target="_blank" rel="noopener">第1回 道具をそろえる</a>から始めて構いません。
 </div>
 
-ここでは、**まだ何もインストールしません。** VS Code も Claude Code も、次の「環境構築」で入れます。ここでは「文字でパソコンに命令する」感覚だけをつかみます。所要時間は30分ほどです。
+ここでは、**まだ何もインストールしません。** VS Code と Git は、第1回で入れます。ここでは「文字でパソコンに命令する」感覚だけをつかみます。所要時間は30分ほどです。
 
 ## このページのゴール
 
@@ -27,7 +27,7 @@
 <details>
 <summary>じゃあ、なぜわざわざ文字で命令するの？</summary>
 
-クリックだと1回に1つの操作しかできませんが、文字なら「100個のファイルの名前を一括で変える」といった指示が一行で書けます。そして何より、**AIに『この命令を打って』と伝えてもらえる**のが大きな利点です。この後Claude Codeを使うとき、AIはこの文字の形で手順を教えてくれます。
+クリックだと1回に1つの操作しかできませんが、文字なら「100個のファイルの名前を一括で変える」といった指示が一行で書けます。そして、**手順を文字のまま人やAIに伝えられ、そのまま写して打てる**のも大きな利点です。この教材の手順も、この形で書いてあります。
 </details>
 
 ---
@@ -83,7 +83,7 @@
 #### **Windows**
 
 ```
-cd
+pwd
 ```
 
 #### **Mac**
@@ -215,21 +215,25 @@ cd ..
 
 | やりたいこと | Windows | Mac |
 | --- | --- | --- |
-| 今どこにいる？ | `cd` | `pwd` |
-| 中身を見る | `dir` | `ls` |
+| 今どこにいる？ | `pwd` | `pwd` |
+| 中身を見る | `dir` または `ls` | `ls` |
 | 移動する | `cd 名前` | `cd 名前` |
 | 1つ上に戻る | `cd ..` | `cd ..` |
 | フォルダを作る | `mkdir 名前` | `mkdir 名前` |
 
-この5つで十分です。残りは必要になったときにAIに聞けば教えてくれます。**全部覚えてから進む必要はありません。**
+この5つで十分です。**全部覚えてから進む必要はありません。**
+
+<div class="note">
+Windows のここでの表は、<b>PowerShell</b>（Windows で VS Code のターミナルを開いたときに、ふつう使われるもの）の場合です。PowerShell では <code>pwd</code>・<code>ls</code>・<code>dir</code>・<code>cd</code> は、それぞれ PowerShell のコマンドの<b>別名</b>として用意されています（根拠: <a href="https://learn.microsoft.com/ja-jp/powershell/module/microsoft.powershell.core/about/about_aliases" target="_blank" rel="noopener">about_Aliases</a>、<a href="https://learn.microsoft.com/ja-jp/powershell/module/microsoft.powershell.management/get-location" target="_blank" rel="noopener">Get-Location</a>）。古い「コマンド プロンプト」では、今いる場所は <code>cd</code> だけで表示します。
+</div>
 
 ---
 
 ## それでも詰まったら
 
-1. 表示された文字をそのままコピーして https://claude.ai （インストール不要のブラウザ版）に貼り、「これはどういう意味？」と聞いてみる。
+1. 表示された文字をそのままコピーして AI に貼り、「これはどういう意味？」と聞いてみる（聞き方は [Git を調べるコツ](git-research.md)）。
 2. 15分取り組んでも解決しなければ、一人で抱えずサポート役に声をかける。
 
 ## 次のステップ
 
-[環境構築ナビ](setup.html ':ignore target=_blank') で、VS Code と Claude Code を入れます。
+[第1回 道具をそろえる](01-tools.html ':ignore target=_blank') で、VS Code と Git を入れます。

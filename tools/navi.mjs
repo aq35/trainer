@@ -49,9 +49,55 @@ export function applies(item, ctx) {
   return [].concat(item.when).every((w) => (w.charAt(0) !== '_' && w in ctx ? !!ctx[w] : ctx._text.indexOf(w) >= 0));
 }
 
-export function buildNavi(name, mod, { firstAid }) {
+// 根拠リンク [[名前, URL], ...] を検査して返す
+function refsOf(ref, where) {
+  if (!ref) return [];
+  if (!Array.isArray(ref) || ref.some((r) => !Array.isArray(r) || r.length !== 2 || !/^https:\/\//.test(r[1]))) {
+    throw new Error(`${where}: ref は [['名前', 'https://…'], …] の形で書いてください`);
+  }
+  return ref.map(([label, url]) => ({ label, url }));
+}
+
+// 使わない言葉（content/terms.js）が文字列に入っていないか
+function checkTerms(value, banned, where) {
+  const walk = (v, path) => {
+    if (typeof v === 'string') {
+      for (const b of banned) if (v.includes(b.word)) throw new Error(`${where}${path}: 「${b.word}」は使いません。${b.use}（${b.why}）`);
+    } else if (Array.isArray(v)) v.forEach((x, k) => walk(x, `${path}[${k}]`));
+    else if (v && typeof v === 'object') for (const k of Object.keys(v)) walk(v[k], `${path}.${k}`);
+  };
+  walk(value, '');
+}
+
+export function buildNavi(name, mod, { firstAid, recorded = null, banned = [] }) {
   const nav = mod.default;
   const where = `content/navi/${name}.js`;
+  checkTerms(nav, banned, where);
+  // 実際に打って得た出力（tools/record.mjs）。{{FORK}} は受講者のフォークの URL に戻す
+  const FORK_URL = 'https://github.com/あなたのユーザー名/trainer.git';
+  const outOf = (ids, at, shown) => [].concat(ids || []).map((id) => {
+    const r = recorded && recorded.outputs[id];
+    if (!r) throw new Error(`${where} ${at}: out「${id}」の出力がありません。content/runs/ の台本に書いて、node tools/record.mjs を打ってください`);
+    const cmd = r.cmd.split('{{FORK}}').join(FORK_URL);
+    // 画面で打たせるコマンドと、出力を得たコマンドが同じであること（違う出力を載せない）
+    if (!shown.includes(cmd)) throw new Error(`${where} ${at}: out「${id}」は「${cmd}」の出力ですが、この画面ではそのコマンドを打たせていません`);
+    return { cmd, out: r.out.split('{{FORK}}').join(FORK_URL), replaced: r.cmd.includes('{{FORK}}') || r.out.includes('{{FORK}}') };
+  });
+  // 本文に書いたコミットの番号（英数字7文字）が、その画面の出力に本当に出ていること
+  const checkHashes = (outs, s, at) => {
+    const text = strip([s.after, s.expect, s.note].join(' '));
+    const shown = outs.map((o) => o.out).join('\n');
+    for (const h of text.match(/\b[0-9a-f]{7}\b/g) || []) {
+      if (!shown.includes(h)) throw new Error(`${where} ${at}: 本文の「${h}」が、この画面の出力にありません（出力を撮り直したら、本文の番号も直してください）`);
+    }
+    return outs;
+  };
+  const areasOf = (id, at) => {
+    if (!id) return null;
+    const a = recorded && recorded.areas[id];
+    if (!a) throw new Error(`${where} ${at}: areas「${id}」の記録がありません`);
+    return { id, ...a };
+  };
   const R = (html, at) => (html == null ? null : parseHtml(html, { profile: 'inline', where: `${where} ${at}` }));
   const qa = (it, at) => ({ q: R(it.q, at + '.q'), a: R(it.a, at + '.a'), qText: strip(it.q), find: textOf(R(it.q, at) .concat(' ', R(it.a, at))).toLowerCase() });
   const osList = (o) => (o ? (o.common ? ['common'] : ['win', 'mac']) : []);
@@ -72,6 +118,7 @@ export function buildNavi(name, mod, { firstAid }) {
         transfer: R(s.transfer, at), note: R(s.note, at),
         readNext: s.readNext ? { md: s.readNext.md, label: R(s.readNext.label, at), sub: R(s.readNext.sub, at) } : null,
         nextHref: s.nextHref, nextLabel: R(s.nextLabel, at),
+        deepen: s.deepen || null, deepenWhy: R(s.deepenWhy, at), ref: refsOf(s.ref, `${where} ${at}`),
       };
     }
     const todo = s.todo ? Object.fromEntries(osList(s.todo).map((k) => [k, s.todo[k].map((line, n) => ({
@@ -88,6 +135,19 @@ export function buildNavi(name, mod, { firstAid }) {
     };
     const help = { win: helpFor('win') };
     if (needsOs) help.mac = helpFor('mac');
+    // コマンドを打たせる画面は、打つ前の説明（1行ずつ）・打った後の説明・根拠がそろっていること
+    const variants = s.cmdMulti ? osList(s.cmdMulti).map((k) => s.cmdMulti[k]) : [[]];
+    const shownCmds = [...new Set([].concat(s.cmd || [], ...variants))];
+    if (s.cmd || s.cmdMulti) {
+      if (s.textBox !== true) {
+        for (const v of variants) {
+          const lines = v.length + (s.cmd ? 1 : 0);
+          if (!s.pre || s.pre.length !== lines) throw new Error(`${where} ${at}: コマンドが ${lines} 行あるので、pre（打つ前に、1行ずつの説明）も ${lines} 個要ります（いま ${s.pre ? s.pre.length : 0} 個）`);
+        }
+        if (!s.after) throw new Error(`${where} ${at}: コマンドを打つ画面には after（いま、何が起きたのか）が要ります`);
+      }
+      if (!s.ref && s.textBox !== true) throw new Error(`${where} ${at}: コマンドを打つ画面には ref（根拠のリンク）が要ります`);
+    }
     return {
       ...out,
       phase: R(s.phase, at), icon: s.icon || null, title: R(s.title, at), titleText: strip(s.title),
@@ -100,8 +160,11 @@ export function buildNavi(name, mod, { firstAid }) {
       ask: R(s.ask, at), askText: strip(s.ask),
       tb: (s.tb || []).map((t, k) => qa(t, `${at}.tb[${k}]`)),
       help,
+      out: checkHashes(outOf(s.out, at, shownCmds), s, at),
+      areas: areasOf(s.areas, at),
+      ref: refsOf(s.ref, `${where} ${at}`),
     };
   });
 
-  return { name, title: mod.title, key: nav.key, greeting: R(nav.greeting, 'greeting'), needsOs, common, steps };
+  return { name, title: mod.title, git: recorded ? recorded.git : null, key: nav.key, greeting: R(nav.greeting, 'greeting'), needsOs, common, steps };
 }

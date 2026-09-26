@@ -4,7 +4,7 @@ import { readJSON, writeJSON } from '../lib/store.js';
 import { markRead } from './progress.js';
 
 export const SITE = window.TRAINER_SITE;
-const SITE_NAME = 'エンジニア育成トレーナー';
+const SITE_NAME = 'Git トレーナー';
 
 const route = useRoute();
 export const where = computed(() => {

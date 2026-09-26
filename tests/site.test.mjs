@@ -32,8 +32,8 @@ test('ビルド: ナビ・読み物・コマンド練習が、これまでと同
 
 test('ビルド: 同じ入力なら同じ出力（キャッシュを無駄に捨てない）', async () => {
   await buildSite({ quiet: true, out: OUT });
-  const a = readFileSync(at('index.html'), 'utf8') + readFileSync(at('git.html'), 'utf8');
+  const a = readFileSync(at('index.html'), 'utf8') + readFileSync(at('03-first-commit.html'), 'utf8');
   await buildSite({ quiet: true, out: OUT });
-  const b = readFileSync(at('index.html'), 'utf8') + readFileSync(at('git.html'), 'utf8');
+  const b = readFileSync(at('index.html'), 'utf8') + readFileSync(at('03-first-commit.html'), 'utf8');
   assert.equal(a, b);
 });

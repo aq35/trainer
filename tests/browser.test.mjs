@@ -43,47 +43,50 @@ async function open(path) {
 }
 
 test('ナビ: 次へ・戻る・「うまくいきません」の検索と、位置の保存', { skip }, async () => {
-  const { page, errors } = await open('git.html');
+  const { page, errors } = await open('03-first-commit.html');
   await page.waitForSelector('.card');
-  assert.equal(await page.textContent('.counter'), '1 / 11');
+  assert.equal(await page.textContent('.counter'), '1 / 8');
   await page.click('.ask button.act.ok');
   await page.click('.ask button.act.ok');
-  assert.equal(await page.textContent('.counter'), '3 / 11');
+  assert.equal(await page.textContent('.counter'), '3 / 8');
   await page.click('.ask button.act.ng');
-  assert.equal(await page.locator('.fa').count(), 3, '「まず疑う」は最大3つ');
-  await page.fill('.hsearch', 'not found');
-  assert.equal(await page.locator('details.tb:visible').count(), 2);
+  assert.ok((await page.locator('.fa').count()) <= 3, '「まず疑う」は最大3つ');
+  // 実際に打った出力と、実行記録から描いた図が出ている
+  assert.ok((await page.locator('.term').count()) >= 1);
+  assert.match(await page.textContent('.refs'), /根拠/);
+  await page.fill('.hsearch', 'not a git repository');
+  assert.ok((await page.locator('details.tb:visible').count()) >= 1);
   await page.fill('.hsearch', 'ぜったいに無い言葉');
   assert.equal(await page.locator('.nohit').count(), 1);
   // 再読み込みしても、同じ画面から始まる
   await page.reload();
   await page.waitForSelector('.card');
-  assert.equal(await page.textContent('.counter'), '3 / 11');
+  assert.equal(await page.textContent('.counter'), '3 / 8');
   await page.click('.foot .link >> nth=0');
-  assert.equal(await page.textContent('.counter'), '2 / 11');
+  assert.equal(await page.textContent('.counter'), '2 / 8');
   // #restart で最初から
-  await page.goto(base + 'git.html#restart');
+  await page.goto(base + '03-first-commit.html#restart');
   await page.reload();
   await page.waitForSelector('.card');
-  assert.equal(await page.textContent('.counter'), '1 / 11');
+  assert.equal(await page.textContent('.counter'), '1 / 8');
   assert.deepEqual(errors, []);
   await page.close();
 });
 
 test('ナビ: OS を選ぶ回は、選んだ OS の手順になる', { skip }, async () => {
-  const { page, errors } = await open('setup.html');
+  const { page, errors } = await open('01-tools.html');
   await page.waitForSelector('.oschoice');
   await page.click('.oschoice button:has-text("Mac")');
-  assert.equal(await page.textContent('.counter'), '1 / 10');
-  assert.equal(JSON.parse(await page.evaluate(() => localStorage.getItem('trainer-setup-v1'))).os, 'mac');
+  assert.equal(await page.textContent('.counter'), '1 / 7');
+  assert.equal(JSON.parse(await page.evaluate(() => localStorage.getItem('trainer-v2-01'))).os, 'mac');
   assert.deepEqual(errors, []);
   await page.close();
 });
 
 test('コマンド練習: 答え合わせと、間違えた問題のやり直し', { skip }, async () => {
   const { page, errors } = await open('drill.html');
-  await page.click('.cat:has-text("場所を動く")');
-  for (let k = 0; k < 5; k++) {
+  await page.click('.cat:has-text("ターミナル")');
+  for (let k = 0; k < 3; k++) {
     if (await page.locator('.ch').count()) await page.click('.ch >> nth=1');
     else { await page.fill('.ans', 'cd ..'); await page.keyboard.press('Enter'); }
     await page.click('.next');
@@ -98,28 +101,27 @@ test('コマンド練習: 答え合わせと、間違えた問題のやり直し
 test('読み物: 目次・見出しへのリンク・タブ・チェックリスト・検索・404', { skip }, async () => {
   const { page, errors } = await open('');
   await page.waitForSelector('.mapitem');
-  assert.ok((await page.locator('.mapitem').count()) > 30);
-  // 全角の括弧を省いた古いリンクでも、見出しへ移動する
-  await page.goto(base + '#/glossary?id=git-flowギットフロー');
-  await page.waitForTimeout(300);
-  assert.ok((await page.evaluate(() => scrollY)) > 1000);
+  assert.equal(await page.locator('.mapitem').count(), 12, '全10回と、読み物2本');
+  assert.equal(await page.locator('.mapitem.soon').count(), 7, 'まだ書いていない7回は「準備中」');
+  // 見出しへのリンク（id が多少違っても、記号を除いて一致すれば移動する）
+  await page.goto(base + '#/git-research?id=コツ3-止まるべき言葉を覚えておく');
+  await page.waitForFunction(() => scrollY > 500, null, { timeout: 5000 }); // 読み物を読み込んでから移動するので、待つ
   await page.goto(base + '#/step0-terminal');
   await page.waitForSelector('.tabs');
   await page.click('.tab:has-text("Mac") >> nth=0');
   assert.match(await page.locator('.panel:visible').first().textContent(), /Cmd \+ Space/);
-  await page.goto(base + '#/graduation');
-  await page.waitForSelector('.task-list-item');
-  const before = await page.textContent('.mapreport b');
-  await page.locator('.task-list-item input').first().check();
-  assert.notEqual(await page.textContent('.mapreport b'), before, 'チェックすると、できていない件数が減る');
-  await page.fill('.search input', 'bisect');
+  await page.fill('.search input', 'ステージングエリア');
   await page.waitForSelector('.hit');
   await page.goto(base + '#/nope');
   await page.waitForSelector('.state h1');
   assert.equal(await page.textContent('.state h1'), 'ページが見つかりません');
   // docsify のハッシュに入ってしまったナビは、実ファイルへ戻す
-  await page.goto(base + '#/setup.html');
-  await page.waitForURL(/setup\.html$/);
+  await page.goto(base + '#/01-tools.html');
+  await page.waitForURL(/01-tools\.html$/);
+  // 以前の URL は、新しい回へ案内する
+    await page.goto(base + 'setup.html', { waitUntil: 'commit' }); // すぐに移動するので、読み込みの完了は待たない
+  await page.waitForURL(/01-tools\.html$/);
+  await page.waitForSelector('.card');
   assert.deepEqual(errors, []);
   await page.close();
 });

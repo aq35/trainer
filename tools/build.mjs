@@ -17,12 +17,13 @@ import { dirname, extname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { sunao } from '../sunao/esbuild-plugin.mjs';
 import { buildNavi } from './navi.mjs';
+import { areasSvg, areasAlt } from './figs.mjs';
 import { buildDoc } from './doc.mjs';
 import { parseHtml } from './html.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 let OUT = join(ROOT, '_site');
-const SITE_NAME = 'エンジニア育成トレーナー';
+const SITE_NAME = 'Git トレーナー';
 const HOME = 'https://aq35.github.io/trainer/';
 
 const hash = (s) => createHash('sha256').update(s).digest('hex').slice(0, 10);
@@ -91,16 +92,27 @@ export async function buildSite({ quiet = false, out = join(ROOT, '_site') } = {
   const { firstAid } = await load(join(ROOT, 'content/help.js'));
   const aid = firstAid.map((a, k) => ({ t: a.t, d: parseHtml(a.d, { where: `content/help.js firstAid[${k}]` }) }));
   const course = await load(join(ROOT, 'content/course.js'));
+  // 本物の Git で打って得た出力（tools/record.mjs が作る）と、使わない言葉の表
+  const recorded = JSON.parse(readFileSync(join(ROOT, 'content/runs/recorded.json'), 'utf8'));
+  const { banned } = await load(join(ROOT, 'content/terms.js'));
+  const naviForLinks = [];
   const navis = readdirSync(join(ROOT, 'content/navi')).filter((f) => f.endsWith('.js')).sort();
   for (const f of navis) {
     const name = f.replace(/\.js$/, '');
-    const data = buildNavi(name, await load(join(ROOT, 'content/navi', f)), { firstAid });
+    const data = buildNavi(name, await load(join(ROOT, 'content/navi', f)), { firstAid, recorded, banned });
     // 目次の地図は「完了画面の番号」で完了を判定する。ずれていたら地図が永遠に「途中」になる
     const c = course.steps.find((s) => s.href === name + '.html');
     if (c && (c.key !== data.key || c.total !== data.steps.length - 1)) {
       throw new Error(`content/course.js の ${name}: key / total がナビと合いません（key=${data.key}, total は ${data.steps.length - 1} のはず）`);
     }
     data.aid = aid;
+    naviForLinks.push([`content/navi/${f}`, data]);
+    // 実行記録から描いた図を書き出す
+    for (const st of data.steps) {
+      if (!st.areas) continue;
+      write(`media/gen/${st.areas.id}.svg`, areasSvg(st.areas));
+      st.areas = { src: `media/gen/${st.areas.id}.svg`, alt: areasAlt(st.areas), status: st.areas.status };
+    }
     write(`${name}.html`, shell({
       title: `${data.title} | ${SITE_NAME}`, canonical: `${HOME}${name}.html`, css,
       body: `<script>window.TRAINER_PAGE = ${inlineJson(data)};</script>\n<script src="${js.navi}"></script>`,
@@ -109,6 +121,7 @@ export async function buildSite({ quiet = false, out = join(ROOT, '_site') } = {
 
   // ---- コマンド練習: content/drill.js → drill.html ----
   const drill = await load(join(ROOT, 'content/drill.js'));
+  checkWords(JSON.stringify(drill.questions), banned, 'content/drill.js');
   const R = (h, at) => parseHtml(h, { where: `content/drill.js ${at}` });
   const drillData = {
     categories: drill.categories,
@@ -126,9 +139,16 @@ export async function buildSite({ quiet = false, out = join(ROOT, '_site') } = {
   const readDir = join(ROOT, 'content/read');
   const pages = {};
   const search = [];
+  const docsForLinks = [];
   for (const f of readdirSync(readDir).filter((x) => x.endsWith('.md') && x !== '_sidebar.md').sort()) {
     const slug = f.replace(/\.md$/, '');
-    const doc = buildDoc(slug, readFileSync(join(readDir, f), 'utf8'), `content/read/${f}`);
+    const md = readFileSync(join(readDir, f), 'utf8');
+    const known = new Set(readdirSync(readDir).filter((x) => x.endsWith('.md')).map((x) => (x === 'README.md' ? '' : x.replace(/\.md$/, ''))));
+    // 改訂履歴は「以前はこう書いていた」を残す場所なので、用語の検査から外す
+    if (f !== 'changelog.md') checkWords(md, banned, `content/read/${f}`);
+    const doc = buildDoc(slug, md, `content/read/${f}`);
+    if (f === 'changelog.md') unwrapDead(doc.nodes, known, OUT);
+    else docsForLinks.push([`content/read/${f}`, doc.nodes]);
     const route = slug === 'README' ? '' : slug;
     pages[route] = { title: doc.title };
     const body = `window.__trainerDoc(${inlineJson({ route, title: doc.title, toc: doc.toc, nodes: doc.nodes, tasks: doc.tasks })});`;
@@ -142,28 +162,84 @@ export async function buildSite({ quiet = false, out = join(ROOT, '_site') } = {
   const siteData = { pages, sidebar, search: `assets/search.js?v=${hash(searchBody)}` };
   write('index.html', shell({
     title: SITE_NAME, canonical: HOME, css,
-    description: '黒い画面が初めての人から、開発案件に入れる状態まで。1画面に1つずつ進む、受講料無料のエンジニア育成カリキュラム。',
+    description: 'Git だけを、一人で使えるところまで。1画面に1つずつ進む全10回の教材。用語は Pro Git 日本語版にそろえ、画面の出力は実際に Git で打ったものだけを載せています。',
     head: [
       '<meta property="og:type" content="website">',
       `<meta property="og:site_name" content="${SITE_NAME}">`,
-      `<meta property="og:title" content="${SITE_NAME} — 未経験から開発案件へ">`,
-      '<meta property="og:description" content="黒い画面が初めての人から。1画面に1つずつ、迷わず進みます。受講料は無料、0円で最後まで進める道があります。">',
+      `<meta property="og:title" content="${SITE_NAME} — Git を一人で使えるところまで">`,
+      '<meta property="og:description" content="Git だけを、一人で使えるところまで。1画面に1つずつ進む全10回。">',
       `<meta property="og:url" content="${HOME}">`,
       `<meta property="og:image" content="${HOME}media/ogp.png">`,
       '<meta property="og:image:width" content="1200">',
       '<meta property="og:image:height" content="630">',
       '<meta property="og:locale" content="ja_JP">',
       '<meta name="twitter:card" content="summary_large_image">',
-      `<meta name="twitter:title" content="${SITE_NAME} — 未経験から開発案件へ">`,
-      '<meta name="twitter:description" content="黒い画面が初めての人から。1画面に1つずつ、迷わず進みます。受講料は無料。">',
+      `<meta name="twitter:title" content="${SITE_NAME} — Git を一人で使えるところまで">`,
+      '<meta name="twitter:description" content="Git だけを、一人で使えるところまで。1画面に1つずつ進む全10回。">',
       `<meta name="twitter:image" content="${HOME}media/ogp.png">`,
       '',
     ].join('\n'),
     body: `<script>window.TRAINER_SITE = ${inlineJson(siteData)};</script>\n<script src="${js.doc}"></script>`,
   }));
 
+  // ---- 以前の URL（setup.html など）から、新しい回へ案内する ----
+  for (const [old, to] of Object.entries(MOVED)) {
+    if (existsSync(join(OUT, old + '.html'))) throw new Error(`${old}.html は新しいページと名前がぶつかっています`);
+    write(`${old}.html`, `<!DOCTYPE html>\n<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">` +
+      `<title>ページが移りました | ${SITE_NAME}</title><meta http-equiv="refresh" content="0; url=${to}"><link rel="canonical" href="${HOME}${to}"></head>` +
+      `<body><p>この教材は、Git だけを教える形に作り直しました。<a href="${to}">新しいページへ移動します</a>。</p></body></html>\n`);
+  }
+
+  // ---- リンク切れの検査（教材の中から、無いページへ飛ばない） ----
+  checkLinks([...naviForLinks, ...docsForLinks], pages);
+
   if (!quiet) console.log(`✓ ${OUT.slice(ROOT.length + 1)}/ に書き出しました（ナビ ${navis.length} 本・読み物 ${Object.keys(pages).length} 本・${Date.now() - t0}ms）`);
   return { navis: navis.length, pages: Object.keys(pages).length };
+}
+
+// 以前のナビ（作り直す前の26本）→ 新しい行き先
+const MOVED = Object.fromEntries([
+  ['setup', '01-tools.html'], ['github', '02-fork.html'], ['git', '03-first-commit.html'],
+  ...'ai-dlc ai api ask branch bug chart code db diff gitflow loop mcp observe onboard perf publish review share test theme tools work'
+    .split(' ').map((n) => [n, 'index.html']),
+]);
+
+// 改訂履歴の中の、もう無いページへのリンクは、リンクを外して文字だけ残す（履歴そのものは書き換えない）
+function unwrapDead(nodes, known, out) {
+  for (let i = 0; i < nodes.length; i++) {
+    const n = nodes[i];
+    if (!n || typeof n !== 'object') continue;
+    if (n.c) unwrapDead(n.c, known, out);
+    if (n.t !== 'a' || !n.a || !n.a.href || /^(https?:|mailto:)/.test(n.a.href)) continue;
+    const m = /^(?:index\.html)?#\/([^?]*)/.exec(n.a.href);
+    const alive = m ? known.has(decodeURIComponent(m[1])) : existsSync(join(out, n.a.href.split('#')[0])) || /^(0\d-|drill|index)/.test(n.a.href);
+    if (!alive) { nodes.splice(i, 1, ...(n.c || [])); i--; }
+  }
+}
+
+// 使わない言葉（content/terms.js）が入っていないか
+function checkWords(text, banned, where) {
+  for (const b of banned) if (text.includes(b.word)) throw new Error(`${where}: 「${b.word}」は使いません。${b.use}（${b.why}）`);
+}
+
+// 教材の中のリンク先が、実在するページか（外のサイトは、CI の定期検査で見る）
+function checkLinks(sources, pages) {
+  const walk = (v, visit) => {
+    if (Array.isArray(v)) v.forEach((x) => walk(x, visit));
+    else if (v && typeof v === 'object') { if (v.t === 'a' && v.a && v.a.href) visit(v.a.href); for (const k of Object.keys(v)) walk(v[k], visit); }
+  };
+  for (const [where, data] of sources) {
+    const hrefs = [];
+    walk(data, (h) => hrefs.push(h));
+    if (data.steps) for (const st of data.steps) { if (st.nextHref) hrefs.push(st.nextHref); if (st.readNext) hrefs.push('#/' + st.readNext.md); }
+    for (const h of hrefs) {
+      if (/^(https?:|mailto:)/.test(h)) continue;
+      const m = /^(?:index\.html)?#\/([^?]*)/.exec(h);
+      if (m) { if (!(decodeURIComponent(m[1]) in pages)) throw new Error(`${where}: 読み物「${h}」はありません`); continue; }
+      const file = h.split('#')[0].split('?')[0];
+      if (file && !existsSync(join(OUT, file))) throw new Error(`${where}: 「${h}」というページはありません`);
+    }
+  }
 }
 
 // _sidebar.md（2段の箇条書き）→ [{ label, items:[{ label, href, route?, external }] }]

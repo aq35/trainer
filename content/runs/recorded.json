@@ -1,0 +1,121 @@
+{
+  "git": "2.43.0",
+  "forkBase": "c68c135",
+  "outputs": {
+    "version": {
+      "cmd": "git --version",
+      "out": "git version 2.43.0",
+      "lesson": "01"
+    },
+    "config-name": {
+      "cmd": "git config --global user.name",
+      "out": "山田 花子",
+      "lesson": "01"
+    },
+    "config-email": {
+      "cmd": "git config --global user.email",
+      "out": "12345678+hanako@users.noreply.github.com",
+      "lesson": "01"
+    },
+    "cd-home": {
+      "cmd": "cd ~",
+      "out": "",
+      "lesson": "02"
+    },
+    "clone": {
+      "cmd": "git clone {{FORK}}",
+      "out": "Cloning into 'trainer'...",
+      "lesson": "02"
+    },
+    "status-clean": {
+      "cmd": "git status",
+      "out": "On branch main\nYour branch is up to date with 'origin/main'.\n\nnothing to commit, working tree clean",
+      "lesson": "02"
+    },
+    "log-5": {
+      "cmd": "git log --oneline -5",
+      "out": "c68c135 設計: Git だけを教える教材に作り直す案（全16回・4部）\n908d5bc sunao をベースに作り直す（docsify と手書きの navi.js をやめ、Actions でビルドして公開）\nd15130b コマンドを打つ前と打った後に、説明を入れる枠を追加\ndaae984 Git-Flow の回を、結論からではなく「なぜ生まれたか」から始める形に直した\nab73ff9 Git-Flow の回に「実際は何が使われているか」を2画面追加",
+      "lesson": "02"
+    },
+    "remote": {
+      "cmd": "git remote -v",
+      "out": "origin\t{{FORK}} (fetch)\norigin\t{{FORK}} (push)",
+      "lesson": "02"
+    },
+    "status-untracked": {
+      "cmd": "git status",
+      "out": "On branch main\nYour branch is up to date with 'origin/main'.\n\nUntracked files:\n  (use \"git add <file>...\" to include in what will be committed)\n\tpractice/\n\nnothing added to commit but untracked files present (use \"git add\" to track)",
+      "lesson": "03"
+    },
+    "add": {
+      "cmd": "git add practice/hello.md",
+      "out": "",
+      "lesson": "03"
+    },
+    "status-staged": {
+      "cmd": "git status",
+      "out": "On branch main\nYour branch is up to date with 'origin/main'.\n\nChanges to be committed:\n  (use \"git restore --staged <file>...\" to unstage)\n\tnew file:   practice/hello.md",
+      "lesson": "03"
+    },
+    "commit": {
+      "cmd": "git commit -m \"練習用のファイルを作った\"",
+      "out": "[main 580eb38] 練習用のファイルを作った\n 1 file changed, 3 insertions(+)\n create mode 100644 practice/hello.md",
+      "lesson": "03"
+    },
+    "log-3": {
+      "cmd": "git log --oneline -3",
+      "out": "580eb38 練習用のファイルを作った\nc68c135 設計: Git だけを教える教材に作り直す案（全16回・4部）\n908d5bc sunao をベースに作り直す（docsify と手書きの navi.js をやめ、Actions でビルドして公開）",
+      "lesson": "03"
+    },
+    "status-ahead": {
+      "cmd": "git status",
+      "out": "On branch main\nYour branch is ahead of 'origin/main' by 1 commit.\n  (use \"git push\" to publish your local commits)\n\nnothing to commit, working tree clean",
+      "lesson": "03"
+    },
+    "push": {
+      "cmd": "git push",
+      "out": "To {{FORK}}\n   c68c135..580eb38  main -> main",
+      "lesson": "03"
+    },
+    "status-pushed": {
+      "cmd": "git status",
+      "out": "On branch main\nYour branch is up to date with 'origin/main'.\n\nnothing to commit, working tree clean",
+      "lesson": "03"
+    }
+  },
+  "areas": {
+    "a3-untracked": {
+      "rows": [
+        {
+          "path": "practice/hello.md",
+          "repo": 0,
+          "stage": 0,
+          "work": 1
+        }
+      ],
+      "status": "?? practice/hello.md"
+    },
+    "a3-staged": {
+      "rows": [
+        {
+          "path": "practice/hello.md",
+          "repo": 0,
+          "stage": 1,
+          "work": 1
+        }
+      ],
+      "status": "A  practice/hello.md"
+    },
+    "a3-committed": {
+      "rows": [
+        {
+          "path": "practice/hello.md",
+          "repo": 1,
+          "stage": 1,
+          "work": 1
+        }
+      ],
+      "status": ""
+    }
+  }
+}

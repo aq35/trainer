@@ -30,6 +30,17 @@
     <p v-if="s.cmd" class="cmdlabel"><b><Rich :nodes="s.cmdlabel" /></b></p>
     <CmdBox v-if="s.cmd" :text="s.cmd" />
     <CmdBox v-for="c in multi" :text="c" />
+    <!-- 実際に打って得た出力。受講者の画面と見比べられるように、コマンドのすぐ下に置く -->
+    <Term v-for="o in outs" :cmd="o.cmd" :out="o.out" :git="git" :replaced="o.replaced" />
+    <!-- 実行記録から描いた図と、その元になった出力 -->
+    <div v-if="s.areas" class="gen">
+      <Fig :src="s.areas.src" :alt="s.areas.alt" />
+      <details class="gensrc">
+        <summary>この図の描き方</summary>
+        <p>上の手順を実際に打ったあとのリポジトリを、Git に問い合わせて描いています（<code>git ls-tree</code>・<code>git ls-files</code>・<code>git hash-object</code>）。同じ時点の <code>git status --short</code> はこうでした。</p>
+        <pre>{{ s.areas.status || '（何も表示されません）' }}</pre>
+      </details>
+    </div>
     <div v-if="s.expect" class="expect">
       <div class="t">こうなれば成功です</div>
       <div class="m"><Rich :nodes="s.expect" /></div>
@@ -40,6 +51,7 @@
       <div class="m"><Rich :nodes="s.after" /></div>
     </div>
     <div v-if="s.note" class="note"><Rich :nodes="s.note" /></div>
+    <Refs :list="s.ref" />
     <Stuck />
     <div class="ask">
       <p><Rich :nodes="s.ask" /></p>
@@ -62,14 +74,16 @@ import Fig from '../ui/Fig.sunao';
 import CmdBox from '../ui/CmdBox.sunao';
 import Stuck from './Stuck.sunao';
 import Help from './Help.sunao';
-import { step, pick, move, reset, helpOpen } from './state.js';
+import Term from '../ui/Term.sunao';
+import Refs from '../ui/Refs.sunao';
+import { page, step, pick, move, reset, helpOpen } from './state.js';
 
 export default {
   name: 'StepMain',
   setup() {
     const s = step.peek();
     const toggleHelp = () => helpOpen.update((v) => !v);
-    return { s, todo: pick(s.todo) || [], pre: s.pre || [], multi: pick(s.cmdMulti) || [], move, reset, helpOpen, toggleHelp };
+    return { s, outs: s.out || [], git: page.git || '', todo: pick(s.todo) || [], pre: s.pre || [], multi: pick(s.cmdMulti) || [], move, reset, helpOpen, toggleHelp };
   },
 };
 </script>

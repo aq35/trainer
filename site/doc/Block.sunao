@@ -30,10 +30,6 @@
   <Tabs v-for="x in _tabs" :n="x" />
   <TaskItem v-for="x in _task" :n="x" />
   <CourseMap v-for="x in _w_map" />
-  <Coffee v-for="x in _w_coffee" />
-  <WeakCopy v-for="x in _w_weakcopy" />
-  <JoinButton v-for="x in _w_joinbtn" />
-  <Planner v-for="x in _w_planner" />
   <Inline v-for="x in _inline" :n="x" />
 </template>
 
@@ -44,10 +40,6 @@ import CodeBlock from './CodeBlock.sunao';
 import Tabs from './Tabs.sunao';
 import TaskItem from './TaskItem.sunao';
 import CourseMap from './widgets/CourseMap.sunao';
-import Coffee from './widgets/Coffee.sunao';
-import WeakCopy from './widgets/WeakCopy.sunao';
-import JoinButton from './widgets/JoinButton.sunao';
-import Planner from './widgets/Planner.sunao';
 import { where } from './state.js';
 
 const BLOCK = new Set(['p', 'blockquote', 'ul', 'ol', 'li', 'thead', 'tbody', 'tr', 'details', 'summary', 'th', 'td', 'div', 'table', 'hr', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'codeblock', 'tabs', 'task', 'widget']);
@@ -85,14 +77,10 @@ export default {
     const _tabs = is('tabs');
     const _task = is('task');
     const _w_map = widget('map');
-    const _w_coffee = widget('coffee');
-    const _w_weakcopy = widget('weakcopy');
-    const _w_joinbtn = widget('joinbtn');
-    const _w_planner = widget('planner');
     // ブロックでないもの（文字・太字・リンク…）は Inline に渡す
     const _inline = BLOCK.has(tag) ? [] : [n];
     const anchor = (id) => '#/' + where.peek().slug + '?id=' + encodeURIComponent(id);
-    return { anchor, _p, _blockquote, _ul, _ol, _li, _thead, _tbody, _tr, _details, _summary, _th, _td, _div, _table, _hr, _h1, _h2, _h3, _h4, _h5, _h6, _codeblock, _tabs, _task, _w_map, _w_coffee, _w_weakcopy, _w_joinbtn, _w_planner, _inline };
+    return { anchor, _p, _blockquote, _ul, _ol, _li, _thead, _tbody, _tr, _details, _summary, _th, _td, _div, _table, _hr, _h1, _h2, _h3, _h4, _h5, _h6, _codeblock, _tabs, _task, _w_map, _inline };
   },
 };
 </script>

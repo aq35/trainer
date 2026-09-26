@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="330" viewBox="0 0 720 330" role="img" aria-label="本家のリポジトリを GitHub の上でフォークすると、あなたのアカウントにコピーができる。それを git clone で手元に持ってくる。git push は、あなたのフォークにだけ届き、本家には届かない" font-family="sans-serif">
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2f6fed"/></marker>
+    <marker id="g" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2b7d52"/></marker>
+  </defs>
+  <rect width="720" height="330" fill="#ffffff"/>
+
+  <text x="360" y="24" font-size="14" font-weight="700" fill="#26456f" text-anchor="middle">GitHub の上で1回フォークし、それを手元にクローンする</text>
+
+  <rect x="20" y="42" width="680" height="118" rx="12" fill="#f5f7fb" stroke="#c7cede"/>
+  <text x="36" y="62" font-size="11.5" font-weight="700" fill="#6b7482">GitHub（インターネットの上）</text>
+
+  <rect x="40" y="74" width="250" height="70" rx="9" fill="#ffffff" stroke="#8892a0"/>
+  <text x="165" y="100" font-size="13" font-weight="700" fill="#26456f" text-anchor="middle">aq35/trainer</text>
+  <text x="165" y="120" font-size="11.5" fill="#5b6472" text-anchor="middle">本家（この教材のリポジトリ）</text>
+
+  <rect x="430" y="74" width="250" height="70" rx="9" fill="#eef3ff" stroke="#2f6fed" stroke-width="2"/>
+  <text x="555" y="100" font-size="13" font-weight="700" fill="#2f6fed" text-anchor="middle">あなたのユーザー名/trainer</text>
+  <text x="555" y="120" font-size="11.5" fill="#26456f" text-anchor="middle">あなたのフォーク（公開される）</text>
+
+  <path d="M292 100 L424 100" stroke="#2f6fed" stroke-width="2.5" marker-end="url(#a)"/>
+  <text x="358" y="92" font-size="12" font-weight="700" fill="#2f6fed" text-anchor="middle">フォーク</text>
+  <text x="358" y="116" font-size="10.5" fill="#5b6472" text-anchor="middle">画面のボタンで1回だけ</text>
+
+  <rect x="430" y="210" width="250" height="70" rx="9" fill="#ffffff" stroke="#2b7d52" stroke-width="2"/>
+  <text x="555" y="236" font-size="13" font-weight="700" fill="#2b7d52" text-anchor="middle">trainer（フォルダ）</text>
+  <text x="555" y="256" font-size="11.5" fill="#5b6472" text-anchor="middle">あなたのパソコンの中のクローン</text>
+  <text x="555" y="298" font-size="11" fill="#6b7482" text-anchor="middle">練習で触るのは practice/ の中だけ</text>
+
+  <path d="M515 147 L515 204" stroke="#2b7d52" stroke-width="2.5" marker-end="url(#g)"/>
+  <text x="505" y="180" font-size="12" font-weight="700" fill="#2b7d52" text-anchor="end">git clone</text>
+  <text x="505" y="196" font-size="10.5" fill="#5b6472" text-anchor="end">第2回で1回だけ</text>
+
+  <path d="M600 204 L600 149" stroke="#2f6fed" stroke-width="2.5" marker-end="url(#a)"/>
+  <text x="610" y="180" font-size="12" font-weight="700" fill="#2f6fed">git push</text>
+  <text x="610" y="196" font-size="10.5" fill="#5b6472">第3回から</text>
+
+  <path d="M165 147 L165 238" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <text x="165" y="258" font-size="12" font-weight="700" fill="#c0392b" text-anchor="middle">本家には届きません</text>
+  <text x="165" y="276" font-size="10.5" fill="#5b6472" text-anchor="middle">あなたが push するのは、あなたのフォークだけ。</text>
+  <text x="165" y="292" font-size="10.5" fill="#5b6472" text-anchor="middle">本家に届けるには、別の手続き（プルリクエスト）が要ります。</text>
+  <text x="165" y="308" font-size="10.5" fill="#5b6472" text-anchor="middle">この教材ではしません。</text>
+</svg>

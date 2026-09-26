@@ -1,0 +1,23 @@
+<!-- 根拠のリンク。この画面に書いたことは、ここに書いてあります（design/curriculum.md 3.2）。 -->
+<template>
+  <p v-if="list.length" class="refs">
+    <span class="rl">根拠</span>
+    <a v-for="r in list" :href="r.url" target="_blank" rel="noopener">{{ r.label }}</a>
+  </p>
+</template>
+
+<script>
+export default {
+  name: 'Refs',
+  props: { list: {} },
+  setup(props) {
+    return { list: props.list() || [] };
+  },
+};
+</script>
+
+<style>
+.refs { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; margin: 18px 0 0; padding-top: 10px; border-top: 1px solid var(--line); font-size: 12.5px; }
+.rl { font-weight: 700; color: var(--sub); }
+a { color: var(--blue); }
+</style>

@@ -1,0 +1,32 @@
+<!--
+  実際に打って得た出力（tools/record.mjs）を、ターミナルの見た目で出す。
+  画像ではなく文字のまま出すので、コピー・検索・読み上げができる。
+-->
+<template>
+  <figure class="term">
+    <pre><span class="ps">$ </span>{{ cmd }}{{ out ? '\n' + out : '' }}</pre>
+    <figcaption>
+      <span class="src">Git {{ git }} で実際に打った出力</span><span v-if="!out" class="empty">　何も表示されません（それで正常です）</span>
+      <span v-if="replaced" class="rep">送り先の URL だけ、あなたの画面と同じ形に置き換えています。</span>
+    </figcaption>
+  </figure>
+</template>
+
+<script>
+export default {
+  name: 'Term',
+  props: { cmd: { type: 'string', required: true }, out: { type: 'string' }, git: { type: 'string' }, replaced: { type: 'boolean' } },
+  setup(props) {
+    return { cmd: props.cmd(), out: props.out() || '', git: props.git() || '', replaced: !!props.replaced() };
+  },
+};
+</script>
+
+<style>
+.term { margin: 10px 0 16px; }
+pre { margin: 0; background: #0f1218; color: #dfe5ef; border-radius: 9px; padding: 12px 14px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 13px; line-height: 1.6; white-space: pre-wrap; word-break: break-all; overflow-x: auto; }
+.ps { color: #7fd6a3; user-select: none; }
+figcaption { font-size: 12px; color: var(--sub); margin-top: 5px; }
+.empty { color: var(--ink); }
+.rep { display: block; }
+</style>

@@ -18,6 +18,13 @@
       <div v-if="s.transfer" class="tr"><Rich :nodes="s.transfer" /></div>
     </div>
     <div v-if="s.note" class="note"><Rich :nodes="s.note" /></div>
+    <!-- AI で理解を深める。答えは Git で確かめる（読み物「Git を調べるコツ」） -->
+    <div v-if="s.deepen" class="deepen">
+      <div class="t">AI で深める（任意・5分）</div>
+      <p class="m"><Rich :nodes="s.deepenWhy" /></p>
+      <CmdBox :text="s.deepen" />
+      <p class="dl">AI の答えは、<b>そのまま信じずに確かめます</b>。聞き方と確かめ方は <a href="index.html#/git-research" target="_blank" rel="noopener">Git を調べるコツ</a> にまとめてあります。</p>
+    </div>
     <!-- 手を動かした直後は、その道具の背景がいちばん頭に入る -->
     <a v-if="s.readNext" class="readnext" :href="'index.html#/' + s.readNext.md" target="_blank" rel="noopener">
       <span class="rc">☕</span>
@@ -26,6 +33,7 @@
         <span class="rs"><Rich :nodes="s.readNext.sub" />（読むだけ・3分。飛ばしても先に進めます）</span>
       </span>
     </a>
+    <Refs :list="s.ref" />
     <div class="ask">
       <p>次にやること</p>
       <div class="btns"><a class="act ok" :href="s.nextHref"><Rich :nodes="s.nextLabel" /></a></div>
@@ -40,6 +48,8 @@
 <script>
 import Rich from '../ui/Rich.sunao';
 import Mascot from '../ui/Mascot.sunao';
+import CmdBox from '../ui/CmdBox.sunao';
+import Refs from '../ui/Refs.sunao';
 import { step, idx, move, reset, clearStep } from './state.js';
 
 export default {
