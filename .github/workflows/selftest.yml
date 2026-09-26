@@ -1,0 +1,18 @@
+# 教材そのもののテストです（元リポジトリでだけ動きます）。
+# 受講者の操作を最初から最後までなぞり、採点ボットが正しく合否を出すかを確かめます。
+name: selftest
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  selftest:
+    if: github.repository == 'aq35/trainer'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node selftest/run.mjs

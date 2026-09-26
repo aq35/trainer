@@ -1,0 +1,17 @@
+# practice/ のテストを動かします。PR の画面に ✓ か ✗ が付きます（レッスン9で使います）。
+name: test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    if: github.repository != 'aq35/trainer'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node --test practice/*.test.js

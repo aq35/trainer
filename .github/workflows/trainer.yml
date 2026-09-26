@@ -1,0 +1,41 @@
+# 採点ボットです。あなたが push したり、PR を出したり、Issue にコメントしたりするたびに動きます。
+# 中身は .github/trainer/grade.mjs にあります。
+name: trainer
+
+on:
+  push:
+  pull_request:
+    types: [opened, synchronize, reopened, edited, closed]
+  issue_comment:
+    types: [created]
+  issues:
+    types: [closed]
+  delete:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+# 採点は1つずつ順番に行います（同時に動くと、同じレッスンを2回開いてしまうため）
+concurrency:
+  group: trainer
+  cancel-in-progress: false
+
+jobs:
+  grade:
+    # 教材の元リポジトリでは動かしません。コピーした先（あなたのリポジトリ）でだけ動きます
+    if: github.repository != 'aq35/trainer' && github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node .github/trainer/grade.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
