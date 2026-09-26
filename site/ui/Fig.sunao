@@ -1,0 +1,33 @@
+<!-- 図。説明文は必ず付ける（読み上げ環境と、画像が出ないときのため）。 -->
+<template>
+  <figure class="fig">
+    <img class="shot" :src="src" :alt="alt" />
+    <figcaption>図: {{ alt }}</figcaption>
+  </figure>
+</template>
+
+<script>
+export default {
+  name: 'Fig',
+  props: { src: { type: 'string', required: true }, alt: {} },
+  setup(props) {
+    return { src: props.src(), alt: props.alt() || '説明図' };
+  },
+};
+</script>
+
+<style>
+figure.fig { margin: 16px 0; }
+.shot { display: block; width: 100%; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+figcaption { font-size: 12.5px; color: var(--sub); margin-top: 6px; }
+/* 狭い画面では、図を画面幅に合わせて縮めない。
+   720px の図を 312px に押し込むと、図の中の文字が 4.5px になって読めなくなる。
+   図の文字は半分が 12px 未満で書かれているので、少しでも縮めると効かない。
+   だから原寸（720px）のまま出して、枠の中だけを横スクロールさせる。 */
+@media (max-width: 700px) {
+  figure.fig { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .shot { width: auto; min-width: 720px; max-width: none; }
+  figcaption { position: sticky; left: 0; }
+  figcaption::after { content: '（指で横に動かせます）'; color: var(--sub); }
+}
+</style>

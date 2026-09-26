@@ -1,0 +1,32 @@
+<!--
+  全ページ共通の出典表示。
+  この教材は CC BY 4.0（文章・図）で公開しています。条件は「出典を示すこと」だけです。
+  この表示がそのまま、その条件を満たす表示になっています。
+  フォークして自分の研修に使う場合も、この表示は残してください。
+-->
+<template>
+  <footer class="sitecredit">
+    この教材は<b>無料</b>で公開されています — <a href="https://aq35.github.io/trainer/">aq35.github.io/trainer</a>
+    <span class="cl2">{{ updated }}<a href="https://github.com/aq35/trainer">ソース</a>　・　<a href="https://github.com/aq35/trainer/blob/main/LICENSE-docs.md">MIT / CC BY 4.0</a></span>
+  </footer>
+</template>
+
+<script>
+export default {
+  name: 'Credit',
+  setup() {
+    // GitHub Pages が返す Last-Modified（＝最後に公開した日時）。古いコピーとの区別のために出す。
+    const d = new Date(document.lastModified);
+    const z = (n) => (n < 10 ? '0' : '') + n;
+    const updated = isNaN(d.getTime()) ? '' : `最終更新 ${d.getFullYear()}-${z(d.getMonth() + 1)}-${z(d.getDate())}　・　`;
+    return { updated };
+  },
+};
+</script>
+
+<style>
+.sitecredit { max-width: 860px; margin: 56px auto 0; padding: 16px 20px 30px; border-top: 1px solid var(--line); font-size: 12.5px; line-height: 1.9; color: var(--sub); text-align: center; }
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.cl2 { display: block; margin-top: 2px; font-size: 12px; opacity: .85; }
+</style>

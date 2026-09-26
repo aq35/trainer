@@ -1,0 +1,75 @@
+<!-- ふつうの画面: 手順 → こうなれば成功です → できましたか？ → 次へ。 -->
+<template>
+  <div class="card">
+    <span class="phase"><Rich :nodes="s.phase" /></span>
+    <div class="head">
+      <img v-if="s.icon" class="ico" :src="'media/' + s.icon" alt="" />
+      <div>
+        <h2><Rich :nodes="s.title" /></h2>
+        <p class="why" style="margin-bottom: 0"><Rich :nodes="s.why" /></p>
+      </div>
+    </div>
+    <!-- 一部の人だけが飛ばしてよいステップに出す案内 -->
+    <div v-if="s.skip" class="skip"><Rich :nodes="s.skip" /></div>
+    <!-- 行頭が全角スペースの行は「前の手順のぶら下げ」。番号を振らない -->
+    <ol v-if="todo.length" class="todo">
+      <li v-for="t in todo" :class="t.sub ? 'sub' : null"><Rich :nodes="t.n" /></li>
+    </ol>
+    <Fig v-if="s.visual" :src="s.visual" :alt="s.visualAlt" />
+    <Fig v-if="s.visual2" :src="s.visual2" :alt="s.visual2Alt" />
+    <!-- 打つ前の説明。1行ずつ「これは何をするコマンドか」を先に読ませる -->
+    <div v-if="s.pre" class="pre">
+      <div class="t">打つ前に —— この行は、何をしますか</div>
+      <dl>
+        <div v-for="p in pre">
+          <dt><Rich :nodes="p.dt" /></dt>
+          <dd><Rich :nodes="p.dd" /></dd>
+        </div>
+      </dl>
+    </div>
+    <p v-if="s.cmd" class="cmdlabel"><b><Rich :nodes="s.cmdlabel" /></b></p>
+    <CmdBox v-if="s.cmd" :text="s.cmd" />
+    <CmdBox v-for="c in multi" :text="c" />
+    <div v-if="s.expect" class="expect">
+      <div class="t">こうなれば成功です</div>
+      <div class="m"><Rich :nodes="s.expect" /></div>
+    </div>
+    <!-- 打ったあとの説明。画面に出た結果が「何を意味するのか」を言葉にする -->
+    <div v-if="s.after" class="after">
+      <div class="t">いま、何が起きたのか</div>
+      <div class="m"><Rich :nodes="s.after" /></div>
+    </div>
+    <div v-if="s.note" class="note"><Rich :nodes="s.note" /></div>
+    <Stuck />
+    <div class="ask">
+      <p><Rich :nodes="s.ask" /></p>
+      <div class="btns">
+        <button type="button" class="act ok" @click="move(1)">できました → 次へ</button>
+        <button type="button" class="act ng" :aria-expanded="helpOpen() ? 'true' : 'false'" @click="toggleHelp">うまくいきません</button>
+      </div>
+      <Help v-if="helpOpen()" />
+    </div>
+    <div class="foot">
+      <button type="button" class="link" @click="move(-1)">前に戻る</button>
+      <button type="button" class="link" @click="reset">最初からやり直す</button>
+    </div>
+  </div>
+</template>
+
+<script>
+import Rich from '../ui/Rich.sunao';
+import Fig from '../ui/Fig.sunao';
+import CmdBox from '../ui/CmdBox.sunao';
+import Stuck from './Stuck.sunao';
+import Help from './Help.sunao';
+import { step, pick, move, reset, helpOpen } from './state.js';
+
+export default {
+  name: 'StepMain',
+  setup() {
+    const s = step.peek();
+    const toggleHelp = () => helpOpen.update((v) => !v);
+    return { s, todo: pick(s.todo) || [], pre: s.pre || [], multi: pick(s.cmdMulti) || [], move, reset, helpOpen, toggleHelp };
+  },
+};
+</script>

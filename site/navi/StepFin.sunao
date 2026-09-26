@@ -1,0 +1,53 @@
+<!-- 完了画面。できるようになったこと・達成条件・次にやること。 -->
+<template>
+  <div class="card">
+    <Mascot kind="party">
+      <h2 class="fin"><Rich :nodes="s.title" /></h2>
+      <p class="why" style="margin: 0"><Rich :nodes="s.lead" /></p>
+    </Mascot>
+    <div v-if="s.gained" class="expect">
+      <div class="t">できるようになったこと</div>
+      <div class="m"><Rich :nodes="s.gained" /></div>
+    </div>
+    <!-- 達成条件。手順をなぞれたかではなく、何が残っていれば合格かを言い切る。 -->
+    <div v-if="s.criteria" class="crit">
+      <div class="t">この回の達成条件</div>
+      <ul>
+        <li v-for="c in criteria"><Rich :nodes="c" /></li>
+      </ul>
+      <div v-if="s.transfer" class="tr"><Rich :nodes="s.transfer" /></div>
+    </div>
+    <div v-if="s.note" class="note"><Rich :nodes="s.note" /></div>
+    <!-- 手を動かした直後は、その道具の背景がいちばん頭に入る -->
+    <a v-if="s.readNext" class="readnext" :href="'index.html#/' + s.readNext.md" target="_blank" rel="noopener">
+      <span class="rc">☕</span>
+      <span>
+        <b>ひと休みに読む: <Rich :nodes="s.readNext.label" /></b>
+        <span class="rs"><Rich :nodes="s.readNext.sub" />（読むだけ・3分。飛ばしても先に進めます）</span>
+      </span>
+    </a>
+    <div class="ask">
+      <p>次にやること</p>
+      <div class="btns"><a class="act ok" :href="s.nextHref"><Rich :nodes="s.nextLabel" /></a></div>
+    </div>
+    <div class="foot">
+      <button type="button" class="link" @click="move(-1)">前に戻る</button>
+      <button type="button" class="link" @click="reset">最初からやり直す</button>
+    </div>
+  </div>
+</template>
+
+<script>
+import Rich from '../ui/Rich.sunao';
+import Mascot from '../ui/Mascot.sunao';
+import { step, idx, move, reset, clearStep } from './state.js';
+
+export default {
+  name: 'StepFin',
+  setup() {
+    const s = step.peek();
+    clearStep(idx.peek());
+    return { s, criteria: s.criteria || [], move, reset };
+  },
+};
+</script>

@@ -1,0 +1,26 @@
+<!--
+  同じステップに長くとどまっている人に、こちらから声をかける。
+  画面を開いたまま止まっている人にも気づけるよう、1分ごとに見に行く。
+  変わるのはこの枠だけ（画面全体を描き直すと、読んでいる位置が飛ぶ）。
+-->
+<template>
+  <div v-if="min() >= limit" class="stuck">
+    <b>このステップで{{ min() }}分ほど経っています。</b><br />
+    ここで止まるのは珍しくありません。一人で粘らず、下の「うまくいきません」から状況をコピーして相談してください。<br />
+    <Contact />
+  </div>
+</template>
+
+<script>
+import Contact from '../ui/Contact.sunao';
+import { minutesHere, STUCK_MIN } from './state.js';
+
+export default {
+  name: 'Stuck',
+  setup() {
+    const min = signal(minutesHere());
+    interval(60000, () => min.set(minutesHere()));
+    return { min, limit: STUCK_MIN };
+  },
+};
+</script>

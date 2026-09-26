@@ -1,0 +1,29 @@
+<!-- 結果。点が低いときに祝われると追い打ちになるので、表情を変える。 -->
+<template>
+  <div class="card">
+    <Mascot v-if="good" kind="party"><h2 class="fin">{{ ok }} / {{ total }} 問 正解</h2><p class="why" style="margin: 0">{{ msg }}</p></Mascot>
+    <Mascot v-if="!good" kind="cheer"><h2 class="fin">{{ ok }} / {{ total }} 問 正解</h2><p class="why" style="margin: 0">{{ msg }}</p></Mascot>
+    <div class="expect"><div class="t">この分野のベスト</div><div class="m">{{ best }}%</div></div>
+    <div class="btns" style="margin-top: 8px">
+      <button v-if="wrongCount" type="button" class="act ok" @click="retryWrong">間違えた {{ wrongCount }} 問をやり直す</button>
+      <button type="button" class="act ng" @click="menu">分野を選びなおす</button>
+    </div>
+  </div>
+</template>
+
+<script>
+import Mascot from '../ui/Mascot.sunao';
+import { list, ok, wrong, cat, records, retryWrong, menu } from './state.js';
+
+export default {
+  name: 'Result',
+  setup() {
+    const total = list.length;
+    const pct = Math.round((ok / total) * 100);
+    const msg = pct === 100 ? '全問正解です。よく覚えています。'
+      : pct >= 70 ? 'いい調子です。間違えたところだけ、もう一度やってみましょう。'
+        : '大丈夫です。ここは覚えるより「何回も見る」ほうが効きます。もう一度やってみてください。';
+    return { ok, total, msg, good: pct >= 70, best: records()[cat] || pct, wrongCount: wrong.length, retryWrong, menu };
+  },
+};
+</script>

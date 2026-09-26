@@ -1,0 +1,57 @@
+/* 全ページ共通: 色の約束（明るい／暗い）と、教材の文章の中で使う小さな部品。
+   教材の文章は ui/Inline.sunao が描くので、その中の class（.k / .fd / pre）はここに置く。 */
+:root {
+  --blue: #2f6fed; --blue-l: #eef3ff; --blue-b: #c9dbff;
+  --green: #2b7d52; --green-l: #eefaf1; --green-b: #b7e3c6;
+  --red: #c0392b; --red-l: #fdf1f0; --red-b: #f0c2bd;
+  --amber: #8a6412; --amber-l: #fff8e9; --amber-b: #f0d9a8;
+  --ink: #2f3542; --sub: #6b7482; --line: #dfe4ee; --bg: #f4f6fa;
+  --card: #ffffff; --soft: #f1f3f8; --soft-b: #dde2ec; --rail: #e7ebf3;
+  --code-bg: #22262f; --code-fg: #e6eaf2; --code-btn: #3a4150; --code-btn-h: #4a5364;
+  --inline-code-bg: #eef1f6; --inline-code-fg: #c7254e;
+  --purple: #7c3aed; --purple-l: #f6f2ff; --purple-b: #ddd0f5;
+  --pink: #be3455; --pink-l: #fff5f7; --pink-b: #f6cdd8;
+  --tan-l: #faf7f0; --tan-b: #e0d6c2; --gold: #c9a227; --gold-h: #ab8a1c;
+  --on-accent: #fff;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --blue: #6f9dff; --blue-l: #1b2437; --blue-b: #31456b;
+    --green: #7fd6a3; --green-l: #16271e; --green-b: #2c5340;
+    --red: #ff9c90; --red-l: #2c1c1a; --red-b: #5c3630;
+    --amber: #e8c07a; --amber-l: #2a2318; --amber-b: #57462a;
+    --ink: #e6e9ef; --sub: #9aa3b2; --line: #333a48; --bg: #14171d;
+    --card: #1b1f27; --soft: #232833; --soft-b: #333a48; --rail: #2a303c;
+    --code-bg: #0f1218; --code-fg: #dfe5ef; --code-btn: #333a48; --code-btn-h: #414a5c;
+    --inline-code-bg: #232833; --inline-code-fg: #e6c07b;
+    --purple: #c4a8ff; --purple-l: #231d33; --purple-b: #4a3a6b;
+    --pink: #ff9db4; --pink-l: #2c1b22; --pink-b: #5c3040;
+    --tan-l: #221e18; --tan-b: #4a4030;
+    /* 明るい青地に白字だと読みにくいので、暗い文字にする */
+    --on-accent: #10141c;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
+  line-height: 1.75; font-feature-settings: "palt";
+}
+a { color: var(--blue); }
+
+/* キーの見た目（Ctrl など） */
+.k { display: inline-block; background: var(--soft); border: 1px solid var(--soft-b); border-bottom-width: 2px; border-radius: 5px; padding: 0 7px; font-size: 13px; font-weight: 600; margin: 0 2px; }
+kbd { font-family: inherit; }
+.fd { font-size: 13px; color: var(--sub); }
+
+/* 見本や差分を貼るための枠。どこに置いても本文をはみ出させない（枠の中だけ横スクロール） */
+pre { background: var(--code-bg); color: var(--code-fg); border-radius: 7px; padding: 10px 12px; margin: 8px 0; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+pre code { font-size: 12.5px; line-height: 1.65; white-space: pre; background: none; color: inherit; padding: 0; }
+/* 差分を見せるときの赤と緑。差分の回で覚えた色と、意味をそろえる */
+pre code .dl\+ { display: block; color: #8ee39a; background: rgba(80, 200, 120, .14); }
+pre code .dl- { display: block; color: #ff9b9b; background: rgba(255, 110, 110, .14); }
+
+/* キーボードで操作している人に、いまどこにいるかを見せる */
+:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; border-radius: 4px; }
+
+noscript { display: block; max-width: 760px; margin: 40px auto; padding: 16px; background: var(--amber-l); border: 1px solid var(--amber-b); border-radius: 10px; }

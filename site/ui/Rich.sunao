@@ -1,0 +1,17 @@
+<!-- ノード配列（ビルド時に HTML から作ったもの）をそのまま並べる。null なら何も出さない。 -->
+<template>
+  <Inline v-for="c in list" :n="c" />
+</template>
+
+<script>
+import Inline from './Inline.sunao';
+
+export default {
+  name: 'Rich',
+  props: { nodes: {} },
+  setup(props) {
+    const list = props.nodes() || [];
+    return { list };
+  },
+};
+</script>

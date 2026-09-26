@@ -1,0 +1,98 @@
+<!--
+  読み物の本文（ビルド時に Markdown から作ったデータ）を 1 ノードずつ描く。
+  段落・表・見出しなどのブロックはここで、文の中の太字やリンクは ui/Inline.sunao に任せる。
+  _p / _h2 … は「そのタグなら [n]、違えば []」（ui/Inline.sunao と同じ書き方。静的な分岐になる）。
+  見出しは docsify と同じく、押すと #/ページ?id=見出し に移動するリンクにする。
+-->
+<template>
+  <p v-for="x in _p"><Block v-for="c in x.c || []" :n="c" /></p>
+  <blockquote v-for="x in _blockquote"><Block v-for="c in x.c || []" :n="c" /></blockquote>
+  <ul v-for="x in _ul"><Block v-for="c in x.c || []" :n="c" /></ul>
+  <ol v-for="x in _ol" :start="x.a?.start"><Block v-for="c in x.c || []" :n="c" /></ol>
+  <li v-for="x in _li"><Block v-for="c in x.c || []" :n="c" /></li>
+  <thead v-for="x in _thead"><Block v-for="c in x.c || []" :n="c" /></thead>
+  <tbody v-for="x in _tbody"><Block v-for="c in x.c || []" :n="c" /></tbody>
+  <tr v-for="x in _tr"><Block v-for="c in x.c || []" :n="c" /></tr>
+  <details v-for="x in _details" :open="x.a && 'open' in x.a ? true : null"><Block v-for="c in x.c || []" :n="c" /></details>
+  <summary v-for="x in _summary"><Block v-for="c in x.c || []" :n="c" /></summary>
+  <th v-for="x in _th" :align="x.a?.align"><Block v-for="c in x.c || []" :n="c" /></th>
+  <td v-for="x in _td" :align="x.a?.align"><Block v-for="c in x.c || []" :n="c" /></td>
+  <div v-for="x in _div" :class="x.a?.class"><Block v-for="c in x.c || []" :n="c" /></div>
+  <div v-for="x in _table" class="tablewrap"><table><Block v-for="c in x.c || []" :n="c" /></table></div>
+  <hr v-for="x in _hr" />
+  <h1 v-for="x in _h1" :id="x.a.id"><a class="anchor" :href="anchor(x.a.id)"><Block v-for="c in x.c || []" :n="c" /></a></h1>
+  <h2 v-for="x in _h2" :id="x.a.id"><a class="anchor" :href="anchor(x.a.id)"><Block v-for="c in x.c || []" :n="c" /></a></h2>
+  <h3 v-for="x in _h3" :id="x.a.id"><a class="anchor" :href="anchor(x.a.id)"><Block v-for="c in x.c || []" :n="c" /></a></h3>
+  <h4 v-for="x in _h4" :id="x.a.id"><a class="anchor" :href="anchor(x.a.id)"><Block v-for="c in x.c || []" :n="c" /></a></h4>
+  <h5 v-for="x in _h5" :id="x.a.id"><a class="anchor" :href="anchor(x.a.id)"><Block v-for="c in x.c || []" :n="c" /></a></h5>
+  <h6 v-for="x in _h6" :id="x.a.id"><a class="anchor" :href="anchor(x.a.id)"><Block v-for="c in x.c || []" :n="c" /></a></h6>
+  <CodeBlock v-for="x in _codeblock" :text="x.text" :lang="x.a?.lang || ''" />
+  <Tabs v-for="x in _tabs" :n="x" />
+  <TaskItem v-for="x in _task" :n="x" />
+  <CourseMap v-for="x in _w_map" />
+  <Coffee v-for="x in _w_coffee" />
+  <WeakCopy v-for="x in _w_weakcopy" />
+  <JoinButton v-for="x in _w_joinbtn" />
+  <Planner v-for="x in _w_planner" />
+  <Inline v-for="x in _inline" :n="x" />
+</template>
+
+<script>
+import Block from './Block.sunao';
+import Inline from '../ui/Inline.sunao';
+import CodeBlock from './CodeBlock.sunao';
+import Tabs from './Tabs.sunao';
+import TaskItem from './TaskItem.sunao';
+import CourseMap from './widgets/CourseMap.sunao';
+import Coffee from './widgets/Coffee.sunao';
+import WeakCopy from './widgets/WeakCopy.sunao';
+import JoinButton from './widgets/JoinButton.sunao';
+import Planner from './widgets/Planner.sunao';
+import { where } from './state.js';
+
+const BLOCK = new Set(['p', 'blockquote', 'ul', 'ol', 'li', 'thead', 'tbody', 'tr', 'details', 'summary', 'th', 'td', 'div', 'table', 'hr', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'codeblock', 'tabs', 'task', 'widget']);
+
+export default {
+  name: 'Block',
+  props: { n: {} },
+  setup(props) {
+    const n = props.n();
+    const tag = typeof n === 'string' ? '#text' : n.t;
+    const is = (t) => (tag === t ? [n] : []);
+    const widget = (w) => (tag === 'widget' && n.a.name === w ? [n] : []);
+    const _p = is('p');
+    const _blockquote = is('blockquote');
+    const _ul = is('ul');
+    const _ol = is('ol');
+    const _li = is('li');
+    const _thead = is('thead');
+    const _tbody = is('tbody');
+    const _tr = is('tr');
+    const _details = is('details');
+    const _summary = is('summary');
+    const _th = is('th');
+    const _td = is('td');
+    const _div = is('div');
+    const _table = is('table');
+    const _hr = is('hr');
+    const _h1 = is('h1');
+    const _h2 = is('h2');
+    const _h3 = is('h3');
+    const _h4 = is('h4');
+    const _h5 = is('h5');
+    const _h6 = is('h6');
+    const _codeblock = is('codeblock');
+    const _tabs = is('tabs');
+    const _task = is('task');
+    const _w_map = widget('map');
+    const _w_coffee = widget('coffee');
+    const _w_weakcopy = widget('weakcopy');
+    const _w_joinbtn = widget('joinbtn');
+    const _w_planner = widget('planner');
+    // ブロックでないもの（文字・太字・リンク…）は Inline に渡す
+    const _inline = BLOCK.has(tag) ? [] : [n];
+    const anchor = (id) => '#/' + where.peek().slug + '?id=' + encodeURIComponent(id);
+    return { anchor, _p, _blockquote, _ul, _ol, _li, _thead, _tbody, _tr, _details, _summary, _th, _td, _div, _table, _hr, _h1, _h2, _h3, _h4, _h5, _h6, _codeblock, _tabs, _task, _w_map, _w_coffee, _w_weakcopy, _w_joinbtn, _w_planner, _inline };
+  },
+};
+</script>

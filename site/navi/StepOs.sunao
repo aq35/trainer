@@ -1,0 +1,30 @@
+<!-- 最初の画面: Windows か Mac かを選ぶ（手順が OS で分かれる回だけ）。 -->
+<template>
+  <div class="card">
+    <span class="phase"><Rich :nodes="s.phase" /></span>
+    <Mascot kind="hello">
+      <Rich v-if="greeting" :nodes="greeting" />
+      <span v-if="!greeting">ここから一緒に進めます。<b>1画面に1つのことしかやりません。</b>分からなくなっても大丈夫なので、気楽にどうぞ。</span>
+    </Mascot>
+    <h2><Rich :nodes="s.title" /></h2>
+    <p class="why"><Rich :nodes="s.why" /></p>
+    <div class="oschoice">
+      <button type="button" @click="chooseOs('win')">Windows</button>
+      <button type="button" @click="chooseOs('mac')">Mac</button>
+    </div>
+    <div class="note" style="margin-top: 18px">どちらか分からないときは、研修の担当者に「これはWindowsですか？Macですか？」と聞いてください。恥ずかしいことではありません。</div>
+  </div>
+</template>
+
+<script>
+import Rich from '../ui/Rich.sunao';
+import Mascot from '../ui/Mascot.sunao';
+import { page, step, chooseOs } from './state.js';
+
+export default {
+  name: 'StepOs',
+  setup() {
+    return { s: step.peek(), greeting: page.greeting, chooseOs };
+  },
+};
+</script>

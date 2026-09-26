@@ -1,0 +1,35 @@
+<!-- 案内役キャラクター。ひとことを添えて、独りで作業している感じを薄める。 -->
+<template>
+  <div :class="'mascot' + cls">
+    <img :src="src" :alt="alt" />
+    <div class="say"><slot /></div>
+  </div>
+</template>
+
+<script>
+const LOOK = {
+  hello: { src: 'media/navi-hello.svg', cls: '', alt: '案内役のキャラクター' },
+  calm: { src: 'media/navi-calm.svg', cls: ' warm', alt: '落ち着いてと声をかける案内役' },
+  party: { src: 'media/navi-party.svg', cls: ' win', alt: '喜んでいる案内役' },
+  // 点が低いときに祝われると追い打ちになるので、完了画面でも励ます顔にする
+  cheer: { src: 'media/navi-calm.svg', cls: ' win warm', alt: '励ましている案内役' },
+};
+
+export default {
+  name: 'Mascot',
+  props: { kind: { enum: ['hello', 'calm', 'party', 'cheer'], required: true } },
+  setup(props) {
+    const look = LOOK[props.kind()];
+    return { src: look.src, cls: look.cls, alt: look.alt };
+  },
+};
+</script>
+
+<style>
+.mascot { display: flex; align-items: center; gap: 14px; background: var(--blue-l); border: 1px solid var(--blue-b); border-radius: 12px; padding: 12px 14px; margin-bottom: 18px; }
+.mascot img { width: 64px; height: 64px; flex: none; }
+.say { font-size: 14px; line-height: 1.7; }
+.mascot.warm { background: var(--red-l); border-color: var(--red-b); }
+.mascot.win { background: var(--green-l); border-color: var(--green-b); flex-direction: column; text-align: center; }
+.mascot.win img { width: 104px; height: 104px; }
+</style>

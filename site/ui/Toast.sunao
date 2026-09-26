@@ -1,0 +1,20 @@
+<!-- 画面下に一瞬だけ出す知らせ。中身は lib/toast.js の toast() が決める。 -->
+<template>
+  <div :class="toastOn() ? 'toast on' : 'toast'" role="status" aria-live="polite">{{ toastText() }}</div>
+</template>
+
+<script>
+import { toastText, toastOn } from '../lib/toast.js';
+
+export default {
+  name: 'Toast',
+  setup() {
+    return { toastText, toastOn };
+  },
+};
+</script>
+
+<style>
+.toast { position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%); background: #1b2330; color: #fff; padding: 11px 20px; border-radius: 9px; font-size: 14px; opacity: 0; transition: opacity .2s; pointer-events: none; z-index: 99; max-width: calc(100% - 32px); }
+.toast.on { opacity: 1; }
+</style>

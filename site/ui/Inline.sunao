@@ -1,0 +1,56 @@
+<!--
+  教材の文章（ビルド時に構造データへ変えたもの）を 1 ノードずつ描く。
+  n が文字列ならテキスト、{ t, a, c } なら要素。許可するタグは tools/html.mjs の inline と同じ。
+  _b / _code … は「そのタグなら [n]、違えば []」。束縛変数 x だけを見る v-for は
+  sunao が静的なループにコンパイルするので、ノードごとに effect も空のマーカも作らない。
+-->
+<template>
+  {{ text }}
+  <b v-for="x in _b"><Inline v-for="c in x.c || []" :n="c" /></b>
+  <strong v-for="x in _strong"><Inline v-for="c in x.c || []" :n="c" /></strong>
+  <i v-for="x in _i"><Inline v-for="c in x.c || []" :n="c" /></i>
+  <em v-for="x in _em"><Inline v-for="c in x.c || []" :n="c" /></em>
+  <u v-for="x in _u"><Inline v-for="c in x.c || []" :n="c" /></u>
+  <s v-for="x in _s"><Inline v-for="c in x.c || []" :n="c" /></s>
+  <small v-for="x in _small"><Inline v-for="c in x.c || []" :n="c" /></small>
+  <sup v-for="x in _sup"><Inline v-for="c in x.c || []" :n="c" /></sup>
+  <sub v-for="x in _sub"><Inline v-for="c in x.c || []" :n="c" /></sub>
+  <kbd v-for="x in _kbd"><Inline v-for="c in x.c || []" :n="c" /></kbd>
+  <pre v-for="x in _pre"><Inline v-for="c in x.c || []" :n="c" /></pre>
+  <code v-for="x in _code" :class="x.a?.class"><Inline v-for="c in x.c || []" :n="c" /></code>
+  <span v-for="x in _span" :class="x.a?.class"><Inline v-for="c in x.c || []" :n="c" /></span>
+  <a v-for="x in _a" :href="x.a?.href" :target="x.a?.target" :rel="x.a?.rel" :class="x.a?.class"><Inline v-for="c in x.c || []" :n="c" /></a>
+  <br v-for="x in _br" />
+  <img v-for="x in _img" :src="x.a?.src" :alt="x.a?.alt || ''" :class="x.a?.class" :width="x.a?.width" :height="x.a?.height" />
+</template>
+
+<script>
+import Inline from './Inline.sunao';
+
+export default {
+  name: 'Inline',
+  props: { n: {} },
+  setup(props) {
+    const n = props.n();
+    const text = typeof n === 'string' ? n : '';
+    const is = (t) => (n && n.t === t ? [n] : []);
+    const _b = is('b');
+    const _strong = is('strong');
+    const _i = is('i');
+    const _em = is('em');
+    const _u = is('u');
+    const _s = is('s');
+    const _small = is('small');
+    const _sup = is('sup');
+    const _sub = is('sub');
+    const _kbd = is('kbd');
+    const _pre = is('pre');
+    const _code = is('code');
+    const _span = is('span');
+    const _a = is('a');
+    const _br = is('br');
+    const _img = is('img');
+    return { text, _b, _strong, _i, _em, _u, _s, _small, _sup, _sub, _kbd, _pre, _code, _span, _a, _br, _img };
+  },
+};
+</script>

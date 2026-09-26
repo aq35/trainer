@@ -1,0 +1,31 @@
+<!-- 前へ／次へ。目次（_sidebar.md）に並んでいる読み物の順で、章をまたいで進む。 -->
+<template>
+  <nav class="pager" aria-label="前後の読み物">
+    <a v-if="prev" class="pg prev" :href="'#/' + prev.route"><span class="pl">前へ</span><span class="pt">{{ prev.label }}</span></a>
+    <a v-if="next" class="pg next" :href="'#/' + next.route"><span class="pl">次へ</span><span class="pt">{{ next.label }}</span></a>
+  </nav>
+</template>
+
+<script>
+import { SITE, doc } from './state.js';
+
+export default {
+  name: 'Pager',
+  setup() {
+    const list = [];
+    for (const g of SITE.sidebar) for (const it of g.items) if ('route' in it && !list.some((x) => x.route === it.route)) list.push(it);
+    const at = list.findIndex((x) => x.route === doc.peek().route);
+    const clean = (it) => (it ? { route: it.route, label: it.label.replace(/^[\s　]+/, '') } : null);
+    return { prev: at > 0 ? clean(list[at - 1]) : null, next: at >= 0 ? clean(list[at + 1]) : null };
+  },
+};
+</script>
+
+<style>
+.pager { display: flex; justify-content: space-between; gap: 12px; max-width: 860px; margin: 40px auto 0; padding: 0 16px; }
+.pg { display: flex; flex-direction: column; text-decoration: none; border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; max-width: 48%; color: var(--ink); background: var(--card); }
+.pg:hover { border-color: var(--blue); }
+.next { margin-left: auto; text-align: right; }
+.pl { font-size: 12px; color: var(--sub); }
+.pt { font-weight: 600; font-size: 14px; color: var(--blue); }
+</style>

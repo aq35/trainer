@@ -1,0 +1,27 @@
+<!-- 読み物の中のコード。右上の「コピー」で丸ごとクリップボードへ（docsify-copy-code の代わり）。 -->
+<template>
+  <div class="codeblock">
+    <pre :data-lang="lang || null"><code>{{ text }}</code></pre>
+    <button type="button" class="copy" @click="copy(text, 'コピーしました')">コピー</button>
+  </div>
+</template>
+
+<script>
+import { copy } from '../lib/toast.js';
+
+export default {
+  name: 'CodeBlock',
+  props: { text: { type: 'string', required: true }, lang: { type: 'string' } },
+  setup(props) {
+    return { text: props.text(), lang: props.lang(), copy };
+  },
+};
+</script>
+
+<style>
+.codeblock { position: relative; margin: 1em 0; }
+pre { margin: 0; padding: 14px 16px; border-radius: 8px; }
+code { font-size: 13px; line-height: 1.7; }
+.copy { position: absolute; top: 8px; right: 8px; background: var(--code-btn); color: #dfe5ef; border: 0; border-radius: 6px; padding: 4px 10px; font: inherit; font-size: 12px; cursor: pointer; opacity: .75; }
+.copy:hover, .copy:focus-visible { opacity: 1; background: var(--code-btn-h); }
+</style>

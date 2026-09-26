@@ -1,0 +1,130 @@
+<!--
+  「案件まで◯週間」から、学習計画をAIに作らせるための道具（本文の <div id="planner"></div>）。
+  計画そのものはAIが作る。ここがやるのは ① 残り時間を数える ② 良い頼み方の文章を組み立てる の2つだけ。
+  選択肢と、AIに渡す前提は content/plan.js。文章の組み立ては ./plan-prompts.js。
+-->
+<template>
+  <div class="planner">
+    <div class="row"><label for="p-date">案件が始まる日</label><input id="p-date" type="date" :value="date()" @change="set(date, $event)" /></div>
+    <div class="row">
+      <label for="p-hours">週にとれる時間</label>
+      <select id="p-hours" @change="set(hours, $event)">
+        <option v-for="o in hourOpts" :value="o.k" :selected="o.k === hours.peek() ? true : null">{{ o.label }}</option>
+      </select>
+    </div>
+    <div class="row">
+      <label for="p-level">いまの到達度</label>
+      <select id="p-level" @change="set(level, $event)">
+        <option v-for="o in levelOpts" :value="o.k" :selected="o.k === level.peek() ? true : null">{{ o.label }}</option>
+      </select>
+    </div>
+    <div class="row">
+      <label for="p-field">目指す方向</label>
+      <select id="p-field" @change="set(field, $event)">
+        <option v-for="o in fieldOpts" :value="o.k" :selected="o.k === field.peek() ? true : null">{{ o.label }}</option>
+      </select>
+    </div>
+    <div class="row">
+      <label for="p-weak">まだ自信が無いところ<br /><span class="lsub"><a href="#/graduation">最終チェック</a>の「できていない項目をコピー」から貼れます</span></label>
+      <textarea id="p-weak" placeholder="例: エラーが出ない不具合を切り分けられる／作業前に git pull する習慣がある" @input="set(weak, $event)">{{ initWeak }}</textarea>
+    </div>
+    <div class="row">
+      <label for="p-desc">案件の内容<br /><span class="lsub">分かる範囲で。空でも作れます</span></label>
+      <textarea id="p-desc" placeholder="例: 社内で使う勤怠のWebシステムの改修。フロントは React、裏は Java と PostgreSQL、AWS上。人数は5人くらい。
+使っている技術の名前が分かるだけでも、マッチ度の判定はかなり正確になります。" @input="set(desc, $event)">{{ initDesc }}</textarea>
+    </div>
+    <div class="warn">⚠️ <b>案件票を、そのまま丸ごと貼らないでください。</b><br /><b>消すもの</b>: 会社名・顧客名・個人名・URL。そして<b>「貼ってよいか」を担当者に確認</b>してから使ってください。<br /><b>要らないもの</b>: 単価・商流・他人の感想。<b>計画には関係しません。</b><br /><b>要るのはこれだけ</b>: <b>使う技術／稼働時間・日数／チームの規模</b>。3行で十分です。</div>
+
+    <!-- 入力どうしの食い違いに、その場で気づけるようにする -->
+    <div v-if="hints().length" class="warn hint"><span v-for="m in hints()" class="hl">💡 {{ m }}</span></div>
+
+    <div v-if="!left()" class="sum">日付を入れると、<b>残り時間と週ごとの配分</b>が出ます。<br /><span class="ssub">まだ決まっていない場合は、<b>仮の日付（1か月後など）</b>で構いません。入れなくても、下のボタンから文章はコピーできます。</span></div>
+    <div v-if="left() && left().days < 0" class="sum">その日はもう過ぎています。<b>今日からの計画</b>を作るなら、日付を先の日に変えてください。<br /><span class="ssub">すでに案件が始まっている人は、<b>次の区切りの日</b>（1か月後の目標日など）を入れてください。</span></div>
+    <div v-if="left() && left().days >= 0">
+      <div class="sum"><b>開始まで {{ left().days }}日（約{{ left().weeks }}週間）。使える時間は合計およそ {{ left().weeks * Number(hours()) }}時間です。</b><br /><span class="ssub">下は、ざっくりの配分です。<b>細かい中身はAIに作ってもらいます。</b></span></div>
+      <div v-if="real() && !real().ok" class="warn">⏳ <b>正直に言うと、時間が足りません。</b>いまの到達度だと、案件までに <b>{{ real().need }}時間ほど</b>欲しいところ、使えるのは <b>約{{ real().total }}時間</b>です。<br /><b>それでも大丈夫です。</b>やることを増やすのではなく、<b>何を捨てるかを先に決める</b>のが正解です。コピーする文章には、その指示が自動で入ります。</div>
+      <div v-if="real() && real().tight" class="warn">⚠️ <b>ぎりぎりです。</b>約{{ real().total }}時間あり、必要量には届いていますが余裕はありません。<b>同時に2つ始めないこと。</b>これだけ守ってください。</div>
+      <div class="weeks">
+        <div v-for="p in weeks()" class="wk"><b>{{ p.w }}週目</b><span><b>{{ p.t }}</b><br /><span class="wd">{{ p.d }}</span></span></div>
+      </div>
+    </div>
+
+    <div class="btns">
+      <button type="button" class="main" @click="copyPlan">学習計画の依頼をコピー</button>
+      <button type="button" class="sub" @click="copyMatch">案件とのマッチ度を測る</button>
+      <button type="button" class="sub" @click="copyWeekly">毎週の振り返り用をコピー</button>
+    </div>
+  </div>
+</template>
+
+<script>
+import { fields, levels, levelOrder, hours as HOURS } from '../../../content/plan.js';
+import { readJSON, writeJSON } from '../../lib/store.js';
+import { copy } from '../../lib/toast.js';
+import { guessLevel, weeksLeft, shape, reality, planPrompt, matchPrompt, weeklyPrompt } from './plan-prompts.js';
+
+const SAVE_KEY = 'trainer-plan-v1';
+
+export default {
+  name: 'Planner',
+  setup() {
+    // 前回の入力を戻す。無ければ、研修の進捗から到達度を推定して入れておく
+    const saved = readJSON(SAVE_KEY, {});
+    const date = signal(saved.date || '');
+    const hours = signal(saved.hours || '7');
+    const level = signal(saved.level || guessLevel());
+    const field = signal(saved.field || 'unknown');
+    const desc = signal(saved.desc || '');
+    const weak = signal(saved.weak || '');
+    const value = () => ({ date: date(), left: weeksLeft(date()), hours: hours(), level: level(), field: field(), desc: desc(), weak: weak() });
+    const save = () => writeJSON(SAVE_KEY, { date: date.peek(), hours: hours.peek(), level: level.peek(), field: field.peek(), desc: desc.peek(), weak: weak.peek() });
+    const set = (sig, e) => { sig.set(e.target.value); save(); };
+
+    const left = () => weeksLeft(date());
+    const real = () => reality(value());
+    const weeks = () => (left() && left().days >= 0 ? shape(left().weeks, level()) : []);
+    const hints = () => {
+      const d = desc().trim();
+      const out = [];
+      if (field() === 'unknown' && d) out.push('案件の内容が入っています。「目指す方向」も選んでおくと、計画の精度が上がります。（分からなければ、そのままで構いません。案件の内容から判断させます）');
+      if (/円|万円|単価|時給|月額/.test(d)) out.push('金額らしき記述が入っています。計画には要らないので、消しておくのがおすすめです。');
+      if (d.length > 600) out.push('案件の内容が長すぎます（' + d.length + '文字）。使う技術・稼働条件・チームの規模の3行に削ると、答えが具体的になります。');
+      return out;
+    };
+    const msg = 'コピーしました。AIに貼ってください';
+    const opts = (o) => Object.keys(o).map((k) => ({ k, label: typeof o[k] === 'string' ? o[k] : o[k].label }));
+    return {
+      date, hours, level, field, desc, weak, set, left, real, weeks, hints,
+      initWeak: weak.peek(), initDesc: desc.peek(),
+      hourOpts: opts(HOURS), levelOpts: levelOrder.map((k) => ({ k, label: levels[k].label })), fieldOpts: opts(fields),
+      copyPlan: () => { save(); copy(planPrompt(value()), msg); },
+      copyMatch: () => { save(); copy(matchPrompt(value()), msg); },
+      copyWeekly: () => copy(weeklyPrompt(), msg),
+    };
+  },
+};
+</script>
+
+<style>
+.planner { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; margin: 1.4em 0; }
+.row { display: grid; grid-template-columns: 150px 1fr; gap: 12px; align-items: center; margin-bottom: 12px; }
+label { font-size: 13.5px; font-weight: 700; color: var(--sub); }
+.lsub { font-weight: 400; font-size: 12px; }
+select, input, textarea { font: inherit; font-size: 14px; padding: 9px 11px; border: 1px solid var(--soft-b); border-radius: 8px; background: var(--card); color: var(--ink); width: 100%; }
+textarea { min-height: 88px; resize: vertical; }
+.weeks { margin: 16px 0 0; }
+.wk { display: grid; grid-template-columns: 78px 1fr; gap: 12px; padding: 9px 0; border-top: 1px dashed var(--line); font-size: 13.5px; }
+.wk b { color: var(--blue); }
+.wd, .ssub { color: var(--sub); font-size: 12.5px; }
+.sum { background: var(--blue-l); border: 1px solid var(--blue-b); border-radius: 9px; padding: 11px 14px; font-size: 14px; margin-top: 14px; }
+.btns { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+button { font: inherit; font-weight: 700; font-size: 14px; border: 0; border-radius: 9px; padding: 12px 18px; cursor: pointer; }
+.main { background: var(--blue); color: var(--on-accent); }
+.main:hover { filter: brightness(.93); }
+.sub { background: var(--card); color: var(--blue); border: 2px solid var(--blue-b); }
+.sub:hover { border-color: var(--blue); }
+.warn { background: var(--pink-l); border: 1px solid var(--pink-b); border-radius: 9px; padding: 11px 14px; font-size: 13px; margin-top: 14px; }
+.warn.hint { background: var(--amber-l); border-color: var(--amber-b); }
+.hl { display: block; }
+@media (max-width: 560px) { .row { grid-template-columns: 1fr; } }
+</style>

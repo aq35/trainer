@@ -1,0 +1,95 @@
+/* 読み物（index.html）。左に目次、右に本文。docsify の見た目（vue テーマ）に寄せてある。
+   本文は doc/Block.sunao と ui/Inline.sunao が描くので、本文の中の class はここに置く。 */
+.read { --sbw: 300px; min-height: 100vh; }
+.read .sidebar { position: fixed; top: 0; bottom: 0; left: 0; width: var(--sbw); overflow-y: auto; background: var(--card); border-right: 1px solid var(--line); z-index: 20; transition: transform .25s ease; }
+.read .content { margin-left: var(--sbw); padding: 0 0 40px; }
+.read .shade { display: none; }
+.navtoggle { display: none; position: fixed; left: 12px; bottom: 16px; z-index: 30; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: var(--card); box-shadow: 0 2px 8px rgba(0, 0, 0, .12); cursor: pointer; padding: 13px 11px; }
+.navtoggle span { display: block; height: 2px; background: var(--ink); margin: 3px 0; border-radius: 2px; }
+@media (max-width: 768px) {
+  .read .sidebar { transform: translateX(calc(-1 * var(--sbw))); }
+  .read.open .sidebar { transform: none; }
+  .read.open .shade { display: block; position: fixed; inset: 0; background: rgba(0, 0, 0, .3); z-index: 15; }
+  .read .content { margin-left: 0; }
+  .navtoggle { display: block; }
+}
+
+.doc { max-width: 860px; margin: 0 auto; padding: 30px 16px 0; font-size: 15px; line-height: 1.8; color: var(--ink); }
+.doc .state { padding: 40px 0; color: var(--sub); }
+.doc h1, .doc h2, .doc h3, .doc h4, .doc h5, .doc h6 { color: var(--ink); line-height: 1.5; scroll-margin-top: 16px; }
+.doc h1 { font-size: 1.9em; margin: 0 0 1rem; }
+.doc h2 { font-size: 1.55em; margin: 2.2rem 0 .8rem; padding-bottom: .3em; border-bottom: 1px solid var(--line); }
+.doc h3 { font-size: 1.25em; margin: 1.8rem 0 .6rem; }
+.doc h4 { font-size: 1.05em; margin: 1.4rem 0 .5rem; }
+.doc h1 a.anchor, .doc h2 a.anchor, .doc h3 a.anchor, .doc h4 a.anchor, .doc h5 a.anchor, .doc h6 a.anchor { color: inherit; text-decoration: none; }
+.doc a.anchor:hover { text-decoration: underline; }
+.doc p, .doc ul, .doc ol { margin: 1em 0; }
+.doc ul, .doc ol { padding-left: 1.5em; }
+.doc li + li { margin-top: .2em; }
+.doc strong, .doc b { color: var(--ink); }
+.doc hr { border: 0; border-top: 1px solid var(--line); margin: 2em 0; }
+.doc blockquote { border-left: 4px solid var(--blue); margin: 1.2em 0; padding: .2em 0 .2em 1em; color: var(--sub); }
+.doc blockquote p { margin: .5em 0; }
+.doc code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .9em; background: var(--inline-code-bg); color: var(--inline-code-fg); border-radius: 4px; padding: 2px 5px; }
+.doc pre code { background: none; color: inherit; padding: 0; font-size: 13px; }
+.doc .tablewrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 1em 0; }
+.doc table { border-collapse: collapse; width: 100%; font-size: 14px; }
+.doc th, .doc td { border: 1px solid var(--line); padding: 7px 12px; text-align: left; vertical-align: top; }
+.doc th { background: var(--soft); font-weight: 700; }
+.doc tr:nth-child(2n) td { background: var(--bg); }
+.doc details { background: var(--soft); border: 1px solid var(--line); border-radius: 8px; padding: .6em 1em; margin: 1em 0; }
+.doc details summary { cursor: pointer; font-weight: 600; color: var(--blue); }
+.doc img { max-width: 100%; height: auto; }
+
+/* 図。狭い画面では縮めず、枠の中だけ横スクロール（図の文字は半分が 12px 未満なので、縮めると読めない） */
+.doc .ui-mock { display: block; max-width: 100%; margin: 1em 0; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+@media (max-width: 700px) {
+  .doc p:has(> img:not(.ti)), .doc div:has(> img.ui-mock) { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .doc img.ui-mock { min-width: 720px; max-width: none; }
+}
+@media (prefers-color-scheme: dark) { .doc .ui-mock { padding: 6px; } }
+/* 表・段落・箇条書きなど、どこに置いても同じ大きさのツールアイコン */
+.doc img.ti { width: 26px; height: 26px; vertical-align: -7px; margin-right: 6px; display: inline; }
+
+/* 目次ページの案内役 */
+.doc .hero { display: flex; align-items: center; gap: 18px; background: var(--blue-l); border: 1px solid var(--blue-b); border-radius: 14px; padding: 18px 20px; margin: 1.4em 0; }
+.doc .hero img { width: 88px; height: 88px; flex: none; }
+.doc .hero p { margin: 0; font-size: 15px; }
+@media (max-width: 520px) { .doc .hero { flex-direction: column; text-align: center; } }
+
+.doc .note { background: var(--amber-l); border: 1px solid var(--amber-b); border-left: 5px solid #e8a53a; border-radius: 8px; padding: .9em 1.1em; margin: 1.5em 0; }
+.doc .checkpoint { background: var(--green-l); border: 1px solid var(--green-b); border-left: 5px solid #3aa76d; border-radius: 8px; padding: .9em 1.1em; margin: 1.5em 0; }
+.doc .checkpoint strong { color: var(--green); }
+.doc .note > p:first-child, .doc .checkpoint > p:first-child { margin-top: 0; }
+.doc .note > p:last-child, .doc .checkpoint > p:last-child { margin-bottom: 0; }
+
+/* 寄り道コラム */
+.doc .column { background: var(--purple-l); border: 1px solid var(--purple-b); border-left: 5px solid #8b5cf6; border-radius: 10px; padding: 1em 1.2em; margin: 1.6em 0; }
+.doc .column .ct { font-size: 12px; font-weight: 700; color: var(--purple); letter-spacing: .04em; margin-bottom: .35em; }
+.doc .column p:last-child { margin-bottom: 0; }
+/* 豆知識 */
+.doc .trivia { background: var(--pink-l); border: 1px solid var(--pink-b); border-radius: 10px; padding: 1em 1.2em; margin: 1.6em 0; }
+.doc .trivia .ct { font-size: 12px; font-weight: 700; color: var(--pink); margin-bottom: .35em; }
+/* 質問と答え */
+.doc .qa { margin: 1.4em 0; }
+.doc .qa .q { font-weight: 700; font-size: 15.5px; padding-left: 1.9em; position: relative; margin-bottom: .4em; }
+.doc .qa .q::before, .doc .qa .a::before { position: absolute; left: 0; top: 0; width: 1.5em; height: 1.5em; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; }
+.doc .qa .q::before { content: "Q"; background: var(--blue); color: var(--on-accent); }
+.doc .qa .a { padding-left: 1.9em; position: relative; }
+.doc .qa .a::before { content: "A"; background: var(--rail); color: var(--sub); }
+/* 冒頭のリード文 */
+.doc .lead { font-size: 16px; line-height: 1.9; color: var(--sub); border-left: 3px solid var(--blue-b); padding-left: 1em; margin: 1.2em 0 1.8em; }
+
+/* 大段階カード・所要時間 */
+.doc .step-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: .75em; margin: 1.5em 0; }
+.doc .step-card { border: 1px solid var(--line); background: var(--soft); border-radius: 10px; padding: 1em .8em; text-align: center; }
+.doc .time { display: inline-block; background: var(--blue-l); color: var(--blue); border: 1px solid var(--blue-b); border-radius: 999px; padding: .15em .8em; font-size: .78em; font-weight: 700; vertical-align: middle; margin-left: .5em; }
+
+/* 進捗の報告・参画の相談・できていない項目のコピー（widgets の3つで共通） */
+.doc .mapreport { background: var(--blue-l); border: 1px solid var(--blue-b); border-radius: 10px; padding: 14px 16px; margin-top: 12px; font-size: 14px; }
+.doc .mapreport .mrsub { font-size: 13px; color: var(--sub); display: block; margin-top: 3px; }
+.doc .mapreport .mrbtn { display: inline-block; margin-top: 12px; background: var(--blue); color: var(--on-accent); font-weight: 700; text-decoration: none; border-radius: 9px; padding: 11px 20px; border: 0; font-size: 15px; font-family: inherit; cursor: pointer; }
+.doc .mapreport .mrbtn:hover { filter: brightness(.93); }
+
+/* チェックリストの箇条書きは、点を出さない */
+.doc ul:has(> .task-list-item) { padding-left: .4em; }

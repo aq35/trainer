@@ -1,0 +1,18 @@
+<!-- 読み物 1 本の本文。 -->
+<template>
+  <div class="page">
+    <Block v-for="n in nodes" :n="n" />
+  </div>
+</template>
+
+<script>
+import Block from './Block.sunao';
+import { doc } from './state.js';
+
+export default {
+  name: 'Page',
+  setup() {
+    return { nodes: doc.peek().nodes };
+  },
+};
+</script>

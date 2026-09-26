@@ -5,7 +5,7 @@
 | 対象 | ライセンス |
 | --- | --- |
 | **コード**（`.html` / `.js` / `.css`、ナビの仕組みそのもの） | [MIT License](LICENSE) |
-| **教材**（`docs/**/*.md` の文章、`docs/media/**` の図版） | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.ja) |
+| **教材**（`content/read/**/*.md` の文章、`public/media/**` の図版） | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.ja) |
 
 ---
 
@@ -37,17 +37,17 @@
 **歓迎します。許可を取る必要はありません。** 次の手順でそのまま使えます。
 
 1. このリポジトリを **フォーク**する
-2. `docs/config.js` を自分たちのものに書き換える
-   - `TRAINER_SUPPORT`（サポート窓口・参加申請の宛先）
-   - `TRAINER_COFFEE.url` — **空文字にすれば、寄付の案内は消えます**（他人の受け口が残らないよう、必ず確認してください）
+2. `content/config.js` を自分たちのものに書き換える
+   - `support`（サポート窓口・参加申請の宛先）
+   - `coffee.url` — **空文字にすれば、寄付の案内は消えます**（他人の受け口が残らないよう、必ず確認してください）
 3. 相談・進捗用の**非公開リポジトリ**を別に用意する（[README](README.md) に手順があります）
-4. `Settings > Pages` で `main` / `docs` を選んで公開する
+4. `Settings > Pages` の Source で `GitHub Actions` を選んで公開する（push するとビルドされます）
 
 <div></div>
 
 **ページ下部の出典表示について**
 
-全ページの下に、次の1行が自動で入ります（`docs/credit.js`）。
+全ページの下に、次の1行が自動で入ります（`site/ui/Credit.sunao`）。
 
 ```
 この教材は無料で公開されています — aq35.github.io/trainer

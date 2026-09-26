@@ -8,7 +8,7 @@
 
 ## このシステムは何か
 
-**サーバーもデータベースもビルドも持たない、静的HTMLだけの研修システム**です。GitHub Pages に置いてあるファイルが全部で、それ以外に動いているものはありません。
+**サーバーもデータベースも持たない、静的なページだけの研修システム**です。教材（`content/`）を、画面の部品（`site/`・[sunao](sunao/README.md) で書いたもの）でビルドし、GitHub Pages に置いたファイルが全部です。それ以外に動いているものはありません。
 
 | | |
 | --- | --- |
@@ -18,8 +18,8 @@
 | 「うまくいきません」の項目 | **647**（1画面あたり平均2.7個） |
 | 読み物 | **24本** |
 | 練習用の題材 | 別リポジトリ [trainer-practice](https://github.com/aq35/trainer-practice) にチケット**14件**と専用ブランチ |
-| ビルド | **なし**（`package.json` がありません） |
-| 外部依存 | **CDN 9本のみ**（docsify とそのプラグイン。届かないときの受け皿あり） |
+| ビルド | **GitHub Actions で1回**（`npm run build`。受講者の手元では何もビルドしません） |
+| 外部依存 | **公開ページは0本**（CDN を使いません）。ビルドに使うのは **esbuild だけ** |
 | 保存先 | **localStorage だけ**。サーバーに何も送りません |
 
 ### 設計で決めていること
@@ -31,7 +31,7 @@
 各画面に平均2.7個の「うまくいきません」を**先に**置いてあります。3段構えで、①まず疑う3つ → ②症状から探す → ③AIに聞く／人に聞く（**質問文が自動で生成されます**）。同じ画面に15分いると、ナビ側から声をかけます。
 
 **③ コマンドは、打つ前と打った後に説明を付ける。**
-コピーして貼るだけでは何も残りません。コマンドの**すぐ上**に「この行は何をしますか」を**1行ずつ**（行数と1対1。機械で検査）、結果の**すぐ下**に「いま、何が起きたのか」を置きます。**現状は Git-Flow の回のみ（110画面中8画面）。** 残りは [`check-cmd-explain.mjs`](docs/check-cmd-explain.mjs) で数えています。
+コピーして貼るだけでは何も残りません。コマンドの**すぐ上**に「この行は何をしますか」を**1行ずつ**（行数と1対1。機械で検査）、結果の**すぐ下**に「いま、何が起きたのか」を置きます。**現状は Git-Flow の回のみ（110画面中8画面）。** 残りは [`check-cmd-explain.mjs`](tools/check-cmd-explain.mjs) で数えています。
 
 **④ 概念は必ず図にする。**
 **手を動かさない画面で、図が無いものはゼロ**です。図の中の文字がスマホで潰れないよう、狭い画面では縮小せず、枠の中だけ横スクロールさせています。
@@ -54,70 +54,70 @@ AIの出力に依存する演習は、**AIがまともな答えを返すと成�
 **3. 題材が腐っていないかを、機械が毎回見る**
 `main` が進むと練習用ブランチだけが取り残され、**差分に無関係な削除が並びます**（実際に「4ファイルのはずが22ファイル・1,490行の削除」になっていました）。いまは [`check-fixtures.mjs`](https://github.com/aq35/trainer-practice/blob/main/.github/scripts/check-fixtures.mjs) が CI で検査します。
 
-**そして、間違えていたことを公開します。** → [改訂履歴](docs/changelog.md)
+**そして、間違えていたことを公開します。** → [改訂履歴](content/read/changelog.md)
 
-<!-- 数値の出典: docs/*.html の window.NAVI を数えたもの。更新時は再計測してください -->
+<!-- 数値の出典: content/navi/*.js を数えたもの。更新時は再計測してください -->
 
 ## 受講者が進む順番
 
-1. **[環境構築ナビ](docs/setup.html)** — VS Code / Git / Claude Code。AIの用意は3ルート（①Claude Code を契約 ②会社配布のキー＝Bedrock ③0円）
-2. **[git の基本](docs/git.html)** — 記録する・確認する・壊して戻す（11ステップ）
-3. **[GitHubナビ](docs/github.html)** — アカウント作成から push まで
-4. **[差分を読む](docs/diff.html)** — AIの提案を読んで判断するための土台
-5. **[AIと一緒に直す](docs/ai.html)** — 権限モード・承認・拒否・取り消し・頼み方
-6. **[はじめてのプログラム](docs/code.html)** — HTML/JavaScript を書く・動かす・エラーを読んで直す・自力課題
-7. **[ブランチと安全な進め方](docs/branch.html)** — ブランチ / merge / .gitignore / プルリクエスト（一人で一周）
-8. **[世界に公開する](docs/publish.html)** — GitHub Pages で自分のページを公開し、デプロイを体験する
-9. **[仕事の一周](docs/work.html)** — 他人のコードを clone して直す。チケット6本／PR／自動採点／AIレビュー／コンフリクト。教材は [aq35/trainer-practice](https://github.com/aq35/trainer-practice)（全14チケット）
-10. **[自分のテーマで回す](docs/theme.html)** — 自分で決めたものを作る。CLAUDE.md / Plan モード / `@`指定 / `/clear` / 詰まったときの手順
-11. **[AIと回す開発の一周](docs/ai-dlc.html)** — AIがクライアント役。要件→設計→分解→実装→検収→変更まで一人で一周
-12. **[レビューする側になる](docs/review.html)** — 問題を7つ植えたPRを実際にレビューする
-13. **[曖昧な報告から不具合を追う](docs/bug.html)** — 「なんかおかしい気がします」だけを手がかりに再現する
-14. **[大きなコードに初日で入る](docs/onboard.html)** — この教材のリポジトリ（148ファイル・1万6千行。うちプログラムは1,779行）が題材
-15. **[詰まったときに、人を頼る](docs/ask.html)** — 15分ルール、相談文の4点セット
-16. **[AIに道具を持たせる（MCP × GitHub）](docs/mcp.html)** — 最小の権限で鍵を作り、つなぎ、外す
-17. **[動くけど遅い、を直す](docs/perf.html)** — 測る→特定→直す→もう一度測る
-18. **[使い捨てをやめて、道具にする](docs/tools.html)** — 計測を、テスト付きの道具に
-19. **[数字を、目に見えるようにする](docs/chart.html)** — 計測結果をSVGの棒グラフに
-20. **[APIと、問題の切り分け](docs/api.html)** — Console と Network で、フロント側かサーバー側かを判定
-21. **[観測する力をつける](docs/observe.html)** — 言語サーバ・git blame・git bisect（Node.js が要ります）
-22. **[保存先を変えてみる（任意）](docs/db.html)** — SQLite を入れて、壊して、直す（Node.js 22 以上）
-23. **[テストは4段。何を守り、何を守らないか](docs/test.html)** — **全部は試せない（3通り×10入力＝59,049通り）から、やらないことを決める**。だから切り口を分ける。カバレッジを実際に出し、**バグを直しても数字が動かない**ことを見る。表の軸は5つの候補から自分で選ぶ（AIに聞くのは選んだあと）
+1. **[環境構築ナビ](https://aq35.github.io/trainer/setup.html)** — VS Code / Git / Claude Code。AIの用意は3ルート（①Claude Code を契約 ②会社配布のキー＝Bedrock ③0円）
+2. **[git の基本](https://aq35.github.io/trainer/git.html)** — 記録する・確認する・壊して戻す（11ステップ）
+3. **[GitHubナビ](https://aq35.github.io/trainer/github.html)** — アカウント作成から push まで
+4. **[差分を読む](https://aq35.github.io/trainer/diff.html)** — AIの提案を読んで判断するための土台
+5. **[AIと一緒に直す](https://aq35.github.io/trainer/ai.html)** — 権限モード・承認・拒否・取り消し・頼み方
+6. **[はじめてのプログラム](https://aq35.github.io/trainer/code.html)** — HTML/JavaScript を書く・動かす・エラーを読んで直す・自力課題
+7. **[ブランチと安全な進め方](https://aq35.github.io/trainer/branch.html)** — ブランチ / merge / .gitignore / プルリクエスト（一人で一周）
+8. **[世界に公開する](https://aq35.github.io/trainer/publish.html)** — GitHub Pages で自分のページを公開し、デプロイを体験する
+9. **[仕事の一周](https://aq35.github.io/trainer/work.html)** — 他人のコードを clone して直す。チケット6本／PR／自動採点／AIレビュー／コンフリクト。教材は [aq35/trainer-practice](https://github.com/aq35/trainer-practice)（全14チケット）
+10. **[自分のテーマで回す](https://aq35.github.io/trainer/theme.html)** — 自分で決めたものを作る。CLAUDE.md / Plan モード / `@`指定 / `/clear` / 詰まったときの手順
+11. **[AIと回す開発の一周](https://aq35.github.io/trainer/ai-dlc.html)** — AIがクライアント役。要件→設計→分解→実装→検収→変更まで一人で一周
+12. **[レビューする側になる](https://aq35.github.io/trainer/review.html)** — 問題を7つ植えたPRを実際にレビューする
+13. **[曖昧な報告から不具合を追う](https://aq35.github.io/trainer/bug.html)** — 「なんかおかしい気がします」だけを手がかりに再現する
+14. **[大きなコードに初日で入る](https://aq35.github.io/trainer/onboard.html)** — この教材のリポジトリ（259ファイル・2万5千行。うち自分で「動き」を書いたのは3,323行）が題材
+15. **[詰まったときに、人を頼る](https://aq35.github.io/trainer/ask.html)** — 15分ルール、相談文の4点セット
+16. **[AIに道具を持たせる（MCP × GitHub）](https://aq35.github.io/trainer/mcp.html)** — 最小の権限で鍵を作り、つなぎ、外す
+17. **[動くけど遅い、を直す](https://aq35.github.io/trainer/perf.html)** — 測る→特定→直す→もう一度測る
+18. **[使い捨てをやめて、道具にする](https://aq35.github.io/trainer/tools.html)** — 計測を、テスト付きの道具に
+19. **[数字を、目に見えるようにする](https://aq35.github.io/trainer/chart.html)** — 計測結果をSVGの棒グラフに
+20. **[APIと、問題の切り分け](https://aq35.github.io/trainer/api.html)** — Console と Network で、フロント側かサーバー側かを判定
+21. **[観測する力をつける](https://aq35.github.io/trainer/observe.html)** — 言語サーバ・git blame・git bisect（Node.js が要ります）
+22. **[保存先を変えてみる（任意）](https://aq35.github.io/trainer/db.html)** — SQLite を入れて、壊して、直す（Node.js 22 以上）
+23. **[テストは4段。何を守り、何を守らないか](https://aq35.github.io/trainer/test.html)** — **全部は試せない（3通り×10入力＝59,049通り）から、やらないことを決める**。だから切り口を分ける。カバレッジを実際に出し、**バグを直しても数字が動かない**ことを見る。表の軸は5つの候補から自分で選ぶ（AIに聞くのは選んだあと）
 
-24. **[チームのブランチ運用（Git-Flow）](docs/gitflow.html)** — **なぜ決まりごとが生まれたのか**から始める（一人なら要らなかった → 3人が同じ main に入れると何が困るか → **ブランチの中身をのぞいて、git は名前を区別していないと確かめる** → だから人が意味をつけた）。そのうえで使い捨てのフォルダで main / develop / feature / release / hotfix を1周する。**タグを打って過去に戻る**、**hotfix の戻し忘れでデグレを自分で起こす**、バグ修正の行き先を急ぎ具合で判断する。最後に**Node.js / Kubernetes / Rust が実際にやっていること**（手順書で確認済み）を見て、**3つとも develop を持っていない**ことに気づく
+24. **[チームのブランチ運用（Git-Flow）](https://aq35.github.io/trainer/gitflow.html)** — **なぜ決まりごとが生まれたのか**から始める（一人なら要らなかった → 3人が同じ main に入れると何が困るか → **ブランチの中身をのぞいて、git は名前を区別していないと確かめる** → だから人が意味をつけた）。そのうえで使い捨てのフォルダで main / develop / feature / release / hotfix を1周する。**タグを打って過去に戻る**、**hotfix の戻し忘れでデグレを自分で起こす**、バグ修正の行き先を急ぎ具合で判断する。最後に**Node.js / Kubernetes / Rust が実際にやっていること**（手順書で確認済み）を見て、**3つとも develop を持っていない**ことに気づく
 
-仕上げ: **[案件に入る前の最終チェック](docs/graduation.md)** → **[案件まで1か月。何をする？](docs/plan.md)** → **[案件に参画する](docs/join.md)**
+仕上げ: **[案件に入る前の最終チェック](content/read/graduation.md)** → **[案件まで1か月。何をする？](content/read/plan.md)** → **[案件に参画する](content/read/join.md)**
 
 **卒業後に使う2回**（本編とは別。終わりがありません）
 
-- **[🔁 一人で、回し続ける](docs/loop.html)** — **1周＝1週間**。自分の題材で Issue を1枚書き、**受け入れ条件を自分で立て**、AIには批評だけさせる。そして**先週の自分をレビューする**。研修が終わると「指摘してくれる人」が消えるので、その代わりを自分で作る回です
-- **[📣 証拠を、人に届ける](docs/share.html)** — **新しく作るものはほとんどありません。**すでにある記録（説明つきPR・数字・`LOG.md`）を、人が開ける場所に並べ替えます。GitHubプロフィールのREADME、PRの書き直し、月1回の棚卸し。**盛らせないための型**（事実 → 判断 → 結果）を演習で入れます
+- **[🔁 一人で、回し続ける](https://aq35.github.io/trainer/loop.html)** — **1周＝1週間**。自分の題材で Issue を1枚書き、**受け入れ条件を自分で立て**、AIには批評だけさせる。そして**先週の自分をレビューする**。研修が終わると「指摘してくれる人」が消えるので、その代わりを自分で作る回です
+- **[📣 証拠を、人に届ける](https://aq35.github.io/trainer/share.html)** — **新しく作るものはほとんどありません。**すでにある記録（説明つきPR・数字・`LOG.md`）を、人が開ける場所に並べ替えます。GitHubプロフィールのREADME、PRの書き直し、月1回の棚卸し。**盛らせないための型**（事実 → 判断 → 結果）を演習で入れます
 
 読み物は**地図の中に組み込まれています**（該当ステップの直後に ☕ 付きで表示）。
 
-行き先を考える: **[どこへ行く？ 職種と共通の土台](docs/path.md)** / **[案件まで1か月。何をする？](docs/plan.md)** — 開始日・使える時間・案件の内容から、AIに渡す学習計画の依頼文を生成します
+行き先を考える: **[どこへ行く？ 職種と共通の土台](content/read/path.md)** / **[案件まで1か月。何をする？](content/read/plan.md)** — 開始日・使える時間・案件の内容から、AIに渡す学習計画の依頼文を生成します
 
-いつでも: **[Claude Code を賢くする](docs/smarter.md)** — CLAUDE.md に確かめ方を書く → コマンドを使わせる → MCP を足す、の3段階（公式ドキュメントで確認済みのコマンドを掲載）
+いつでも: **[Claude Code を賢くする](content/read/smarter.md)** — CLAUDE.md に確かめ方を書く → コマンドを使わせる → MCP を足す、の3段階（公式ドキュメントで確認済みのコマンドを掲載）
 
-いつでも: **[自動チェックの持ち出し](docs/kit.md)** — 練習リポジトリの `.github/` を自分のリポジトリにコピーすると、個人開発でも同じ作法チェックが動きます（テストが無くても動作）
+いつでも: **[自動チェックの持ち出し](content/read/kit.md)** — 練習リポジトリの `.github/` を自分のリポジトリにコピーすると、個人開発でも同じ作法チェックが動きます（テストが無くても動作）
 
-いつでも: **[コマンド練習](docs/drill.html)** — 31問のクイズ形式ドリル（分野別・成績保存・間違いだけ再挑戦）
+いつでも: **[コマンド練習](https://aq35.github.io/trainer/drill.html)** — 31問のクイズ形式ドリル（分野別・成績保存・間違いだけ再挑戦）
 
-読み物（寄り道・全10本）: [そもそも Claude って何？](docs/what-is-claude.md) / [なぜ VS Code なのか？](docs/why-vscode.md) / [なぜ git が生まれたのか](docs/why-git.md) / [AIはなぜ間違えるのか](docs/why-ai-mistakes.md) / [サービスって何？](docs/what-is-service.md) / [インフラの世界と、その入り口](docs/infra.md) / [AIに何を作ってもらうか](docs/what-to-build.md) / [AI-DLCって何？](docs/what-is-ai-dlc.md) / [工数の見積もり方](docs/estimate.md) / [Claudeを分解してみる](docs/what-is-claude-service.md)
+読み物（寄り道・全10本）: [そもそも Claude って何？](content/read/what-is-claude.md) / [なぜ VS Code なのか？](content/read/why-vscode.md) / [なぜ git が生まれたのか](content/read/why-git.md) / [AIはなぜ間違えるのか](content/read/why-ai-mistakes.md) / [サービスって何？](content/read/what-is-service.md) / [インフラの世界と、その入り口](content/read/infra.md) / [AIに何を作ってもらうか](content/read/what-to-build.md) / [AI-DLCって何？](content/read/what-is-ai-dlc.md) / [工数の見積もり方](content/read/estimate.md) / [Claudeを分解してみる](content/read/what-is-claude-service.md)
 
-補足資料: [この教材について（無料である理由）](docs/about.md) / [担当者がいない人へ（0円ルート）](docs/alone.md) / [用語集](docs/glossary.md) / [ターミナル入門](docs/step0-terminal.md) / [環境構築でやっていること](docs/step1-setup.md)
+補足資料: [この教材について（無料である理由）](content/read/about.md) / [担当者がいない人へ（0円ルート）](content/read/alone.md) / [用語集](content/read/glossary.md) / [ターミナル入門](content/read/step0-terminal.md) / [環境構築でやっていること](content/read/step1-setup.md)
 
 トップページには全体の進捗マップが出ます（各ナビの進み具合をブラウザから読み取って表示）。
 
 ### 連絡手段（LINE・チャットでOK）
 
-**特別な仕組みは要りません。** 連絡先を `docs/config.js` に1行書けば、教材側が次を面倒みます。
+**特別な仕組みは要りません。** 連絡先を `content/config.js` に1行書けば、教材側が次を面倒みます。
 
 - 進捗・状況・参画相談を、**そのまま送れる文章にしてコピー**する
 - 受講者はそれを **LINE でもチャットでも貼って送るだけ**
 
 ```js
-window.TRAINER_SUPPORT = {
+export const support = {
   name: '研修サポート窓口',
   channel: 'LINE（研修のグループ）',
   url: ''            // 空でよい
@@ -134,8 +134,8 @@ window.TRAINER_SUPPORT = {
 
 1. 非公開リポジトリを作る（**作成済み: `aq35/trainer-support`**）
 2. この教材リポジトリ側は `Settings → Features → Issues` の**チェックを外す**
-3. `docs/config.js` の `url` を、非公開リポジトリの `issues/new` に向ける（**設定済み**）
-4. `docs/config.js` の `inviteEmail` に、参加申請を受け取るメールアドレスを書く（**設定済み**）
+3. `content/config.js` の `url` を、非公開リポジトリの `issues/new` に向ける（**設定済み**）
+4. `content/config.js` の `inviteEmail` に、参加申請を受け取るメールアドレスを書く（**設定済み**）
 
 受講者は GitHubナビの「研修グループへの参加を申請します」で、自分の GitHub ユーザー名を送ってきます。届いたら、非公開リポジトリの `Settings → Collaborators → Add people` でそのユーザー名を招待してください。**無料プランでも、非公開リポジトリのコラボレーターは人数制限なく追加できます。**
 
@@ -143,7 +143,7 @@ window.TRAINER_SUPPORT = {
 
 ### 参画までの運用
 
-研修を終えた受講者は、[案件に参画する](docs/join.md)の案内に沿って**参画の相談Issue**を出します（ラベル `参画`）。運営側が受け取るのは次の情報です。
+研修を終えた受講者は、[案件に参画する](content/read/join.md)の案内に沿って**参画の相談Issue**を出します（ラベル `参画`）。運営側が受け取るのは次の情報です。
 
 - **到達状況**（22ステップの完了状況が自動で入ります）
 - **成果物のURL** — 公開ページ／`trainer-practice` のPR一覧／自分のテーマのリポジトリ
@@ -161,7 +161,7 @@ window.TRAINER_SUPPORT = {
 - トップの進捗マップの下と、各ナビの完了画面に「報告する」ボタンがある
 - 押すと、進捗が入力済みの状態で Issue 作成画面が開く。受講者は送信を押すだけ
 - Issue には `進捗` ラベルが付くので、`label:進捗` で絞り込めば全員の状況が一覧できる
-- 宛先のリポジトリは `docs/config.js` の `url`（または `repo`）から決まる。**非公開リポジトリに向けてください**
+- 宛先のリポジトリは `content/config.js` の `url`（または `repo`）から決まる。**非公開リポジトリに向けてください**
 
 **自動送信はしていません。** 静的サイトから GitHub に書き込むには書き込み権限のあるトークンが必要で、それをページに置くと誰でも悪用できてしまうためです。「ログイン済みなら1クリック」が、追加のサーバーを持たずに実現できる上限です。
 
@@ -169,20 +169,20 @@ window.TRAINER_SUPPORT = {
 
 **この内容は公開サイトには出していません。** 受講者の画面に運営の事情が混ざると、読む量が増えて迷いの原因になるためです。
 
-- [環境構築でやっていること](docs/step1-setup.md) — 何を入れているか、つまずきの原因と対応表
+- [環境構築でやっていること](content/read/step1-setup.md) — 何を入れているか、つまずきの原因と対応表
 - **「うまくいきません」は3段構え**です。①まず疑う3つ（保存・開き直し・打ち間違い）→ ②症状から探す（エラー文を貼って絞り込める）→ ③AIに聞く／人に聞く
 - ③には **「AIに聞く文章をコピー」** があります。今のステップ・手順・期待される結果を含んだ質問文が生成されるので、受講者は〈実際に起きたこと〉を書き足すだけです。**良い質問の型そのものを渡す**狙いがあります
 - **「今の状況をコピー」** では、どのステップで何ができなかったか、経過時間、**自分で試した項目**までが文章になります。スクリーンショットの撮り方も案内しています
 - 同じステップに **15分以上**とどまっている受講者には、ナビ側から**自動で声かけ**が表示されます。ステップを完了すると計測はリセットされます
 - **読み物は地図の中に組み込んであります**（☕ 付きの行）。手を動かした直後に、その道具の背景を読む並びです。**任意**ですが、開くと「読んだ」として記録され、進捗報告にも `読み物（任意）: n / 10 読了` として入ります
 - **10番目の「自分のテーマで回す」が、案件参画への橋渡し**です。`CLAUDE.md`・Plan モード・`@` でのファイル指定・`/clear` を実地で教え、**自分で決めたテーマを1週間進めてもらう**構成です。ここまで来ると、受講者から週次で進捗Issueが届くようになります
-- **[🎓 最終チェック](docs/graduation.md)** は自己採点の表です。**全部にチェックが付くことを条件にしないでください。**「どこが弱いか」を本人と共有する道具として使うほうが機能します
+- **[🎓 最終チェック](content/read/graduation.md)** は自己採点の表です。**全部にチェックが付くことを条件にしないでください。**「どこが弱いか」を本人と共有する道具として使うほうが機能します
 
 ## 運営側のセットアップ
 
 ### 0. 一人で来た受講者への配慮（実装済み）
 
-この教材は**担当者がAPIキーを配る前提**ですが、公開サイトなので**担当者がいない人**も来ます。その人のために `docs/alone.md`（0円ルート）を用意し、環境構築ナビの冒頭で道を分けています。
+この教材は**担当者がAPIキーを配る前提**ですが、公開サイトなので**担当者がいない人**も来ます。その人のために `content/read/alone.md`（0円ルート）を用意し、環境構築ナビの冒頭で道を分けています。
 
 - Claude Code を前提にしたステップには「一人で始めた人は飛ばしてよい」という案内が出ます
 - 0円ルートでは、ブラウザの無料 Claude に頼み、**返ってきたコードを自分で貼る**形に読み替えます
@@ -192,10 +192,10 @@ window.TRAINER_SUPPORT = {
 
 ### 1. サポート窓口を設定する（必須）
 
-`docs/config.js` に連絡先を記入してください。未設定だと、受講者向けの案内に「連絡先が未設定です」と表示されます。
+`content/config.js` に連絡先を記入してください。未設定だと、受講者向けの案内に「連絡先が未設定です」と表示されます。
 
 ```js
-window.TRAINER_SUPPORT = {
+export const support = {
   name: '研修サポート担当',
   channel: 'Slack の #engineer-training',
   url: 'https://example.slack.com/archives/xxxxx'
@@ -215,51 +215,65 @@ window.TRAINER_SUPPORT = {
 
 ### 3. 寄付（コーヒー）の受け口（任意）
 
-`docs/config.js` の `TRAINER_COFFEE.url` に、Buy Me a Coffee / GitHub Sponsors / Ko-fi / OFUSE / PayPal.Me などのURLを書くと、トップページ・[この教材について](docs/about.md)・最終チェックの3か所に控えめなブロックが出ます。**空のままなら、どこにも表示されません。**
+`content/config.js` の `coffee.url` に、Buy Me a Coffee / GitHub Sponsors / Ko-fi / OFUSE / PayPal.Me などのURLを書くと、トップページ・[この教材について](content/read/about.md)・最終チェックの3か所に控えめなブロックが出ます。**空のままなら、どこにも表示されません。**
 
 ```js
-window.TRAINER_COFFEE = {
+export const coffee = {
   url: 'https://github.com/sponsors/kazuma-tech',   // 設定済み
   label: '☕ コーヒーを1杯おごる',
   note: '受け取ったぶんは、この教材の維持と改善に使います。'
 };
 ```
 
-**方針**: この教材は無料であることを前提に設計しています。受講者が対価を求められていると感じる見せ方（優先サポート、限定コンテンツ、支払い前提の導線）は入れないでください。`docs/about.md` に「払っても払わなくても内容は変わらない」と明記してあります。
+**方針**: この教材は無料であることを前提に設計しています。受講者が対価を求められていると感じる見せ方（優先サポート、限定コンテンツ、支払い前提の導線）は入れないでください。`content/read/about.md` に「払っても払わなくても内容は変わらない」と明記してあります。
 
 ### 4. GitHub Pages
 
-`Settings > Pages > Build and deployment > Source` を `Deploy from a branch`、Branch を `main`、フォルダを `/docs` に設定します。
+`Settings > Pages > Build and deployment > Source` を **`GitHub Actions`** に設定します。
+あとは `main` に push するたびに [`.github/workflows/pages.yml`](.github/workflows/pages.yml) がテストとビルドを走らせ、`_site/` を公開します。**プルリクエストでは、ビルドとテストだけ**を走らせます（壊れた教材を main に入れる前に止めるため）。
 
-`docs/.nojekyll` が必要です（Jekyll がアンダースコア始まりのファイルを除外し、`_sidebar.md` が配信されなくなるため）。
+ローカル確認（Node.js 22 以上）:
 
-ローカル確認: `npx serve docs`
+```bash
+npm install
+npm run dev      # http://localhost:8000/ 。保存するたびに作り直します
+npm test         # 変換・ビルドのテスト（Playwright があれば、ブラウザでの操作も確かめます）
+```
 
 ## 構成
 
+教材（**何を書くか**）と、画面（**どう見せるか**）を分けてあります。**教材を直す人は `content/` だけを触れば済みます。**
+
 | パス | 役割 |
 | --- | --- |
-| `docs/index.html` | docsify のエントリ（Markdown をサイト表示） |
-| `docs/setup.html` … `docs/test.html` | 対話式ナビ**23本**（独立した静的HTML）。**受講者が進む回は、すべてこの形式** |
-| `docs/loop.html` | 卒業後、**毎週まわす回**。1周＝1週間。完了画面から自分自身へ戻る（`#restart`） |
-| `docs/share.html` | 卒業後、**証拠を人に届ける回**。GitHubプロフィール・PRの書き直し・記録の変換 |
-| `docs/fallback.js` | **CDNに届かないときの受け皿**。docsify が動かない場合に md を直接読んで表示する |
-| `docs/navi.js`, `docs/navi.css` | ナビ共通エンジン。ページ側は手順データのみ持つ。ヘルプの3段構え（初手チェック／症状検索／AI・人への相談）もここ |
-| `docs/config.js` | 運営側が編集する設定（サポート窓口・寄付の受け口） |
-| `docs/plan.js` | 逆算プランナー（開始日から週割りを出し、AIへの依頼文を生成） |
-| `docs/progress.js` | トップの進捗マップ、チェックリストの保存、読み物の読了記録、寄付ブロックの描画 |
-| `docs/drill.html`, `docs/drill.js` | コマンド練習ドリル（設問は drill.js の Q 配列） |
-| `docs/credit.js` | 全ページ下部の出典表示（CC BY の条件を満たす1行）。最終更新日は Pages の Last-Modified から自動 |
-| `docs/media/` | 図版（SVG・OGP画像） |
-| `docs/changelog.md` | 改訂履歴。**直したことも、間違えていたことも書く** |
-| `docs/mentor.md` | 教える人へ（逆算できているか）。研修担当・メンター向け |
+| `content/navi/*.js` | 対話式ナビ**26本**の中身（手順・成功条件・「うまくいきません」）。1ファイル＝1回。`setup.js` → `setup.html` になる |
+| `content/read/*.md` | 読み物・用語集・改訂履歴。目次（左の並び）は `_sidebar.md`。`#/名前?id=見出し` で開く（docsify のときと同じ URL） |
+| `content/course.js` | トップの「全体地図」の並びと、各回の完了画面の番号 |
+| `content/help.js` | 「うまくいきません」の最初に出す「まず、これだけ確認してください」 |
+| `content/drill.js` | コマンド練習の問題 |
+| `content/plan.js` | 逆算プランナーの選択肢と、AIに渡す前提 |
+| `content/config.js` | 運営側が編集する設定（サポート窓口・寄付の受け口） |
+| `public/media/` | 図版（SVG・OGP画像）。**ビルドせずにそのまま公開**される |
+| `site/` | 画面の部品（`.sunao`）。`navi/`（1画面1操作のナビ）・`doc/`（読み物と目次）・`drill/`（コマンド練習）・`ui/`（共通）・`styles/` |
+| `sunao/` | 画面を書くための小さなフレームワーク。[aq35/lab-kaihatu-mock](https://github.com/aq35/lab-kaihatu-mock) からの**コピー**（[直すときは取り込み元で](sunao/README.md)） |
+| `tools/build.mjs` | `content/` を読んで `_site/` に書き出す。**知らないタグ・危ない URL・壊れたリンク先があれば、ここで止まる** |
+| `tools/html.mjs`, `tools/md.mjs` | 教材の中の HTML と Markdown を、画面に渡すデータに変える（sunao には `v-html` が無いので、文字列を HTML としてはめ込む口がそもそも無い） |
+| `tools/navi.mjs` | ナビごとに「うまくいきません」でどの項目を出すかを、**ビルド時に**決める |
+| `tests/` | 変換とビルドのテスト、ブラウザでの操作のテスト |
+
+### 教材を直すとき
+
+- **文章を直す**: `content/navi/*.js` か `content/read/*.md` を直して push するだけです。
+- **HTML は、許可したタグだけ**使えます（ナビでは `b` / `br` / `a` / `code` / `pre` / `span` / `kbd` / `u` など。一覧は `tools/html.mjs`）。それ以外を書くと**ビルドが止まり、どこの何が駄目かを日本語で出します**。文字として `<` を見せたいときは `&lt;` と書いてください。
+- 読み物に部品を置くときは `<div id="map"></div>` のように書きます（`map` / `coffee` / `weakcopy` / `joinbtn` / `planner`）。
 
 #### 新しいナビを増やすとき
 
-`navi.css` / `navi.js` / `config.js` を読み込み、`window.NAVI = { key, greeting, common, steps }` を定義した HTML を置くだけです。**ページ側はデータしか持ちません。**
+`content/navi/xxx.js` を1つ置くだけです。`xxx.html` として公開されます。**ページ側はデータしか持ちません。**
 
 ```js
-window.NAVI = {
+export const title = '回の名前';   // 画面の上と、タブに出る
+export default {
   key: 'trainer-xxx-v1',        // localStorage のキー。回ごとに固有
   greeting: '...',              // 最初の画面に出る導入
   common: [ { when:'cmd', q:'...', a:'...' } ],   // 全画面に出る「うまくいきません」
@@ -278,23 +292,14 @@ window.NAVI = {
 };
 ```
 
-**本編として数える場合は `progress.js` の `STEPS` にも足してください。** `total` は **`steps.length - 1`**（完了画面を除いた数）です。ずれると進捗の表示が合いません。
+**本編として数える場合は `content/course.js` の `steps` にも足してください。** `total` は **`steps.length - 1`**（完了画面を除いた数）です。**ずれているとビルドが止まります**（以前は、進捗の表示が黙って合わなくなっていました）。
 
 - **行頭に全角スペース**を入れた `todo` の行は、**前の手順のぶら下がり**として扱われ、番号が振られません
 - `readonly: true` は「手を動かさない画面」。**この場合でも図を省かないでください**
 
 ### キャッシュについて
 
-各HTMLは `navi.js?v=30` のようにバージョンを付けて読み込んでいます。**`navi.js` / `navi.css` / `config.js` / `progress.js` を変更したら、全HTMLの `?v=` を1つ上げてください。** 上げないと、受講者のブラウザが古いファイルを使い続けます。連絡先を変えても反映されません。
-
-いまの番号は、実物を見てから上げてください。
-
-```bash
-grep -o 'navi\.js?v=[0-9]*' docs/git.html          # いまの番号を確認
-sed -i 's/navi\.js?v=30/navi.js?v=31/g' docs/*.html  # 上げる（Mac は sed -i ''）
-```
-
-変えたファイルだけでなく、**そのファイルを読み込んでいる全HTML**を上げます（`navi.css` と `navi.js` は別々に番号を持っています）。
+**何もしなくて大丈夫です。** ビルドのたびに、JS・CSS・読み物のデータに**中身から計算した番号**（`?v=…`）を付けます。中身が変わったものだけ番号が変わるので、受講者のブラウザは新しいものを取りに行きます（以前のように、全HTMLの `?v=` を手で上げる必要はありません）。
 
 ## ライセンス
 
@@ -302,12 +307,12 @@ sed -i 's/navi\.js?v=30/navi.js?v=31/g' docs/*.html  # 上げる（Mac は sed -
 
 | 対象 | ライセンス |
 | --- | --- |
-| コード（`.html` / `.js` / `.css`） | [MIT](LICENSE) |
-| 教材（`docs/**/*.md`、`docs/media/**`） | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.ja) |
+| コード（`.html` / `.js` / `.mjs` / `.sunao` / `.css`） | [MIT](LICENSE) |
+| 教材（`content/read/**/*.md`、`public/media/**`） | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.ja) |
 
-**誰でも、自分の研修に使えます。** フォークして `docs/config.js` を書き換えるだけです。条件は出典を書くことだけ。手順と注意点は [LICENSE-docs.md](LICENSE-docs.md) にまとめてあります。
+**誰でも、自分の研修に使えます。** フォークして `content/config.js` を書き換えるだけです。条件は出典を書くことだけ。手順と注意点は [LICENSE-docs.md](LICENSE-docs.md) にまとめてあります。
 
-`TRAINER_COFFEE.url` は**必ず自分のものに変えるか、空にしてください**（他人の寄付先が残らないように）。
+`content/config.js` の `coffee.url` は**必ず自分のものに変えるか、空にしてください**（他人の寄付先が残らないように）。
 
 ### 真似されることについて
 

@@ -1,0 +1,29 @@
+<!-- チェックリストの1行（- [ ]）。チェックはこのブラウザに保存される。 -->
+<template>
+  <li class="task-list-item">
+    <input type="checkbox" :id="'task-' + i" :checked="checked()" @change="setCheck(i, $event.target.checked)" />
+    <label :for="'task-' + i"><Block v-for="c in kids" :n="c" /></label>
+  </li>
+</template>
+
+<script>
+import Block from './Block.sunao';
+import { checks, setCheck } from './state.js';
+
+export default {
+  name: 'TaskItem',
+  props: { n: {} },
+  setup(props) {
+    const i = props.n().a.i;
+    const kids = props.n().c || [];
+    const checked = () => !!checks()[i];
+    return { i, kids, checked, setCheck };
+  },
+};
+</script>
+
+<style>
+.task-list-item { list-style: none; display: flex; gap: 8px; align-items: baseline; }
+input { transform: scale(1.3); margin: 0 4px 0 0; flex: none; }
+label { cursor: pointer; }
+</style>

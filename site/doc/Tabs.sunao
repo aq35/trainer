@@ -1,0 +1,35 @@
+<!-- タブ（Markdown の tabs:start 〜 tabs:end）。一度選んだ「Windows / Mac」は、どのページでも先に出す。 -->
+<template>
+  <div class="tabs">
+    <div class="tablist" role="tablist">
+      <button v-for="(t, i) in tabs" type="button" role="tab" :aria-selected="active() === i ? 'true' : 'false'" :class="active() === i ? 'tab on' : 'tab'" @click="choose(t)">{{ t.a.label }}</button>
+    </div>
+    <div v-for="(t, i) in tabs" role="tabpanel" class="panel" :hidden="active() !== i">
+      <Block v-for="c in t.c || []" :n="c" />
+    </div>
+  </div>
+</template>
+
+<script>
+import Block from './Block.sunao';
+import { tabPref, chooseTab } from './state.js';
+
+export default {
+  name: 'Tabs',
+  props: { n: {} },
+  setup(props) {
+    const tabs = props.n().c || [];
+    const active = () => Math.max(0, tabs.findIndex((t) => t.a.label === tabPref()));
+    const choose = (t) => chooseTab(t.a.label);
+    return { tabs, active, choose };
+  },
+};
+</script>
+
+<style>
+.tabs { margin: 1.2em 0; }
+.tablist { display: flex; gap: 4px; border-bottom: 2px solid var(--line); }
+.tab { font: inherit; font-weight: 700; background: none; border: 0; border-bottom: 3px solid transparent; margin-bottom: -2px; padding: 8px 16px; cursor: pointer; color: var(--sub); }
+.tab.on { color: var(--blue); border-bottom-color: var(--blue); }
+.panel { padding: 4px 2px; }
+</style>

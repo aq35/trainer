@@ -1,0 +1,71 @@
+<!--
+  左の目次（content/read/_sidebar.md）と検索。
+  いま開いているページの下には、そのページの見出し（##）を並べる（docsify の subMaxLevel: 2 と同じ）。
+  検索の索引は、検索欄を初めて触ったときだけ読み込む。
+-->
+<template>
+  <div class="sb">
+    <a class="appname" href="#/">エンジニア育成トレーナー</a>
+    <div class="search">
+      <input type="search" placeholder="検索" aria-label="読み物を検索" @focus="loadSearch" @input="query.set($event.target.value)" />
+    </div>
+    <div v-if="query().trim()" class="results">
+      <p v-if="!index()" class="rs-note">索引を読み込んでいます…</p>
+      <p v-if="index() && !results().length" class="rs-note">見つかりませんでした</p>
+      <a v-for="r in results()" :key="r.key" class="hit" :href="r.href">
+        <span class="hp">{{ r.page }}</span>
+        <span class="hh">{{ r.head }}</span>
+        <span class="hx">{{ r.snip }}</span>
+      </a>
+    </div>
+    <nav v-if="!query().trim()" aria-label="目次">
+      <div v-for="g in groups" class="group">
+        <p class="gl">{{ g.label }}</p>
+        <ul>
+          <li v-for="it in g.items" :class="isActive(it) ? 'active' : null">
+            <a :href="linkOf(it)" :target="it.blank ? '_blank' : null" :rel="it.blank ? 'noopener' : null" :aria-current="isActive(it) ? 'page' : null">{{ it.label }}</a>
+            <ul v-if="isActive(it) && tocOf().length" class="toc">
+              <li v-for="t in tocOf()"><a :href="tocHref(it, t)">{{ t.text }}</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</template>
+
+<script>
+import { SITE, where, doc, query, index, results, loadSearch } from './state.js';
+
+export default {
+  name: 'Sidebar',
+  setup() {
+    const isActive = (it) => 'route' in it && it.route === where().slug;
+    const linkOf = (it) => ('route' in it ? '#/' + it.route : it.href);
+    const tocOf = () => (doc() ? doc().toc : []);
+    const tocHref = (it, t) => '#/' + it.route + '?id=' + encodeURIComponent(t.id);
+    return { groups: SITE.sidebar, isActive, linkOf, tocOf, tocHref, query, index, results, loadSearch };
+  },
+};
+</script>
+
+<style>
+.sb { padding: 20px 0 40px; }
+.appname { display: block; font-weight: 700; font-size: 17px; color: var(--ink); text-decoration: none; padding: 0 20px 14px; }
+.search { padding: 0 16px 12px; border-bottom: 1px solid var(--line); margin-bottom: 8px; }
+input { width: 100%; font: inherit; font-size: 14px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--card); color: var(--ink); }
+input:focus { outline: none; border-color: var(--blue); }
+.gl { margin: 14px 20px 4px; font-size: 13px; font-weight: 700; color: var(--ink); }
+ul { list-style: none; margin: 0; padding: 0; }
+li a { display: block; padding: 4px 20px 4px 28px; font-size: 14px; color: var(--sub); text-decoration: none; line-height: 1.6; }
+li a:hover { color: var(--ink); }
+li.active > a { color: var(--blue); font-weight: 700; border-right: 3px solid var(--blue); }
+.toc li a { padding-left: 42px; font-size: 13px; }
+.results { padding: 0 12px; }
+.rs-note { padding: 8px; font-size: 13px; color: var(--sub); }
+.hit { display: block; padding: 9px 10px; border-bottom: 1px solid var(--line); text-decoration: none; color: var(--ink); }
+.hit:hover { background: var(--soft); }
+.hp { display: block; font-size: 11.5px; color: var(--sub); }
+.hh { display: block; font-weight: 700; font-size: 14px; color: var(--blue); }
+.hx { display: block; font-size: 12.5px; color: var(--sub); line-height: 1.6; }
+</style>

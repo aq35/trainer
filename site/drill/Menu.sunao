@@ -1,0 +1,38 @@
+<!-- 分野を選ぶ画面 -->
+<template>
+  <div class="card">
+    <Mascot kind="hello">覚えるためのページです。<b>間違えて大丈夫</b>なので、気楽にどうぞ。<br />何回もやるうちに、手が勝手に動くようになります。</Mascot>
+    <h2>どれを練習しますか？</h2>
+    <div class="catlist">
+      <button v-for="c in cats" type="button" class="cat" @click="start(c.id)">
+        <span class="cl">{{ c.label }}</span>
+        <span class="cn">{{ c.n }}問</span>
+        <span class="cb">{{ c.best ? 'ベスト ' + c.best + '%' : 'まだ' }}</span>
+      </button>
+    </div>
+    <div class="note" style="margin-top: 18px">コマンドは覚えなくても、<b>調べれば出てきます</b>。ここは「見たことがある」状態を作るための場所です。完璧を目指さないでください。</div>
+  </div>
+</template>
+
+<script>
+import Mascot from '../ui/Mascot.sunao';
+import { data, records, countOf, start } from './state.js';
+
+export default {
+  name: 'Menu',
+  setup() {
+    const rec = records();
+    const cats = data.categories.map((c) => ({ id: c.id, label: c.label, n: countOf(c.id), best: rec[c.id] || 0 }));
+    return { cats, start };
+  },
+};
+</script>
+
+<style>
+.catlist { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 8px; }
+.cat { font: inherit; background: var(--card); color: var(--ink); border: 2px solid var(--line); border-radius: 12px; padding: 16px 14px; cursor: pointer; text-align: left; display: grid; gap: 3px; }
+.cat:hover { border-color: var(--blue); background: var(--blue-l); }
+.cl { font-weight: 700; font-size: 16px; }
+.cn { font-size: 12px; color: var(--sub); }
+.cb { font-size: 12px; color: var(--blue); font-weight: 700; }
+</style>

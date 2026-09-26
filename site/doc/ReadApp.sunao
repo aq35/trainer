@@ -1,0 +1,46 @@
+<!--
+  読み物（index.html）。左に目次、右に本文。URL は docsify と同じ #/名前?id=見出し。
+  本文はページごとに作り直す（:key がページの名前）。
+-->
+<template>
+  <div :class="navOpen() ? 'read open' : 'read'">
+    <button type="button" class="navtoggle" :aria-expanded="navOpen() ? 'true' : 'false'" aria-label="目次を開く" @click="navOpen.update((v) => !v)"><span></span><span></span><span></span></button>
+    <aside class="sidebar"><Sidebar /></aside>
+    <div class="shade" @click="navOpen.set(false)"></div>
+    <main class="content">
+      <article class="doc">
+        <Page v-for="d in shown()" :key="d.route" />
+        <p v-if="status() === 'loading'" class="state">読み込み中…</p>
+        <div v-if="status() === 'missing'" class="state">
+          <h1>ページが見つかりません</h1>
+          <p>リンクが古くなっているかもしれません。<a href="#/">目次</a>から探してください。</p>
+        </div>
+        <div v-if="status() === 'error'" class="state">
+          <h1>ページを開けませんでした</h1>
+          <p>ネットワークが不安定なようです。時間をおいて開き直してください。</p>
+          <p><b>各回のナビは、この問題の影響を受けません。</b><a href="setup.html">環境構築から始める</a></p>
+        </div>
+      </article>
+      <Pager v-for="d in shown()" :key="d.route" />
+      <Credit />
+    </main>
+    <Toast />
+  </div>
+</template>
+
+<script>
+import Sidebar from './Sidebar.sunao';
+import Page from './Page.sunao';
+import Pager from './Pager.sunao';
+import Credit from '../ui/Credit.sunao';
+import Toast from '../ui/Toast.sunao';
+import { doc, status, navOpen } from './state.js';
+
+export default {
+  name: 'ReadApp',
+  setup() {
+    const shown = () => (status() === 'ok' && doc() ? [doc()] : []);
+    return { shown, status, navOpen };
+  },
+};
+</script>

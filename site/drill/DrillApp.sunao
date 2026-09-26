@@ -1,0 +1,39 @@
+<!--
+  コマンド練習。出題 → 回答 → 解説 を繰り返す。
+  成績は localStorage に保存し、間違えた問題だけをもう一度出せる。
+  問題は content/drill.js（ビルド時に HTML を構造データへ変えて埋め込む）。
+-->
+<template>
+  <div class="navi">
+    <header>
+      <div class="hd">
+        <h1>コマンド練習</h1>
+        <div class="spacer"></div>
+        <a class="home" href="index.html">目次へ</a>
+      </div>
+    </header>
+    <main class="wrap">
+      <Menu v-if="mode() === 'menu'" />
+      <!-- 1問ごとに作り直す（key が変わると、前の問題の画面は捨てられる） -->
+      <Question v-for="k in asking()" :key="k" />
+      <Result v-if="mode() === 'done'" />
+    </main>
+    <Credit />
+  </div>
+</template>
+
+<script>
+import Menu from './Menu.sunao';
+import Question from './Question.sunao';
+import Result from './Result.sunao';
+import Credit from '../ui/Credit.sunao';
+import { mode, qid } from './state.js';
+
+export default {
+  name: 'DrillApp',
+  setup() {
+    const asking = () => (mode() === 'ask' ? [qid()] : []);
+    return { mode, asking };
+  },
+};
+</script>

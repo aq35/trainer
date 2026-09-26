@@ -1,0 +1,26 @@
+<!-- 打つ命令（または貼る文章）の枠。「コピー」で丸ごとクリップボードへ。 -->
+<template>
+  <div class="cmd">
+    <code>{{ text }}</code>
+    <button type="button" @click="copy(text)">コピー</button>
+  </div>
+</template>
+
+<script>
+import { copy } from '../lib/toast.js';
+
+export default {
+  name: 'CmdBox',
+  props: { text: { type: 'string', required: true } },
+  setup(props) {
+    return { text: props.text(), copy };
+  },
+};
+</script>
+
+<style>
+.cmd { display: flex; align-items: flex-start; gap: 8px; background: var(--code-bg); border-radius: 9px; padding: 11px 12px; margin: 12px 0; }
+code { color: var(--code-fg); font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 13.5px; white-space: pre-wrap; word-break: break-all; flex: 1; background: none; padding: 0; }
+button { background: var(--code-btn); color: #dfe5ef; border: 0; border-radius: 6px; padding: 6px 11px; font-size: 12px; cursor: pointer; white-space: nowrap; font-weight: 600; font-family: inherit; }
+button:hover { background: var(--code-btn-h); }
+</style>

@@ -1,0 +1,45 @@
+<!-- 1画面1操作のナビ（setup.html / git.html …）。画面の種類ごとに部品を切り替えるだけ。 -->
+<template>
+  <div class="navi">
+    <header>
+      <div class="hd">
+        <h1>{{ title }}</h1>
+        <div class="spacer"></div>
+        <a class="home" href="index.html">目次へ</a>
+        <div class="counter">{{ counter() }}</div>
+      </div>
+      <div class="bar"><i :style="'width:' + percent() + '%'"></i></div>
+    </header>
+    <main class="wrap">
+      <StepOs v-if="step().kind === 'os'" />
+      <StepMain v-if="step().kind === 'step'" />
+      <StepFin v-if="step().kind === 'fin'" />
+    </main>
+    <Credit />
+    <Toast />
+  </div>
+</template>
+
+<script>
+import StepOs from './StepOs.sunao';
+import StepMain from './StepMain.sunao';
+import StepFin from './StepFin.sunao';
+import Credit from '../ui/Credit.sunao';
+import Toast from '../ui/Toast.sunao';
+import { page, step, idx, total } from './state.js';
+
+export default {
+  name: 'NaviApp',
+  setup() {
+    const percent = () => Math.round((idx() / total) * 100);
+    // OS選択がある構成では step1 が index 1。無い構成では index 0 が1ステップ目。
+    const counter = () => {
+      const s = step();
+      if (s.kind === 'fin') return '完了';
+      if (s.kind === 'os') return '';
+      return (page.needsOs ? idx() : idx() + 1) + ' / ' + (page.needsOs ? total - 1 : total);
+    };
+    return { title: page.title, step, percent, counter };
+  },
+};
+</script>

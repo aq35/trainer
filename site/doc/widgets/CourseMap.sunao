@@ -1,0 +1,78 @@
+<!--
+  目次ページの「全体地図」（本文の <div id="map"></div> に入る）。
+  各ナビの進み具合を localStorage から読み、読み物（☕）は手を動かした回の前後に挟む。
+-->
+<template>
+  <div>
+    <div class="map">
+      <a v-for="r in rows" :class="r.cls" :href="r.href">
+        <span class="n">{{ r.badge }}</span>
+        <img :src="'media/' + r.icon" width="24" height="24" alt="" />
+        <span class="l">{{ r.label }}</span>
+        <span class="s">{{ r.txt }}</span>
+        <span v-if="r.bar" class="pb"><i :style="'width:' + r.pct + '%'"></i></span>
+      </a>
+    </div>
+    <div v-if="allDone" class="mapall">全部おつかれさまでした。ここまでできれば、案件に入る準備はできています。</div>
+    <div class="mapreport">
+      <b>いまの進み具合を、担当者に知らせられます</b><br />
+      <span v-if="url" class="mrsub">GitHub にログインしていれば、上の内容が入った状態で開きます。<b>あとは送信ボタンを押すだけ</b>です。</span>
+      <a v-if="url" class="mrbtn" :href="url" target="_blank" rel="noopener">進捗を報告する</a>
+      <span v-if="!url" class="mrsub">押すと、いまの進み具合が文章になってコピーされます。<b>LINEでもチャットでも、いつもの方法で送ってください。</b><br />{{ contact }}</span>
+      <button v-if="!url" type="button" class="mrbtn" @click="copyReport">進捗をコピーする</button>
+    </div>
+  </div>
+</template>
+
+<script>
+import { steps, tail, stateOf, readDone, reportText, reportUrl } from '../progress.js';
+import { contactLine } from '../../lib/support.js';
+import { copy } from '../../lib/toast.js';
+
+export default {
+  name: 'CourseMap',
+  setup() {
+    const rdone = readDone();
+    const rows = [];
+    const reading = (r) => {
+      const d = !!rdone[r.md];
+      rows.push({ cls: 'mapitem reading' + (d ? ' done' : ''), href: '#/' + r.md, badge: r.badge || '☕', icon: r.icon, label: r.label, txt: d ? r.done || '読んだ' : r.undone || '読み物・任意', bar: false });
+    };
+    steps.forEach((s, i) => {
+      // 手を動かす前に、正体だけ知っておきたい人向け
+      if (s.readBefore) reading(s.readBefore);
+      const st = stateOf(s);
+      rows.push({ cls: 'mapitem' + (st.pct >= 100 ? ' done' : st.pct > 0 ? ' now' : ''), href: s.href, badge: st.pct >= 100 ? '✓' : String(i + 1), icon: s.icon, label: s.label, txt: st.txt, bar: true, pct: st.pct });
+      // 手を動かしたあとに、その道具の話を読む。飛ばしても先に進める。
+      if (s.read) reading(s.read);
+    });
+    tail.forEach(reading);
+    const allDone = steps.every((s) => stateOf(s).pct >= 100);
+    const copyReport = () => copy(reportText().text, 'コピーしました。担当者に送ってください');
+    return { rows, allDone, url: reportUrl(), contact: contactLine(), copyReport };
+  },
+};
+</script>
+
+<style>
+.map { display: grid; gap: 10px; margin: 1.2em 0; }
+.mapitem { display: grid; grid-template-columns: 30px 24px 1fr auto; gap: 12px; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; text-decoration: none; color: inherit; position: relative; }
+.mapitem:hover { border-color: var(--blue); }
+.n { width: 26px; height: 26px; border-radius: 50%; background: var(--rail); color: var(--sub); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; }
+.mapitem.now .n { background: var(--blue); color: var(--on-accent); }
+.mapitem.done .n { background: #3aa76d; color: #fff; }
+.l { font-weight: 600; font-size: 15px; }
+.s { font-size: 12px; color: var(--sub); white-space: nowrap; }
+.pb { grid-column: 1 / -1; height: 4px; background: var(--rail); border-radius: 99px; overflow: hidden; }
+.pb i { display: block; height: 100%; background: var(--blue); }
+.mapitem.done .pb i { background: #3aa76d; }
+/* 読み物は「任意の寄り道」だと見た目で分かるようにする */
+.mapitem.reading { background: var(--tan-l); border-style: dashed; border-color: var(--tan-b); margin-left: 18px; padding: 10px 14px; }
+.mapitem.reading:hover { border-color: var(--gold); }
+.mapitem.reading .n { background: transparent; font-size: 16px; }
+.mapitem.reading .l { font-weight: 500; font-size: 14px; }
+.mapitem.reading.done { background: var(--green-l); border-color: var(--green-b); }
+.mapitem.reading.done .s { color: var(--green); }
+.mapall { background: var(--green-l); border: 1px solid var(--green-b); border-radius: 10px; padding: 12px 14px; font-size: 14px; color: var(--green); margin-top: 10px; }
+@media (max-width: 520px) { .mapitem { grid-template-columns: 26px 22px 1fr; } .s { grid-column: 3; } }
+</style>

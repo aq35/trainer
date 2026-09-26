@@ -1,0 +1,90 @@
+<!-- 1問ぶん。選ぶ問題と、打ち込む問題がある。 -->
+<template>
+  <div class="card">
+    <div class="drillhead"><span class="phase">{{ label }}</span><span class="qn">{{ no }} / {{ total }}</span></div>
+    <p class="scene"><Rich :nodes="q.scene" /></p>
+    <h2><Rich :nodes="q.ask" /></h2>
+    <div v-if="q.type === 'choice'" class="choices">
+      <button v-for="(c, i) in q.choices" type="button" :class="choiceClass(i)" :disabled="picked() !== null" @click="pick(i)"><Rich :nodes="c" /></button>
+    </div>
+    <div v-if="q.type === 'input'">
+      <div class="inputrow">
+        <input class="ans" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="ここに打つ" aria-label="答え" :disabled="picked() !== null" @input="typed.set($event.target.value)" @keydown="enter($event)" />
+        <button type="button" class="act ok" :disabled="picked() !== null" @click="answer">答える</button>
+      </div>
+      <p class="hintline">大文字・小文字や、前後の空白は気にしなくて大丈夫です。</p>
+    </div>
+    <div v-if="picked() !== null">
+      <div :class="correct() ? 'fb y' : 'fb n'">
+        <b>{{ correct() ? '正解です' : 'おしい' }}</b>
+        <div v-if="!correct()" class="ansline">正解: <code><Rich :nodes="rightAnswer" /></code></div>
+        <div class="whyline"><Rich :nodes="q.why" /></div>
+      </div>
+      <div class="btns" style="margin-top: 14px"><button type="button" class="act ok next" @click="next">次へ</button></div>
+    </div>
+  </div>
+</template>
+
+<script>
+import Rich from '../ui/Rich.sunao';
+import { pos, list, judge, next, catLabel } from './state.js';
+
+export default {
+  name: 'Question',
+  setup() {
+    // 1問ごとに作り直されるので、ここで読む問題は変わらない
+    const q = list[pos.peek()];
+    const picked = signal(null); // 選んだ番号 / 打った文字。null なら未回答
+    const correct = signal(false);
+    const typed = signal('');
+    onMount(() => {
+      const inp = document.querySelector('.ans');
+      if (inp) inp.focus();
+    });
+    const pick = (i) => {
+      if (picked.peek() !== null) return;
+      correct.set(judge(q, i));
+      picked.set(i);
+    };
+    const answer = () => {
+      if (picked.peek() !== null) return;
+      correct.set(judge(q, typed.peek()));
+      picked.set(typed.peek());
+    };
+    const enter = (e) => { if (e.key === 'Enter') answer(); };
+    const choiceClass = (i) => {
+      if (picked() === null) return 'ch';
+      if (i === q.answer) return 'ch right';
+      return i === picked() ? 'ch bad' : 'ch';
+    };
+    const rightAnswer = q.type === 'choice' ? q.choices[q.answer] : [q.expect[0]];
+    return { q, no: pos.peek() + 1, label: catLabel(q.cat), total: list.length, picked, correct, typed, pick, answer, enter, choiceClass, rightAnswer, next };
+  },
+};
+</script>
+
+<style>
+.drillhead { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.qn { font-size: 12px; color: var(--sub); }
+.scene { background: var(--soft); border-radius: 9px; padding: 11px 14px; margin: 0 0 14px; font-size: 14px; }
+h2 { font-size: 19px; }
+.choices { display: grid; gap: 10px; margin-top: 16px; }
+.ch { font: inherit; text-align: left; background: var(--card); color: var(--ink); border: 2px solid var(--line); border-radius: 10px; padding: 13px 16px; cursor: pointer; font-size: 15px; }
+.ch:hover:enabled { border-color: var(--blue); background: var(--blue-l); }
+.ch.right { border-color: var(--green); background: var(--green-l); }
+.ch.bad { border-color: var(--red); background: var(--red-l); }
+.ch:disabled { cursor: default; }
+.inputrow { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+.ans { flex: 1; min-width: 220px; font: inherit; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 15px; padding: 13px 14px; border: 2px solid var(--line); border-radius: 10px; background: var(--card); color: var(--ink); }
+.ans:focus { outline: none; border-color: var(--blue); }
+.inputrow .ok { flex: none; min-width: 0; }
+.hintline { font-size: 12px; color: var(--sub); margin: 8px 0 0; }
+.fb { border-radius: 10px; padding: 13px 15px; margin-top: 16px; font-size: 14px; }
+.fb.y { background: var(--green-l); border: 1px solid var(--green-b); }
+.fb.y b { color: var(--green); }
+.fb.n { background: var(--red-l); border: 1px solid var(--red-b); }
+.fb.n b { color: var(--red); }
+.ansline { margin-top: 6px; }
+.ansline code { background: var(--code-bg); color: var(--code-fg); padding: 2px 8px; border-radius: 5px; font-family: ui-monospace, Menlo, Consolas, monospace; }
+.whyline { margin-top: 8px; color: var(--ink); }
+</style>
