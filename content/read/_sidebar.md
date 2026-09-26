@@ -44,6 +44,7 @@
   - [🗓️ 案件まで1か月。何をする？](plan.md)
   - [🤝 案件に参画する](join.md)
 - いつでも
+  - [🔎 Git を調べるコツ（AI と Git 自身を両方使う）](git-research.md)
   - [🧭 どこへ行く？ 職種と土台](path.md)
   - [🧠 Claude Code を賢くする](smarter.md)
   - [🔧 自分のリポジトリに自動チェック](kit.md)
