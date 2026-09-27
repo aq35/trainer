@@ -4,6 +4,13 @@
   - [第2回 フォークして手元に持ってくる](02-fork.html ':ignore target=_blank')
   - [　📖 なぜ Git が生まれたのか](why-git.md)
   - [第3回 最初のコミット](03-first-commit.html ':ignore target=_blank')
+  - [第4回 ステージングエリア](04-staging.html ':ignore target=_blank')
+  - [第5回 差分を読む](05-diff.html ':ignore target=_blank')
+  - [第6回 履歴をたどる](06-log.html ':ignore target=_blank')
+  - [第7回 取り消す](07-undo.html ':ignore target=_blank')
+  - [第8回 追跡しないもの](08-ignore.html ':ignore target=_blank')
+  - [第9回 ブランチとマージ](09-branch.html ':ignore target=_blank')
+  - [第10回 コンフリクト](10-conflict.html ':ignore target=_blank')
 - いつでも
   - [🔎 Git を調べるコツ](git-research.md)
   - [⌨️ ターミナル入門](step0-terminal.md)

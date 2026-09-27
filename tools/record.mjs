@@ -42,6 +42,9 @@ export async function record() {
   const env = {
     PATH: process.env.PATH, HOME: home, LANG: 'C', LC_ALL: 'C', TERM: 'dumb',
     GIT_CONFIG_NOSYSTEM: '1', GIT_TERMINAL_PROMPT: '0', GIT_PAGER: 'cat', PAGER: 'cat',
+    // 受講者のターミナルでは、git log に (HEAD -> main, origin/main) のような印が付く
+    // （log.decorate の既定 auto は、画面に出すときだけ付ける）。記録でも同じ形にする
+    GIT_CONFIG_COUNT: '1', GIT_CONFIG_KEY_0: 'log.decorate', GIT_CONFIG_VALUE_0: 'short',
   };
   // 教材のリポジトリを「あなたのフォーク」に見立てる（ブランチは main だけ、時点は FORK_BASE）
   execFileSync('git', ['clone', '-q', '--bare', '--single-branch', '--branch', 'main', ROOT, origin], { env });

@@ -200,7 +200,8 @@ export async function buildSite({ quiet = false, out = join(ROOT, '_site') } = {
 // 以前のナビ（作り直す前の26本）→ 新しい行き先
 const MOVED = Object.fromEntries([
   ['setup', '01-tools.html'], ['github', '02-fork.html'], ['git', '03-first-commit.html'],
-  ...'ai-dlc ai api ask branch bug chart code db diff gitflow loop mcp observe onboard perf publish review share test theme tools work'
+  ['branch', '09-branch.html'], ['diff', '05-diff.html'],
+  ...'ai-dlc ai api ask bug chart code db gitflow loop mcp observe onboard perf publish review share test theme tools work'
     .split(' ').map((n) => [n, 'index.html']),
 ]);
 

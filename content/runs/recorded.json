@@ -34,7 +34,7 @@
     },
     "log-5": {
       "cmd": "git log --oneline -5",
-      "out": "c68c135 設計: Git だけを教える教材に作り直す案（全16回・4部）\n908d5bc sunao をベースに作り直す（docsify と手書きの navi.js をやめ、Actions でビルドして公開）\nd15130b コマンドを打つ前と打った後に、説明を入れる枠を追加\ndaae984 Git-Flow の回を、結論からではなく「なぜ生まれたか」から始める形に直した\nab73ff9 Git-Flow の回に「実際は何が使われているか」を2画面追加",
+      "out": "c68c135 (HEAD -> main, origin/main, origin/HEAD) 設計: Git だけを教える教材に作り直す案（全16回・4部）\n908d5bc sunao をベースに作り直す（docsify と手書きの navi.js をやめ、Actions でビルドして公開）\nd15130b コマンドを打つ前と打った後に、説明を入れる枠を追加\ndaae984 Git-Flow の回を、結論からではなく「なぜ生まれたか」から始める形に直した\nab73ff9 Git-Flow の回に「実際は何が使われているか」を2画面追加",
       "lesson": "02"
     },
     "remote": {
@@ -64,7 +64,7 @@
     },
     "log-3": {
       "cmd": "git log --oneline -3",
-      "out": "580eb38 練習用のファイルを作った\nc68c135 設計: Git だけを教える教材に作り直す案（全16回・4部）\n908d5bc sunao をベースに作り直す（docsify と手書きの navi.js をやめ、Actions でビルドして公開）",
+      "out": "580eb38 (HEAD -> main) 練習用のファイルを作った\nc68c135 (origin/main, origin/HEAD) 設計: Git だけを教える教材に作り直す案（全16回・4部）\n908d5bc sunao をベースに作り直す（docsify と手書きの navi.js をやめ、Actions でビルドして公開）",
       "lesson": "03"
     },
     "status-ahead": {
@@ -81,6 +81,481 @@
       "cmd": "git status",
       "out": "On branch main\nYour branch is up to date with 'origin/main'.\n\nnothing to commit, working tree clean",
       "lesson": "03"
+    },
+    "4-status-modified": {
+      "cmd": "git status",
+      "out": "On branch main\nYour branch is up to date with 'origin/main'.\n\nChanges not staged for commit:\n  (use \"git add <file>...\" to update what will be committed)\n  (use \"git restore <file>...\" to discard changes in working directory)\n\tmodified:   practice/hello.md\n\nno changes added to commit (use \"git add\" and/or \"git commit -a\")",
+      "lesson": "04"
+    },
+    "4-add": {
+      "cmd": "git add practice/hello.md",
+      "out": "",
+      "lesson": "04"
+    },
+    "4-status-staged": {
+      "cmd": "git status",
+      "out": "On branch main\nYour branch is up to date with 'origin/main'.\n\nChanges to be committed:\n  (use \"git restore --staged <file>...\" to unstage)\n\tmodified:   practice/hello.md",
+      "lesson": "04"
+    },
+    "4-status-both": {
+      "cmd": "git status",
+      "out": "On branch main\nYour branch is up to date with 'origin/main'.\n\nChanges to be committed:\n  (use \"git restore --staged <file>...\" to unstage)\n\tmodified:   practice/hello.md\n\nChanges not staged for commit:\n  (use \"git add <file>...\" to update what will be committed)\n  (use \"git restore <file>...\" to discard changes in working directory)\n\tmodified:   practice/hello.md",
+      "lesson": "04"
+    },
+    "4-add-again": {
+      "cmd": "git add practice/hello.md",
+      "out": "",
+      "lesson": "04"
+    },
+    "4-status-staged-again": {
+      "cmd": "git status",
+      "out": "On branch main\nYour branch is up to date with 'origin/main'.\n\nChanges to be committed:\n  (use \"git restore --staged <file>...\" to unstage)\n\tmodified:   practice/hello.md",
+      "lesson": "04"
+    },
+    "4-add-todo": {
+      "cmd": "git add practice/todo.md",
+      "out": "",
+      "lesson": "04"
+    },
+    "4-status-two": {
+      "cmd": "git status",
+      "out": "On branch main\nYour branch is up to date with 'origin/main'.\n\nChanges to be committed:\n  (use \"git restore --staged <file>...\" to unstage)\n\tmodified:   practice/hello.md\n\tnew file:   practice/todo.md",
+      "lesson": "04"
+    },
+    "4-restore-staged": {
+      "cmd": "git restore --staged practice/todo.md",
+      "out": "",
+      "lesson": "04"
+    },
+    "4-status-unstaged": {
+      "cmd": "git status",
+      "out": "On branch main\nYour branch is up to date with 'origin/main'.\n\nChanges to be committed:\n  (use \"git restore --staged <file>...\" to unstage)\n\tmodified:   practice/hello.md\n\nUntracked files:\n  (use \"git add <file>...\" to include in what will be committed)\n\tpractice/todo.md",
+      "lesson": "04"
+    },
+    "4-commit": {
+      "cmd": "git commit -m \"hello.md に2行足した\"",
+      "out": "[main 3cbf0ef] hello.md に2行足した\n 1 file changed, 2 insertions(+)",
+      "lesson": "04"
+    },
+    "4-status-end": {
+      "cmd": "git status",
+      "out": "On branch main\nYour branch is ahead of 'origin/main' by 1 commit.\n  (use \"git push\" to publish your local commits)\n\nUntracked files:\n  (use \"git add <file>...\" to include in what will be committed)\n\tpractice/todo.md\n\nnothing added to commit but untracked files present (use \"git add\" to track)",
+      "lesson": "04"
+    },
+    "5-diff-none": {
+      "cmd": "git diff",
+      "out": "",
+      "lesson": "05"
+    },
+    "5-diff": {
+      "cmd": "git diff",
+      "out": "diff --git a/practice/hello.md b/practice/hello.md\nindex 912d3fb..89900cd 100644\n--- a/practice/hello.md\n+++ b/practice/hello.md\n@@ -1,5 +1,4 @@\n # はじめての Git\n \n このファイルは、Git の練習のために作りました。\n-ステージングエリアの練習をしています。\n-2回目の変更です。\n+ステージングエリアと差分の練習をしています。",
+      "lesson": "05"
+    },
+    "5-add": {
+      "cmd": "git add practice/hello.md",
+      "out": "",
+      "lesson": "05"
+    },
+    "5-diff-after-add": {
+      "cmd": "git diff",
+      "out": "",
+      "lesson": "05"
+    },
+    "5-diff-staged": {
+      "cmd": "git diff --staged",
+      "out": "diff --git a/practice/hello.md b/practice/hello.md\nindex 912d3fb..89900cd 100644\n--- a/practice/hello.md\n+++ b/practice/hello.md\n@@ -1,5 +1,4 @@\n # はじめての Git\n \n このファイルは、Git の練習のために作りました。\n-ステージングエリアの練習をしています。\n-2回目の変更です。\n+ステージングエリアと差分の練習をしています。",
+      "lesson": "05"
+    },
+    "5-add-todo": {
+      "cmd": "git add practice/todo.md",
+      "out": "",
+      "lesson": "05"
+    },
+    "5-diff-stat": {
+      "cmd": "git diff --staged --stat",
+      "out": " practice/hello.md | 3 +--\n practice/todo.md  | 3 +++\n 2 files changed, 4 insertions(+), 2 deletions(-)",
+      "lesson": "05"
+    },
+    "5-commit": {
+      "cmd": "git commit -m \"hello.md の説明を直し、todo.md を足した\"",
+      "out": "[main 0708793] hello.md の説明を直し、todo.md を足した\n 2 files changed, 4 insertions(+), 2 deletions(-)\n create mode 100644 practice/todo.md",
+      "lesson": "05"
+    },
+    "5-push": {
+      "cmd": "git push",
+      "out": "To {{FORK}}\n   580eb38..0708793  main -> main",
+      "lesson": "05"
+    },
+    "5-status": {
+      "cmd": "git status",
+      "out": "On branch main\nYour branch is up to date with 'origin/main'.\n\nnothing to commit, working tree clean",
+      "lesson": "05"
+    },
+    "6-log-3": {
+      "cmd": "git log -3",
+      "out": "commit 070879381911fbb6468f2da3129d1a541ecdc107 (HEAD -> main, origin/main, origin/HEAD)\nAuthor: 山田 花子 <12345678+hanako@users.noreply.github.com>\nDate:   Thu Oct 1 10:38:00 2026 +0900\n\n    hello.md の説明を直し、todo.md を足した\n\ncommit 3cbf0ef67bba04f6a265fe4a5e032b5fd8deec7f\nAuthor: 山田 花子 <12345678+hanako@users.noreply.github.com>\nDate:   Thu Oct 1 10:29:00 2026 +0900\n\n    hello.md に2行足した\n\ncommit 580eb3860505b0e0a6b9a87236f9316e4004c86b\nAuthor: 山田 花子 <12345678+hanako@users.noreply.github.com>\nDate:   Thu Oct 1 10:14:00 2026 +0900\n\n    練習用のファイルを作った",
+      "lesson": "06"
+    },
+    "6-log-practice": {
+      "cmd": "git log --oneline -- practice/",
+      "out": "0708793 (HEAD -> main, origin/main, origin/HEAD) hello.md の説明を直し、todo.md を足した\n3cbf0ef hello.md に2行足した\n580eb38 練習用のファイルを作った",
+      "lesson": "06"
+    },
+    "6-log-p": {
+      "cmd": "git log -p -1 -- practice/hello.md",
+      "out": "commit 070879381911fbb6468f2da3129d1a541ecdc107 (HEAD -> main, origin/main, origin/HEAD)\nAuthor: 山田 花子 <12345678+hanako@users.noreply.github.com>\nDate:   Thu Oct 1 10:38:00 2026 +0900\n\n    hello.md の説明を直し、todo.md を足した\n\ndiff --git a/practice/hello.md b/practice/hello.md\nindex 912d3fb..89900cd 100644\n--- a/practice/hello.md\n+++ b/practice/hello.md\n@@ -1,5 +1,4 @@\n # はじめての Git\n \n このファイルは、Git の練習のために作りました。\n-ステージングエリアの練習をしています。\n-2回目の変更です。\n+ステージングエリアと差分の練習をしています。",
+      "lesson": "06"
+    },
+    "6-log-base": {
+      "cmd": "git log --oneline -3 c68c135",
+      "out": "c68c135 設計: Git だけを教える教材に作り直す案（全16回・4部）\n908d5bc sunao をベースに作り直す（docsify と手書きの navi.js をやめ、Actions でビルドして公開）\nd15130b コマンドを打つ前と打った後に、説明を入れる枠を追加",
+      "lesson": "06"
+    },
+    "6-show-base": {
+      "cmd": "git show --stat --oneline c68c135",
+      "out": "c68c135 設計: Git だけを教える教材に作り直す案（全16回・4部）\n design/curriculum.md | 126 +++++++++++++++++++++++++++++++++++++++++++++++++++\n 1 file changed, 126 insertions(+)",
+      "lesson": "06"
+    },
+    "6-log-file": {
+      "cmd": "git log --oneline -3 c68c135 -- README.md",
+      "out": "908d5bc sunao をベースに作り直す（docsify と手書きの navi.js をやめ、Actions でビルドして公開）\nd15130b コマンドを打つ前と打った後に、説明を入れる枠を追加\ndaae984 Git-Flow の回を、結論からではなく「なぜ生まれたか」から始める形に直した",
+      "lesson": "06"
+    },
+    "6-log-grep": {
+      "cmd": "git log --oneline --grep=\"Git-Flow\" c68c135",
+      "out": "d15130b コマンドを打つ前と打った後に、説明を入れる枠を追加\ndaae984 Git-Flow の回を、結論からではなく「なぜ生まれたか」から始める形に直した\nab73ff9 Git-Flow の回に「実際は何が使われているか」を2画面追加\nb8c1898 チームのブランチ運用（Git-Flow）の回を追加",
+      "lesson": "06"
+    },
+    "7-diff": {
+      "cmd": "git diff",
+      "out": "diff --git a/practice/hello.md b/practice/hello.md\nindex 89900cd..a96311e 100644\n--- a/practice/hello.md\n+++ b/practice/hello.md\n@@ -2,3 +2,4 @@\n \n このファイルは、Git の練習のために作りました。\n ステージングエリアと差分の練習をしています。\n+まちがえて書いた行です。",
+      "lesson": "07"
+    },
+    "7-restore": {
+      "cmd": "git restore practice/hello.md",
+      "out": "",
+      "lesson": "07"
+    },
+    "7-status-clean": {
+      "cmd": "git status",
+      "out": "On branch main\nYour branch is up to date with 'origin/main'.\n\nnothing to commit, working tree clean",
+      "lesson": "07"
+    },
+    "7-add": {
+      "cmd": "git add practice/todo.md",
+      "out": "",
+      "lesson": "07"
+    },
+    "7-commit-typo": {
+      "cmd": "git commit -m \"todo.md に項目をたs\"",
+      "out": "[main 4d0ce08] todo.md に項目をたs\n 1 file changed, 1 insertion(+)",
+      "lesson": "07"
+    },
+    "7-amend": {
+      "cmd": "git commit --amend -m \"todo.md に項目を足した\"",
+      "out": "[main a424458] todo.md に項目を足した\n Date: Thu Oct 1 10:52:00 2026 +0900\n 1 file changed, 1 insertion(+)",
+      "lesson": "07"
+    },
+    "7-log-amend": {
+      "cmd": "git log --oneline -2",
+      "out": "a424458 (HEAD -> main) todo.md に項目を足した\n0708793 (origin/main, origin/HEAD) hello.md の説明を直し、todo.md を足した",
+      "lesson": "07"
+    },
+    "7-push": {
+      "cmd": "git push",
+      "out": "To {{FORK}}\n   0708793..a424458  main -> main",
+      "lesson": "07"
+    },
+    "7-revert": {
+      "cmd": "git revert --no-edit HEAD",
+      "out": "[main f314fa1] Revert \"todo.md に項目を足した\"\n Date: Thu Oct 1 10:56:00 2026 +0900\n 1 file changed, 1 deletion(-)",
+      "lesson": "07"
+    },
+    "7-log-revert": {
+      "cmd": "git log --oneline -3",
+      "out": "f314fa1 (HEAD -> main) Revert \"todo.md に項目を足した\"\na424458 (origin/main, origin/HEAD) todo.md に項目を足した\n0708793 hello.md の説明を直し、todo.md を足した",
+      "lesson": "07"
+    },
+    "7-push-revert": {
+      "cmd": "git push",
+      "out": "To {{FORK}}\n   a424458..f314fa1  main -> main",
+      "lesson": "07"
+    },
+    "7-status": {
+      "cmd": "git status",
+      "out": "On branch main\nYour branch is up to date with 'origin/main'.\n\nnothing to commit, working tree clean",
+      "lesson": "07"
+    },
+    "8-status-log": {
+      "cmd": "git status",
+      "out": "On branch main\nYour branch is up to date with 'origin/main'.\n\nUntracked files:\n  (use \"git add <file>...\" to include in what will be committed)\n\tpractice/app.log\n\nnothing added to commit but untracked files present (use \"git add\" to track)",
+      "lesson": "08"
+    },
+    "8-status-ignored": {
+      "cmd": "git status",
+      "out": "On branch main\nYour branch is up to date with 'origin/main'.\n\nUntracked files:\n  (use \"git add <file>...\" to include in what will be committed)\n\tpractice/.gitignore\n\nnothing added to commit but untracked files present (use \"git add\" to track)",
+      "lesson": "08"
+    },
+    "8-check-ignore": {
+      "cmd": "git check-ignore -v practice/app.log",
+      "out": "practice/.gitignore:1:*.log\tpractice/app.log",
+      "lesson": "08"
+    },
+    "8-add-ignore": {
+      "cmd": "git add practice/.gitignore",
+      "out": "",
+      "lesson": "08"
+    },
+    "8-commit-ignore": {
+      "cmd": "git commit -m \"ログのファイルを追跡しないようにした\"",
+      "out": "[main e5bfe02] ログのファイルを追跡しないようにした\n 1 file changed, 1 insertion(+)\n create mode 100644 practice/.gitignore",
+      "lesson": "08"
+    },
+    "8-add-local": {
+      "cmd": "git add practice/settings.local",
+      "out": "",
+      "lesson": "08"
+    },
+    "8-commit-local": {
+      "cmd": "git commit -m \"手元だけの設定ファイルを足した\"",
+      "out": "[main 78f0096] 手元だけの設定ファイルを足した\n 1 file changed, 1 insertion(+)\n create mode 100644 practice/settings.local",
+      "lesson": "08"
+    },
+    "8-status-tracked": {
+      "cmd": "git status",
+      "out": "On branch main\nYour branch is ahead of 'origin/main' by 2 commits.\n  (use \"git push\" to publish your local commits)\n\nChanges not staged for commit:\n  (use \"git add <file>...\" to update what will be committed)\n  (use \"git restore <file>...\" to discard changes in working directory)\n\tmodified:   practice/.gitignore\n\tmodified:   practice/settings.local\n\nno changes added to commit (use \"git add\" and/or \"git commit -a\")",
+      "lesson": "08"
+    },
+    "8-rm-cached": {
+      "cmd": "git rm --cached practice/settings.local",
+      "out": "rm 'practice/settings.local'",
+      "lesson": "08"
+    },
+    "8-status-rm": {
+      "cmd": "git status",
+      "out": "On branch main\nYour branch is ahead of 'origin/main' by 2 commits.\n  (use \"git push\" to publish your local commits)\n\nChanges to be committed:\n  (use \"git restore --staged <file>...\" to unstage)\n\tdeleted:    practice/settings.local\n\nChanges not staged for commit:\n  (use \"git add <file>...\" to update what will be committed)\n  (use \"git restore <file>...\" to discard changes in working directory)\n\tmodified:   practice/.gitignore",
+      "lesson": "08"
+    },
+    "8-add-ignore2": {
+      "cmd": "git add practice/.gitignore",
+      "out": "",
+      "lesson": "08"
+    },
+    "8-commit-rm": {
+      "cmd": "git commit -m \"settings.local を追跡しないようにした\"",
+      "out": "[main 1b3433c] settings.local を追跡しないようにした\n 2 files changed, 1 insertion(+), 1 deletion(-)\n delete mode 100644 practice/settings.local",
+      "lesson": "08"
+    },
+    "8-check-local": {
+      "cmd": "git check-ignore -v practice/settings.local",
+      "out": "practice/.gitignore:2:*.local\tpractice/settings.local",
+      "lesson": "08"
+    },
+    "8-push": {
+      "cmd": "git push",
+      "out": "To {{FORK}}\n   f314fa1..1b3433c  main -> main",
+      "lesson": "08"
+    },
+    "8-status": {
+      "cmd": "git status",
+      "out": "On branch main\nYour branch is up to date with 'origin/main'.\n\nnothing to commit, working tree clean",
+      "lesson": "08"
+    },
+    "9-branch": {
+      "cmd": "git branch",
+      "out": "* main",
+      "lesson": "09"
+    },
+    "9-switch-c": {
+      "cmd": "git switch -c try-greeting",
+      "out": "Switched to a new branch 'try-greeting'",
+      "lesson": "09"
+    },
+    "9-branch-2": {
+      "cmd": "git branch",
+      "out": "  main\n* try-greeting",
+      "lesson": "09"
+    },
+    "9-add": {
+      "cmd": "git add practice/hello.md",
+      "out": "",
+      "lesson": "09"
+    },
+    "9-commit": {
+      "cmd": "git commit -m \"あいさつを足した\"",
+      "out": "[try-greeting 47158bd] あいさつを足した\n 1 file changed, 1 insertion(+)",
+      "lesson": "09"
+    },
+    "9-log": {
+      "cmd": "git log --oneline -3",
+      "out": "47158bd (HEAD -> try-greeting) あいさつを足した\n1b3433c (origin/main, origin/HEAD, main) settings.local を追跡しないようにした\n78f0096 手元だけの設定ファイルを足した",
+      "lesson": "09"
+    },
+    "9-switch-main": {
+      "cmd": "git switch main",
+      "out": "Switched to branch 'main'\nYour branch is up to date with 'origin/main'.",
+      "lesson": "09"
+    },
+    "9-cat-main": {
+      "cmd": "cat practice/hello.md",
+      "out": "# はじめての Git\n\nこのファイルは、Git の練習のために作りました。\nステージングエリアと差分の練習をしています。",
+      "lesson": "09"
+    },
+    "9-merge-ff": {
+      "cmd": "git merge try-greeting",
+      "out": "Updating 1b3433c..47158bd\nFast-forward\n practice/hello.md | 1 +\n 1 file changed, 1 insertion(+)",
+      "lesson": "09"
+    },
+    "9-log-ff": {
+      "cmd": "git log --oneline -3",
+      "out": "47158bd (HEAD -> main, try-greeting) あいさつを足した\n1b3433c (origin/main, origin/HEAD) settings.local を追跡しないようにした\n78f0096 手元だけの設定ファイルを足した",
+      "lesson": "09"
+    },
+    "9-switch-c2": {
+      "cmd": "git switch -c add-list",
+      "out": "Switched to a new branch 'add-list'",
+      "lesson": "09"
+    },
+    "9-add-list": {
+      "cmd": "git add practice/list.md",
+      "out": "",
+      "lesson": "09"
+    },
+    "9-commit-list": {
+      "cmd": "git commit -m \"覚えたコマンドの一覧を作った\"",
+      "out": "[add-list 92016a4] 覚えたコマンドの一覧を作った\n 1 file changed, 4 insertions(+)\n create mode 100644 practice/list.md",
+      "lesson": "09"
+    },
+    "9-switch-main-2": {
+      "cmd": "git switch main",
+      "out": "Switched to branch 'main'\nYour branch is ahead of 'origin/main' by 1 commit.\n  (use \"git push\" to publish your local commits)",
+      "lesson": "09"
+    },
+    "9-add-todo": {
+      "cmd": "git add practice/todo.md",
+      "out": "",
+      "lesson": "09"
+    },
+    "9-commit-todo": {
+      "cmd": "git commit -m \"todo.md にブランチを足した\"",
+      "out": "[main 0a13e4c] todo.md にブランチを足した\n 1 file changed, 1 insertion(+)",
+      "lesson": "09"
+    },
+    "9-merge": {
+      "cmd": "git merge --no-edit add-list",
+      "out": "Merge made by the 'ort' strategy.\n practice/list.md | 4 ++++\n 1 file changed, 4 insertions(+)\n create mode 100644 practice/list.md",
+      "lesson": "09"
+    },
+    "9-graph": {
+      "cmd": "git log --oneline --graph -5",
+      "out": "*   e813738 (HEAD -> main) Merge branch 'add-list'\n|\\  \n| * 92016a4 (add-list) 覚えたコマンドの一覧を作った\n* | 0a13e4c todo.md にブランチを足した\n|/  \n* 47158bd (try-greeting) あいさつを足した\n* 1b3433c (origin/main, origin/HEAD) settings.local を追跡しないようにした",
+      "lesson": "09"
+    },
+    "9-branch-d": {
+      "cmd": "git branch -d try-greeting add-list",
+      "out": "Deleted branch try-greeting (was 47158bd).\nDeleted branch add-list (was 92016a4).",
+      "lesson": "09"
+    },
+    "9-push": {
+      "cmd": "git push",
+      "out": "To {{FORK}}\n   1b3433c..e813738  main -> main",
+      "lesson": "09"
+    },
+    "10-switch-c": {
+      "cmd": "git switch -c change-title",
+      "out": "Switched to a new branch 'change-title'",
+      "lesson": "10"
+    },
+    "10-add-branch": {
+      "cmd": "git add practice/hello.md",
+      "out": "",
+      "lesson": "10"
+    },
+    "10-commit-branch": {
+      "cmd": "git commit -m \"題名を「Git の練習帳」にした\"",
+      "out": "[change-title 82bcb1d] 題名を「Git の練習帳」にした\n 1 file changed, 1 insertion(+), 1 deletion(-)",
+      "lesson": "10"
+    },
+    "10-switch-main": {
+      "cmd": "git switch main",
+      "out": "Switched to branch 'main'\nYour branch is up to date with 'origin/main'.",
+      "lesson": "10"
+    },
+    "10-add-main": {
+      "cmd": "git add practice/hello.md",
+      "out": "",
+      "lesson": "10"
+    },
+    "10-commit-main": {
+      "cmd": "git commit -m \"題名に（練習）を足した\"",
+      "out": "[main ddd700d] 題名に（練習）を足した\n 1 file changed, 1 insertion(+), 1 deletion(-)",
+      "lesson": "10"
+    },
+    "10-merge-conflict": {
+      "cmd": "git merge --no-edit change-title",
+      "out": "Auto-merging practice/hello.md\nCONFLICT (content): Merge conflict in practice/hello.md\nAutomatic merge failed; fix conflicts and then commit the result.",
+      "lesson": "10"
+    },
+    "10-status-conflict": {
+      "cmd": "git status",
+      "out": "On branch main\nYour branch is ahead of 'origin/main' by 1 commit.\n  (use \"git push\" to publish your local commits)\n\nYou have unmerged paths.\n  (fix conflicts and run \"git commit\")\n  (use \"git merge --abort\" to abort the merge)\n\nUnmerged paths:\n  (use \"git add <file>...\" to mark resolution)\n\tboth modified:   practice/hello.md\n\nno changes added to commit (use \"git add\" and/or \"git commit -a\")",
+      "lesson": "10"
+    },
+    "10-cat-conflict": {
+      "cmd": "cat practice/hello.md",
+      "out": "<<<<<<< HEAD\n# はじめての Git（練習）\n=======\n# Git の練習帳\n>>>>>>> change-title\n\nこのファイルは、Git の練習のために作りました。\nステージングエリアと差分の練習をしています。\nこんにちは、ブランチ。",
+      "lesson": "10"
+    },
+    "10-abort": {
+      "cmd": "git merge --abort",
+      "out": "",
+      "lesson": "10"
+    },
+    "10-status-abort": {
+      "cmd": "git status",
+      "out": "On branch main\nYour branch is ahead of 'origin/main' by 1 commit.\n  (use \"git push\" to publish your local commits)\n\nnothing to commit, working tree clean",
+      "lesson": "10"
+    },
+    "10-merge-again": {
+      "cmd": "git merge --no-edit change-title",
+      "out": "Auto-merging practice/hello.md\nCONFLICT (content): Merge conflict in practice/hello.md\nAutomatic merge failed; fix conflicts and then commit the result.",
+      "lesson": "10"
+    },
+    "10-add-fixed": {
+      "cmd": "git add practice/hello.md",
+      "out": "",
+      "lesson": "10"
+    },
+    "10-status-fixed": {
+      "cmd": "git status",
+      "out": "On branch main\nYour branch is ahead of 'origin/main' by 1 commit.\n  (use \"git push\" to publish your local commits)\n\nAll conflicts fixed but you are still merging.\n  (use \"git commit\" to conclude merge)\n\nChanges to be committed:\n\tmodified:   practice/hello.md",
+      "lesson": "10"
+    },
+    "10-commit-merge": {
+      "cmd": "git commit --no-edit",
+      "out": "[main c48cd86] Merge branch 'change-title'",
+      "lesson": "10"
+    },
+    "10-graph": {
+      "cmd": "git log --oneline --graph -6",
+      "out": "*   c48cd86 (HEAD -> main) Merge branch 'change-title'\n|\\  \n| * 82bcb1d (change-title) 題名を「Git の練習帳」にした\n* | ddd700d 題名に（練習）を足した\n|/  \n*   e813738 (origin/main, origin/HEAD) Merge branch 'add-list'\n|\\  \n| * 92016a4 覚えたコマンドの一覧を作った\n* | 0a13e4c todo.md にブランチを足した\n|/",
+      "lesson": "10"
+    },
+    "10-branch-d": {
+      "cmd": "git branch -d change-title",
+      "out": "Deleted branch change-title (was 82bcb1d).",
+      "lesson": "10"
+    },
+    "10-push": {
+      "cmd": "git push",
+      "out": "To {{FORK}}\n   e813738..c48cd86  main -> main",
+      "lesson": "10"
+    },
+    "10-status": {
+      "cmd": "git status",
+      "out": "On branch main\nYour branch is up to date with 'origin/main'.\n\nnothing to commit, working tree clean",
+      "lesson": "10"
     }
   },
   "areas": {
@@ -107,6 +582,123 @@
       "status": "A  practice/hello.md"
     },
     "a3-committed": {
+      "rows": [
+        {
+          "path": "practice/hello.md",
+          "repo": 1,
+          "stage": 1,
+          "work": 1
+        }
+      ],
+      "status": ""
+    },
+    "a4-modified": {
+      "rows": [
+        {
+          "path": "practice/hello.md",
+          "repo": 1,
+          "stage": 1,
+          "work": 2
+        }
+      ],
+      "status": " M practice/hello.md"
+    },
+    "a4-staged": {
+      "rows": [
+        {
+          "path": "practice/hello.md",
+          "repo": 1,
+          "stage": 2,
+          "work": 2
+        }
+      ],
+      "status": "M  practice/hello.md"
+    },
+    "a4-both": {
+      "rows": [
+        {
+          "path": "practice/hello.md",
+          "repo": 1,
+          "stage": 2,
+          "work": 3
+        }
+      ],
+      "status": "MM practice/hello.md"
+    },
+    "a4-staged-again": {
+      "rows": [
+        {
+          "path": "practice/hello.md",
+          "repo": 1,
+          "stage": 2,
+          "work": 2
+        }
+      ],
+      "status": "M  practice/hello.md"
+    },
+    "a4-two": {
+      "rows": [
+        {
+          "path": "practice/hello.md",
+          "repo": 1,
+          "stage": 2,
+          "work": 2
+        },
+        {
+          "path": "practice/todo.md",
+          "repo": 0,
+          "stage": 1,
+          "work": 1
+        }
+      ],
+      "status": "M  practice/hello.md\nA  practice/todo.md"
+    },
+    "a4-unstaged": {
+      "rows": [
+        {
+          "path": "practice/hello.md",
+          "repo": 1,
+          "stage": 2,
+          "work": 2
+        },
+        {
+          "path": "practice/todo.md",
+          "repo": 0,
+          "stage": 0,
+          "work": 1
+        }
+      ],
+      "status": "M  practice/hello.md\n?? practice/todo.md"
+    },
+    "a4-end": {
+      "rows": [
+        {
+          "path": "practice/hello.md",
+          "repo": 1,
+          "stage": 1,
+          "work": 1
+        },
+        {
+          "path": "practice/todo.md",
+          "repo": 0,
+          "stage": 0,
+          "work": 1
+        }
+      ],
+      "status": "?? practice/todo.md"
+    },
+    "a7-mistake": {
+      "rows": [
+        {
+          "path": "practice/hello.md",
+          "repo": 1,
+          "stage": 1,
+          "work": 2
+        }
+      ],
+      "status": " M practice/hello.md"
+    },
+    "a7-restored": {
       "rows": [
         {
           "path": "practice/hello.md",

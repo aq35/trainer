@@ -20,6 +20,22 @@ export const pg = {
   log: ['Pro Git 2.3「コミット履歴の閲覧」', PG + 'Git-の基本-コミット履歴の閲覧.html'],
   remotes: ['Pro Git 2.5「リモートの表示」', PG + 'Git-の基本-リモートでの作業.html#_リモートの表示'],
   push: ['Pro Git 2.5「リモートへのプッシュ」', PG + 'Git-の基本-リモートでの作業.html#r_pushing_remotes'],
+  // 第4〜10回（元データ git/git-scm.com の external/book/content/book/ja/v2 で見出しの id を確かめた。2026-09-27）
+  staging: ['Pro Git 2.2「変更したファイルのステージング」', PG + 'Git-の基本-変更内容のリポジトリへの記録.html#_変更したファイルのステージング'],
+  diff: ['Pro Git 2.2「ステージされている変更 / されていない変更の閲覧」', PG + 'Git-の基本-変更内容のリポジトリへの記録.html#r_git_diff_staged'],
+  ignoring: ['Pro Git 2.2「ファイルの無視」', PG + 'Git-の基本-変更内容のリポジトリへの記録.html#r_ignoring'],
+  removing: ['Pro Git 2.2「ファイルの削除」', PG + 'Git-の基本-変更内容のリポジトリへの記録.html#r_removing_files'],
+  limitLog: ['Pro Git 2.3「ログ出力の制限」', PG + 'Git-の基本-コミット履歴の閲覧.html#_ログ出力の制限'],
+  undoing: ['Pro Git 2.4「作業のやり直し」', PG + 'Git-の基本-作業のやり直し.html'],
+  unstaging: ['Pro Git 2.4「ステージしたファイルの取り消し」', PG + 'Git-の基本-作業のやり直し.html#r_unstaging'],
+  unmodifying: ['Pro Git 2.4「ファイルへの変更の取り消し」', PG + 'Git-の基本-作業のやり直し.html#_ファイルへの変更の取り消し'],
+  branches: ['Pro Git 3.1「ブランチとは」', PG + 'Git-のブランチ機能-ブランチとは.html'],
+  newBranch: ['Pro Git 3.1「新しいブランチの作成」', PG + 'Git-のブランチ機能-ブランチとは.html#r_create_new_branch'],
+  switching: ['Pro Git 3.1「ブランチの切り替え」', PG + 'Git-のブランチ機能-ブランチとは.html#r_switching_branches'],
+  basicBranching: ['Pro Git 3.2「ブランチの基本」', PG + 'Git-のブランチ機能-ブランチとマージの基本.html#r_basic_branching'],
+  merging: ['Pro Git 3.2「マージの基本」', PG + 'Git-のブランチ機能-ブランチとマージの基本.html#r_basic_merging'],
+  conflicts: ['Pro Git 3.2「マージ時のコンフリクト」', PG + 'Git-のブランチ機能-ブランチとマージの基本.html#r_basic_merge_conflicts'],
+  branchMgmt: ['Pro Git 3.3「ブランチの管理」', PG + 'Git-のブランチ機能-ブランチの管理.html'],
 };
 
 // Git 本体の説明（英語。git help <コマンド> で出るものと同じ）
@@ -39,6 +55,19 @@ export const ref = {
   log: ['git log（英語）', DOC + 'git-log'],
   remote: ['git remote（英語）', DOC + 'git-remote'],
   push: ['git push（英語）', DOC + 'git-push'],
+  restore: ['git restore（英語）', DOC + 'git-restore'],
+  diff: ['git diff（英語）', DOC + 'git-diff'],
+  show: ['git show（英語）', DOC + 'git-show'],
+  revert: ['git revert（英語）', DOC + 'git-revert'],
+  rm: ['git rm（英語）', DOC + 'git-rm'],
+  gitignore: ['gitignore（英語）', DOC + 'gitignore'],
+  checkIgnore: ['git check-ignore（英語）', DOC + 'git-check-ignore'],
+  branch: ['git branch（英語）', DOC + 'git-branch'],
+  switch: ['git switch（英語）', DOC + 'git-switch'],
+  merge: ['git merge（英語）', DOC + 'git-merge'],
+  // リリースノート（Pro Git 日本語版が古いコマンドで書かれている所の根拠）
+  rel223: ['Git 2.23 のリリースノート（git switch・git restore が加わった。英語）', 'https://github.com/git/git/blob/master/Documentation/RelNotes/2.23.0.adoc'],
+  rel234: ['Git 2.34 のリリースノート（マージの既定の方法が ort になった。英語）', 'https://github.com/git/git/blob/master/Documentation/RelNotes/2.34.0.adoc'],
 };
 
 // GitHub Docs 日本語版（GitHub 側の操作。画面写真は、こちらの公式ページにあるものを見てもらう）
@@ -51,6 +80,12 @@ export const gh = {
   forks: ['GitHub Docs: フォークの公開範囲', GH + 'pull-requests/reference/forks'],
   clone: ['GitHub Docs: リポジトリをクローンする（画面の写真つき）', GH + 'repositories/creating-and-managing-repositories/cloning-a-repository'],
   push: ['GitHub Docs: コミットをプッシュする', GH + 'get-started/using-git/pushing-commits-to-a-remote-repository'],
+  // 元データ github/docs の content/ で確かめた（2026-09-27）
+  amend: ['GitHub Docs: コミットメッセージの変更（プッシュ済みなら履歴の書き換えになる）', GH + 'pull-requests/how-tos/commit-changes/changing-a-commit-message'],
+  ignoring: ['GitHub Docs: ファイルを無視する', GH + 'get-started/git-basics/ignoring-files'],
+  sensitive: ['GitHub Docs: リポジトリから機密データを削除する', GH + 'authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository'],
+  conflictCli: ['GitHub Docs: コマンドラインでマージコンフリクトを解決する', GH + 'pull-requests/how-tos/merge-and-close-pull-requests/resolving-a-merge-conflict-using-the-command-line'],
+  commits: ['GitHub Docs: コミット', GH + 'pull-requests/reference/commits'],
 };
 
 // VS Code（英語）
@@ -60,4 +95,6 @@ export const vs = {
   terminal: ['VS Code「Terminal basics」（英語）', VS + 'terminal/basics'],
   github: ['VS Code「Working with GitHub」（英語。プッシュのときのサインイン）', VS + 'sourcecontrol/github'],
   terminalAuth: ['VS Code の設定 git.terminalAuthentication の説明（英語・VS Code のソース）', 'https://github.com/microsoft/vscode/blob/main/extensions/git/package.nls.json'],
+  // 元データ microsoft/vscode-docs の docs/sourcecontrol/merge-conflicts.md で確かめた（2026-09-27）
+  conflicts: ['VS Code「Resolve merge conflicts」（英語。Accept Current Change などのボタン）', VS + 'sourcecontrol/merge-conflicts'],
 };

@@ -4,7 +4,7 @@
 
 公開サイト: https://aq35.github.io/trainer/
 
-> いまは**第1〜3回**を公開しています。第4〜10回は準備中です。設計は [design/curriculum.md](design/curriculum.md)。
+> **全10回**を公開しています。設計は [design/curriculum.md](design/curriculum.md)。
 
 ---
 

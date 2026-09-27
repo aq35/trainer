@@ -110,7 +110,7 @@ test('読み物: 目次・見出しへのリンク・タブ・チェックリス
   const { page, errors } = await open('');
   await page.waitForSelector('.mapitem');
   assert.equal(await page.locator('.mapitem').count(), 12, '全10回と、読み物2本');
-  assert.equal(await page.locator('.mapitem.soon').count(), 7, 'まだ書いていない7回は「準備中」');
+  assert.equal(await page.locator('.mapitem.soon').count(), 0, '全10回とも公開している');
   // 見出しへのリンク（id が多少違っても、記号を除いて一致すれば移動する）
   await page.goto(base + '#/git-research?id=コツ3-止まるべき言葉を覚えておく');
   await page.waitForFunction(() => scrollY > 500, null, { timeout: 5000 }); // 読み物を読み込んでから移動するので、待つ
@@ -127,7 +127,10 @@ test('読み物: 目次・見出しへのリンク・タブ・チェックリス
   await page.goto(base + '#/01-tools.html');
   await page.waitForURL(/01-tools\.html$/);
   // 以前の URL は、新しい回へ案内する
-    await page.goto(base + 'setup.html', { waitUntil: 'commit' }); // すぐに移動するので、読み込みの完了は待たない
+  // 移動の案内ページはすぐに次へ移るので、page.goto が「別の移動に割り込まれた」で失敗することがある。
+  // ページの移動に割り込まれた、という失敗だけは受け入れて、行き着いた先を確かめる
+  await page.goto(base + 'setup.html', { waitUntil: 'commit' })
+    .catch((e) => { if (!/interrupted by another navigation/.test(e.message)) throw e; });
   await page.waitForURL(/01-tools\.html$/);
   await page.waitForSelector('.card');
   assert.deepEqual(errors, []);

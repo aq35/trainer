@@ -1,0 +1,27 @@
+// 第9回「ブランチとマージ」
+import { T } from './_texts.mjs';
+export default [
+  { id: '9-branch', run: 'git branch' },
+  { id: '9-switch-c', run: 'git switch -c try-greeting' },
+  { id: '9-branch-2', run: 'git branch' },
+  { write: { 'practice/hello.md': T.hello9 } },
+  { id: '9-add', run: 'git add practice/hello.md' },
+  { id: '9-commit', run: 'git commit -m "あいさつを足した"' },
+  { id: '9-log', run: 'git log --oneline -3' },
+  { id: '9-switch-main', run: 'git switch main' },
+  { id: '9-cat-main', run: 'cat practice/hello.md' },
+  { id: '9-merge-ff', run: 'git merge try-greeting' },
+  { id: '9-log-ff', run: 'git log --oneline -3' },
+  { id: '9-switch-c2', run: 'git switch -c add-list' },
+  { write: { 'practice/list.md': T.list9 } },
+  { id: '9-add-list', run: 'git add practice/list.md' },
+  { id: '9-commit-list', run: 'git commit -m "覚えたコマンドの一覧を作った"' },
+  { id: '9-switch-main-2', run: 'git switch main' },
+  { write: { 'practice/todo.md': T.todo9 } },
+  { id: '9-add-todo', run: 'git add practice/todo.md' },
+  { id: '9-commit-todo', run: 'git commit -m "todo.md にブランチを足した"' },
+  { id: '9-merge', run: 'git merge --no-edit add-list' },
+  { id: '9-graph', run: 'git log --oneline --graph -5' },
+  { id: '9-branch-d', run: 'git branch -d try-greeting add-list' },
+  { id: '9-push', run: 'git push' },
+];
