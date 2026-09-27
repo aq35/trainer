@@ -106,7 +106,7 @@ export function buildNavi(name, mod, { firstAid, recorded = null, banned = [] })
     return { id, ...a };
   };
   const R = (html, at) => (html == null ? null : parseHtml(html, { profile: 'inline', where: `${where} ${at}` }));
-  const qa = (it, at) => ({ q: R(it.q, at + '.q'), a: R(it.a, at + '.a'), qText: strip(it.q), find: textOf(R(it.q, at) .concat(' ', R(it.a, at))).toLowerCase() });
+  const qa = (it, at) => ({ os: it.os || null, q: R(it.q, at + '.q'), a: R(it.a, at + '.a'), qText: strip(it.q), find: textOf(R(it.q, at) .concat(' ', R(it.a, at))).toLowerCase() });
   const osList = (o) => (o ? (o.common ? ['common'] : ['win', 'mac']) : []);
   const needsOs = nav.steps.some((s) => s.kind === 'os');
 
@@ -176,7 +176,9 @@ export function buildNavi(name, mod, { firstAid, recorded = null, banned = [] })
       help,
       out: checkHashes(outOf(s.out, at, shownCmds), s, at),
       areas: areasOf(s.areas, at),
-      ref: refsOf(s.ref, `${where} ${at}`),
+      // ref は配列か、OS ごとの { common, win, mac }（common は両方に出す）
+      ref: Array.isArray(s.ref) || !s.ref ? refsOf(s.ref, `${where} ${at}`)
+        : Object.fromEntries(['win', 'mac'].map((k) => [k, refsOf([...(s.ref.common || []), ...(s.ref[k] || [])], `${where} ${at}.ref.${k}`)])),
     };
   });
 

@@ -66,45 +66,36 @@ steps:[
 {
   icon:'icon-git.svg', phase:'2. Git',
   title:'Git を入れます',
-  why:'この教材で使う道具そのものです。<b>ターミナルにコマンドを1行打って</b>入れます。',
+  why:'この教材で使う道具そのものです。',
   todo:{
-    win:['VS Code のターミナル（PowerShell）に、下のコマンドを打って Enter を押します',
-         '途中で「このアプリがデバイスに変更を加えることを許可しますか？」の画面が出たら、<b>発行元を確かめて</b>「はい」を押します',
-         '「インストールが完了しました」（英語の表示なら <code>Successfully installed</code>）と出たら、<b>VS Code をいったん閉じて、開き直します</b>（開き直さないと、ターミナルが Git を見つけられません）'],
-    mac:['VS Code のターミナルに、下のコマンドを打って Enter を押します',
-         '「コマンドライン・デベロッパ・ツールが必要です」のような画面が出たら、「インストール」を押し、終わるまで待ちます',
-         '終わったら、<b>VS Code をいったん閉じて、開き直します</b>']
+    common:['ターミナルに、下のコマンドを打って Enter を押します',
+            '終わったら、<b>VS Code を閉じて、開き直します</b>']
   },
   pre:{
-    win:[['winget install --id Git.Git -e --source winget',
-          'Windows に入っている<b>アプリを入れる道具（winget）</b>で、Git を入れます。<br><code>--id Git.Git</code> ＝入れるものの名前（Git for Windows）、<code>-e</code> ＝名前が<b>完全に同じもの</b>だけ、<code>--source winget</code> ＝ winget の置き場から取る。<br>Git の公式サイトと Microsoft の説明の両方に、この1行がそのまま載っています']],
-    mac:[['xcode-select --install',
-          'Apple の <b>Xcode Command Line Tools</b>（Git を含む、開発用の道具のまとまり）を入れる画面を出します。<br>Git の公式サイトの Mac 向けページに、この1行がそのまま載っています']]
+    win:[['winget install --id Git.Git -e --source winget', 'Windows のアプリを入れる道具（winget）で、Git を入れます']],
+    mac:[['brew install git', 'Mac のアプリを入れる道具（Homebrew）で、Git を入れます']]
   },
   cmdMulti:{
     win:['winget install --id Git.Git -e --source winget'],
-    mac:['xcode-select --install']
+    mac:['brew install git']
   },
   cmdlabel:'打つコマンド',
-  expect:'インストールが終わり、VS Code を開き直せていれば大丈夫です。<b>入ったかどうかは、次の画面で確かめます。</b>',
-  after:'Git を入れる作業が終わりました。<br>このコマンドの出力は、パソコンの状態でかなり変わるので、この教材には載せていません（載せるのは、実際に打って記録した出力だけです）。代わりに、次の画面で <code>git --version</code> を打ち、入ったことを確かめます。',
-  ask:'インストールが終わり、VS Code を開き直しましたか？',
-  ref:[pg.install, ref.install, ref.winget, ref.wingetAbout, ref.installMac],
+  expect:'エラーが出ずに終われば大丈夫です。',
+  after:'入ったかどうかは、次の画面で確かめます。',
+  ask:'終わって、VS Code を開き直しましたか？',
+  ref:{ win:[ref.install, ref.winget], mac:[ref.installMac, ref.brew] },
   tb:[
-    { q:'Windows で winget が見つからない（認識されません）',
-      a:'winget は Windows 11 と、新しめの Windows 10 に入っています（根拠: Microsoft Learn「WinGet」）。見つからないときは、コマンドの代わりに<b>インストーラ</b>で入れます。<br>① <a href="https://git-scm.com/install/windows.html" target="_blank" rel="noopener">Git の公式サイトの Windows 向けページ</a>の「Click here to download」でダウンロード<br>② ダウンロードしたファイルを開き、設定の画面は<b>変えずに Next</b> で進め、最後に Install<br>③ VS Code を閉じて開き直す' },
-    { q:'Windows で「すべてのソース契約条件に同意しますか?」と聞かれた',
-      a:'winget が、置き場（ソース）の利用条件への同意を聞いています（英語の表示なら <code>Do you agree to all the source agreements terms?</code>）。<b>上に出ている条件を読んで、よければ Y を打って Enter</b>。分からない行は、AI に「この行はどういう意味？」と聞いてください。' },
-    { q:'Mac で「すでにインストールされています」（already installed）と出た',
-      a:'Git を含む道具は、<b>もう入っています</b>。そのまま次の画面に進んでください。' },
-    { q:'Mac で Homebrew を使っている',
-      a:'Git の公式サイトの Mac 向けページには、Homebrew で入れる方法も載っています。<pre><code>brew install git</code></pre>どちらで入れても、次の画面の確かめ方は同じです。' }
+    { os:'mac', q:'command not found: brew と出た',
+      a:'Homebrew がまだ入っていません。次の1行で入れます（Homebrew 公式の1行です）。<pre><code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></pre>最後に <code>Next steps</code> と出たら、その下に書かれたコマンドも打ちます。そのあと <code>brew install git</code> を打ち直します。' },
+    { os:'win', q:'winget が認識されません と出た',
+      a:'<a href="https://git-scm.com/install/windows.html" target="_blank" rel="noopener">Git の公式サイト</a>の「Click here to download」でインストーラを入れます。設定は<b>変えずに Next</b> で進めます。' },
+    { os:'win', q:'「変更を加えることを許可しますか？」と出た',
+      a:'「はい」を押します。' }
   ]
 },
 {
   icon:'icon-git.svg', phase:'2. Git',
   title:'Git が入ったことを確かめます',
-  why:'入れたつもりで入っていない、を先に見つけておきます。',
   todo:{
     common:['ターミナルに、下のコマンドを打って Enter を押します']
   },
@@ -113,15 +104,9 @@ steps:[
   cmdlabel:'打つコマンド',
   out:'version',
   expect:'<code>git version</code> のあとに数字が出れば、Git は入っています。',
-  after:'出てきた数字が、あなたのパソコンの Git の版です。<b>この教材の出力は Git 2.43.0 で打ったもの</b>なので、あなたの数字と違っていても問題ありません。<br>ただし版が違うと、Git が画面に出す<b>案内の文が少し違うことがあります</b>。形が大きく違うときは、AI に「Git のどの版で、この表示が変わりましたか」と聞いてみてください。',
+  after:'出てきた数字が、あなたの Git の版です。この教材は 2.43.0 で打った出力を載せているので、数字が違っていても問題ありません。',
   ask:'git version と数字が出ましたか？',
   ref:[pg.install],
-  tb:[
-    { q:'command not found / 認識されません と出た',
-      a:'Git がまだ入っていないか、入れた直後でターミナルが知らない状態です。<b>VS Code を閉じて開き直して</b>から、もう一度打ちます。それでも出るときは、前の画面に戻って入れ直します。' },
-    { q:'Mac で xcrun: error と出た',
-      a:'Xcode Command Line Tools が入っていない（または壊れている）という意味です。Git の公式サイトの Mac 向けページに書かれているとおり、次のコマンドで入れられます。<pre><code>xcode-select --install</code></pre>出てきた画面で「インストール」を押し、終わってから <code>git --version</code> を打ち直してください。' }
-  ]
 },
 {
   icon:'icon-github.svg', phase:'3. GitHub',

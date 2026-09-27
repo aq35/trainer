@@ -79,6 +79,14 @@ test('ナビ: OS を選ぶ回は、選んだ OS の手順になる', { skip }, a
   await page.click('.oschoice button:has-text("Mac")');
   assert.equal(await page.textContent('.counter'), '1 / 8');
   assert.equal(JSON.parse(await page.evaluate(() => localStorage.getItem('trainer-v2-01'))).os, 'mac');
+  // 「Git を入れます」は、Mac の手順・根拠・「うまくいきません」だけが出る
+  await page.click('.ask button.act.ok');
+  await page.click('.ask button.act.ok');
+  assert.match(await page.textContent('.card'), /brew install git/);
+  assert.doesNotMatch(await page.textContent('.card'), /winget/);
+  await page.click('.ask button.act.ng');
+  assert.match(await page.textContent('.card'), /command not found: brew/);
+  assert.doesNotMatch(await page.textContent('.card'), /winget/);
   assert.deepEqual(errors, []);
   await page.close();
 });

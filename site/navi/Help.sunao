@@ -73,7 +73,8 @@ export default {
     const s = step.peek();
     const h = os.peek() === 'mac' && s.help.mac ? s.help.mac : s.help.win;
     const aid = h.aid.map((k) => page.aid[k]);
-    const own = s.tb;
+    const mine = os.peek() === 'mac' ? 'mac' : 'win';
+    const own = s.tb.filter((t) => !t.os || t.os === mine); // os: 'win' / 'mac' の項目は、その OS だけに出す
     const gen = h.gen.map((k) => page.common[k]);
     const q = signal('');
     const hit = (it) => !q() || it.find.indexOf(q()) >= 0;

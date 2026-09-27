@@ -27,7 +27,9 @@ export const ref = {
   install: ['Git 公式「Install for Windows」（英語）', 'https://git-scm.com/install/windows.html'],
   installMac: ['Git 公式「Install for macOS」（英語）', 'https://git-scm.com/install/mac.html'],
   // Microsoft Learn（元データ MicrosoftDocs/windows-dev-docs の hub/package-manager/winget/ で確かめた。2026-09-27）
-  winget: ['Microsoft Learn「winget install」— Git を入れる例と、-e・--source の意味', 'https://learn.microsoft.com/ja-jp/windows/package-manager/winget/install'],
+  // Homebrew（元データ Homebrew/install の README で確かめた。2026-09-27）
+  brew: ['Homebrew 公式「Install Homebrew」（英語）', 'https://github.com/Homebrew/install#install-homebrew-on-macos-or-linux'],
+  winget: ['Microsoft Learn「winget install」', 'https://learn.microsoft.com/ja-jp/windows/package-manager/winget/install'],
   wingetAbout: ['Microsoft Learn「WinGet」— 入っている Windows と、見つからないとき', 'https://learn.microsoft.com/ja-jp/windows/package-manager/winget/'],
   config: ['git config（英語）', DOC + 'git-config'],
   clone: ['git clone（英語）', DOC + 'git-clone'],
