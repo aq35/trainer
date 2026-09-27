@@ -2,7 +2,7 @@
 // total は、その回の「完了」画面の番号（= steps の数 - 1。OS 選択がある回は OS 選択を含む）。ずれるとビルドが止まる。
 // soon: true の回は、まだ書いていない（地図には「準備中」と出る）。
 export const steps = [
-  { key: 'trainer-v2-01', total: 8, label: '第1回 道具をそろえる', href: '01-tools.html', icon: 'icon-vscode.svg' },
+  { key: 'trainer-v2-01', total: 9, label: '第1回 道具をそろえる', href: '01-tools.html', icon: 'icon-vscode.svg' },
   { key: 'trainer-v2-02', total: 10, label: '第2回 フォークして手元に持ってくる', href: '02-fork.html', icon: 'icon-github.svg',
     read: { md: 'why-git', label: 'なぜ Git が生まれたのか', icon: 'icon-git.svg' } },
   { key: 'trainer-v2-03', total: 8, label: '第3回 最初のコミット', href: '03-first-commit.html', icon: 'icon-git.svg',

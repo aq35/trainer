@@ -50,6 +50,13 @@ export function applies(item, ctx) {
 }
 
 // 根拠リンク [[名前, URL], ...] を検査して返す
+// pre を OS ごとに取り出す（配列ならどの OS でも同じ）
+function preFor(pre, os) {
+  if (!pre) return null;
+  if (Array.isArray(pre)) return pre;
+  return pre.common || pre[os] || null;
+}
+
 function refsOf(ref, where) {
   if (!ref) return [];
   if (!Array.isArray(ref) || ref.some((r) => !Array.isArray(r) || r.length !== 2 || !/^https:\/\//.test(r[1]))) {
@@ -140,9 +147,15 @@ export function buildNavi(name, mod, { firstAid, recorded = null, banned = [] })
     const shownCmds = [...new Set([].concat(s.cmd || [], ...variants))];
     if (s.cmd || s.cmdMulti) {
       if (s.textBox !== true) {
-        for (const v of variants) {
-          const lines = v.length + (s.cmd ? 1 : 0);
-          if (!s.pre || s.pre.length !== lines) throw new Error(`${where} ${at}: コマンドが ${lines} 行あるので、pre（打つ前に、1行ずつの説明）も ${lines} 個要ります（いま ${s.pre ? s.pre.length : 0} 個）`);
+        // pre は配列（どの OS でも同じ）か、cmdMulti と同じく { win, mac } / { common }
+        for (const k of s.cmdMulti ? osList(s.cmdMulti) : ['common']) {
+          const lines = (s.cmdMulti ? s.cmdMulti[k].length : 0) + (s.cmd ? 1 : 0);
+          const p = preFor(s.pre, k);
+          if (!p || p.length !== lines) throw new Error(`${where} ${at}: コマンドが ${lines} 行あるので、pre（打つ前に、1行ずつの説明）も ${lines} 個要ります（いま ${p ? p.length : 0} 個）`);
+          p.forEach(([dt], n) => {
+            const c = (s.cmdMulti ? s.cmdMulti[k] : []).concat(s.cmd || [])[n];
+            if (dt !== c) throw new Error(`${where} ${at}: pre の ${n + 1} 行目「${dt}」は、打たせるコマンド「${c}」と同じ文字にしてください`);
+          });
         }
         if (!s.after) throw new Error(`${where} ${at}: コマンドを打つ画面には after（いま、何が起きたのか）が要ります`);
       }
@@ -153,7 +166,8 @@ export function buildNavi(name, mod, { firstAid, recorded = null, banned = [] })
       phase: R(s.phase, at), icon: s.icon || null, title: R(s.title, at), titleText: strip(s.title),
       why: R(s.why, at), skip: R(s.skip, at), todo,
       visual: s.visual || null, visualAlt: s.visualAlt || null, visual2: s.visual2 || null, visual2Alt: s.visual2Alt || null,
-      pre: s.pre ? s.pre.map((p, k) => ({ dt: R(p[0], `${at}.pre[${k}]`), dd: R(p[1], `${at}.pre[${k}]`) })) : null,
+      pre: s.pre ? Object.fromEntries((Array.isArray(s.pre) ? ['common'] : osList(s.pre)).map((k) => [k, preFor(s.pre, k)
+        .map((p, n) => ({ dt: R(p[0], `${at}.pre.${k}[${n}]`), dd: R(p[1], `${at}.pre.${k}[${n}]`) }))])) : null,
       cmd: s.cmd || null, cmdlabel: R(s.cmdlabel, at),
       cmdMulti: s.cmdMulti ? Object.fromEntries(osList(s.cmdMulti).map((k) => [k, s.cmdMulti[k]])) : null,
       expect: R(s.expect, at), expectText: strip(s.expect), after: R(s.after, at), note: R(s.note, at),

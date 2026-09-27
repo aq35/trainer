@@ -77,7 +77,7 @@ test('ナビ: OS を選ぶ回は、選んだ OS の手順になる', { skip }, a
   const { page, errors } = await open('01-tools.html');
   await page.waitForSelector('.oschoice');
   await page.click('.oschoice button:has-text("Mac")');
-  assert.equal(await page.textContent('.counter'), '1 / 7');
+  assert.equal(await page.textContent('.counter'), '1 / 8');
   assert.equal(JSON.parse(await page.evaluate(() => localStorage.getItem('trainer-v2-01'))).os, 'mac');
   assert.deepEqual(errors, []);
   await page.close();

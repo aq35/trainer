@@ -8,6 +8,17 @@
 
 ---
 
+## 2026-09-27 — 第1回に、Git を入れるコマンドを載せました
+
+**「Git を入れます」の画面に、入れるためのコマンドがありませんでした。** Windows はダウンロードとインストーラの説明だけ、Mac は確かめるコマンドを打って、出てきた画面に任せる形でした。
+
+- Windows: `winget install --id Git.Git -e --source winget`（[Git 公式](https://git-scm.com/install/windows.html)と [Microsoft Learn](https://learn.microsoft.com/ja-jp/windows/package-manager/winget/install) の両方に載っている1行）
+- Mac: `xcode-select --install`（[Git 公式](https://git-scm.com/install/mac.html)に載っている1行）
+- 「入れる」と「入ったことを確かめる」を、別の画面に分けました（第1回は8画面になりました）
+- winget が無い Windows のために、インストーラで入れる手順は「うまくいきません」に残しました
+
+入れるコマンドの出力は、パソコンの状態で大きく変わるため、画面には載せていません。
+
 ## 2026-09-26 — Git だけを教える教材に作り直しました（v3.0・第1〜3回）
 
 **教える範囲を、Git だけに絞りました。** 到達点は「**Git を一人で使えるところまで**」、全10回です。いまは第1〜3回を公開しています。

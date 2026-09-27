@@ -27,7 +27,7 @@ for (const file of fs.readdirSync(dir).filter(f => f.endsWith('.js')).sort()) {
     n++;
     const lines = ((s.cmdMulti && (s.cmdMulti.common || s.cmdMulti.win || s.cmdMulti.mac)) || []).length
       + (s.cmd ? 1 : 0);
-    const pre = (s.pre || []).length;
+    const pre = (Array.isArray(s.pre) ? s.pre : (s.pre && (s.pre.common || s.pre.win || s.pre.mac)) || []).length;
     const missing = [];
     if (!s.pre) missing.push('打つ前の説明が無い');
     else if (pre !== lines) missing.push(`説明が ${pre} 行 / コマンドは ${lines} 行`);

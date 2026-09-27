@@ -18,7 +18,7 @@
     <Fig v-if="s.visual" :src="s.visual" :alt="s.visualAlt" />
     <Fig v-if="s.visual2" :src="s.visual2" :alt="s.visual2Alt" />
     <!-- 打つ前の説明。1行ずつ「これは何をするコマンドか」を先に読ませる -->
-    <div v-if="s.pre" class="pre">
+    <div v-if="pre.length" class="pre">
       <div class="t">打つ前に —— この行は、何をしますか</div>
       <dl>
         <div v-for="p in pre">
@@ -83,7 +83,7 @@ export default {
   setup() {
     const s = step.peek();
     const toggleHelp = () => helpOpen.update((v) => !v);
-    return { s, outs: s.out || [], git: page.git || '', todo: pick(s.todo) || [], pre: s.pre || [], multi: pick(s.cmdMulti) || [], move, reset, helpOpen, toggleHelp };
+    return { s, outs: s.out || [], git: page.git || '', todo: pick(s.todo) || [], pre: pick(s.pre) || [], multi: pick(s.cmdMulti) || [], move, reset, helpOpen, toggleHelp };
   },
 };
 </script>
