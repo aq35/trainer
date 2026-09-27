@@ -88,16 +88,25 @@ export function buildNavi(name, mod, { firstAid, recorded = null, banned = [] })
     const cmd = r.cmd.split('{{FORK}}').join(FORK_URL);
     // 画面で打たせるコマンドと、出力を得たコマンドが同じであること（違う出力を載せない）
     if (!shown.includes(cmd)) throw new Error(`${where} ${at}: out「${id}」は「${cmd}」の出力ですが、この画面ではそのコマンドを打たせていません`);
-    return { cmd, out: r.out.split('{{FORK}}').join(FORK_URL), replaced: r.cmd.includes('{{FORK}}') || r.out.includes('{{FORK}}') };
+    const out = r.out.split('{{FORK}}').join(FORK_URL).split('{{FORK0}}').join(FORK_URL.replace(/\.git$/, ''));
+    return { cmd, out, replaced: /\{\{FORK0?\}\}|~\//.test(r.cmd + r.out) };
   });
   // 本文に書いたコミットの番号（英数字7文字）が、その画面の出力に本当に出ていること
   const checkHashes = (outs, s, at) => {
     const text = strip([s.after, s.expect, s.note].join(' '));
-    const shown = outs.map((o) => o.out).join('\n');
+    // 同じ画面に出す、図の元になった Git の答え（chain）も、画面に出ている番号として数える
+    const c = s.chain && recorded && recorded.chains && recorded.chains[s.chain];
+    const shown = outs.map((o) => o.out).concat(c ? c.src : []).join('\n');
     for (const h of text.match(/\b[0-9a-f]{7}\b/g) || []) {
       if (!shown.includes(h)) throw new Error(`${where} ${at}: 本文の「${h}」が、この画面の出力にありません（出力を撮り直したら、本文の番号も直してください）`);
     }
     return outs;
+  };
+  const chainOf = (id, at) => {
+    if (!id) return null;
+    const c = recorded && recorded.chains && recorded.chains[id];
+    if (!c) throw new Error(`${where} ${at}: chain「${id}」の記録がありません`);
+    return { id, ...JSON.parse(JSON.stringify(c).split('{{FORK}}').join(FORK_URL)) };
   };
   const areasOf = (id, at) => {
     if (!id) return null;
@@ -191,6 +200,7 @@ export function buildNavi(name, mod, { firstAid, recorded = null, banned = [] })
       out: checkHashes(outOf(s.out, at, shownCmds), s, at),
       web: webOf(s, at),
       areas: areasOf(s.areas, at),
+      chain: chainOf(s.chain, at),
       // ref は配列か、OS ごとの { common, win, mac }（common は両方に出す）
       ref: Array.isArray(s.ref) || !s.ref ? refsOf(s.ref, `${where} ${at}`)
         : Object.fromEntries(['win', 'mac'].map((k) => [k, refsOf([...(s.ref.common || []), ...(s.ref[k] || [])], `${where} ${at}.ref.${k}`)])),

@@ -7,7 +7,7 @@
     <pre><span class="ps">$ </span>{{ cmd }}{{ out ? '\n' + out : '' }}</pre>
     <figcaption>
       <span class="src">Git {{ git }} で実際に打った出力</span><span v-if="!out" class="empty">　何も表示されません（それで正常です）</span>
-      <span v-if="replaced" class="rep">送り先の URL だけ、あなたの画面と同じ形に置き換えています。</span>
+      <span v-if="replaced" class="rep">送り先の URL は、あなたの画面と同じ形に置き換えています。フォルダの場所は <code>~</code>（ホーム）と短く書いています。</span>
     </figcaption>
   </figure>
 </template>

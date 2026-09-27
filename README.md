@@ -4,7 +4,7 @@
 
 公開サイト: https://aq35.github.io/trainer/
 
-> **全10回**を公開しています。設計は [design/curriculum.md](design/curriculum.md)。
+> **全13回**を公開しています（第1〜10回で一人で使えるところまで、第11〜13回で GitHub フロー・リリースタグ・サブモジュール）。設計は [design/curriculum.md](design/curriculum.md)。
 
 ---
 

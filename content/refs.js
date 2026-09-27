@@ -36,6 +36,14 @@ export const pg = {
   merging: ['Pro Git 3.2「マージの基本」', PG + 'Git-のブランチ機能-ブランチとマージの基本.html#r_basic_merging'],
   conflicts: ['Pro Git 3.2「マージ時のコンフリクト」', PG + 'Git-のブランチ機能-ブランチとマージの基本.html#r_basic_merge_conflicts'],
   branchMgmt: ['Pro Git 3.3「ブランチの管理」', PG + 'Git-のブランチ機能-ブランチの管理.html'],
+  // 第11〜13回（元データで見出しの id を確かめた。2026-09-27）
+  pull: ['Pro Git 2.5「リモートからのフェッチ、そしてプル」', PG + 'Git-の基本-リモートでの作業.html#r_fetching_and_pulling'],
+  tagging: ['Pro Git 2.6「タグ」', PG + 'Git-の基本-タグ.html'],
+  annotatedTags: ['Pro Git 2.6「注釈付きのタグ」', PG + 'Git-の基本-タグ.html#r_annotated_tags'],
+  sharingTags: ['Pro Git 2.6「タグの共有」（git push はタグを送らない）', PG + 'Git-の基本-タグ.html#r_sharing_tags'],
+  submodules: ['Pro Git 7.11「サブモジュール」', PG + 'Git-のさまざまなツール-サブモジュール.html'],
+  startSubmodules: ['Pro Git 7.11「サブモジュールの作り方」', PG + 'Git-のさまざまなツール-サブモジュール.html#r_starting_submodules'],
+  cloneSubmodules: ['Pro Git 7.11「サブモジュールを含むプロジェクトのクローン」', PG + 'Git-のさまざまなツール-サブモジュール.html#r_cloning_submodules'],
 };
 
 // Git 本体の説明（英語。git help <コマンド> で出るものと同じ）
@@ -65,6 +73,14 @@ export const ref = {
   branch: ['git branch（英語）', DOC + 'git-branch'],
   switch: ['git switch（英語）', DOC + 'git-switch'],
   merge: ['git merge（英語）', DOC + 'git-merge'],
+  pull: ['git pull（英語）', DOC + 'git-pull'],
+  tag: ['git tag（英語）', DOC + 'git-tag'],
+  revList: ['git rev-list（英語）', DOC + 'git-rev-list'],
+  revParse: ['git rev-parse（英語）', DOC + 'git-rev-parse'],
+  catFile: ['git cat-file（英語）', DOC + 'git-cat-file'],
+  lsRemote: ['git ls-remote（英語）', DOC + 'git-ls-remote'],
+  lsTree: ['git ls-tree（英語）', DOC + 'git-ls-tree'],
+  submodule: ['git submodule（英語）', DOC + 'git-submodule'],
   // リリースノート（Pro Git 日本語版が古いコマンドで書かれている所の根拠）
   rel223: ['Git 2.23 のリリースノート（git switch・git restore が加わった。英語）', 'https://github.com/git/git/blob/master/Documentation/RelNotes/2.23.0.adoc'],
   rel234: ['Git 2.34 のリリースノート（マージの既定の方法が ort になった。英語）', 'https://github.com/git/git/blob/master/Documentation/RelNotes/2.34.0.adoc'],
@@ -86,6 +102,13 @@ export const gh = {
   sensitive: ['GitHub Docs: リポジトリから機密データを削除する', GH + 'authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository'],
   conflictCli: ['GitHub Docs: コマンドラインでマージコンフリクトを解決する', GH + 'pull-requests/how-tos/merge-and-close-pull-requests/resolving-a-merge-conflict-using-the-command-line'],
   commits: ['GitHub Docs: コミット', GH + 'pull-requests/reference/commits'],
+  flow: ['GitHub Docs: GitHub フロー（ブランチ → 変更 → プルリクエスト → マージ → ブランチを消す）', GH + 'get-started/using-github/github-flow'],
+  compare: ['GitHub Docs: コミットの比較（compare の画面）', GH + 'pull-requests/how-tos/commit-changes/comparing-commits'],
+  createPr: ['GitHub Docs: プルリクエストの作成（画面の写真つき）', GH + 'pull-requests/how-tos/create-pull-requests/creating-a-pull-request'],
+  mergePr: ['GitHub Docs: プルリクエストのマージ（画面の写真つき）', GH + 'pull-requests/how-tos/merge-and-close-pull-requests/merging-a-pull-request'],
+  mergeMethods: ['GitHub Docs: プルリクエストのマージの方法（マージコミット）', GH + 'pull-requests/reference/pull-request-merges'],
+  releases: ['GitHub Docs: リリースについて（リリースは Git のタグにもとづく）', GH + 'repositories/releasing-projects-on-github/about-releases'],
+  viewTags: ['GitHub Docs: リリースとタグを見る', GH + 'repositories/releasing-projects-on-github/viewing-your-repositorys-releases-and-tags'],
 };
 
 // VS Code（英語）

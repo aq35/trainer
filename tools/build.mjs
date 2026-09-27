@@ -17,7 +17,7 @@ import { dirname, extname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { sunao } from '../sunao/esbuild-plugin.mjs';
 import { buildNavi } from './navi.mjs';
-import { areasSvg, areasAlt } from './figs.mjs';
+import { areasSvg, areasAlt, chainSvg, chainAlt } from './figs.mjs';
 import { buildDoc } from './doc.mjs';
 import { parseHtml } from './html.mjs';
 
@@ -109,9 +109,14 @@ export async function buildSite({ quiet = false, out = join(ROOT, '_site') } = {
     naviForLinks.push([`content/navi/${f}`, data]);
     // 実行記録から描いた図を書き出す
     for (const st of data.steps) {
-      if (!st.areas) continue;
-      write(`media/gen/${st.areas.id}.svg`, areasSvg(st.areas));
-      st.areas = { src: `media/gen/${st.areas.id}.svg`, alt: areasAlt(st.areas), status: st.areas.status };
+      if (st.areas) {
+        write(`media/gen/${st.areas.id}.svg`, areasSvg(st.areas));
+        st.areas = { src: `media/gen/${st.areas.id}.svg`, alt: areasAlt(st.areas), status: st.areas.status };
+      }
+      if (st.chain) {
+        write(`media/gen/${st.chain.id}.svg`, chainSvg(st.chain));
+        st.chain = { src: `media/gen/${st.chain.id}.svg`, alt: chainAlt(st.chain), log: st.chain.src };
+      }
     }
     write(`${name}.html`, shell({
       title: `${data.title} | ${SITE_NAME}`, canonical: `${HOME}${name}.html`, css,

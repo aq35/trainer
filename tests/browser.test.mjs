@@ -139,8 +139,8 @@ test('コマンド練習: 答え合わせと、間違えた問題のやり直し
 test('読み物: 目次・見出しへのリンク・タブ・チェックリスト・検索・404', { skip }, async () => {
   const { page, errors } = await open('');
   await page.waitForSelector('.mapitem');
-  assert.equal(await page.locator('.mapitem').count(), 12, '全10回と、読み物2本');
-  assert.equal(await page.locator('.mapitem.soon').count(), 0, '全10回とも公開している');
+  assert.equal(await page.locator('.mapitem').count(), 15, '全13回と、読み物2本');
+  assert.equal(await page.locator('.mapitem.soon').count(), 0, '全13回とも公開している');
   // 見出しへのリンク（id が多少違っても、記号を除いて一致すれば移動する）
   await page.goto(base + '#/git-research?id=コツ3-止まるべき言葉を覚えておく');
   await page.waitForFunction(() => scrollY > 500, null, { timeout: 5000 }); // 読み物を読み込んでから移動するので、待つ

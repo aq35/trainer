@@ -18,9 +18,11 @@
 //   { write: { パス: 中身 } } … ファイルを書く（受講者がエディタで書く操作の代わり）
 //   { areas: 'id', paths: [...] } … 作業ディレクトリ・ステージングエリア・リポジトリの中身を比べて保存する（図にする）
 //   { cd: 'パス' }      … 移動する
+//   { github: [コマンド, …] } … GitHub の画面での操作（プルリクエストのマージなど）の代わり。
+//                         フォークの別のクローンで打ち、フォークに送る。出力は保存しない（画面には載せない）
+//   { tagchain: 'id', tag, path?, remote? } … タグ → コミット →（path のサブモジュールのコミット）を Git に問い合わせて保存する（図にする）
 import { execFileSync } from 'node:child_process';
-import { mkdtempSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync, existsSync } from 'node:fs';
-import { tmpdir } from 'node:os';
+import { mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync, existsSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
@@ -34,7 +36,11 @@ export const FORK_BASE = 'c68c135';
 export const FORK_URL = 'https://github.com/あなたのユーザー名/trainer.git';
 
 export async function record() {
-  const box = mkdtempSync(join(tmpdir(), 'trainer-record-'));
+  // 場所は毎回同じにする。サブモジュールの .gitmodules にはフォーク（の代わり）の場所が書き込まれ、
+  // それがコミットの番号に入るため、場所が変わると番号も変わってしまう
+  const box = '/tmp/trainer-record';
+  rmSync(box, { recursive: true, force: true });
+  mkdirSync(box, { recursive: true });
   const home = join(box, 'home');
   mkdirSync(join(home, 'Desktop'), { recursive: true });
   const origin = join(box, 'remote', 'trainer.git');
@@ -44,16 +50,20 @@ export async function record() {
     GIT_CONFIG_NOSYSTEM: '1', GIT_TERMINAL_PROMPT: '0', GIT_PAGER: 'cat', PAGER: 'cat',
     // 受講者のターミナルでは、git log に (HEAD -> main, origin/main) のような印が付く
     // （log.decorate の既定 auto は、画面に出すときだけ付ける）。記録でも同じ形にする
-    GIT_CONFIG_COUNT: '1', GIT_CONFIG_KEY_0: 'log.decorate', GIT_CONFIG_VALUE_0: 'short',
+    GIT_CONFIG_COUNT: '2', GIT_CONFIG_KEY_0: 'log.decorate', GIT_CONFIG_VALUE_0: 'short',
+    // フォークの代わりは手元のフォルダなので、サブモジュールに手元のフォルダを使うのを許す（受講者は https で使う）
+    GIT_CONFIG_KEY_1: 'protocol.file.allow', GIT_CONFIG_VALUE_1: 'always',
   };
   // 教材のリポジトリを「あなたのフォーク」に見立てる（ブランチは main だけ、時点は FORK_BASE）
   execFileSync('git', ['clone', '-q', '--bare', '--single-branch', '--branch', 'main', ROOT, origin], { env });
   execFileSync('git', ['--git-dir', origin, 'update-ref', 'refs/heads/main', FORK_BASE], { env });
-  const hide = (s) => s.split(origin).join('{{FORK}}').split(home).join('~').split(box).join('');
+  // Git は取ってきた先を「From …」と出すとき、URL の最後の .git を省く。その形も置き換える
+  const hide = (s) => s.split(origin).join('{{FORK}}').split(origin.replace(/\.git$/, '')).join('{{FORK0}}').split(home).join('~').split(box).join('');
   const fill = (s) => s.split('{{FORK}}').join(origin);
 
   const outputs = {};
   const areas = {};
+  const chains = {};
   let cwd = home;
   const files = readdirSync(RUNS).filter((f) => /^\d\d-.*\.mjs$/.test(f)).sort();
   for (const f of files) {
@@ -68,8 +78,16 @@ export async function record() {
         continue;
       }
       if (s.areas) { areas[s.areas] = snapAreas(cwd, env, s.paths); continue; }
+      if (s.tagchain) { chains[s.tagchain] = hideAll(snapChain(cwd, env, s), hide); continue; }
       clock += 60;
       const date = `${clock} +0900`;
+      if (s.github) {
+        const gh = join(box, 'github');
+        const genv = { ...env, GIT_AUTHOR_DATE: date, GIT_COMMITTER_DATE: date };
+        if (!existsSync(gh)) execFileSync('git', ['clone', '-q', origin, gh], { env: genv });
+        for (const c of s.github) execFileSync('bash', ['-c', c], { cwd: gh, env: genv });
+        continue;
+      }
       let out;
       try {
         out = execFileSync('bash', ['-c', fill(s.run) + ' 2>&1'], { cwd, env: { ...env, GIT_AUTHOR_DATE: date, GIT_COMMITTER_DATE: date } }).toString();
@@ -85,7 +103,7 @@ export async function record() {
   }
   const version = execFileSync('git', ['--version'], { env }).toString().trim().replace(/^git version /, '');
   rmSync(box, { recursive: true, force: true });
-  return { git: version, forkBase: FORK_BASE, outputs, areas };
+  return { git: version, forkBase: FORK_BASE, outputs, areas, chains };
 }
 
 // 3つの場所それぞれに、そのファイルのどの中身があるか。同じ中身には同じ番号を振る。
@@ -104,6 +122,34 @@ function snapAreas(cwd, env, paths) {
   }
   return { rows, status: git('status', '--short', '--', ...paths).replace(/\s+$/, '') };
 }
+
+// タグ → コミット → サブモジュールのコミット を、Git に1つずつ聞いて保存する。
+// 図はここから描くので、図に出る番号は、Git が答えた番号そのもの。
+function snapChain(cwd, env, s) {
+  const src = [];
+  const git = (...a) => {
+    const out = execFileSync('git', a, { cwd, env, stdio: ['ignore', 'pipe', 'pipe'] }).toString().replace(/\s+$/, '');
+    src.push('$ git ' + a.join(' ') + (out ? '\n' + out : ''));
+    return out;
+  };
+  const c = { tag: s.tag };
+  c.tagObj = git('rev-parse', s.tag);
+  c.type = git('cat-file', '-t', s.tag);
+  c.commit = git('rev-list', '-n', '1', s.tag);
+  if (s.path) {
+    const m = /^(\d+) (\w+) ([0-9a-f]+)\t/.exec(git('ls-tree', s.tag, s.path));
+    c.entry = { path: s.path, mode: m[1], type: m[2], sha: m[3] };
+    c.subTags = git('-C', s.path, 'tag', '--points-at', m[3]).split('\n').filter(Boolean);
+  }
+  if (s.remote) {
+    const lines = git('ls-remote', '--tags', 'origin').split('\n');
+    const find = (ref) => (lines.find((l) => l.endsWith('\t' + ref)) || '').split('\t')[0] || null;
+    c.remote = { tagObj: find('refs/tags/' + s.tag), commit: find('refs/tags/' + s.tag + '^{}') };
+  }
+  c.src = src.join('\n\n');
+  return c;
+}
+const hideAll = (o, hide) => JSON.parse(hide(JSON.stringify(o)));
 
 // ---- 直接実行したとき ----
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

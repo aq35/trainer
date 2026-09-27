@@ -267,7 +267,7 @@ steps:[
 },
 {
   kind:'fin',
-  title:'全10回、おつかれさまでした',
+  title:'ここまでで、Git を一人で使えます',
   lead:'コンフリクトを自分で解決し、そのマージコミットをフォークに送って、GitHub で確かめました。',
   gained:'コンフリクトは、<b>印を読み、残したい中身にして、add して、commit する</b>だけです。迷ったら <code>git merge --abort</code> で始める前に戻れます。',
   criteria:[
@@ -279,7 +279,7 @@ steps:[
   deepenWhy:'10回で使ったコマンドを、<b>自分で表にして</b>、AI に直してもらいます。',
   deepen:'この教材の10回で使ったコマンドを、私が表にしました。「作業ディレクトリ・ステージングエリア・リポジトリのどこが変わるか」と「打ったあとで戻せないものがあるか」の欄に、間違いがあれば直してください。\n\n（ここに表を書く。例: git add / ステージングエリアが変わる / 戻せないものは無い（git restore --staged で下ろせる））\n\n直すときは、根拠として git help の該当する箇所を示してください。私は git help で確かめます。',
   ref:[pg.conflicts, ref.merge],
-  nextHref:'index.html',
-  nextLabel:'目次に戻る'
+  nextHref:'11-github-flow.html',
+  nextLabel:'第11回 GitHub フロー へ（本番に出すまで）'
 }
 ]};

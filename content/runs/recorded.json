@@ -556,6 +556,156 @@
       "cmd": "git status",
       "out": "On branch main\nYour branch is up to date with 'origin/main'.\n\nnothing to commit, working tree clean",
       "lesson": "10"
+    },
+    "11-switch-c": {
+      "cmd": "git switch -c add-about",
+      "out": "Switched to a new branch 'add-about'",
+      "lesson": "11"
+    },
+    "11-add": {
+      "cmd": "git add practice/about.md",
+      "out": "",
+      "lesson": "11"
+    },
+    "11-commit": {
+      "cmd": "git commit -m \"このリポジトリについての説明を足した\"",
+      "out": "[add-about 55991ec] このリポジトリについての説明を足した\n 1 file changed, 3 insertions(+)\n create mode 100644 practice/about.md",
+      "lesson": "11"
+    },
+    "11-push-u": {
+      "cmd": "git push -u origin add-about",
+      "out": "To {{FORK}}\n * [new branch]      add-about -> add-about\nbranch 'add-about' set up to track 'origin/add-about'.",
+      "lesson": "11"
+    },
+    "11-switch-main": {
+      "cmd": "git switch main",
+      "out": "Switched to branch 'main'\nYour branch is up to date with 'origin/main'.",
+      "lesson": "11"
+    },
+    "11-pull": {
+      "cmd": "git pull",
+      "out": "From {{FORK0}}\n   c48cd86..e3d917e  main       -> origin/main\nUpdating c48cd86..e3d917e\nFast-forward\n practice/about.md | 3 +++\n 1 file changed, 3 insertions(+)\n create mode 100644 practice/about.md",
+      "lesson": "11"
+    },
+    "11-graph": {
+      "cmd": "git log --oneline --graph -4",
+      "out": "*   e3d917e (HEAD -> main, origin/main, origin/HEAD) Merge branch 'add-about'\n|\\  \n| * 55991ec (origin/add-about, add-about) このリポジトリについての説明を足した\n|/  \n*   c48cd86 Merge branch 'change-title'\n|\\  \n| * 82bcb1d 題名を「Git の練習帳」にした",
+      "lesson": "11"
+    },
+    "11-branch-d": {
+      "cmd": "git branch -d add-about",
+      "out": "Deleted branch add-about (was 55991ec).",
+      "lesson": "11"
+    },
+    "11-push-delete": {
+      "cmd": "git push origin --delete add-about",
+      "out": "To {{FORK}}\n - [deleted]         add-about",
+      "lesson": "11"
+    },
+    "12-tag": {
+      "cmd": "git tag -a v1.0.0 -m \"最初のリリース\"",
+      "out": "",
+      "lesson": "12"
+    },
+    "12-tag-list": {
+      "cmd": "git tag",
+      "out": "v1.0.0",
+      "lesson": "12"
+    },
+    "12-show": {
+      "cmd": "git show --stat v1.0.0",
+      "out": "tag v1.0.0\nTagger: 山田 花子 <12345678+hanako@users.noreply.github.com>\nDate:   Thu Oct 1 12:04:00 2026 +0900\n\n最初のリリース\n\ncommit e3d917e3aae81ca820a73dac005604c989c5fc27 (HEAD -> main, tag: v1.0.0, origin/main, origin/HEAD)\nMerge: c48cd86 55991ec\nAuthor: 山田 花子 <12345678+hanako@users.noreply.github.com>\nDate:   Thu Oct 1 11:58:00 2026 +0900\n\n    Merge branch 'add-about'\n\n practice/about.md | 3 +++\n 1 file changed, 3 insertions(+)",
+      "lesson": "12"
+    },
+    "12-rev-list": {
+      "cmd": "git rev-list -n 1 v1.0.0",
+      "out": "e3d917e3aae81ca820a73dac005604c989c5fc27",
+      "lesson": "12"
+    },
+    "12-rev-parse-head": {
+      "cmd": "git rev-parse HEAD",
+      "out": "e3d917e3aae81ca820a73dac005604c989c5fc27",
+      "lesson": "12"
+    },
+    "12-rev-parse-tag": {
+      "cmd": "git rev-parse v1.0.0",
+      "out": "f2955446567c91f4aec2cf596ff76bd81612d86b",
+      "lesson": "12"
+    },
+    "12-cat-file": {
+      "cmd": "git cat-file -t v1.0.0",
+      "out": "tag",
+      "lesson": "12"
+    },
+    "12-push-tag": {
+      "cmd": "git push origin v1.0.0",
+      "out": "To {{FORK}}\n * [new tag]         v1.0.0 -> v1.0.0",
+      "lesson": "12"
+    },
+    "12-ls-remote": {
+      "cmd": "git ls-remote --tags origin",
+      "out": "f2955446567c91f4aec2cf596ff76bd81612d86b\trefs/tags/v1.0.0\ne3d917e3aae81ca820a73dac005604c989c5fc27\trefs/tags/v1.0.0^{}",
+      "lesson": "12"
+    },
+    "13-sub-add": {
+      "cmd": "git submodule add {{FORK}} practice/lib",
+      "out": "Cloning into '~/trainer/practice/lib'...",
+      "lesson": "13"
+    },
+    "13-status": {
+      "cmd": "git status",
+      "out": "On branch main\nYour branch is up to date with 'origin/main'.\n\nChanges to be committed:\n  (use \"git restore --staged <file>...\" to unstage)\n\tnew file:   .gitmodules\n\tnew file:   practice/lib",
+      "lesson": "13"
+    },
+    "13-gitmodules": {
+      "cmd": "cat .gitmodules",
+      "out": "[submodule \"practice/lib\"]\n\tpath = practice/lib\n\turl = {{FORK}}",
+      "lesson": "13"
+    },
+    "13-commit": {
+      "cmd": "git commit -m \"自分のフォークを、サブモジュールとして足した\"",
+      "out": "[main ba942be] 自分のフォークを、サブモジュールとして足した\n 2 files changed, 4 insertions(+)\n create mode 100644 .gitmodules\n create mode 160000 practice/lib",
+      "lesson": "13"
+    },
+    "13-sub-status": {
+      "cmd": "git submodule status",
+      "out": " e3d917e3aae81ca820a73dac005604c989c5fc27 practice/lib (v1.0.0)",
+      "lesson": "13"
+    },
+    "13-tag": {
+      "cmd": "git tag -a v1.1.0 -m \"サブモジュールを入れたリリース\"",
+      "out": "",
+      "lesson": "13"
+    },
+    "13-rev-list": {
+      "cmd": "git rev-list -n 1 v1.1.0",
+      "out": "ba942beffd0afa4b8300e11bb411bec9e92ad14a",
+      "lesson": "13"
+    },
+    "13-ls-tree": {
+      "cmd": "git ls-tree v1.1.0 practice/lib",
+      "out": "160000 commit e3d917e3aae81ca820a73dac005604c989c5fc27\tpractice/lib",
+      "lesson": "13"
+    },
+    "13-sub-tag": {
+      "cmd": "git -C practice/lib rev-list -n 1 v1.0.0",
+      "out": "e3d917e3aae81ca820a73dac005604c989c5fc27",
+      "lesson": "13"
+    },
+    "13-push": {
+      "cmd": "git push",
+      "out": "To {{FORK}}\n   e3d917e..ba942be  main -> main",
+      "lesson": "13"
+    },
+    "13-push-tag": {
+      "cmd": "git push origin v1.1.0",
+      "out": "To {{FORK}}\n * [new tag]         v1.1.0 -> v1.1.0",
+      "lesson": "13"
+    },
+    "13-ls-remote": {
+      "cmd": "git ls-remote --tags origin",
+      "out": "f2955446567c91f4aec2cf596ff76bd81612d86b\trefs/tags/v1.0.0\ne3d917e3aae81ca820a73dac005604c989c5fc27\trefs/tags/v1.0.0^{}\n2167991363a2c1b903abcecfa9990d2746ddca62\trefs/tags/v1.1.0\nba942beffd0afa4b8300e11bb411bec9e92ad14a\trefs/tags/v1.1.0^{}",
+      "lesson": "13"
     }
   },
   "areas": {
@@ -708,6 +858,53 @@
         }
       ],
       "status": ""
+    }
+  },
+  "chains": {
+    "c12-local": {
+      "tag": "v1.0.0",
+      "tagObj": "f2955446567c91f4aec2cf596ff76bd81612d86b",
+      "type": "tag",
+      "commit": "e3d917e3aae81ca820a73dac005604c989c5fc27",
+      "src": "$ git rev-parse v1.0.0\nf2955446567c91f4aec2cf596ff76bd81612d86b\n\n$ git cat-file -t v1.0.0\ntag\n\n$ git rev-list -n 1 v1.0.0\ne3d917e3aae81ca820a73dac005604c989c5fc27"
+    },
+    "c12-remote": {
+      "tag": "v1.0.0",
+      "tagObj": "f2955446567c91f4aec2cf596ff76bd81612d86b",
+      "type": "tag",
+      "commit": "e3d917e3aae81ca820a73dac005604c989c5fc27",
+      "remote": {
+        "tagObj": "f2955446567c91f4aec2cf596ff76bd81612d86b",
+        "commit": "e3d917e3aae81ca820a73dac005604c989c5fc27"
+      },
+      "src": "$ git rev-parse v1.0.0\nf2955446567c91f4aec2cf596ff76bd81612d86b\n\n$ git cat-file -t v1.0.0\ntag\n\n$ git rev-list -n 1 v1.0.0\ne3d917e3aae81ca820a73dac005604c989c5fc27\n\n$ git ls-remote --tags origin\nf2955446567c91f4aec2cf596ff76bd81612d86b\trefs/tags/v1.0.0\ne3d917e3aae81ca820a73dac005604c989c5fc27\trefs/tags/v1.0.0^{}"
+    },
+    "c13": {
+      "tag": "v1.1.0",
+      "tagObj": "2167991363a2c1b903abcecfa9990d2746ddca62",
+      "type": "tag",
+      "commit": "ba942beffd0afa4b8300e11bb411bec9e92ad14a",
+      "entry": {
+        "path": "practice/lib",
+        "mode": "160000",
+        "type": "commit",
+        "sha": "e3d917e3aae81ca820a73dac005604c989c5fc27"
+      },
+      "subTags": [
+        "v1.0.0"
+      ],
+      "src": "$ git rev-parse v1.1.0\n2167991363a2c1b903abcecfa9990d2746ddca62\n\n$ git cat-file -t v1.1.0\ntag\n\n$ git rev-list -n 1 v1.1.0\nba942beffd0afa4b8300e11bb411bec9e92ad14a\n\n$ git ls-tree v1.1.0 practice/lib\n160000 commit e3d917e3aae81ca820a73dac005604c989c5fc27\tpractice/lib\n\n$ git -C practice/lib tag --points-at e3d917e3aae81ca820a73dac005604c989c5fc27\nv1.0.0"
+    },
+    "c13-remote": {
+      "tag": "v1.1.0",
+      "tagObj": "2167991363a2c1b903abcecfa9990d2746ddca62",
+      "type": "tag",
+      "commit": "ba942beffd0afa4b8300e11bb411bec9e92ad14a",
+      "remote": {
+        "tagObj": "2167991363a2c1b903abcecfa9990d2746ddca62",
+        "commit": "ba942beffd0afa4b8300e11bb411bec9e92ad14a"
+      },
+      "src": "$ git rev-parse v1.1.0\n2167991363a2c1b903abcecfa9990d2746ddca62\n\n$ git cat-file -t v1.1.0\ntag\n\n$ git rev-list -n 1 v1.1.0\nba942beffd0afa4b8300e11bb411bec9e92ad14a\n\n$ git ls-remote --tags origin\nf2955446567c91f4aec2cf596ff76bd81612d86b\trefs/tags/v1.0.0\ne3d917e3aae81ca820a73dac005604c989c5fc27\trefs/tags/v1.0.0^{}\n2167991363a2c1b903abcecfa9990d2746ddca62\trefs/tags/v1.1.0\nba942beffd0afa4b8300e11bb411bec9e92ad14a\trefs/tags/v1.1.0^{}"
     }
   }
 }

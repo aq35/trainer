@@ -11,6 +11,9 @@
   - [第8回 追跡しないもの](08-ignore.html ':ignore target=_blank')
   - [第9回 ブランチとマージ](09-branch.html ':ignore target=_blank')
   - [第10回 コンフリクト](10-conflict.html ':ignore target=_blank')
+  - [第11回 GitHub フロー](11-github-flow.html ':ignore target=_blank')
+  - [第12回 リリースとタグ](12-release.html ':ignore target=_blank')
+  - [第13回 サブモジュール](13-submodule.html ':ignore target=_blank')
 - いつでも
   - [🔎 Git を調べるコツ](git-research.md)
   - [⌨️ ターミナル入門](step0-terminal.md)

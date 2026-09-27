@@ -52,6 +52,15 @@
         <pre>{{ s.areas.status || '（何も表示されません）' }}</pre>
       </details>
     </div>
+    <!-- タグ → コミット →（サブモジュール）のつながり。Git に1つずつ聞いた答えから描いた図と、その答え -->
+    <div v-if="s.chain" class="gen">
+      <Fig :src="s.chain.src" :alt="s.chain.alt" />
+      <details class="gensrc">
+        <summary>この図の描き方</summary>
+        <p>上の手順を実際に打ったあとのリポジトリに、Git のコマンドで1つずつ聞いて、その答えの番号で描いています。「＝」や「✓」は、答えの番号同士を比べて付けています。聞いたコマンドと答えは、こうでした。</p>
+        <pre>{{ s.chain.log }}</pre>
+      </details>
+    </div>
     <div v-if="s.expect" class="expect">
       <div class="t">こうなれば成功です</div>
       <div class="m"><Rich :nodes="s.expect" /></div>

@@ -13,7 +13,7 @@
         <span v-if="r.bar" class="pb"><i :style="'width:' + r.pct + '%'"></i></span>
       </a>
     </div>
-    <div v-if="allDone" class="mapall">全10回、おつかれさまでした。</div>
+    <div v-if="allDone" class="mapall">全13回、おつかれさまでした。</div>
   </div>
 </template>
 

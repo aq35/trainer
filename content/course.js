@@ -1,4 +1,4 @@
-// 目次ページの「全体地図」に並ぶ順番（全10回）。進捗は各回の localStorage（key）を読むだけで、書き換えない。
+// 目次ページの「全体地図」に並ぶ順番（全13回）。進捗は各回の localStorage（key）を読むだけで、書き換えない。
 // total は、その回の「完了」画面の番号（= steps の数 - 1。OS 選択がある回は OS 選択を含む）。ずれるとビルドが止まる。
 export const steps = [
   { key: 'trainer-v2-01', total: 9, label: '第1回 道具をそろえる', href: '01-tools.html', icon: 'icon-vscode.svg' },
@@ -13,6 +13,9 @@ export const steps = [
   { key: 'trainer-v2-08', total: 13, label: '第8回 追跡しないもの', href: '08-ignore.html', icon: 'icon-git.svg' },
   { key: 'trainer-v2-09', total: 14, label: '第9回 ブランチとマージ', href: '09-branch.html', icon: 'icon-git.svg' },
   { key: 'trainer-v2-10', total: 15, label: '第10回 コンフリクト', href: '10-conflict.html', icon: 'icon-git.svg' },
+  { key: 'trainer-v2-11', total: 10, label: '第11回 GitHub フロー', href: '11-github-flow.html', icon: 'icon-github.svg' },
+  { key: 'trainer-v2-12', total: 7, label: '第12回 リリースとタグ', href: '12-release.html', icon: 'icon-git.svg' },
+  { key: 'trainer-v2-13', total: 10, label: '第13回 サブモジュール', href: '13-submodule.html', icon: 'icon-git.svg' },
 ];
 
 // 全部の回のあとに続く読み物（いまは無し）

@@ -1,4 +1,4 @@
-// コマンド練習（drill.html）の問題。第1〜10回で扱ったものだけ。
+// コマンド練習（drill.html）の問題。第1〜13回で扱ったものだけ。
 // scene / ask / why / choices の中の HTML は、ナビと同じくビルド時に許可したタグだけ通します。
 //   type:"choice" … choices のうち answer 番目が正解
 //   type:"input"  … expect のどれかと一致すれば正解（大文字小文字・前後の空白・連続空白は無視）
@@ -129,7 +129,34 @@ export const questions = [
   { cat:'conflict', type:'choice', scene:'コンフリクトした hello.md の印を消して、残したい中身にして保存しました。',
     ask:'次にすることは？',
     choices:['git add practice/hello.md（解決したと伝える）→ git commit', 'git push', 'git merge --abort', 'git restore practice/hello.md'],
-    answer:0, why:'add が「解決した」の合図です。<code>git status</code> が <code>All conflicts fixed</code> を出したら、commit でマージを終えます。' }
+    answer:0, why:'add が「解決した」の合図です。<code>git status</code> が <code>All conflicts fixed</code> を出したら、commit でマージを終えます。' },
+
+  // --- 第11回 ---
+  { cat:'flow', type:'choice', scene:'GitHub の画面で、プルリクエストをマージしました。',
+    ask:'あなたのパソコンの main にそろえるには？',
+    choices:['git switch main のあと git pull', 'git push', 'git merge --abort', '何もしなくてよい'],
+    answer:0, why:'GitHub でマージされたのは、GitHub の上の main だけです。<code>git pull</code> で取ってきて、手元の main に取り込みます。' },
+  { cat:'flow', type:'input', scene:'add-about ブランチを、はじめてフォークに送りたい。次から git push だけで送れるようにもしたい。',
+    ask:'打つコマンドは？',
+    expect:['git push -u origin add-about'], why:'<code>-u</code> で、このブランチの送り先・取り込み元が決まります。' },
+
+  // --- 第12回 ---
+  { cat:'release', type:'input', scene:'リリースタグ v1.0.0 が指すコミットの番号を、1つだけ取り出したい。',
+    ask:'打つコマンドは？',
+    expect:['git rev-list -n 1 v1.0.0'], why:'<code>git rev-parse v1.0.0</code> は、注釈付きのタグでは<b>タグ自身</b>の番号を返すので、取り違えに注意します。' },
+  { cat:'release', type:'choice', scene:'<code>git tag -a v1.0.0 -m "…"</code> のあと、<code>git push</code> だけを打ちました。',
+    ask:'GitHub に v1.0.0 は？',
+    choices:['送られていない。git push origin v1.0.0 で送る', '送られている', 'ブランチとして送られる', 'エラーになる'],
+    answer:0, why:'<code>git push</code> は、タグを送りません（Pro Git 2.6「タグの共有」）。' },
+
+  // --- 第13回 ---
+  { cat:'submodule', type:'input', scene:'リリース v1.1.0 のとき、サブモジュール practice/lib がどのコミットだったかを知りたい。',
+    ask:'打つコマンドは？',
+    expect:['git ls-tree v1.1.0 practice/lib'], why:'<code>160000 commit</code> のあとの番号が、そのときのサブモジュールのコミットです。' },
+  { cat:'submodule', type:'choice', scene:'コミットの出力に <code>create mode 160000 practice/lib</code> と出ました。',
+    ask:'160000 は何を表す？',
+    choices:['サブモジュール（別のリポジトリのコミットの番号）として記録された', 'ふつうのファイル', '実行できるファイル', 'ファイルが消えた'],
+    answer:0, why:'サブモジュールは、中のファイルではなく、コミットの番号として記録されます（Pro Git 7.11）。' }
 ];
 
 export const categories = [
@@ -144,5 +171,8 @@ export const categories = [
   { id:'undo',   label:'第7回 取り消す' },
   { id:'ignore', label:'第8回 追跡しないもの' },
   { id:'branch', label:'第9回 ブランチとマージ' },
-  { id:'conflict', label:'第10回 コンフリクト' }
+  { id:'conflict', label:'第10回 コンフリクト' },
+  { id:'flow',   label:'第11回 GitHub フロー' },
+  { id:'release', label:'第12回 リリースとタグ' },
+  { id:'submodule', label:'第13回 サブモジュール' }
 ];
