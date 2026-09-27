@@ -13,8 +13,3 @@ export function writeJSON(key, value) {
 export function remove(key) {
   try { localStorage.removeItem(key); } catch (e) { /* 同上 */ }
 }
-
-export function stamp(d = new Date()) {
-  const z = (n) => (n < 10 ? '0' : '') + n;
-  return `${d.getFullYear()}-${z(d.getMonth() + 1)}-${z(d.getDate())} ${z(d.getHours())}:${z(d.getMinutes())}`;
-}

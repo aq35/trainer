@@ -86,7 +86,7 @@ export function aiPrompt() {
   const s = step.peek();
   const todo = pick(s.todo);
   const lines = [
-    'プログラミング初心者です。研修の途中で詰まっています。',
+    'Git の初心者です。Git の教材の途中で詰まっています。',
     '専門用語はできるだけ避けて、次にやることを1つだけ教えてください。',
     '',
     '【やろうとしていること】',
@@ -106,16 +106,4 @@ export function aiPrompt() {
     '【環境】' + (page.needsOs ? osName() : 'Windows または Mac') + ' / VS Code', '',
     '消えてしまう変更がある操作を勧めるときは、先にそう言ってください。');
   copy(lines.join('\n'), 'コピーしました。Claude Code に貼って、〈実際に起きたこと〉だけ書き足してください。');
-}
-
-export function report() {
-  const s = step.peek();
-  const t = '【' + page.title + 'でつまずきました】\n' +
-    (page.needsOs ? '・パソコン: ' + osName() + '\n' : '') +
-    '・止まった場所: ' + idx.peek() + 'ステップ目「' + s.titleText + '」\n' +
-    '・できなかったこと: ' + s.askText + '\n' +
-    '・このステップでの経過時間: 約' + minutesHere() + '分\n' +
-    (tried.length ? '・自分で試したこと: ' + tried.join(' / ') + '\n' : '') +
-    '・画面に出ているメッセージ:（ここに貼ってください）';
-  copy(t, '状況をコピーしました。サポート役に貼り付けて送ってください。');
 }

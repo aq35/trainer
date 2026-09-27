@@ -101,12 +101,7 @@ details.tb.shot { margin-top: 10px; }
 .ghead { font-size: 13px; font-weight: 700; color: var(--sub); margin: 12px 0 6px; }
 .nohit { font-size: 13.5px; color: var(--sub); background: var(--card); border: 1px dashed var(--red-b); border-radius: 9px; padding: 12px 13px; }
 .esc { margin-top: 6px; background: var(--card); border: 1px dashed var(--red-b); border-radius: 9px; padding: 12px 13px; font-size: 13.5px; }
-.escstep { display: flex; gap: 11px; align-items: flex-start; padding: 10px 0; }
-.escstep + .escstep { border-top: 1px solid var(--line); }
-.escstep .act { border-width: 2px; padding: 11px 18px; font-size: 14.5px; }
-.escstep .ok { flex: none; min-width: 0; }
 .escbtn { margin-top: 10px; }
-.en { flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--ink); color: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 12.5px; font-weight: 700; margin-top: 2px; }
 .solved { text-align: center; margin-top: 14px; }
 .solved .link { color: var(--green); font-weight: 700; font-size: 14px; }
 

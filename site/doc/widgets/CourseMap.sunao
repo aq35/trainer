@@ -13,21 +13,12 @@
         <span v-if="r.bar" class="pb"><i :style="'width:' + r.pct + '%'"></i></span>
       </a>
     </div>
-    <div v-if="allDone" class="mapall">全部おつかれさまでした。ここまでできれば、案件に入る準備はできています。</div>
-    <div class="mapreport">
-      <b>いまの進み具合を、担当者に知らせられます</b><br />
-      <span v-if="url" class="mrsub">GitHub にログインしていれば、上の内容が入った状態で開きます。<b>あとは送信ボタンを押すだけ</b>です。</span>
-      <a v-if="url" class="mrbtn" :href="url" target="_blank" rel="noopener">進捗を報告する</a>
-      <span v-if="!url" class="mrsub">押すと、いまの進み具合が文章になってコピーされます。<b>LINEでもチャットでも、いつもの方法で送ってください。</b><br />{{ contact }}</span>
-      <button v-if="!url" type="button" class="mrbtn" @click="copyReport">進捗をコピーする</button>
-    </div>
+    <div v-if="allDone" class="mapall">全10回、おつかれさまでした。</div>
   </div>
 </template>
 
 <script>
-import { steps, tail, stateOf, readDone, reportText, reportUrl } from '../progress.js';
-import { contactLine } from '../../lib/support.js';
-import { copy } from '../../lib/toast.js';
+import { steps, tail, stateOf, readDone } from '../progress.js';
 
 export default {
   name: 'CourseMap',
@@ -50,8 +41,7 @@ export default {
     });
     tail.forEach(reading);
     const allDone = steps.every((s) => !s.soon && stateOf(s).pct >= 100);
-    const copyReport = () => copy(reportText().text, 'コピーしました。担当者に送ってください');
-    return { rows, allDone, url: reportUrl(), contact: contactLine(), copyReport };
+    return { rows, allDone };
   },
 };
 </script>

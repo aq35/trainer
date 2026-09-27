@@ -37,10 +37,7 @@
 **歓迎します。許可を取る必要はありません。** 次の手順でそのまま使えます。
 
 1. このリポジトリを **フォーク**する
-2. `content/config.js` を自分たちのものに書き換える
-   - `support`（サポート窓口・参加申請の宛先）
-3. （任意）進捗の報告を GitHub の Issue で受けたい場合は、`support.url` を非公開リポジトリの `issues/new` に向ける
-4. `Settings > Pages` で `main` / `docs` を選んで公開する（push すると Actions がビルドして `docs/` を更新します）
+2. `Settings > Pages` で `main` / `docs` を選んで公開する（push すると Actions がビルドして `docs/` を更新します）
 
 <div></div>
 

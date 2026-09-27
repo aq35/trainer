@@ -1,11 +1,11 @@
 <!--
   「うまくいきません」を押したときの3段構え。
-  ① まず疑う3つ → ② 症状から探す（検索つき） → ③ AIに聞く／人に聞く（質問文を自動で作る）
+  ① まず疑う3つ → ② 症状から探す（検索つき） → ③ AIに聞く（質問文を自動で作る）
   どの項目を出すかは、ビルド時に決めてある（tools/navi.mjs の help）。
 -->
 <template>
   <div class="help">
-    <Mascot kind="calm"><b>大丈夫です。ここで止まる人はたくさんいます。</b><br />上から順に試すと、たいてい解決します。<b>全部読む必要はありません。</b></Mascot>
+    <Mascot kind="calm">上から順に試してください。<b>全部読む必要はありません。</b></Mascot>
 
     <div v-if="aid.length" class="hsec">まず、これだけ確認してください</div>
     <div v-if="aid.length" class="firstaid">
@@ -30,30 +30,13 @@
       <summary><Rich :nodes="it.q" /></summary>
       <div class="a"><Rich :nodes="it.a" /></div>
     </details>
-    <div v-if="count(own) + count(gen) === 0" class="nohit">当てはまるものが見つかりませんでした。下の方法で聞いてください。</div>
+    <div v-if="count(own) + count(gen) === 0" class="nohit">当てはまるものが見つかりませんでした。下のボタンで AI に聞いてください。</div>
 
     <div class="hsec">それでも解決しないとき</div>
     <div class="esc">
-      <div class="escstep">
-        <span class="en">1</span>
-        <div>
-          <b>AIに聞く</b>（すぐ試せます）<br />
-          <span class="fd">下のボタンで<b>質問文がコピー</b>されます。Claude Code に貼り、〈実際に起きたこと〉だけ書き足して送ってください。</span>
-          <div class="escbtn"><button type="button" class="act ok" @click="aiPrompt">AIに聞く文章をコピー</button></div>
-        </div>
-      </div>
-      <div class="escstep">
-        <span class="en">2</span>
-        <div>
-          <b>人に聞く</b>（15分たったら、ためらわずに）<br />
-          <span class="fd"><Contact /></span>
-          <div class="escbtn"><button type="button" class="act ng" @click="report">今の状況をコピー</button></div>
-          <details class="tb shot">
-            <summary>画面を見せると早く解決します（撮り方）</summary>
-            <div class="a"><b>Windows</b>: <span class="k">Windows</span>+<span class="k">Shift</span>+<span class="k">S</span> を押して、写したい範囲をドラッグ。<br /><b>Mac</b>: <span class="k">Cmd</span>+<span class="k">Shift</span>+<span class="k">4</span> を押して、範囲をドラッグ。<br />撮ったものを、そのままチャットに貼り付けられます。<b>エラーの文字が読める大きさ</b>で撮ってください。</div>
-          </details>
-        </div>
-      </div>
+      <b>AIに聞く</b><br />
+      <span class="fd">下のボタンで<b>質問文がコピー</b>されます。AI に貼り、〈実際に起きたこと〉だけ書き足して送ってください。聞き方は読み物の <a href="index.html#/git-research" target="_blank" rel="noopener">Git を調べるコツ</a>。</span>
+      <div class="escbtn"><button type="button" class="act ok" @click="aiPrompt">AIに聞く文章をコピー</button></div>
     </div>
 
     <div class="solved"><button type="button" class="link" @click="solved">✓ 解決しました</button></div>
@@ -63,9 +46,8 @@
 <script>
 import Rich from '../ui/Rich.sunao';
 import Mascot from '../ui/Mascot.sunao';
-import Contact from '../ui/Contact.sunao';
 import { toast } from '../lib/toast.js';
-import { page, step, os, helpOpen, noteTried, aiPrompt, report } from './state.js';
+import { page, step, os, helpOpen, noteTried, aiPrompt } from './state.js';
 
 export default {
   name: 'Help',
@@ -82,7 +64,7 @@ export default {
     // 受講者が「開いて確認した項目」を覚えておき、相談文に添える
     const seen = (e, it) => { if (e.target.open) noteTried(it.qText); };
     const solved = () => { helpOpen.set(false); toast('よかったです。その調子で進めてください。'); };
-    return { aid, own, gen, q, hit, count, seen, aiPrompt, report, solved };
+    return { aid, own, gen, q, hit, count, seen, aiPrompt, solved };
   },
 };
 </script>

@@ -12,7 +12,7 @@
       <button type="button" @click="chooseOs('win')">Windows</button>
       <button type="button" @click="chooseOs('mac')">Mac</button>
     </div>
-    <div class="note" style="margin-top: 18px">どちらか分からないときは、研修の担当者に「これはWindowsですか？Macですか？」と聞いてください。恥ずかしいことではありません。</div>
+    <div class="note" style="margin-top: 18px">どちらか分からないときは、画面の端を見てください。<b>画面の左上にりんごのマーク</b>があれば Mac、<b>画面の下の端に Windows のマーク</b>があれば Windows です。</div>
   </div>
 </template>
 

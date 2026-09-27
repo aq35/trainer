@@ -41,7 +41,6 @@
 | `content/read/*.md` | 読み物。目次の並びは `_sidebar.md` |
 | `content/course.js` | トップの地図（全10回）。まだ書いていない回は `soon: true` |
 | `content/drill.js` | コマンド練習の問題 |
-| `content/config.js` | 運営側が編集する設定（詰まったときの連絡先） |
 | `public/media/` | 図版。ビルドせずにそのまま公開される |
 | `site/` | 画面の部品（[sunao](sunao/README.md) の `.sunao`） |
 | `tools/` | ビルド（`build.mjs`）・出力の記録（`record.mjs`）・図（`figs.mjs`）・変換（`html.mjs` `md.mjs` `navi.mjs` `doc.mjs`） |
@@ -65,10 +64,6 @@ npm test             # 変換・ビルド・出力の記録のテスト（Playwr
 ## 公開
 
 `main` に push すると、[`.github/workflows/pages.yml`](.github/workflows/pages.yml) がテストとビルドを走らせ、`docs/` が変わっていれば自動でコミットします。GitHub Pages は `main` の `/docs` を配信しています（Settings → Pages）。
-
-## 運営側の設定
-
-詰まったときの連絡先を [`content/config.js`](content/config.js) の `support` に書きます。未設定なら、受講者には「研修の担当者に連絡してください」とだけ出ます。`url` を GitHub の `issues/new` にすると、トップの地図の「進捗を報告する」が Issue を開く形になります。
 
 ## ライセンス
 
