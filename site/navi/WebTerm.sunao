@@ -1,0 +1,77 @@
+<!--
+  ブラウザでの練習（ダミーの環境）のターミナル。
+  画面の「打つコマンド」を上から順に打つと、本物の Git で打って記録した出力（tools/record.mjs）を返す。
+  記録に無いコマンドには、Git のふりをして答えない（「この練習では打てません」と、Git の出力ではないと分かる形で出す）。
+-->
+<template>
+  <figure class="wt">
+    <div class="scr" @click="focus($event)">
+      <div v-for="l in lines()" :key="l.id" :class="l.note ? 'ln wtnote' : 'ln'"><span v-if="!l.note" class="ps">$ </span>{{ l.text }}</div>
+      <label v-if="!done()" class="inrow"><span class="ps">$ </span><input class="in" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="コマンドを打つ" placeholder="ここに打って Enter" @keydown="enter($event)" /></label>
+    </div>
+    <figcaption>
+      <span v-if="!done()">上の「打つコマンド」を、<b>1行ずつ</b>打って Enter を押します（コピーして貼り付けても構いません）。</span>
+      <span v-if="done()" class="wtdone">この画面のコマンドを、全部打ちました。出力は Git {{ git }} で実際に打ったものです。</span>
+    </figcaption>
+  </figure>
+</template>
+
+<script>
+export default {
+  name: 'WebTerm',
+  props: { list: { type: 'array', required: true }, git: { type: 'string' } },
+  setup(props) {
+    const list = props.list();
+    const at = signal(0); // 次に打つコマンドの番号
+    const lines = signal([]);
+    const done = () => at() >= list.length;
+    // 空白の数・全角空白・引用符の種類の違いは、同じとみなす
+    const norm = (t) => t.replace(/[　\s]+/g, ' ').trim().replace(/[‘’']/g, '"').replace(/[“”]/g, '"');
+    const USER = 'あなたのユーザー名'; // 「あなたのユーザー名」
+    const esc = (t) => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    // 打った文字が、次のコマンドと合うか。合えば、画面に出す出力を返す
+    const check = (typed) => {
+      const e = list[at.peek()];
+      if (!e.fork) return norm(typed) === norm(e.cmd) ? e.out : null;
+      // 送り先の URL は、自分のユーザー名を打ってもよい。出力の URL も、打ったものにそろえる
+      const re = new RegExp('^' + esc(norm(e.cmd)).split(esc(USER)).join('([A-Za-z0-9][A-Za-z0-9-]*|' + esc(USER) + ')') + '$');
+      const m = re.exec(norm(typed));
+      if (!m) return null;
+      const url = 'https://github.com/' + m[1] + '/trainer.git';
+      return e.out.split('https://github.com/' + USER + '/trainer.git').join(url);
+    };
+    const enter = (ev) => {
+      if (ev.key !== 'Enter' || ev.isComposing) return;
+      const typed = ev.target.value;
+      if (!typed.trim()) return;
+      ev.target.value = '';
+      const out = check(typed);
+      let id = lines.peek().length;
+      const add = [{ id: id++, text: typed + (out ? '\n' + out : '') }];
+      if (out === null) {
+        add.push({ id: id++, note: true, text: 'この練習（ダミー）では、画面の「打つコマンド」を上から順に打ちます。次に打つのは: ' + list[at.peek()].cmd });
+      } else {
+        at.set(at.peek() + 1);
+      }
+      lines.set(lines.peek().concat(add));
+    };
+    const focus = (ev) => {
+      const box = ev.currentTarget.querySelector('.in');
+      if (box && ev.target.tagName !== 'INPUT') box.focus();
+    };
+    return { lines, done, enter, focus, git: props.git() || '' };
+  },
+};
+</script>
+
+<style>
+.wt { margin: 10px 0 16px; }
+.scr { background: #0f1218; color: #dfe5ef; border-radius: 9px; padding: 12px 14px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 13px; line-height: 1.6; min-height: 60px; cursor: text; }
+.ln { white-space: pre-wrap; word-break: break-all; }
+.ln.wtnote { color: #f5c46b; font-family: inherit; margin: 2px 0 6px; }
+.ps { color: #7fd6a3; user-select: none; }
+.inrow { display: flex; align-items: baseline; }
+.in { flex: 1; min-width: 0; background: transparent; border: 0; outline: none; color: #dfe5ef; font: inherit; padding: 0; caret-color: #7fd6a3; }
+figcaption { font-size: 12px; color: var(--sub); margin-top: 5px; }
+.wtdone { color: var(--ink); }
+</style>

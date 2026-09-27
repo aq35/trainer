@@ -6,7 +6,16 @@ import { copy } from '../lib/toast.js';
 
 export const page = window.TRAINER_PAGE;
 const STEPS = page.steps;
-const KEY = page.key;
+
+// 練習する場所。'pc'（自分のパソコン）か 'web'（ブラウザの中のダミーの環境）。どの回でも同じ設定を使う。
+// ブラウザでの進み具合は、自分のパソコンでの進み具合（目次の地図に出る）とは別に保存する。
+const MODE_KEY = 'trainer-mode';
+export const web = !!page.web && readJSON(MODE_KEY, {}).mode === 'web';
+export function setMode(m) {
+  writeJSON(MODE_KEY, { mode: m });
+  location.reload();
+}
+const KEY = web ? page.key + ':web' : page.key;
 
 const saved = readJSON(KEY, {});
 export const os = signal(saved && typeof saved.i === 'number' ? saved.os || null : null);

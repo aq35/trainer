@@ -31,7 +31,13 @@
     <CmdBox v-if="s.cmd" :text="s.cmd" />
     <CmdBox v-for="c in multi" :text="c" />
     <!-- 実際に打って得た出力。受講者の画面と見比べられるように、コマンドのすぐ下に置く -->
-    <Term v-for="o in outs" :cmd="o.cmd" :out="o.out" :git="git" :replaced="o.replaced" />
+    <div v-if="!webTerm">
+      <Term v-for="o in outs" :cmd="o.cmd" :out="o.out" :git="git" :replaced="o.replaced" />
+    </div>
+    <!-- ブラウザで練習するときは、出力を先に見せず、自分で打つと出る -->
+    <WebTerm v-if="webTerm" :list="s.web" :git="git" />
+    <div v-if="web && s.textBox" class="webstep">ブラウザ（ダミー）では、この中身で保存したことにして進みます。</div>
+    <div v-if="web && !s.textBox && !s.web" class="webstep">ブラウザ（ダミー）では、この画面の操作（VS Code や GitHub の画面での操作）はしません。何も送っていないので、GitHub にも何も増えていません。読んで、次へ進んでください。</div>
     <!-- 実行記録から描いた図と、その元になった出力 -->
     <div v-if="s.areas" class="gen">
       <Fig :src="s.areas.src" :alt="s.areas.alt" />
@@ -75,15 +81,16 @@ import CmdBox from '../ui/CmdBox.sunao';
 import Stuck from './Stuck.sunao';
 import Help from './Help.sunao';
 import Term from '../ui/Term.sunao';
+import WebTerm from './WebTerm.sunao';
 import Refs from '../ui/Refs.sunao';
-import { page, step, pick, move, reset, helpOpen } from './state.js';
+import { page, step, pick, move, reset, helpOpen, web } from './state.js';
 
 export default {
   name: 'StepMain',
   setup() {
     const s = step.peek();
     const toggleHelp = () => helpOpen.update((v) => !v);
-    return { s, outs: s.out || [], git: page.git || '', todo: pick(s.todo) || [], pre: pick(s.pre) || [], multi: pick(s.cmdMulti) || [], refs: Array.isArray(s.ref) ? s.ref : pick(s.ref) || [], move, reset, helpOpen, toggleHelp };
+    return { s, web, webTerm: web && !!s.web, outs: s.out || [], git: page.git || '', todo: pick(s.todo) || [], pre: pick(s.pre) || [], multi: pick(s.cmdMulti) || [], refs: Array.isArray(s.ref) ? s.ref : pick(s.ref) || [], move, reset, helpOpen, toggleHelp };
   },
 };
 </script>

@@ -10,6 +10,14 @@
       </div>
       <div class="bar"><i :style="'width:' + percent() + '%'"></i></div>
     </header>
+    <div v-if="canWeb" class="mode">
+      <span class="ml">練習する場所</span>
+      <button type="button" :class="web ? 'mb' : 'mb on'" :aria-pressed="web ? 'false' : 'true'" @click="setMode('pc')">自分のパソコン</button>
+      <button type="button" :class="web ? 'mb on' : 'mb'" :aria-pressed="web ? 'true' : 'false'" @click="setMode('web')">ブラウザ（ダミー）</button>
+    </div>
+    <div v-if="web" class="webnote">
+      <b>ブラウザの中のダミーの環境です。</b>あなたのパソコンのファイルや GitHub は、何も変わりません。コマンドを打つと、<b>本物の Git で打って記録した出力</b>を返します。
+    </div>
     <main class="wrap">
       <StepOs v-if="step().kind === 'os'" />
       <StepMain v-if="step().kind === 'step'" />
@@ -26,7 +34,7 @@ import StepMain from './StepMain.sunao';
 import StepFin from './StepFin.sunao';
 import Credit from '../ui/Credit.sunao';
 import Toast from '../ui/Toast.sunao';
-import { page, step, idx, total } from './state.js';
+import { page, step, idx, total, web, setMode } from './state.js';
 
 export default {
   name: 'NaviApp',
@@ -39,7 +47,7 @@ export default {
       if (s.kind === 'os') return '';
       return (page.needsOs ? idx() : idx() + 1) + ' / ' + (page.needsOs ? total - 1 : total);
     };
-    return { title: page.title, step, percent, counter };
+    return { title: page.title, step, percent, counter, canWeb: !!page.web, web, setMode };
   },
 };
 </script>

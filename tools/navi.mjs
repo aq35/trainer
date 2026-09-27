@@ -105,6 +105,20 @@ export function buildNavi(name, mod, { firstAid, recorded = null, banned = [] })
     if (!a) throw new Error(`${where} ${at}: areas「${id}」の記録がありません`);
     return { id, ...a };
   };
+  // ブラウザでの練習（ダミーの環境）で、打つ順に [{ cmd, out, fork }]。
+  // 答えは記録した出力だけ。1つでも記録が無いコマンドがあれば false（その回はブラウザで練習できない）
+  const webOf = (s, at) => {
+    if (s.textBox || !(s.cmd || s.cmdMulti)) return null;
+    if (s.cmdMulti && !s.cmdMulti.common) return false; // OS で打つものが違う画面は、ダミーでは再現しない
+    const outs = outOf(s.out, at, [].concat(s.cmd || [], (s.cmdMulti && s.cmdMulti.common) || []));
+    const list = [];
+    for (const c of [].concat(s.cmd || [], (s.cmdMulti && s.cmdMulti.common) || [])) {
+      const o = outs.find((x) => x.cmd === c);
+      if (!o) return false;
+      list.push({ cmd: c, out: o.out, fork: c.includes(FORK_URL) });
+    }
+    return list;
+  };
   const R = (html, at) => (html == null ? null : parseHtml(html, { profile: 'inline', where: `${where} ${at}` }));
   const qa = (it, at) => ({ os: it.os || null, q: R(it.q, at + '.q'), a: R(it.a, at + '.a'), qText: strip(it.q), find: textOf(R(it.q, at) .concat(' ', R(it.a, at))).toLowerCase() });
   const osList = (o) => (o ? (o.common ? ['common'] : ['win', 'mac']) : []);
@@ -175,6 +189,7 @@ export function buildNavi(name, mod, { firstAid, recorded = null, banned = [] })
       tb: (s.tb || []).map((t, k) => qa(t, `${at}.tb[${k}]`)),
       help,
       out: checkHashes(outOf(s.out, at, shownCmds), s, at),
+      web: webOf(s, at),
       areas: areasOf(s.areas, at),
       // ref は配列か、OS ごとの { common, win, mac }（common は両方に出す）
       ref: Array.isArray(s.ref) || !s.ref ? refsOf(s.ref, `${where} ${at}`)
@@ -182,5 +197,8 @@ export function buildNavi(name, mod, { firstAid, recorded = null, banned = [] })
     };
   });
 
-  return { name, title: mod.title, git: recorded ? recorded.git : null, key: nav.key, greeting: R(nav.greeting, 'greeting'), needsOs, common, steps };
+  // ブラウザで練習できる回か（コマンドを打つ画面が全部、記録した出力で答えられるとき）
+  const web = steps.every((st, i) => st.web !== false || nav.steps[i].textBox);
+  for (const st of steps) if (st.web === false) st.web = null;
+  return { name, title: mod.title, git: recorded ? recorded.git : null, key: nav.key, greeting: R(nav.greeting, 'greeting'), needsOs, web, common, steps };
 }

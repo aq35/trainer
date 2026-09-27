@@ -91,6 +91,32 @@ test('ナビ: OS を選ぶ回は、選んだ OS の手順になる', { skip }, a
   await page.close();
 });
 
+test('ブラウザで練習: 画面のコマンドを打つと、記録した出力が出る', { skip }, async () => {
+  const { page, errors } = await open('01-tools.html');
+  await page.waitForSelector('.oschoice');
+  assert.equal(await page.locator('.mode').count(), 0, '第1回（道具を入れる回）には切り替えが無い');
+  await page.goto(base + '03-first-commit.html');
+  await page.waitForSelector('.card');
+  await page.click('.mode button:has-text("ブラウザ")');
+  await page.waitForSelector('.webnote');
+  await page.click('.ask button.act.ok'); // 1画面目（ファイルを作る）は、済んだことにして進む
+  assert.equal(await page.locator('.term').count(), 0, '出力は、打つまで出さない');
+  await page.fill('.wt .in', 'git stats');
+  await page.press('.wt .in', 'Enter');
+  assert.match(await page.textContent('.wt .wtnote'), /次に打つのは: git status/);
+  await page.fill('.wt .in', 'git  status');
+  await page.press('.wt .in', 'Enter');
+  assert.match(await page.textContent('.wt .scr'), /Untracked files:/);
+  assert.equal(await page.locator('.wt .in').count(), 0, '全部打ったら入力欄を閉じる');
+  // ブラウザでの進み具合は、自分のパソコンでの進み具合とは別に保存する
+  assert.equal(await page.evaluate(() => localStorage.getItem('trainer-v2-03')), null);
+  await page.click('.mode button:has-text("自分のパソコン")');
+  await page.waitForSelector('.card');
+  assert.equal(await page.locator('.webnote').count(), 0);
+  assert.deepEqual(errors, []);
+  await page.close();
+});
+
 test('コマンド練習: 答え合わせと、間違えた問題のやり直し', { skip }, async () => {
   const { page, errors } = await open('drill.html');
   await page.click('.cat:has-text("ターミナル")');
