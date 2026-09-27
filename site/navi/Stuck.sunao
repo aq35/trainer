@@ -1,18 +1,17 @@
 <!--
-  同じステップに長くとどまっている人に、こちらから声をかける。
+  同じステップに長くとどまっている人に、こちらから声をかける（AI に聞く案内）。
   画面を開いたまま止まっている人にも気づけるよう、1分ごとに見に行く。
   変わるのはこの枠だけ（画面全体を描き直すと、読んでいる位置が飛ぶ）。
 -->
 <template>
   <div v-if="min() >= limit" class="stuck">
     <b>このステップで{{ min() }}分ほど経っています。</b><br />
-    ここで止まるのは珍しくありません。一人で粘らず、下の「うまくいきません」から状況をコピーして相談してください。<br />
-    <Contact />
+    下の「うまくいきません」を開き、「AIに聞く文章をコピー」を押して、AI に貼ってください。<br />
+    聞き方: <a href="index.html#/git-research" target="_blank" rel="noopener">Git を調べるコツ</a>
   </div>
 </template>
 
 <script>
-import Contact from '../ui/Contact.sunao';
 import { minutesHere, STUCK_MIN } from './state.js';
 
 export default {
