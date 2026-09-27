@@ -11,11 +11,13 @@ const STEPS = page.steps;
 // ブラウザでの進み具合は、自分のパソコンでの進み具合（目次の地図に出る）とは別に保存する。
 const MODE_KEY = 'trainer-mode';
 export const web = !!page.web && readJSON(MODE_KEY, {}).mode === 'web';
+const KEY = web ? page.key + ':web' : page.key;
+// 切り替えても、いま見ている画面のまま続ける
 export function setMode(m) {
   writeJSON(MODE_KEY, { mode: m });
+  writeJSON(m === 'web' ? page.key + ':web' : page.key, { os: os.peek(), i: idx.peek() });
   location.reload();
 }
-const KEY = web ? page.key + ':web' : page.key;
 
 const saved = readJSON(KEY, {});
 export const os = signal(saved && typeof saved.i === 'number' ? saved.os || null : null);

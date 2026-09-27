@@ -97,9 +97,11 @@ test('ブラウザで練習: 画面のコマンドを打つと、記録した出
   assert.equal(await page.locator('.mode').count(), 0, '第1回（道具を入れる回）には切り替えが無い');
   await page.goto(base + '03-first-commit.html');
   await page.waitForSelector('.card');
-  await page.click('.mode button:has-text("ブラウザ")');
+  await page.click('.ask button.act.ok'); // 1画面目（ファイルを作る）
+  // コマンドの画面から、擬似ターミナルに切り替えられる。切り替えても同じ画面のまま
+  await page.click('.trybar .try');
   await page.waitForSelector('.webnote');
-  await page.click('.ask button.act.ok'); // 1画面目（ファイルを作る）は、済んだことにして進む
+  assert.equal(await page.textContent('.counter'), '2 / 8');
   assert.equal(await page.locator('.term').count(), 0, '出力は、打つまで出さない');
   await page.fill('.wt .in', 'git stats');
   await page.press('.wt .in', 'Enter');
@@ -108,8 +110,10 @@ test('ブラウザで練習: 画面のコマンドを打つと、記録した出
   await page.press('.wt .in', 'Enter');
   assert.match(await page.textContent('.wt .scr'), /Untracked files:/);
   assert.equal(await page.locator('.wt .in').count(), 0, '全部打ったら入力欄を閉じる');
-  // ブラウザでの進み具合は、自分のパソコンでの進み具合とは別に保存する
-  assert.equal(await page.evaluate(() => localStorage.getItem('trainer-v2-03')), null);
+  // ブラウザで先に進んでも、自分のパソコンでの進み具合（2画面目）は変わらない
+  await page.click('.ask button.act.ok');
+  assert.equal(await page.textContent('.counter'), '3 / 8');
+  assert.equal(JSON.parse(await page.evaluate(() => localStorage.getItem('trainer-v2-03'))).i, 1);
   await page.click('.mode button:has-text("自分のパソコン")');
   await page.waitForSelector('.card');
   assert.equal(await page.locator('.webnote').count(), 0);

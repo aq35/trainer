@@ -31,6 +31,11 @@
     <CmdBox v-if="s.cmd" :text="s.cmd" />
     <CmdBox v-for="c in multi" :text="c" />
     <!-- 実際に打って得た出力。受講者の画面と見比べられるように、コマンドのすぐ下に置く -->
+    <!-- 自分のパソコンで練習しているときも、ここから擬似ターミナルに切り替えられる -->
+    <div v-if="canTry" class="trybar">
+      <button type="button" class="try" @click="setMode('web')">▶ このコマンドを、ブラウザの中の擬似ターミナルで打ってみる</button>
+      <span class="trysub">ダミーの環境です。あなたのパソコンや GitHub は変わりません。</span>
+    </div>
     <div v-if="!webTerm">
       <Term v-for="o in outs" :cmd="o.cmd" :out="o.out" :git="git" :replaced="o.replaced" />
     </div>
@@ -83,14 +88,14 @@ import Help from './Help.sunao';
 import Term from '../ui/Term.sunao';
 import WebTerm from './WebTerm.sunao';
 import Refs from '../ui/Refs.sunao';
-import { page, step, pick, move, reset, helpOpen, web } from './state.js';
+import { page, step, pick, move, reset, helpOpen, web, setMode } from './state.js';
 
 export default {
   name: 'StepMain',
   setup() {
     const s = step.peek();
     const toggleHelp = () => helpOpen.update((v) => !v);
-    return { s, web, webTerm: web && !!s.web, outs: s.out || [], git: page.git || '', todo: pick(s.todo) || [], pre: pick(s.pre) || [], multi: pick(s.cmdMulti) || [], refs: Array.isArray(s.ref) ? s.ref : pick(s.ref) || [], move, reset, helpOpen, toggleHelp };
+    return { s, web, setMode, canTry: !web && !!page.web && !!s.web, webTerm: web && !!s.web, outs: s.out || [], git: page.git || '', todo: pick(s.todo) || [], pre: pick(s.pre) || [], multi: pick(s.cmdMulti) || [], refs: Array.isArray(s.ref) ? s.ref : pick(s.ref) || [], move, reset, helpOpen, toggleHelp };
   },
 };
 </script>
